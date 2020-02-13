@@ -28,6 +28,7 @@ class CommentCard extends React.Component<any, any> {
                 <div className="card-footer">
                     <Link to={`/@${info.author.username}`}>
                         <img src={info.author.image}
+                             alt=""
                              className="author-image comment-another-img"
                              role="presentation"/>
                     </Link>

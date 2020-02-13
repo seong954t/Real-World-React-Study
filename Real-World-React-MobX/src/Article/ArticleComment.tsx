@@ -19,6 +19,7 @@ class ArticleComment extends React.Component<any, any> {
                 </fieldset>
                 <div className="card-footer">
                     <img src={this.props.userStore.user.image}
+                         alt=""
                          className="comment-author-img"/>
                     <button className="btn btn-sm btn-success float-right" type="submit">Post Comment
                     </button>

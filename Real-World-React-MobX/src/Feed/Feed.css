@@ -93,12 +93,17 @@
 }
 
 .page-item.active .page-link{
+    color: white !important;
     background-color: #5cb85c;
     border-color: #5cb85c;
 }
 
 .page-link:hover{
     cursor: pointer;
+}
+
+.page-link{
+    color: inherit !important;
 }
 
 .no-article-notion{

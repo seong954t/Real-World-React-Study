@@ -48,6 +48,7 @@ class UserInfoBanner extends React.PureComponent<any, any> {
                 <div className="container">
                     <div className="col-md-10 m-auto d-inline-block">
                         <img className="user-img"
+                             alt=""
                              src={image}/>
                         <h4>{username}</h4>
                         <p className="pb-2">{bio}</p>

@@ -1,5 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
+import {Link} from "react-router-dom";
 
 @inject("articlesStore", "feedTabStore")
 @observer
@@ -18,9 +19,9 @@ class FeedPageButton extends React.PureComponent<any, any>{
 
         return (
             <li key={page} className={`page-item ${page === activePage ? 'active' : ''}`}>
-                <a className="page-link" aria-current="page" onClick={this.handlePaging}>
+                <Link className="page-link" aria-current="page" onClick={this.handlePaging} to='' >
                     {page}
-                </a>
+                </Link>
             </li>
         );
     }

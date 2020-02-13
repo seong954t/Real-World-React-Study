@@ -34,7 +34,8 @@ class Header extends React.Component<any, any> {
             <li className="nav-item">
                 <Link to={`/@${username}`} className="nav-link text-secondary">
                     <img src={image}
-                        className="header-author-img"/>
+                         alt=""
+                         className="header-author-img"/>
                     {username}
                 </Link>
             </li>
