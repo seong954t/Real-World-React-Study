@@ -1,4 +1,5 @@
 import React from "react";
+import marked from "marked";
 
 class ArticleDescripter extends React.Component<{ tagList: string[], body: string }, {}> {
 
@@ -9,14 +10,15 @@ class ArticleDescripter extends React.Component<{ tagList: string[], body: strin
 
     render() {
         const {tagList, body} = this.props;
-
+        const markedHTML = {__html: marked(body, {sanitize: true})};
+        
         console.log("Render [ ArticleDescripter ]");
 
         return (
             <div className="article-desc col-md-12 p-0">
                 <div className="col-md-12 p-0">
                     <div>
-                        <p>{body}</p>
+                        <div dangerouslySetInnerHTML={markedHTML}></div>
                     </div>
                     <div>
                         <ul className="tag-list p-0">
