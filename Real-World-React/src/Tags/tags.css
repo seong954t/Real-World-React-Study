@@ -1,0 +1,29 @@
+.tag-list{
+    list-style: none;
+    display: inline-block;
+}
+
+.tag-default{
+    font-size: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0 0.6rem;
+}
+
+.popular-tag{
+    background-color: #818a91;
+    color: #fff;
+    padding: .1rem .6rem
+}
+
+.tag-box{
+    padding: 5px 10px 10px;
+    background: #f3f3f3;
+    border-radius: 4px;
+}
+
+.popular-tag:hover{
+    background-color: #687077;
+    color: #fff;
+}
