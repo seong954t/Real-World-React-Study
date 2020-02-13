@@ -1,0 +1,19 @@
+a{
+  color: #5cb85c;
+}
+
+a:focus, a:hover {
+  color: #3d8b3d;
+  text-decoration: underline;
+}
+
+.error-message{
+  color: #b85c5c;
+  font-weight: 700;
+}
+
+.tag-default i{
+  font-size: .6rem;
+  margin-right: 5px;
+  cursor: pointer;
+}
