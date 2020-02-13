@@ -4,8 +4,9 @@ import Auth from "../Auth/Auth";
 import ArticleDTO from "../DTO/ArticleDTO";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react"
+import Loading from "../Loading/Loading";
 
-@inject("feedTabStore")
+@inject("feedTabStore", "articlesStore")
 @observer
 class FeedList extends React.PureComponent<any, any> {
 
@@ -65,7 +66,7 @@ class FeedList extends React.PureComponent<any, any> {
                 <div>
                     {!name ? this.mainFeed(tab, tag) : this.individualFeed(tab, name)}
                 </div>
-                {feedList}
+                {this.props.articlesStore.isArticlesLoading ? <Loading/> : feedList}
             </div>
         );
     }

@@ -24,9 +24,15 @@ export default class ArticlesStore {
     @observable
     private FEED_SIZE: number = this.MAIN_FEED_SIZE;
 
+    @observable
+    private isArticlesLoading: boolean = false;
+
     @action
     public loadArticles(feedTabStore: FeedTabStore, page: number): void {
         const url = this.getRequestArticleUrl(feedTabStore, page);
+        if(page === 1){
+            this.isArticlesLoading = true;
+        }
         RealWorldApi.getArticles(url)
             .then(res => res.json())
             .then(action((result) => {
@@ -40,6 +46,7 @@ export default class ArticlesStore {
                     });
                     this.articlesCount = articlesCount;
                     this.page = page;
+                    this.isArticlesLoading = false;
                 }
             }))
     }

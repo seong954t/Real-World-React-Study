@@ -18,7 +18,7 @@ class FeedPageList extends React.PureComponent<any, any> {
         return (
             <nav aria-label="...">
                 <ul className="pagination">
-                    {size > 1 ? this.pageButtonList(size) : ''}
+                    {this.props.articlesStore.isArticlesLoading ? '' : (size > 1 ? this.pageButtonList(size) : '')}
                 </ul>
             </nav>
         );
