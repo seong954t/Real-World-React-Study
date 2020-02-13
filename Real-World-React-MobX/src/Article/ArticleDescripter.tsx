@@ -17,7 +17,7 @@ class ArticleDescripter extends React.Component<{ tagList: string[], body: strin
         return (
             <div className="article-desc col-md-12 p-0">
                 <div className="col-md-12 p-0">
-                    <div>
+                    <div className="article-marked">
                         <div dangerouslySetInnerHTML={markedHTML}></div>
                     </div>
                     <div>

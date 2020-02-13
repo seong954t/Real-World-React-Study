@@ -9,6 +9,10 @@
     color: #fff;
 }
 
+.article-marked{
+    overflow-x: auto;
+}
+
 .article-desc p{
     font-family: 'source serif pro',serif;
     font-size: 1.2rem;
