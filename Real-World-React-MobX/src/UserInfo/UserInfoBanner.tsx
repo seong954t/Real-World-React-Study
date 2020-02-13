@@ -14,7 +14,9 @@ class UserInfoBanner extends React.PureComponent<any, any> {
     }
 
     handleFollow = () => {
-        this.props.profileStore.followUser(this.props.username);
+        if(Auth.isSigned()){
+            this.props.profileStore.followUser(this.props.username);
+        }
     };
 
     followButton = (username: string, following: boolean) => (

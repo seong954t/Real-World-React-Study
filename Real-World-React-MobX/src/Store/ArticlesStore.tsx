@@ -2,6 +2,7 @@ import {action, computed, observable, ObservableMap} from "mobx";
 import ArticleDTO from "../DTO/ArticleDTO";
 import FeedTabStore from "./FeedTabStore";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
+import Auth from "../Auth/Auth";
 
 export default class ArticlesStore {
 
@@ -85,7 +86,8 @@ export default class ArticlesStore {
     @action
     public favoriteArticle(slug: string) {
         const tempArticle = this.articles.get(slug);
-        if (tempArticle !== undefined) {
+
+        if (tempArticle !== undefined && Auth.isSigned()) {
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(res => res.json())
                 .then(action((result) => {
