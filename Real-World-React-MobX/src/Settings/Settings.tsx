@@ -6,29 +6,33 @@ import {inject, observer} from "mobx-react";
 class Settings extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ Settings ]")
+        console.log("componentDidMount [ Settings ]");
         this.props.userStore.resetUpdatingUser();
     }
 
     handleUpdateSettings = (e: any) => {
         e.preventDefault();
-        this.props.userStore.updateUser();
-    }
+        this.props.userStore.updateUser()
+            .then(() => {
+                this.props.history.replace("/");
+            })
+    };
 
     handleChange = (e: any) => {
         this.props.userStore.setUpdatingUserInfo(e.target.name, e.target.value)
-    }
+    };
 
     handleLogout = (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
         this.props.authStore.logout(this.props.userStore);
-    }
+        this.props.history.replace("/")
+    };
 
     render() {
         const {password} = this.props.userStore;
         const {email, username, bio, image} = this.props.userStore.updatingUser;
 
-        console.log("Render [ Settings ]")
+        console.log("Render [ Settings ]");
 
         return (
             <div className="container text-center mt-4">

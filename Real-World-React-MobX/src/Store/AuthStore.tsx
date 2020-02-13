@@ -9,7 +9,7 @@ export default class AuthStore {
         username: "",
         email: "",
         password: ""
-    }
+    };
 
     @observable
     private errors: string[] = [];
@@ -24,15 +24,15 @@ export default class AuthStore {
 
     @action
     private resetAuthInfo() {
-        this.authInfo.username = ""
-        this.authInfo.email = ""
-        this.authInfo.password = ""
+        this.authInfo.username = "";
+        this.authInfo.email = "";
+        this.authInfo.password = "";
         this.errors = [];
     }
 
     @action
-    public login(userStore: UserStore) {
-        RealWorldApi.login(this.authInfo.email, this.authInfo.password)
+    public login(userStore: UserStore): Promise<any> {
+        return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
             .then(action((result) => this.responseHandler(userStore, result)));
     }
@@ -44,8 +44,8 @@ export default class AuthStore {
     }
 
     @action
-    public registration(userStore: UserStore) {
-        RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
+    public registration(userStore: UserStore): Promise<any> {
+        return RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
             .then(action((result) => this.responseHandler(userStore, result)));
     }
@@ -56,13 +56,13 @@ export default class AuthStore {
             const arrayError: string[] = [];
             Object.keys(errors).forEach(key => {
                 arrayError.push(key + " " + errors[key].toString())
-            })
+            });
             this.errors = arrayError
         } else if (user !== undefined) {
-            this.resetAuthInfo()
+            this.resetAuthInfo();
             userStore.setUser(user);
             localStorage.setItem("token", user.token);
-            window.location.href = "/";
+            RealWorldApi.setAuthHeader();
         }
     }
 }

@@ -5,7 +5,7 @@ const Method = {
     POST: "POST",
     PUT: "PUT",
     DELETE: "DELETE"
-}
+};
 
 const Header = {
     DEFAULT: {
@@ -17,9 +17,12 @@ const Header = {
         "Content-Type": "application/json; charset=utf-8",
         "Authorization": `Token ${Auth.getToken()}`
     }
-}
+};
 
 const RealWorldApi = {
+    setAuthHeader: () => {
+        Header.AUTH.Authorization = `Token ${Auth.getToken()}`
+    },
     domain: "https://conduit.productionready.io/api/",
     login: (email: string, password: string): Promise<Response> => {
         const url = RealWorldApi.domain + "users/login";
@@ -28,13 +31,13 @@ const RealWorldApi = {
                 email: email,
                 password: password
             }
-        }
+        };
 
         return RealWorldApi.requestApi(url, Method.POST, Header.DEFAULT, body)
     },
     logout: () => {
         localStorage.clear();
-        document.location.href = "/";
+        Header.AUTH.Authorization = "";
     },
     registration: (username: string, email: string, password: string): Promise<Response> => {
         const url = RealWorldApi.domain + "users";
@@ -44,7 +47,7 @@ const RealWorldApi = {
                 email: email,
                 password: password
             }
-        }
+        };
 
         return RealWorldApi.requestApi(url, Method.POST, Header.DEFAULT, body);
     },
@@ -64,7 +67,7 @@ const RealWorldApi = {
                 "email": "${email}"
                 ${password === "" ? "" : (`, "password": "` + password + '"')}
             }
-        }`
+        }`;
 
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, JSON.parse(body));
     },
@@ -74,12 +77,13 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH : Header.DEFAULT))
     },
     followUser: (username: string, followed: boolean) => {
-        const url = RealWorldApi.domain + `profiles/${username}/follow`
+        const url = RealWorldApi.domain + `profiles/${username}/follow`;
 
         return RealWorldApi.requestApi(url, (followed ? Method.DELETE : Method.POST), Header.AUTH)
     },
     getArticles: (url: string): Promise<Response> => {
         let header;
+
         if (Auth.isSigned()) {
             header = Header.AUTH
         } else {
@@ -89,7 +93,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.GET, header)
     },
     getArticle: (slug: string): Promise<Response> => {
-        const url = RealWorldApi.domain + `articles/${slug}`
+        const url = RealWorldApi.domain + `articles/${slug}`;
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT);
     },
     createArticle: (title: string, description: string, body: string, tagList: string[]): Promise<Response> => {
@@ -102,7 +106,7 @@ const RealWorldApi = {
                 body: body,
                 tagList: tagList
             }
-        }
+        };
 
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
@@ -116,7 +120,7 @@ const RealWorldApi = {
                 body: body,
                 tagList: tagList
             }
-        }
+        };
 
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, responseBody)
     },
@@ -132,7 +136,7 @@ const RealWorldApi = {
             comment: {
                 body: body
             }
-        }
+        };
 
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
@@ -156,7 +160,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
     },
     alertError: (errors: any) => {
-        console.log("error : ", errors)
+        console.log("error : ", errors);
         alert("error")
     },
     requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<Response> => {
@@ -168,9 +172,8 @@ const RealWorldApi = {
             headers: headers,
             body: JSON.stringify(body)
         };
-
         return fetch(url, init)
     }
-}
+};
 
 export default RealWorldApi

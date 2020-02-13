@@ -24,7 +24,7 @@ export default class ProfileStore {
                     }
                 }
             )
-    }
+    };
 
     @action
     public followUser(username: string) {

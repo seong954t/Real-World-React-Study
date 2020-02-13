@@ -7,32 +7,36 @@ import {inject, observer} from "mobx-react";
 class SignUp extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ SignUp ]")
+        console.log("componentDidMount [ SignUp ]");
         this.props.authStore.resetAuthInfo();
     }
 
     handleSignUp = (e: any) => {
         e.preventDefault();
         this.props.authStore.registration(this.props.userStore)
-    }
+            .then(() => {
+                if(this.props.authStore.errors.length === 0){
+                    this.props.history.replace("/")
+                }
+            })
+    };
 
     handleChange = (e: any) => {
         this.props.authStore.setAuthInfo(e.target.name, e.target.value)
-    }
+    };
 
     errorElement = (errors: string[]) => (
         <ul className="error-message text-left">
-            {errors.map((msg, _) => (
-                <li>{msg}</li>
+            {errors.map((msg, index: number) => (
+                <li key={index}>{msg}</li>
             ))}
         </ul>
-    )
+    );
 
     render() {
         const {username, email, password, errors} = this.props.authStore;
 
-        console.log("Render [ SignUp ]")
-        console.log(this.props.authStore.errors)
+        console.log("Render [ SignUp ]");
 
         return (
             <div className="container text-center">

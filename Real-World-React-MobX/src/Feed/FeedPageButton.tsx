@@ -8,13 +8,13 @@ class FeedPageButton extends React.PureComponent<any, any>{
     handlePaging = (e: any) => {
         e.preventDefault();
         this.props.articlesStore.loadArticles(this.props.feedTabStore, this.props.page);
-    }
+    };
 
     render() {
         const page = this.props.page;
-        const activePage = this.props.articlesStore.page
+        const activePage = this.props.articlesStore.page;
 
-        console.log("Render [ FeedPageButton ]")
+        console.log("Render [ FeedPageButton ]");
 
         return (
             <li key={page} className={`page-item ${page === activePage ? 'active' : ''}`}>

@@ -36,7 +36,7 @@ export default class ArticlesStore {
                     this.articles.clear();
                     articles.forEach((article: ArticleDTO) => {
                         this.articles.set(article.slug, article);
-                    })
+                    });
                     this.articlesCount = articlesCount;
                     this.page = page;
                 }
@@ -50,7 +50,7 @@ export default class ArticlesStore {
 
     @action
     public loadArticle(slug: string) {
-        const article = this.articles.get(slug)
+        const article = this.articles.get(slug);
 
         if (article) {
             this.article = article;
@@ -69,8 +69,8 @@ export default class ArticlesStore {
     }
 
     @action
-    public deleteArticle(slug: string) {
-        RealWorldApi.deleteArticle(slug)
+    public deleteArticle(slug: string): Promise<any> {
+        return RealWorldApi.deleteArticle(slug)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors} = result;
@@ -78,7 +78,6 @@ export default class ArticlesStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     this.article = undefined;
-                    window.location.href = `/`;
                 }
             }))
     }

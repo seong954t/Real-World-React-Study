@@ -28,18 +28,18 @@ export default class PostStore {
 
     @action
     public appendTag() {
-        const {tagList} = this.post
+        const {tagList} = this.post;
         tagList.push(this.tag);
         this.post = {
             ...this.post,
             tagList: Array.from(new Set(tagList))
-        }
+        };
         this.tag = "";
     }
 
     @action
     public removeTag(info: string) {
-        const {tagList} = this.post
+        const {tagList} = this.post;
 
         this.post = {
             ...this.post,
@@ -76,10 +76,10 @@ export default class PostStore {
     }
 
     @action
-    public createArticle() {
+    public createArticle(): Promise<any> {
         const {title, description, body, tagList} = this.post;
 
-        RealWorldApi.createArticle(title, description, body, tagList)
+        return RealWorldApi.createArticle(title, description, body, tagList)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
@@ -87,16 +87,15 @@ export default class PostStore {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
-                    window.location.href = `/article/${article.slug}`;
                 }
             }))
     }
 
     @action
-    public updateArticle(slug: string) {
+    public updateArticle(slug: string): Promise<any> {
         const {title, description, body, tagList} = this.post;
 
-        RealWorldApi.updateArticle(title, description, body, tagList, slug)
+        return RealWorldApi.updateArticle(title, description, body, tagList, slug)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
@@ -104,7 +103,6 @@ export default class PostStore {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
-                    window.location.href = `/article/${article.slug}`;
                 }
             }))
     }

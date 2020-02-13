@@ -7,7 +7,7 @@ class UserInfoContainer extends React.Component<any, {}> {
     render() {
         const {params} = this.props.match;
 
-        console.log("Render [ UserInfoContainer ]")
+        console.log("Render [ UserInfoContainer ]");
 
         return (
             <div>

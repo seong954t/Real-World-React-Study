@@ -9,25 +9,29 @@ import {inject, observer} from "mobx-react";
 class ArticleBanner extends React.Component<any, any> {
 
     handleDeleteArticle = (slug: string) => {
-        this.props.articlesStore.deleteArticle(slug);
-    }
+        this.props.articlesStore.deleteArticle(slug)
+            .then(() => {
+                console.log(this.props);
+                this.props.location.replace("/")
+            })
+    };
 
     individualArticleButtons = (slug: string) => (
         <span>
             <Link className="btn btn-outline-secondary btn-sm"
                to={`/editor/${slug}`}>
-                <i className="ion-edit"></i>Edit Article</Link>
-            <button className="btn btn-outline-danger btn-sm" onClick={(e) => this.handleDeleteArticle(slug)}>
-                <i className="ion-edit"></i>
+                <i className="ion-edit"/>Edit Article</Link>
+            <button className="btn btn-outline-danger btn-sm" onClick={() => this.handleDeleteArticle(slug)}>
+                <i className="ion-edit"/>
                 Delete Article
             </button>
         </span>
-    )
+    );
 
     render() {
         const {title, createdAt, author, slug} = this.props.articlesStore.article;
 
-        console.log("Render [ ArticleBanner ]")
+        console.log("Render [ ArticleBanner ]");
 
         return (
             <div className="article-info-banner text-left">

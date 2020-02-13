@@ -8,6 +8,6 @@ const App = () => {
         <PageRouter/>
     </div>
   );
-}
+};
 
 export default App;

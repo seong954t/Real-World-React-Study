@@ -8,12 +8,12 @@ class FeedPageList extends React.PureComponent<any, any> {
 
     pageButtonList = (size: number) => [...Array(size)].map((_, i: number) => (
         <FeedPageButton key={i+1} page={i+1}/>
-    ))
+    ));
 
     render() {
         const size = this.props.size;
 
-        console.log("Render [ FeedPageList ]")
+        console.log("Render [ FeedPageList ]");
 
         return (
             <nav aria-label="...">

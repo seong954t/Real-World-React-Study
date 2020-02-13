@@ -11,10 +11,10 @@ class HomeBanner extends React.PureComponent<any, any>{
                 <p className="banner-p">A place to share your knowledge.</p>
             </div>
         </div>
-    )
+    );
 
     render() {
-        console.log("Render [ HomeBanner ]")
+        console.log("Render [ HomeBanner ]");
         return (
             <div>
                 {Auth.isSigned() ? '' : this.homeBanner}

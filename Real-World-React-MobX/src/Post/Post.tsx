@@ -7,11 +7,11 @@ import {inject, observer} from "mobx-react";
 class Post extends React.Component<any, ArticlePost> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ Post ]")
+        console.log("componentDidMount [ Post ]");
         const {slug} = this.props.match.params;
-        if(slug){
+        if (slug) {
             this.props.postStore.loadPost(slug)
-        } else{
+        } else {
             this.props.postStore.resetPost()
         }
     }
@@ -20,41 +20,47 @@ class Post extends React.Component<any, ArticlePost> {
         if (e.key === 'Enter') {
             e.preventDefault();
             this.props.postStore.appendTag();
-        } else{
+        } else {
             this.handleChange(e);
         }
-    }
+    };
 
     handleChange = (e: any) => {
         this.props.postStore.setPost(e.target.name, e.target.value)
-    }
+    };
 
     getTagElementList = () => (
         this.props.postStore.post.tagList.map((info: string, _: number) => {
             return (
                 <li className="tag-default popular-tag" key={info}>
-                    <i className="ion-close-round" onClick={(e: any) => this.props.postStore.removeTag(info)}></i>{info}
+                    <i className="ion-close-round" onClick={() => this.props.postStore.removeTag(info)}/>{info}
                 </li>
             )
         })
-    )
+    );
 
     handlePublish = (e: any) => {
         e.preventDefault();
         const {slug} = this.props.match.params;
-        if(slug === undefined){
-            this.props.postStore.createArticle();
-        } else{
-            this.props.postStore.updateArticle(slug);
+        if (slug === undefined) {
+            this.props.postStore.createArticle()
+                .then(() => {
+                    this.props.history.replace(`/article/${slug}`)
+                });
+        } else {
+            this.props.postStore.updateArticle(slug)
+                .then(() => {
+                    this.props.history.replace(`/article/${slug}`)
+                });
         }
-    }
+    };
 
     render() {
         const tagElementList = this.getTagElementList();
         const {postStore} = this.props;
         const {title, description, body} = postStore.post;
 
-        console.log("Render [ Post ]")
+        console.log("Render [ Post ]");
 
         return (
             <div className="container text-center mt-4" onSubmit={this.handlePublish}>

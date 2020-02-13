@@ -9,7 +9,7 @@ import {inject, observer} from "mobx-react";
 class Header extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ Header ]")
+        console.log("componentDidMount [ Header ]");
         this.props.userStore.getCurrentUser();
     }
 
@@ -21,13 +21,13 @@ class Header extends React.Component<any, any> {
             </li>
             <li className="nav-item">
                 <Link to={"/editor"} className="nav-link text-secondary">
-                    <i className="ion-compose"></i>
+                    <i className="ion-compose"/>
                     &nbsp;New Post
                 </Link>
             </li>
             <li className="nav-item">
                 <Link to={"/settings"} className="nav-link text-secondary">
-                    <i className="ion-gear-a"></i>
+                    <i className="ion-gear-a"/>
                     &nbsp;Settings
                 </Link>
             </li>
@@ -39,7 +39,7 @@ class Header extends React.Component<any, any> {
                 </Link>
             </li>
         </ul>
-    )
+    );
 
     defaultHeader = (
         <ul className="nav list-unstyled float-right justify-content-end">
@@ -53,12 +53,12 @@ class Header extends React.Component<any, any> {
                 <Link to={"/register"} className="nav-link text-secondary">Sign up</Link>
             </li>
         </ul>
-    )
+    );
 
     render() {
         const userInfo = this.props.userStore.user;
 
-        console.log("Render [ Header ]")
+        console.log("Render [ Header ]");
 
         return (
             <nav className="navbar container">

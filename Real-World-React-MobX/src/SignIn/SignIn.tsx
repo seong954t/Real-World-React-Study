@@ -4,34 +4,39 @@ import {inject, observer} from "mobx-react";
 
 @inject("userStore", "authStore")
 @observer
-class SignIn extends React.Component<any, any> {
+export default class SignIn extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ SignIn ]")
+        console.log("componentDidMount [ SignIn ]");
         this.props.authStore.resetAuthInfo();
     }
 
     handleSignIn = (e: any) => {
         e.preventDefault();
         this.props.authStore.login(this.props.userStore)
-    }
+            .then(() => {
+                if(this.props.authStore.errors.length === 0){
+                    this.props.history.replace("/")
+                }
+            })
+    };
 
     handleChange = (e: any) => {
         this.props.authStore.setAuthInfo(e.target.name, e.target.value)
-    }
+    };
 
     errorElement = (errors: string[]) => (
         <ul className="error-message text-left">
-            {errors.map((msg, _) => (
-                <li>{msg}</li>
+            {errors.map((msg, index: number) => (
+                <li key={index}>{msg}</li>
             ))}
         </ul>
-    )
+    );
 
     render() {
         const {email, password, errors} = this.props.authStore;
 
-        console.log("Render [ SignIn ]")
+        console.log("Render [ SignIn ]");
 
         return (
             <div className="container text-center">
@@ -56,4 +61,3 @@ class SignIn extends React.Component<any, any> {
     }
 }
 
-export default SignIn;

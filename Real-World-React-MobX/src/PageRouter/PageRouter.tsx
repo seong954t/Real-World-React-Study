@@ -11,20 +11,20 @@ import UserInfoContainer from "../UserInfo/UserInfoContainer";
 
 class PageRouter extends React.Component<any, { signed: boolean }> {
     render() {
-        console.log("Render [ PageRouter ]")
+        console.log("Render [ PageRouter ]");
 
         return (
             <Router>
                 <Header/>
-                <Route path="/" exact component={Home}></Route>
-                <Route path="/login" component={SignIn}></Route>
-                <Route path="/register" component={SignUp}></Route>
-                <Route path="/article/:name" component={ArticleContainer}></Route>
-                <Route path="/editor" exact component={Post}></Route>
-                <Route path="/editor/:slug" component={Post}></Route>
-                <Route path="/settings" component={Settings}></Route>
-                <Route path="/@:name/" exact component={UserInfoContainer}></Route>
-                <Route path="/@:name/:tab" component={UserInfoContainer}></Route>
+                <Route path="/" exact component={Home}/>
+                <Route path="/login" component={SignIn}/>
+                <Route path="/register" component={SignUp}/>
+                <Route path="/article/:name" component={ArticleContainer}/>
+                <Route path="/editor" exact component={Post}/>
+                <Route path="/editor/:slug" component={Post}/>
+                <Route path="/settings" component={Settings}/>
+                <Route path="/@:name/" exact component={UserInfoContainer}/>
+                <Route path="/@:name/:tab" component={UserInfoContainer}/>
             </Router>
         );
     }

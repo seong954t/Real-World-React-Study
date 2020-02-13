@@ -9,7 +9,7 @@ import {inject, observer} from "mobx-react";
 class CommentCard extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ CommentCard ]")
+        console.log("componentDidMount [ CommentCard ]");
         const {slug} = this.props.articlesStore.article;
         this.props.commentsStore.loadComments(slug)
     }
@@ -17,19 +17,19 @@ class CommentCard extends React.Component<any, any> {
     deleteComment = (id: number) => {
         const {slug} = this.props.articlesStore.article;
         this.props.commentsStore.deleteComment(slug, id)
-    }
+    };
 
     commentElements = (comments: CommentDTO[]) => (
         comments.map((info: CommentDTO, _) => (
-            <div className="card mb-3">
+            <div key={info.id} className="card mb-3">
                 <div className="p-3">
                     <p className="card-text">{info.body}</p>
                 </div>
                 <div className="card-footer">
                     <Link to={`/@${info.author.username}`}>
                         <img src={info.author.image}
-                            className="author-image comment-another-img"
-                            role="presentation"/>
+                             className="author-image comment-another-img"
+                             role="presentation"/>
                     </Link>
                     &nbsp;
                     <span>
@@ -44,19 +44,19 @@ class CommentCard extends React.Component<any, any> {
                 </div>
             </div>
         ))
-    )
+    );
 
     trashBox = (id: number) => (
         <span className="float-right icon-trash-wrapper">
             <i className="ion-trash-a"
-               onClick={(e: any) => this.deleteComment(id)}></i>
+               onClick={() => this.deleteComment(id)}/>
         </span>
-    )
+    );
 
     render() {
         const comments = this.props.commentsStore.getComments;
 
-        console.log("Render [ CommentCard ]")
+        console.log("Render [ CommentCard ]");
 
         return (
             <div>

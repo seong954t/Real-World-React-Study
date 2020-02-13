@@ -9,7 +9,7 @@ import queryString from "query-string";
 class FeedContainer extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ FeedContainer ]")
+        console.log("componentDidMount [ FeedContainer ]");
         const {search, params} = this.props;
         if(search){
             const {tab, tag, name} = queryString.parse(search);
@@ -23,26 +23,26 @@ class FeedContainer extends React.Component<any, any> {
         this.loadArticles(1);
     }
 
-    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
+    componentDidUpdate(): void {
         console.log("componentDidUpdate [ FeedContainer ]");
             const {search, params} = this.props;
             if(search){
                 const {tab, tag, name} = queryString.parse(search);
                 if(!this.props.feedTabStore.isEqualFeedTabData(tab, tag, name)){
-                    this.props.feedTabStore.initialize(tab, tag, name)
+                    this.props.feedTabStore.initialize(tab, tag, name);
                     this.props.articlesStore.page = 1;
                     this.loadArticles(this.props.articlesStore.page)
                 }
             }else if(params){
                 const {tab, tag, name} = params;
                 if(!this.props.feedTabStore.isEqualFeedTabData(tab, tag, name)){
-                    this.props.feedTabStore.initialize(tab, tag, name)
+                    this.props.feedTabStore.initialize(tab, tag, name);
                     this.props.articlesStore.page = 1;
                     this.loadArticles(this.props.articlesStore.page)
                 }
             } else{
                 if(!this.props.feedTabStore.isEqualFeedTabData("", "", "")){
-                    this.props.feedTabStore.initialize("", "", "")
+                    this.props.feedTabStore.initialize("", "", "");
                     this.props.articlesStore.page = 1;
                     this.loadArticles(this.props.articlesStore.page)
                 }
@@ -53,17 +53,17 @@ class FeedContainer extends React.Component<any, any> {
         const pageLinks: any = document.getElementsByClassName("page-link");
         const page = Array(...pageLinks).indexOf(target) + 1;
         this.loadArticles(page);
-    }
+    };
 
     loadArticles = (page: number) => {
         this.props.articlesStore.loadArticles(this.props.feedTabStore, page);
-    }
+    };
 
     render() {
-        const size = this.props.articlesStore.getPageListSize()
+        const size = this.props.articlesStore.getPageListSize();
         const articles = this.props.articlesStore.getArticles;
 
-        console.log("Render [ FeedContainer ]")
+        console.log("Render [ FeedContainer ]");
 
         return (
             <div className="container col-md-9">

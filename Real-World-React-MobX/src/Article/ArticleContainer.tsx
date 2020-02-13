@@ -9,7 +9,7 @@ import {inject, observer} from "mobx-react";
 class ArticleContainer extends React.Component<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ ArticleContainer ]")
+        console.log("componentDidMount [ ArticleContainer ]");
         const slug = this.props.match.params.name;
         this.props.articlesStore.loadArticle(slug);
     }

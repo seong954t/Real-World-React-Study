@@ -6,16 +6,16 @@ import {inject, observer} from "mobx-react";
 
 @inject("profileStore", "userStore")
 @observer
-class UserInfoBanner extends React.Component<any, any> {
+class UserInfoBanner extends React.PureComponent<any, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ UserInfoBanner ]")
+        console.log("componentDidMount [ UserInfoBanner ]");
         this.props.profileStore.loadProfile(this.props.username);
     }
 
     handleFollow = () => {
         this.props.profileStore.followUser(this.props.username);
-    }
+    };
 
     followButton = (username: string, following: boolean) => (
         <button
@@ -23,18 +23,18 @@ class UserInfoBanner extends React.Component<any, any> {
             onClick={this.handleFollow}>
             {following ?
                 <span>
-                    <i className="ion-minus-round"></i> UnFollow {username}
+                    <i className="ion-minus-round"/> UnFollow {username}
                 </span> :
                 <span>
-                    <i className="ion-plus-round"></i> Follow {username}
+                    <i className="ion-plus-round"/> Follow {username}
                 </span>}
         </button>
-    )
+    );
 
     editProfileButton = () => (
-        <Link className="btn btn-sm btn-outline-secondary float-right" to="/settings"><i className="ion-gear-a"></i> Edit
+        <Link className="btn btn-sm btn-outline-secondary float-right" to="/settings"><i className="ion-gear-a"/> Edit
             Profile Settings</Link>
-    )
+    );
 
     render() {
         const {username, bio, image, following} = this.props.profileStore.profile;

@@ -11,7 +11,7 @@ class Feed extends React.PureComponent<any, any> {
         e.preventDefault();
         const {article} = this.props;
         this.props.articlesStore.favoriteArticle(article.slug);
-    }
+    };
 
     render() {
         const {article} = this.props;
@@ -21,7 +21,7 @@ class Feed extends React.PureComponent<any, any> {
             </li>
         ));
 
-        console.log("Render [ Feed ]")
+        console.log("Render [ Feed ]");
 
         return (
             <div className="feed-preview pb-4 pt-4">
@@ -36,7 +36,7 @@ class Feed extends React.PureComponent<any, any> {
                     <button type="button"
                             onClick={this.handleFavorite}
                             className={`btn btn-sm btn-outline-success float-right ${article.favorited ? 'active' : ''}`}>
-                        <i className="ion-heart"></i>
+                        <i className="ion-heart"/>
                         {article.favoritesCount}
                     </button>
                 </div>

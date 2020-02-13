@@ -8,10 +8,10 @@ class Tags extends React.PureComponent<{tags: string[]}, any>{
         this.props.tags.map((tag: string, index: number) => (
             <Link key={index} to={`/?tab=tag&tag=${tag}`} className="tag-default popular-tag">{tag}</Link>
         ))
-    )
+    );
 
     render() {
-        console.log("Render [ Tags ]")
+        console.log("Render [ Tags ]");
         return (
             <div className="col-md-3">
                 <div className="tag-box">

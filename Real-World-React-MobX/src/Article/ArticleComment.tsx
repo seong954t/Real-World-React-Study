@@ -25,11 +25,11 @@ class ArticleComment extends React.Component<any, any> {
                 </div>
             </div>
         </form>
-    )
+    );
 
     handleChange = (e: any) => {
         this.props.commentsStore.comment = e.target.value;
-    }
+    };
 
     requestSignElement = () => (
         <div>
@@ -37,15 +37,15 @@ class ArticleComment extends React.Component<any, any> {
             or
             <Link to={"/register"}> sign up </Link>
             to add comments on this article.</div>
-    )
+    );
 
     addComments = (e: any) => {
         e.preventDefault();
         this.props.commentsStore.addComment(this.props.articlesStore.article.slug);
-    }
+    };
 
     render() {
-        console.log("Render [ ArticleComment ]")
+        console.log("Render [ ArticleComment ]");
 
         return (
             <div className="col-md-8 m-auto">

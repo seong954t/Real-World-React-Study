@@ -5,12 +5,12 @@ class ArticleDescripter extends React.Component<{ tagList: string[], body: strin
     tagListElements = (tagList: string[]) => (
         tagList.map((info: string, index: number) => (
             <li key={index} className="tag-default preview-tag mr-1">{info}</li>
-        )))
+        )));
 
     render() {
         const {tagList, body} = this.props;
 
-        console.log("Render [ ArticleDescripter ]")
+        console.log("Render [ ArticleDescripter ]");
 
         return (
             <div className="article-desc col-md-12 p-0">

@@ -31,7 +31,7 @@ const store = {
     profileStore,
     tagsStore,
     userStore
-}
+};
 
 ReactDOM.render(
     <Provider {...store}>
