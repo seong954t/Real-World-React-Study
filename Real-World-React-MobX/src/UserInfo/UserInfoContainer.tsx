@@ -2,7 +2,7 @@ import React from "react";
 import UserInfoBanner from "./UserInfoBanner";
 import FeedContainer from "../Feed/FeedContainer";
 
-class UserInfoContainer extends React.Component<any, {}> {
+class UserInfoContainer extends React.Component<any, any> {
 
     render() {
         const {params} = this.props.match;

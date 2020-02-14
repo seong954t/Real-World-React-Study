@@ -11,8 +11,13 @@ export default class ProfileStore {
         image: ""
     };
 
+    @observable
+    private isProfileLoading: boolean = false;
+
     @action
     public loadProfile = (username: string) => {
+        console.log("loadProfile")
+        this.isProfileLoading = true;
         RealWorldApi.getProfile(username)
             .then(res => res.json())
             .then((result) => {
@@ -22,6 +27,7 @@ export default class ProfileStore {
                     } else {
                         this.profile = profile;
                     }
+                    this.isProfileLoading = false;
                 }
             )
     };

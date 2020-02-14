@@ -10,7 +10,9 @@ class UserInfoBanner extends React.PureComponent<any, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ UserInfoBanner ]");
-        this.props.profileStore.loadProfile(this.props.username);
+        if(this.props.username !== this.props.profileStore.profile.username){
+            this.props.profileStore.loadProfile(this.props.username);
+        }
     }
 
     handleFollow = () => {
@@ -46,14 +48,15 @@ class UserInfoBanner extends React.PureComponent<any, any> {
         return (
             <div className="user-info-banner text-center">
                 <div className="container">
-                    <div className="col-md-10 m-auto d-inline-block">
-                        <img className="user-img"
-                             alt=""
-                             src={image}/>
-                        <h4>{username}</h4>
-                        <p className="pb-2">{bio}</p>
-                        {Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}
-                    </div>
+                    {this.props.profileStore.isProfileLoading ? '' :
+                        <div className="col-md-10 m-auto d-inline-block">
+                            <img className="user-img"
+                                 alt=""
+                                 src={image}/>
+                            <h4>{username}</h4>
+                            <p className="pb-2">{bio}</p>
+                            {Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}
+                        </div>}
                 </div>
             </div>
         );
