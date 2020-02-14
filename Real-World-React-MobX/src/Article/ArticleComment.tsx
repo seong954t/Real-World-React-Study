@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import "./article.css"
 import {inject, observer} from "mobx-react";
 
-@inject("commentsStore", "userStore")
+@inject("commentsStore", "userStore", "articlesStore")
 @observer
 class ArticleComment extends React.PureComponent<any, any> {
 
@@ -43,7 +43,7 @@ class ArticleComment extends React.PureComponent<any, any> {
 
     addComments = (e: any) => {
         e.preventDefault();
-        this.props.commentsStore.addComment(this.props.slug);
+        this.props.commentsStore.addComment(this.props.articlesStore.article.slug);
     };
 
     render() {
