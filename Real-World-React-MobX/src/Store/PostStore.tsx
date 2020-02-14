@@ -76,10 +76,10 @@ export default class PostStore {
     }
 
     @action
-    public createArticle(): Promise<any> {
+    public createArticle(history: any) {
         const {title, description, body, tagList} = this.post;
 
-        return RealWorldApi.createArticle(title, description, body, tagList)
+        RealWorldApi.createArticle(title, description, body, tagList)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
@@ -87,15 +87,16 @@ export default class PostStore {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
+                    history.replace(`/article/${article.slug}`)
                 }
             }))
     }
 
     @action
-    public updateArticle(slug: string): Promise<any> {
+    public updateArticle(slug: string, history: any) {
         const {title, description, body, tagList} = this.post;
 
-        return RealWorldApi.updateArticle(title, description, body, tagList, slug)
+        RealWorldApi.updateArticle(title, description, body, tagList, slug)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
@@ -103,6 +104,7 @@ export default class PostStore {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
+                    history.replace(`/article/${slug}`)
                 }
             }))
     }

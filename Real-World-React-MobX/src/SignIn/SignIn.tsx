@@ -13,12 +13,7 @@ export default class SignIn extends React.Component<any, any> {
 
     handleSignIn = (e: any) => {
         e.preventDefault();
-        this.props.authStore.login(this.props.userStore)
-            .then(() => {
-                if(this.props.authStore.errors.length === 0){
-                    this.props.history.replace("/")
-                }
-            })
+        this.props.authStore.login(this.props.userStore, this.props.history)
     };
 
     handleChange = (e: any) => {

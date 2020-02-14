@@ -12,10 +12,7 @@ class Settings extends React.Component<any, any> {
 
     handleUpdateSettings = (e: any) => {
         e.preventDefault();
-        this.props.userStore.updateUser()
-            .then(() => {
-                this.props.history.replace("/");
-            })
+        this.props.userStore.updateUser(this.props.history)
     };
 
     handleChange = (e: any) => {
@@ -24,8 +21,7 @@ class Settings extends React.Component<any, any> {
 
     handleLogout = (e: any) => {
         e.preventDefault();
-        this.props.authStore.logout(this.props.userStore);
-        this.props.history.replace("/")
+        this.props.authStore.logout(this.props.userStore, this.props.history);
     };
 
     render() {

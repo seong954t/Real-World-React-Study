@@ -77,8 +77,8 @@ export default class UserStore {
     };
 
     @action
-    public updateUser = (): Promise<any> => {
-        return RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
+    public updateUser = (history: any) => {
+        RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
             .then(res => res.json())
             .then((result) => {
                 const {errors, user} = result;
@@ -88,6 +88,7 @@ export default class UserStore {
                     this.user = user;
                     this.updatingUser = user;
                     localStorage.setItem("token", JSON.stringify(user.token));
+                    history.replace("/");
                 }
                 this.password = "";
             })

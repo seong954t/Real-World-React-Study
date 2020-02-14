@@ -13,12 +13,7 @@ class SignUp extends React.Component<any, any> {
 
     handleSignUp = (e: any) => {
         e.preventDefault();
-        this.props.authStore.registration(this.props.userStore)
-            .then(() => {
-                if(this.props.authStore.errors.length === 0){
-                    this.props.history.replace("/")
-                }
-            })
+        this.props.authStore.registration(this.props.userStore, this.props.history);
     };
 
     handleChange = (e: any) => {

@@ -43,15 +43,9 @@ class Post extends React.Component<any, ArticlePost> {
         e.preventDefault();
         const {slug} = this.props.match.params;
         if (slug === undefined) {
-            this.props.postStore.createArticle()
-                .then(() => {
-                    this.props.history.replace(`/article/${slug}`)
-                });
+            this.props.postStore.createArticle(this.props.history);
         } else {
-            this.props.postStore.updateArticle(slug)
-                .then(() => {
-                    this.props.history.replace(`/article/${slug}`)
-                });
+            this.props.postStore.updateArticle(slug, this.props.history);
         }
     };
 

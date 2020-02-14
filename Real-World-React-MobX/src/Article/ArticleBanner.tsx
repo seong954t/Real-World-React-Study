@@ -9,11 +9,7 @@ import {inject, observer} from "mobx-react";
 class ArticleBanner extends React.Component<any, any> {
 
     handleDeleteArticle = (slug: string) => {
-        this.props.articlesStore.deleteArticle(slug)
-            .then(() => {
-                console.log(this.props)
-                this.props.history.replace("/")
-            })
+        this.props.articlesStore.deleteArticle(slug, this.props.history);
     };
 
     individualArticleButtons = (slug: string) => (

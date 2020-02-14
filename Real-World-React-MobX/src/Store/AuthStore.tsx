@@ -31,23 +31,34 @@ export default class AuthStore {
     }
 
     @action
-    public login(userStore: UserStore): Promise<any> {
+    public login(userStore: UserStore, history: any) {
         return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
-            .then(action((result) => this.responseHandler(userStore, result)));
+            .then(action((result) => {
+                this.responseHandler(userStore, result)
+                if (this.errors.length === 0) {
+                    history.replace("/")
+                }
+            }));
     }
 
     @action
-    public logout(userStore: UserStore) {
+    public logout(userStore: UserStore, history: any) {
         userStore.resetUser();
         RealWorldApi.logout();
+        history.replace("/")
     }
 
     @action
-    public registration(userStore: UserStore): Promise<any> {
+    public registration(userStore: UserStore, history: any) {
         return RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
-            .then(action((result) => this.responseHandler(userStore, result)));
+            .then(action((result) => {
+                this.responseHandler(userStore, result)
+                if(this.errors.length === 0){
+                    history.replace("/")
+                }
+            }));
     }
 
     private responseHandler(userStore: UserStore, result: any) {

@@ -33,7 +33,7 @@ export default class ArticlesStore {
     @action
     public loadArticles(feedTabStore: FeedTabStore, page: number): void {
         const url = this.getRequestArticleUrl(feedTabStore, page);
-        if(page === 1){
+        if (page === 1) {
             this.isArticlesLoading = true;
         }
         RealWorldApi.getArticles(url)
@@ -80,8 +80,8 @@ export default class ArticlesStore {
     }
 
     @action
-    public deleteArticle(slug: string): Promise<any> {
-        return RealWorldApi.deleteArticle(slug)
+    public deleteArticle(slug: string, history: any) {
+        RealWorldApi.deleteArticle(slug)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors} = result;
@@ -89,6 +89,7 @@ export default class ArticlesStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     this.article = undefined;
+                    history.replace("/");
                 }
             }))
     }
