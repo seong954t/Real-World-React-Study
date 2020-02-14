@@ -2,6 +2,7 @@ import React from "react";
 import "./Feed.css"
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import Loading from "../Loading/Loading";
 
 @inject("articlesStore")
 @observer
@@ -36,8 +37,9 @@ class Feed extends React.PureComponent<any, any> {
                     <button type="button"
                             onClick={this.handleFavorite}
                             className={`btn btn-sm btn-outline-success float-right ${article.favorited ? 'active' : ''}`}>
-                        <i className="ion-heart"/>
-                        {article.favoritesCount}
+                        {this.props.articlesStore.favoriteLoadingSlug !== article.slug ?
+                            <span><i className="ion-heart"/>{article.favoritesCount}</span> :
+                        <Loading className="sm-spinner-border text-white"/>}
                     </button>
                 </div>
                 <Link className="preview-link" to={`/article/${article.slug}`}>

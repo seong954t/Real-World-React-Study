@@ -66,7 +66,11 @@ class FeedList extends React.PureComponent<any, any> {
                 <div>
                     {!name ? this.mainFeed(tab, tag) : this.individualFeed(tab, name)}
                 </div>
-                {this.props.articlesStore.isArticlesLoading ? <Loading/> : feedList}
+                {this.props.articlesStore.isArticlesLoading ?
+                    <div className="text-center m-4">
+                        <Loading className="text-success"/>
+                    </div> :
+                    feedList}
             </div>
         );
     }

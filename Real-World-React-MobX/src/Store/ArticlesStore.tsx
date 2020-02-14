@@ -27,6 +27,9 @@ export default class ArticlesStore {
     @observable
     private isArticlesLoading: boolean = false;
 
+    @observable
+    private favoriteLoadingSlug: string = "";
+
     @action
     public loadArticles(feedTabStore: FeedTabStore, page: number): void {
         const url = this.getRequestArticleUrl(feedTabStore, page);
@@ -93,7 +96,7 @@ export default class ArticlesStore {
     @action
     public favoriteArticle(slug: string) {
         const tempArticle = this.articles.get(slug);
-
+        this.favoriteLoadingSlug = slug;
         if (tempArticle !== undefined && Auth.isSigned()) {
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(res => res.json())
@@ -104,6 +107,7 @@ export default class ArticlesStore {
                     } else {
                         this.articles.set(slug, article);
                     }
+                    this.favoriteLoadingSlug = "";
                 }))
         }
     }
