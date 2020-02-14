@@ -3,15 +3,16 @@ import Auth from "../Auth/Auth";
 import CommentDTO from "../DTO/CommentDTO";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import Loading from "../Loading/Loading";
 
 @inject("articlesStore", "commentsStore", "userStore")
 @observer
 class CommentCard extends React.Component<any, any> {
 
-    componentDidMount(): void {
-        console.log("componentDidMount [ CommentCard ]");
-        const {slug} = this.props.articlesStore.article;
-        this.props.commentsStore.loadComments(slug)
+    constructor(props: any) {
+        super(props);
+        console.log("constructor [ CommentCard ]");
+        this.props.commentsStore.loadComments(this.props.articlesStore.article.slug);
     }
 
     deleteComment = (id: number) => {
@@ -61,7 +62,11 @@ class CommentCard extends React.Component<any, any> {
 
         return (
             <div>
-                {this.commentElements(comments)}
+                {this.props.commentsStore.isCommentsLoading ?
+                    <div className={"text-center m-4"}>
+                        <Loading className={"text-success"}/>
+                    </div> :
+                    this.commentElements(comments)}
             </div>
         );
     }

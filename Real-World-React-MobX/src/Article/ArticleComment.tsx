@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 import "./article.css"
 import {inject, observer} from "mobx-react";
 
-@inject("articlesStore", "commentsStore", "userStore")
+@inject("commentsStore", "userStore")
 @observer
-class ArticleComment extends React.Component<any, any> {
+class ArticleComment extends React.PureComponent<any, any> {
 
     commentBox = () => (
         <form onSubmit={this.addComments}>
@@ -37,17 +37,17 @@ class ArticleComment extends React.Component<any, any> {
             <Link to={"/login"}>Sign in </Link>
             or
             <Link to={"/register"}> sign up </Link>
-            to add comments on this article.</div>
+            to add comments on this article.
+        </div>
     );
 
     addComments = (e: any) => {
         e.preventDefault();
-        this.props.commentsStore.addComment(this.props.articlesStore.article.slug);
+        this.props.commentsStore.addComment(this.props.slug);
     };
 
     render() {
         console.log("Render [ ArticleComment ]");
-
         return (
             <div className="col-md-8 m-auto">
                 <div className="mb-3">

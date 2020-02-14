@@ -9,8 +9,16 @@ export default class CommentsStore {
     @observable
     private comment: string = "";
 
+    @observable
+    private isCommentsLoading: boolean = false;
+
+    @observable
+    private slug:string = ""
     @action
     public loadComments(slug: string) {
+        console.log("loadComments", slug)
+        this.isCommentsLoading = true;
+        this.slug = slug;
         RealWorldApi.getComments(slug)
             .then(res => res.json())
             .then(action((result) => {
@@ -22,6 +30,8 @@ export default class CommentsStore {
                     comments.forEach((comment: CommentDTO) => {
                         this.comments.set(comment.id, comment);
                     })
+                    this.comment = "";
+                    this.isCommentsLoading = false;
                 }
             }))
     }

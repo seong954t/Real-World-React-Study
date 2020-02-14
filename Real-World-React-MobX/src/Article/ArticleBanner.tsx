@@ -11,8 +11,8 @@ class ArticleBanner extends React.Component<any, any> {
     handleDeleteArticle = (slug: string) => {
         this.props.articlesStore.deleteArticle(slug)
             .then(() => {
-                console.log(this.props);
-                this.props.location.replace("/")
+                console.log(this.props)
+                this.props.history.replace("/")
             })
     };
 

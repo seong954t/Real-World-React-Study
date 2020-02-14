@@ -8,8 +8,9 @@ import {inject, observer} from "mobx-react";
 @observer
 class ArticleContainer extends React.Component<any, any> {
 
-    componentDidMount(): void {
-        console.log("componentDidMount [ ArticleContainer ]");
+    constructor(props: any) {
+        super(props);
+        console.log("constructor [ ArticleContainer ]")
         const slug = this.props.match.params.name;
         this.props.articlesStore.loadArticle(slug);
     }
@@ -22,7 +23,7 @@ class ArticleContainer extends React.Component<any, any> {
         if (article) {
             return (
                 <div>
-                    <ArticleBanner article={article}/>
+                    <ArticleBanner history={this.props.history} article={article}/>
                     <div className="container row m-auto">
                         <ArticleDescripter tagList={article.tagList} body={article.body}/>
                         {article.slug === '' ? '' : <ArticleComment/>}
