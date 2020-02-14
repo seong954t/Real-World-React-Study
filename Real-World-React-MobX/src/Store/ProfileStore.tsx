@@ -14,6 +14,9 @@ export default class ProfileStore {
     @observable
     private isProfileLoading: boolean = false;
 
+    @observable
+    private isFollowLoading: boolean = false;
+
     @action
     public loadProfile = (username: string) => {
         console.log("loadProfile")
@@ -34,6 +37,7 @@ export default class ProfileStore {
 
     @action
     public followUser(username: string) {
+        this.isFollowLoading = true;
         RealWorldApi.followUser(username, this.profile.following)
             .then(res => res.json())
             .then(action((result) => {
@@ -43,6 +47,7 @@ export default class ProfileStore {
                 } else if (profile !== undefined) {
                     this.profile = profile;
                 }
+                this.isFollowLoading = false;
             }))
     }
 }

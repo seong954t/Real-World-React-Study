@@ -3,6 +3,7 @@ import "./UserInfo.css";
 import Auth from "../Auth/Auth";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import Loading from "../Loading/Loading";
 
 @inject("profileStore", "userStore")
 @observer
@@ -25,13 +26,13 @@ class UserInfoBanner extends React.PureComponent<any, any> {
         <button
             className={`btn btn-sm btn-outline-secondary float-right ${following ? "active" : ""}`}
             onClick={this.handleFollow}>
-            {following ?
+            {this.props.profileStore.isFollowLoading ? <Loading className={"sm-spinner-border text-white mx-4"}/>  : (following ?
                 <span>
                     <i className="ion-minus-round"/> UnFollow {username}
                 </span> :
                 <span>
                     <i className="ion-plus-round"/> Follow {username}
-                </span>}
+                </span>)}
         </button>
     );
 
