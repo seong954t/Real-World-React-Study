@@ -3,10 +3,16 @@ import UserStore from "./UserStore";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
 
+interface AuthInfo {
+    username: string,
+    email: string,
+    password: string
+}
+
 export default class AuthStore {
 
     @observable
-    private authInfo = {
+    private authInfo: AuthInfo = {
         username: "",
         email: "",
         password: ""
@@ -16,11 +22,8 @@ export default class AuthStore {
     private errors: string[] = [];
 
     @action
-    public setAuthInfo(key: string, value: string) {
-        this.authInfo = {
-            ...this.authInfo,
-            [key]: value
-        }
+    public setAuthInfo(key: keyof AuthInfo, value: string) {
+        this.authInfo[key] = value;
     }
 
     @action
