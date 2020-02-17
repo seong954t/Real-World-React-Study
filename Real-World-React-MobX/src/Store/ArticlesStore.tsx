@@ -10,7 +10,7 @@ export default class ArticlesStore {
     readonly INDIVIDUAL_FEED_SIZE: number = 5;
 
     @observable
-    private articles: ObservableMap<string, ArticleDTO> = observable.map();
+    private articles: Map<string, ArticleDTO> = new Map<string, ArticleDTO>();
 
     @observable
     private article?: ArticleDTO;
@@ -28,7 +28,7 @@ export default class ArticlesStore {
     private isArticlesLoading: boolean = false;
 
     @observable
-    private favoriteLoadingSlug: string = "";
+    private favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
 
     @action
     public loadArticles(feedTabStore: FeedTabStore, page: number): void {
@@ -44,16 +44,23 @@ export default class ArticlesStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     this.articles.clear();
+                    this.favoriteLoadings.clear();
                     articles.forEach((article: ArticleDTO) => {
                         this.articles.set(article.slug, article);
+                        this.favoriteLoadings.set(article.slug, false);
                     });
                     this.articlesCount = articlesCount;
                     this.page = page;
                 }
-            })).finally(() => {
+            })).finally(action(() => {
                 this.isArticlesLoading = false;
-            }
+            })
         )
+    }
+
+    @action
+    public isArticleLoading(slug: string): boolean {
+        return this.favoriteLoadings.get(slug) || false;
     }
 
     @computed
@@ -99,7 +106,8 @@ export default class ArticlesStore {
     @action
     public favoriteArticle(slug: string) {
         const tempArticle = this.articles.get(slug);
-        this.favoriteLoadingSlug = slug;
+        this.favoriteLoadings.set(slug, true);
+
         if (tempArticle !== undefined && Auth.isSigned()) {
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(res => res.json())
@@ -110,9 +118,9 @@ export default class ArticlesStore {
                     } else {
                         this.articles.set(slug, article);
                     }
-                })).finally(() => {
-                    this.favoriteLoadingSlug = "";
-                }
+                })).finally(action(() => {
+                    this.favoriteLoadings.set(slug, false);
+                })
             )
         }
     }

@@ -21,6 +21,7 @@ class Feed extends React.PureComponent<any, any> {
                 {tag}
             </li>
         ));
+        const isFavoriteLoading = this.props.articlesStore.favoriteLoadings.get(article.slug);
 
         console.log("Render [ Feed ]");
 
@@ -37,9 +38,11 @@ class Feed extends React.PureComponent<any, any> {
                     <button type="button"
                             onClick={this.handleFavorite}
                             className={`btn btn-sm btn-outline-success float-right ${article.favorited ? 'active' : ''}`}>
-                        {this.props.articlesStore.favoriteLoadingSlug !== article.slug ?
-                            <span><i className="ion-heart"/>{article.favoritesCount}</span> :
-                        <Loading className="sm-spinner-border text-white"/>}
+                        {
+                            !isFavoriteLoading ?
+                                <span><i className="ion-heart"/>{article.favoritesCount}</span> :
+                                <Loading className="sm-spinner-border text-white"/>
+                        }
                     </button>
                 </div>
                 <Link className="preview-link" to={`/article/${article.slug}`}>
