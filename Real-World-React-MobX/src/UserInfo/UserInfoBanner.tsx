@@ -49,7 +49,8 @@ class UserInfoBanner extends React.PureComponent<any, any> {
         return (
             <div className="user-info-banner text-center">
                 <div className="container">
-                    {this.props.profileStore.isProfileLoading ? '' :
+                    {
+                        this.props.profileStore.isProfileLoading ? '' :
                         <div className="col-md-10 m-auto d-inline-block">
                             <img className="user-img"
                                  alt=""
@@ -57,7 +58,8 @@ class UserInfoBanner extends React.PureComponent<any, any> {
                             <h4>{username}</h4>
                             <p className="pb-2">{bio}</p>
                             {Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}
-                        </div>}
+                        </div>
+                    }
                 </div>
             </div>
         );
