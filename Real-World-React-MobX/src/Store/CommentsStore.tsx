@@ -7,7 +7,7 @@ export default class CommentsStore {
     private comments: Map<number, CommentDTO> = observable.map();
 
     @observable
-    private comment: string = "";
+    public comment: string = "";
 
     @observable
     private isCommentsLoading: boolean = false;

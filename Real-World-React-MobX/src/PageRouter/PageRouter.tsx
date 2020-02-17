@@ -10,6 +10,17 @@ import Post from "../Post/Post";
 import UserInfoContainer from "../UserInfo/UserInfoContainer";
 
 class PageRouter extends React.Component<any, any> {
+
+    static pageRoute(history: any, destination: string){
+        history.replace(destination);
+    }
+
+    static pageRouteAfterPromise(promise: Promise<any>, history: any, destination: string){
+        promise.then(() => {
+            history.replace(destination);
+        })
+    }
+
     render() {
         console.log("Render [ PageRouter ]");
 

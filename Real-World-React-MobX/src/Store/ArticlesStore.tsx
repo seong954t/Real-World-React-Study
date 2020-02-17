@@ -63,8 +63,13 @@ export default class ArticlesStore {
     }
 
     @computed
-    get getArticles() {
+    get getArticles(): ArticleDTO[] {
         return Array.from(this.articles.values());
+    }
+
+    @computed
+    get getArticle(): ArticleDTO{
+        return this.article || Object.create(null)
     }
 
     @action
@@ -88,8 +93,8 @@ export default class ArticlesStore {
     }
 
     @action
-    public deleteArticle(slug: string, history: any) {
-        RealWorldApi.deleteArticle(slug)
+    public deleteArticle(slug: string): Promise<any> {
+        return RealWorldApi.deleteArticle(slug)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors} = result;
@@ -97,7 +102,6 @@ export default class ArticlesStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     this.article = undefined;
-                    history.replace("/");
                 }
             }))
     }
@@ -146,5 +150,9 @@ export default class ArticlesStore {
             return url + query + `&author=${name}`;
         }
         return url + query;
-    }
+    };
+
+    static INSTANCE: ArticlesStore;
 }
+
+ArticlesStore.INSTANCE = new ArticlesStore();

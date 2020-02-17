@@ -3,13 +3,18 @@ import "./article.css";
 import Auth from "../Auth/Auth";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import PageRouter from "../PageRouter/PageRouter";
 
 @inject("articlesStore", "userStore")
 @observer
 class ArticleBanner extends React.Component<any, any> {
 
     handleDeleteArticle = (slug: string) => {
-        this.props.articlesStore.deleteArticle(slug, this.props.history);
+        PageRouter.pageRouteAfterPromise(
+            this.props.articlesStore.deleteArticle(slug),
+            this.props.history,
+            "/"
+        )
     };
 
     individualArticleButtons = (slug: string) => (
@@ -25,7 +30,7 @@ class ArticleBanner extends React.Component<any, any> {
     );
 
     render() {
-        const {title, createdAt, author, slug} = this.props.articlesStore.article;
+        const {title, createdAt, author, slug} = this.props.articlesStore.getArticle;
 
         console.log("Render [ ArticleBanner ]");
 

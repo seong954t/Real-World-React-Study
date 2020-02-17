@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import PageRouter from "../PageRouter/PageRouter";
 
 @inject("userStore", "authStore")
 @observer
@@ -13,7 +14,10 @@ export default class SignIn extends React.Component<any, any> {
 
     handleSignIn = (e: any) => {
         e.preventDefault();
-        this.props.authStore.login(this.props.userStore, this.props.history)
+        const loginPromise = this.props.authStore.login(this.props.userStore);
+        if(this.props.authStore.errors.length === 0){
+            PageRouter.pageRouteAfterPromise(loginPromise, this.props.history, "/");
+        }
     };
 
     handleChange = (e: any) => {

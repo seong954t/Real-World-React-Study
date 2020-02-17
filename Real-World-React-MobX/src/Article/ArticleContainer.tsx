@@ -3,6 +3,12 @@ import ArticleBanner from "./ArticleBanner";
 import ArticleDescripter from "./ArticleDescripter";
 import ArticleComment from "./ArticleComment";
 import {inject, observer} from "mobx-react";
+import {RouteComponentProps} from "react-router"
+import ArticlesStore from "../Store/ArticlesStore";
+
+interface Props extends RouteComponentProps{
+    articlesStore: ArticlesStore
+}
 
 @inject("articlesStore")
 @observer
@@ -16,7 +22,7 @@ class ArticleContainer extends React.Component<any, any> {
     }
 
     render() {
-        const {article} = this.props.articlesStore;
+        const article = this.props.articlesStore.getArticle;
 
         console.log("Render [ ArticleContainer ]");
 

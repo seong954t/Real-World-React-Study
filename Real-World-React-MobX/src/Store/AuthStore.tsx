@@ -35,22 +35,18 @@ export default class AuthStore {
     }
 
     @action
-    public login(userStore: UserStore, history: any) {
+    public login(userStore: UserStore): Promise<any> {
         return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
             .then(action((result) => {
-                this.responseHandler(userStore, result)
-                if (this.errors.length === 0) {
-                    history.replace("/")
-                }
+                this.responseHandler(userStore, result);
             }));
     }
 
     @action
-    public logout(userStore: UserStore, history: any) {
+    public logout(userStore: UserStore) {
         userStore.resetUser();
         RealWorldApi.logout();
-        history.replace("/")
     }
 
     @action

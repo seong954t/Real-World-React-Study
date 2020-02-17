@@ -14,7 +14,7 @@ export default class UserStore {
     };
 
     @observable
-    private updatingUser: UserDTO = {
+    public updatingUser: UserDTO = {
         username: "",
         image: "",
         bio: "",
@@ -23,7 +23,7 @@ export default class UserStore {
     };
 
     @observable
-    private password: string = "";
+    public password: string = "";
 
     @action
     public setUser(user: UserDTO) {
@@ -74,8 +74,8 @@ export default class UserStore {
     };
 
     @action
-    public updateUser = (history: any) => {
-        RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
+    public updateUser(): Promise<any>{
+        return RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
             .then(res => res.json())
             .then(action((result) => {
                 const {errors, user} = result;
@@ -85,7 +85,6 @@ export default class UserStore {
                     this.user = user;
                     this.updatingUser = user;
                     Auth.setToken(JSON.stringify(user.token))
-                    history.replace("/");
                 }
                 this.password = "";
             }))

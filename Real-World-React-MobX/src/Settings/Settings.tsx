@@ -1,9 +1,18 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
+import PageRouter from "../PageRouter/PageRouter";
+import {RouteComponentProps} from "react-router";
+import UserStore from "../Store/UserStore";
+import AuthStore from "../Store/AuthStore";
+
+interface Props extends RouteComponentProps {
+    userStore: UserStore,
+    authStore: AuthStore
+}
 
 @inject("userStore", "authStore")
 @observer
-class Settings extends React.Component<any, any> {
+class Settings extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ Settings ]");
@@ -12,20 +21,24 @@ class Settings extends React.Component<any, any> {
 
     handleUpdateSettings = (e: any) => {
         e.preventDefault();
-        this.props.userStore.updateUser(this.props.history)
+        PageRouter.pageRouteAfterPromise(
+            this.props.userStore.updateUser(),
+            this.props.history,
+            "/")
     };
 
     handleChange = (e: any) => {
-        if(e.target.name === "password"){
+        if (e.target.name === "password") {
             this.props.userStore.setPassword(e.target.value);
-        }else{
+        } else {
             this.props.userStore.setUpdatingUserInfo(e.target.name, e.target.value);
         }
     };
 
     handleLogout = (e: any) => {
         e.preventDefault();
-        this.props.authStore.logout(this.props.userStore, this.props.history);
+        this.props.authStore.logout(this.props.userStore);
+        PageRouter.pageRoute(this.props.history, "/")
     };
 
     render() {
