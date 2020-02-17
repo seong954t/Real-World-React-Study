@@ -61,16 +61,15 @@ export default class UserStore {
         if (Auth.isSigned()) {
             RealWorldApi.getCurrentUser()
                 .then(res => res.json())
-                .then((result) => {
+                .then(action((result) => {
                     const {errors, user} = result;
-
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors)
                     } else if (user !== undefined) {
                         this.user = user;
                         this.updatingUser = user;
                     }
-                })
+                }))
         }
     };
 
@@ -78,7 +77,7 @@ export default class UserStore {
     public updateUser = (history: any) => {
         RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
             .then(res => res.json())
-            .then((result) => {
+            .then(action((result) => {
                 const {errors, user} = result;
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors)
@@ -89,6 +88,6 @@ export default class UserStore {
                     history.replace("/");
                 }
                 this.password = "";
-            })
+            }))
     }
 }

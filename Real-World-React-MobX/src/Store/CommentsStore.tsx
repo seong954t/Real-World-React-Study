@@ -13,7 +13,8 @@ export default class CommentsStore {
     private isCommentsLoading: boolean = false;
 
     @observable
-    private slug:string = ""
+    private slug: string = ""
+
     @action
     public loadComments(slug: string) {
         console.log("loadComments", slug)
@@ -31,14 +32,18 @@ export default class CommentsStore {
                         this.comments.set(comment.id, comment);
                     })
                     this.comment = "";
-                    this.isCommentsLoading = false;
                 }
-            }))
+            })).finally(() => {
+                this.isCommentsLoading = false;
+            }
+        )
     }
 
     @computed
     get getComments() {
-        return Array.from(this.comments.values()).sort((a: CommentDTO, b: CommentDTO) => { return b.id - a.id});
+        return Array.from(this.comments.values()).sort((a: CommentDTO, b: CommentDTO) => {
+            return b.id - a.id
+        });
     }
 
     @action

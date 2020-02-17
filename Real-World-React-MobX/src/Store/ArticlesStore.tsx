@@ -49,9 +49,11 @@ export default class ArticlesStore {
                     });
                     this.articlesCount = articlesCount;
                     this.page = page;
-                    this.isArticlesLoading = false;
                 }
-            }))
+            })).finally(() => {
+                this.isArticlesLoading = false;
+            }
+        )
     }
 
     @computed
@@ -108,8 +110,10 @@ export default class ArticlesStore {
                     } else {
                         this.articles.set(slug, article);
                     }
+                })).finally(() => {
                     this.favoriteLoadingSlug = "";
-                }))
+                }
+            )
         }
     }
 

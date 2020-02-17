@@ -23,16 +23,19 @@ export default class ProfileStore {
         this.isProfileLoading = true;
         RealWorldApi.getProfile(username)
             .then(res => res.json())
-            .then((result) => {
+            .then(action((result) => {
                     const {errors, profile} = result;
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);
                     } else {
                         this.profile = profile;
                     }
-                    this.isProfileLoading = false;
                 }
-            )
+            )).finally(() => {
+                this.isProfileLoading = false;
+
+            }
+        )
     };
 
     @action
@@ -47,7 +50,9 @@ export default class ProfileStore {
                 } else if (profile !== undefined) {
                     this.profile = profile;
                 }
+            })).finally(() => {
                 this.isFollowLoading = false;
-            }))
+            }
+        )
     }
 }
