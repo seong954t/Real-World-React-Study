@@ -8,6 +8,7 @@ import Settings from "../Settings/Settings";
 import ArticleContainer from "../Article/ArticleContainer";
 import Post from "../Post/Post";
 import UserInfoContainer from "../UserInfo/UserInfoContainer";
+import SignInAdapter from "../Adapter/SignInAdapter";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -28,7 +29,7 @@ class PageRouter extends React.Component<any, any> {
             <Router>
                 <Header/>
                 <Route path="/" exact component={Home}/>
-                <Route path="/login" component={SignIn}/>
+                <Route path="/login" component={SignInAdapter}/>
                 <Route path="/register" component={SignUp}/>
                 <Route path="/article/:name" component={ArticleContainer}/>
                 <Route path="/editor" exact component={Post}/>

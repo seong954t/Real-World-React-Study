@@ -1,4 +1,4 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import UserStore from "./UserStore";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
@@ -19,28 +19,58 @@ export default class AuthStore {
     };
 
     @observable
-    private errors: string[] = [];
+    private _errors: string[] = [];
 
     @action
     public setAuthInfo(key: keyof AuthInfo, value: string) {
         this.authInfo[key] = value;
     }
 
+    @computed
+    get errors() {
+        return this._errors;
+    }
+
+    @computed
+    get email() {
+        return this.authInfo.email;
+    }
+
+    @computed
+    get password() {
+        return this.authInfo.password;
+    }
+
+    @computed
+    get username() {
+        return this.authInfo.username;
+    }
+
     @action
-    private resetAuthInfo() {
+    public resetAuthInfo() {
         this.authInfo.username = "";
         this.authInfo.email = "";
         this.authInfo.password = "";
-        this.errors = [];
+        this._errors = [];
     }
 
     @action
     public login(userStore: UserStore): Promise<any> {
         return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
-            .then(res => res.json())
+            .then(res => {
+                    console.log(res)
+                    if(res.ok){
+                        return res.json();
+                    }
+                    throw res;
+                }
+            )
             .then(action((result) => {
+                console.log(":Aaaaaaaaaa", result);
                 this.responseHandler(userStore, result);
-            }));
+            })).catch((errors) => {
+                console.log("errrr", errors)
+            });
     }
 
     @action
@@ -55,7 +85,7 @@ export default class AuthStore {
             .then(res => res.json())
             .then(action((result) => {
                 this.responseHandler(userStore, result)
-                if(this.errors.length === 0){
+                if (this._errors.length === 0) {
                     history.replace("/")
                 }
             }));
@@ -68,7 +98,7 @@ export default class AuthStore {
             Object.keys(errors).forEach(key => {
                 arrayError.push(key + " " + errors[key].toString())
             });
-            this.errors = arrayError
+            this._errors = arrayError
         } else if (user !== undefined) {
             this.resetAuthInfo();
             userStore.setUser(user);
