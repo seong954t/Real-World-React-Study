@@ -87,7 +87,7 @@ export default class UserStore {
                 } else if (user !== undefined) {
                     this.user = user;
                     this.updatingUser = user;
-                    localStorage.setItem("token", JSON.stringify(user.token));
+                    Auth.setToken(JSON.stringify(user.token))
                     history.replace("/");
                 }
                 this.password = "";

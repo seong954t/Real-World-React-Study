@@ -1,8 +1,9 @@
 import UserStore from "../Store/UserStore";
 
 const Auth = {
+    TOKEN_KEY: "token",
     isSigned: (): boolean => {
-        return localStorage.getItem("token") !== null;
+        return localStorage.getItem(Auth.TOKEN_KEY) !== null;
     },
     isOwner: (userStore: UserStore, username: string): boolean => {
         if (Auth.isSigned()) {
@@ -11,11 +12,14 @@ const Auth = {
         return false;
     },
     getToken: (): string => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem(Auth.TOKEN_KEY);
         if (token) {
             return token;
         }
         return ""
+    },
+    setToken: (token: string) => {
+        localStorage.setItem(Auth.TOKEN_KEY, token);
     }
 };
 

@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import UserStore from "./UserStore";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
+import Auth from "../Auth/Auth";
 
 export default class AuthStore {
 
@@ -72,7 +73,7 @@ export default class AuthStore {
         } else if (user !== undefined) {
             this.resetAuthInfo();
             userStore.setUser(user);
-            localStorage.setItem("token", user.token);
+            Auth.setToken(user.token)
             RealWorldApi.setAuthHeader();
         }
     }
