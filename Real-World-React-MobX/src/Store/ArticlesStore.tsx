@@ -1,6 +1,5 @@
 import {action, computed, observable, ObservableMap} from "mobx";
 import ArticleDTO from "../DTO/ArticleDTO";
-import FeedTabStore from "./FeedTabStore";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
 
@@ -130,7 +129,6 @@ export default class ArticlesStore {
     }
 
     private getRequestArticleUrl = (tab: string, tag: string, name: string, page: number): string => {
-        // const {tab, tag, name} = feedTabStore;
         const url = RealWorldApi.domain + 'articles/';
         this.FEED_SIZE = name ? this.INDIVIDUAL_FEED_SIZE : this.MAIN_FEED_SIZE;
         const query = `?limit=${this.FEED_SIZE}&offset=${(page - 1) * this.FEED_SIZE}`;
