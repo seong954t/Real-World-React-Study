@@ -173,7 +173,7 @@ const RealWorldApi = {
             body: JSON.stringify(body)
         };
         return fetch(url, init).then((response) => {
-            if(!response.ok){
+            if (!response.ok && response.status !== 422) {
                 throw response;
             }
             return response.json()

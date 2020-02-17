@@ -35,10 +35,12 @@ export default class SignInAdapter extends React.Component<Props, any>{
     render() {
         const {email, password, errors} = this.props.authStore;
 
+        console.log("Render [ SignInAdapter ]");
+
         return (
             <SignIn
-                signInHandler={this.handleSignIn}
-                changeHandler={this.handleChange}
+                onSubmit={this.handleSignIn}
+                onChange={this.handleChange}
                 email={email}
                 password={password}
                 errors={errors}

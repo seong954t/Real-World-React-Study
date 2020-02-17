@@ -81,12 +81,14 @@ export default class AuthStore {
 
     private responseHandler(userStore: UserStore, result: any) {
         const {errors, user} = result;
+        console.log("result : ", result)
         if (errors !== undefined) {
             const arrayError: string[] = [];
             Object.keys(errors).forEach(key => {
                 arrayError.push(key + " " + errors[key].toString())
             });
             this._errors = arrayError
+            throw Response.error();
         } else if (user !== undefined) {
             this.resetAuthInfo();
             userStore.setUser(user);
