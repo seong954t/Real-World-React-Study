@@ -55,7 +55,7 @@ export default class AuthStore {
 
     @action
     public registration(userStore: UserStore, history: any) {
-        return RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
+        RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
             .then(res => res.json())
             .then(action((result) => {
                 this.responseHandler(userStore, result)

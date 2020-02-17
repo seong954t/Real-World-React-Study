@@ -8,7 +8,8 @@ class FeedPageButton extends React.PureComponent<any, any>{
 
     handlePaging = (e: any) => {
         e.preventDefault();
-        this.props.articlesStore.loadArticles(this.props.feedTabStore, this.props.page);
+        const {tag, tab, name} = this.props.feedTabStore;
+        this.props.articlesStore.loadArticles(tag, tab, name, this.props.page);
     };
 
     render() {

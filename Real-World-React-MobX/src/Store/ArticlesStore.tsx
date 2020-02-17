@@ -31,8 +31,8 @@ export default class ArticlesStore {
     private favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
 
     @action
-    public loadArticles(feedTabStore: FeedTabStore, page: number): void {
-        const url = this.getRequestArticleUrl(feedTabStore, page);
+    public loadArticles(tab: string, tag: string, name: string, page: number): void {
+        const url = this.getRequestArticleUrl(tab, tag, name, page);
         if (page === 1) {
             this.isArticlesLoading = true;
         }
@@ -129,8 +129,8 @@ export default class ArticlesStore {
         return Math.ceil(this.articlesCount / this.FEED_SIZE);
     }
 
-    private getRequestArticleUrl = (feedTabStore: FeedTabStore, page: number): string => {
-        const {tab, tag, name} = feedTabStore;
+    private getRequestArticleUrl = (tab: string, tag: string, name: string, page: number): string => {
+        // const {tab, tag, name} = feedTabStore;
         const url = RealWorldApi.domain + 'articles/';
         this.FEED_SIZE = name ? this.INDIVIDUAL_FEED_SIZE : this.MAIN_FEED_SIZE;
         const query = `?limit=${this.FEED_SIZE}&offset=${(page - 1) * this.FEED_SIZE}`;
