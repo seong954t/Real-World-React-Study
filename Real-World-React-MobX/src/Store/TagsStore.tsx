@@ -8,7 +8,6 @@ export default class TagsStore {
     @action
     public loadTags(): void{
         RealWorldApi.getTags()
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, tags} = result;
                 if (errors !== undefined) {

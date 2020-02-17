@@ -60,7 +60,6 @@ export default class UserStore {
     public getCurrentUser = () => {
         if (Auth.isSigned()) {
             RealWorldApi.getCurrentUser()
-                .then(res => res.json())
                 .then(action((result) => {
                     const {errors, user} = result;
                     if (errors !== undefined) {
@@ -76,7 +75,6 @@ export default class UserStore {
     @action
     public updateUser(): Promise<any>{
         return RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, user} = result;
                 if (errors !== undefined) {

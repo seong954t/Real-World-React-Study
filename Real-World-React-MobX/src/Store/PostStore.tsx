@@ -54,7 +54,6 @@ export default class PostStore {
     @action
     public loadPost(slug: string) {
         RealWorldApi.getArticle(slug)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
                 if (errors !== undefined) {
@@ -76,7 +75,6 @@ export default class PostStore {
         const {title, description, body, tagList} = this.post;
 
         RealWorldApi.createArticle(title, description, body, tagList)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
                 if (errors !== undefined) {
@@ -93,7 +91,6 @@ export default class PostStore {
         const {title, description, body, tagList} = this.post;
 
         RealWorldApi.updateArticle(title, description, body, tagList, slug)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, article} = result;
                 if (errors !== undefined) {

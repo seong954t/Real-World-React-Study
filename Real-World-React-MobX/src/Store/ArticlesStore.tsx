@@ -36,7 +36,6 @@ export default class ArticlesStore {
             this.isArticlesLoading = true;
         }
         RealWorldApi.getArticles(url)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, articles, articlesCount} = result;
                 if (errors !== undefined) {
@@ -80,7 +79,6 @@ export default class ArticlesStore {
             this.article = article;
         } else {
             RealWorldApi.getArticle(slug)
-                .then(res => res.json())
                 .then(action((result) => {
                     const {errors, article} = result;
                     if (errors !== undefined) {
@@ -95,7 +93,6 @@ export default class ArticlesStore {
     @action
     public deleteArticle(slug: string): Promise<any> {
         return RealWorldApi.deleteArticle(slug)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors} = result;
                 if (errors !== undefined) {
@@ -113,7 +110,6 @@ export default class ArticlesStore {
 
         if (tempArticle !== undefined && Auth.isSigned()) {
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
-                .then(res => res.json())
                 .then(action((result) => {
                     const {errors, article} = result;
                     if (errors !== undefined) {

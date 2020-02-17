@@ -24,7 +24,7 @@ const RealWorldApi = {
         Header.AUTH.Authorization = `Token ${Auth.getToken()}`
     },
     domain: "https://conduit.productionready.io/api/",
-    login: (email: string, password: string): Promise<Response> => {
+    login: (email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "users/login";
         const body = {
             user: {
@@ -39,7 +39,7 @@ const RealWorldApi = {
         localStorage.clear();
         Header.AUTH.Authorization = "";
     },
-    registration: (username: string, email: string, password: string): Promise<Response> => {
+    registration: (username: string, email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "users";
         const body = {
             user: {
@@ -51,12 +51,12 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.POST, Header.DEFAULT, body);
     },
-    getCurrentUser: (): Promise<Response> => {
+    getCurrentUser: (): Promise<any> => {
         const url = RealWorldApi.domain + "user";
 
         return RealWorldApi.requestApi(url, Method.GET, Header.AUTH);
     },
-    updateUser: (image: string, username: string, bio: string, email: string, password: string): Promise<Response> => {
+    updateUser: (image: string, username: string, bio: string, email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "user";
 
         const body = `{
@@ -71,7 +71,7 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, JSON.parse(body));
     },
-    getProfile: (username: string): Promise<Response> => {
+    getProfile: (username: string): Promise<any> => {
         const url = RealWorldApi.domain + `profiles/${username}`;
 
         return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH : Header.DEFAULT))
@@ -81,7 +81,7 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, (followed ? Method.DELETE : Method.POST), Header.AUTH)
     },
-    getArticles: (url: string): Promise<Response> => {
+    getArticles: (url: string): Promise<any> => {
         let header;
 
         if (Auth.isSigned()) {
@@ -92,11 +92,11 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.GET, header)
     },
-    getArticle: (slug: string): Promise<Response> => {
+    getArticle: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}`;
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT);
     },
-    createArticle: (title: string, description: string, body: string, tagList: Set<String>): Promise<Response> => {
+    createArticle: (title: string, description: string, body: string, tagList: Set<String>): Promise<any> => {
         const url = RealWorldApi.domain + "articles";
 
         const responseBody = {
@@ -110,7 +110,7 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
-    updateArticle: (title: string, description: string, body: string, tagList: Set<String>, slug: string): Promise<Response> => {
+    updateArticle: (title: string, description: string, body: string, tagList: Set<String>, slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}`;
 
         const responseBody = {
@@ -124,12 +124,12 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, responseBody)
     },
-    deleteArticle: (slug: string): Promise<Response> => {
+    deleteArticle: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}`;
 
         return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
     },
-    addComment: (slug: string, body: string): Promise<Response> => {
+    addComment: (slug: string, body: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/comments`;
 
         const responseBody = {
@@ -140,22 +140,22 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
-    getComments: (slug: string): Promise<Response> => {
+    getComments: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/comments`;
 
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
     },
-    deleteComment: (slug: string, id: number): Promise<Response> => {
+    deleteComment: (slug: string, id: number): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/comments/${id}`;
 
         return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
     },
-    favoriteArticle: (slug: string, favorited: boolean): Promise<Response> => {
+    favoriteArticle: (slug: string, favorited: boolean): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/favorite`;
 
         return RealWorldApi.requestApi(url, (favorited ? Method.DELETE : Method.POST), Header.AUTH)
     },
-    getTags: (): Promise<Response> => {
+    getTags: (): Promise<any> => {
         const url = RealWorldApi.domain + "tags";
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
     },
@@ -163,7 +163,7 @@ const RealWorldApi = {
         console.log("error : ", errors);
         alert("error")
     },
-    requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<Response> => {
+    requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<any> => {
         const init = body === undefined ? {
             method: method,
             headers: headers,
@@ -172,7 +172,12 @@ const RealWorldApi = {
             headers: headers,
             body: JSON.stringify(body)
         };
-        return fetch(url, init)
+        return fetch(url, init).then((response) => {
+            if(!response.ok){
+                throw response;
+            }
+            return response.json()
+        })
     }
 };
 

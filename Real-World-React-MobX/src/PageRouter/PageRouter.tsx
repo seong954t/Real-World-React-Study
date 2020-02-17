@@ -19,6 +19,8 @@ class PageRouter extends React.Component<any, any> {
     static pageRouteAfterPromise(promise: Promise<any>, history: any, destination: string){
         promise.then(() => {
             history.replace(destination);
+        }).catch((error) => {
+            console.log("error", error);
         })
     }
 

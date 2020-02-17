@@ -57,20 +57,9 @@ export default class AuthStore {
     @action
     public login(userStore: UserStore): Promise<any> {
         return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
-            .then(res => {
-                    console.log(res)
-                    if(res.ok){
-                        return res.json();
-                    }
-                    throw res;
-                }
-            )
             .then(action((result) => {
-                console.log(":Aaaaaaaaaa", result);
                 this.responseHandler(userStore, result);
-            })).catch((errors) => {
-                console.log("errrr", errors)
-            });
+            }))
     }
 
     @action
@@ -82,7 +71,6 @@ export default class AuthStore {
     @action
     public registration(userStore: UserStore, history: any) {
         RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
-            .then(res => res.json())
             .then(action((result) => {
                 this.responseHandler(userStore, result)
                 if (this._errors.length === 0) {

@@ -22,7 +22,6 @@ export default class ProfileStore {
         console.log("loadProfile")
         this.isProfileLoading = true;
         RealWorldApi.getProfile(username)
-            .then(res => res.json())
             .then(action((result) => {
                     const {errors, profile} = result;
                     if (errors !== undefined) {
@@ -42,7 +41,6 @@ export default class ProfileStore {
     public followUser(username: string) {
         this.isFollowLoading = true;
         RealWorldApi.followUser(username, this.profile.following)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, profile} = result;
                 if (errors !== undefined) {

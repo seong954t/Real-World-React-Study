@@ -21,7 +21,6 @@ export default class CommentsStore {
         this.isCommentsLoading = true;
         this.slug = slug;
         RealWorldApi.getComments(slug)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, comments} = result;
                 if (errors !== undefined) {
@@ -49,7 +48,6 @@ export default class CommentsStore {
     @action
     public addComment(slug: string) {
         RealWorldApi.addComment(slug, this.comment)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors, comment} = result;
                 if (errors !== undefined) {
@@ -64,7 +62,6 @@ export default class CommentsStore {
     @action
     public deleteComment(slug: string, id: number) {
         RealWorldApi.deleteComment(slug, id)
-            .then(res => res.json())
             .then(action((result) => {
                 const {errors} = result;
                 if (errors !== undefined) {
