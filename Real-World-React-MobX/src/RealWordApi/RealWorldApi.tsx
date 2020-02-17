@@ -96,7 +96,7 @@ const RealWorldApi = {
         const url = RealWorldApi.domain + `articles/${slug}`;
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT);
     },
-    createArticle: (title: string, description: string, body: string, tagList: string[]): Promise<Response> => {
+    createArticle: (title: string, description: string, body: string, tagList: Set<String>): Promise<Response> => {
         const url = RealWorldApi.domain + "articles";
 
         const responseBody = {
@@ -110,7 +110,7 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
-    updateArticle: (title: string, description: string, body: string, tagList: string[], slug: string): Promise<Response> => {
+    updateArticle: (title: string, description: string, body: string, tagList: Set<String>, slug: string): Promise<Response> => {
         const url = RealWorldApi.domain + `articles/${slug}`;
 
         const responseBody = {

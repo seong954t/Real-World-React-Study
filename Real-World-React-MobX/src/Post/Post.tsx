@@ -26,11 +26,15 @@ class Post extends React.Component<any, ArticlePost> {
     };
 
     handleChange = (e: any) => {
-        this.props.postStore.setPost(e.target.name, e.target.value)
+        if(e.target.name === "tag"){
+            this.props.postStore.setTag(e.target.value);
+        } else {
+            this.props.postStore.setPost(e.target.name, e.target.value)
+        }
     };
 
     getTagElementList = () => (
-        this.props.postStore.post.tagList.map((info: string, _: number) => {
+        this.props.postStore.tagList.map((info: string, _: number) => {
             return (
                 <li className="tag-default popular-tag" key={info}>
                     <i className="ion-close-round" onClick={() => this.props.postStore.removeTag(info)}/>{info}

@@ -1,11 +1,11 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import PostDTO from "../DTO/PostDTO";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class PostStore {
     @observable
     public post: PostDTO = {
-        tagList: [],
+        tagList: new Set<string>(),
         description: "",
         body: "",
         title: ""
@@ -15,41 +15,37 @@ export default class PostStore {
     tag: string = "";
 
     @action
-    public setPost(key: string, value: string) {
-        if (key === "tag") {
-            this.tag = value;
-        } else {
-            this.post = {
-                ...this.post,
-                [key]: value
-            }
+    public setPost(key: keyof PostDTO, value: string) {
+        if(key !== "tagList"){
+            this.post[key] = value;
         }
     }
 
     @action
+    public setTag(value: string){
+        this.tag = value;
+    }
+
+    @computed
+    get tagList(){
+        return Array.from(this.post.tagList);
+    }
+
+
+    @action
     public appendTag() {
-        const {tagList} = this.post;
-        tagList.push(this.tag);
-        this.post = {
-            ...this.post,
-            tagList: Array.from(new Set(tagList))
-        };
+        this.post.tagList.add(this.tag);
         this.tag = "";
     }
 
     @action
-    public removeTag(info: string) {
-        const {tagList} = this.post;
-
-        this.post = {
-            ...this.post,
-            tagList: tagList.filter((key) => (key !== info))
-        }
+    public removeTag(tag: string) {
+        this.post.tagList.delete(tag)
     }
 
     @action
     public resetPost() {
-        this.post.tagList = [];
+        this.post.tagList.clear();
         this.post.description = "";
         this.post.body = "";
         this.post.title = "";
