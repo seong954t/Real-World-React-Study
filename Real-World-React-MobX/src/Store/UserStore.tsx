@@ -32,15 +32,13 @@ export default class UserStore {
     }
 
     @action
-    public setUpdatingUserInfo(key: string, value: string) {
-        if(key === "password"){
-            this.password = value;
-        }else{
-            this.updatingUser = {
-                ...this.user,
-                [key]: value
-            }
-        }
+    public setUpdatingUserInfo(key: keyof UserDTO, value: string) {
+        this.updatingUser[key] = value;
+    }
+
+    @action
+    public setPassword(value: string){
+        this.password = value;
     }
 
     @action

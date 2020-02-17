@@ -16,7 +16,11 @@ class Settings extends React.Component<any, any> {
     };
 
     handleChange = (e: any) => {
-        this.props.userStore.setUpdatingUserInfo(e.target.name, e.target.value)
+        if(e.target.name === "password"){
+            this.props.userStore.setPassword(e.target.value);
+        }else{
+            this.props.userStore.setUpdatingUserInfo(e.target.name, e.target.value);
+        }
     };
 
     handleLogout = (e: any) => {
