@@ -9,7 +9,7 @@ import ArticleContainer from "../Article/ArticleContainer";
 import Post from "../Post/Post";
 import UserInfoContainer from "../UserInfo/UserInfoContainer";
 
-class PageRouter extends React.Component<any, { signed: boolean }> {
+class PageRouter extends React.Component<any, any> {
     render() {
         console.log("Render [ PageRouter ]");
 
