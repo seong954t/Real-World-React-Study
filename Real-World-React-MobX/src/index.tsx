@@ -13,14 +13,14 @@ import AuthStore from "./Store/AuthStore";
 import PostStore from "./Store/PostStore";
 import ProfileStore from "./Store/ProfileStore";
 
-const articlesStore = new ArticlesStore();
-const authStore = new AuthStore();
-const commentsStore = new CommentsStore();
-const feedTabStore = new FeedTabStore();
-const postStore = new PostStore();
-const profileStore = new ProfileStore();
-const tagsStore = new TagsStore();
-const userStore = new UserStore();
+const articlesStore = ArticlesStore.INSTANCE;
+const authStore = AuthStore.INSTANCE;
+const commentsStore = CommentsStore.INSTANCE;
+const feedTabStore = FeedTabStore.INSTANCE;
+const postStore = PostStore.INSTANCE;
+const profileStore = ProfileStore.INSTANCE;
+const tagsStore = TagsStore.INSTANCE;
+const userStore = UserStore.INSTANCE;
 
 const store = {
     articlesStore,

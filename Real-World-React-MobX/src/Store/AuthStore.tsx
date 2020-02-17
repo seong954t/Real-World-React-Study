@@ -76,4 +76,8 @@ export default class AuthStore {
             RealWorldApi.setAuthHeader();
         }
     }
+
+    static INSTANCE: AuthStore;
 }
+
+AuthStore.INSTANCE = new AuthStore();

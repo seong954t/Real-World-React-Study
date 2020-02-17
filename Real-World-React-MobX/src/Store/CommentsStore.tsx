@@ -74,4 +74,8 @@ export default class CommentsStore {
                 }
             }))
     }
+
+    static INSTANCE: CommentsStore;
 }
+
+CommentsStore.INSTANCE = new CommentsStore();

@@ -18,4 +18,8 @@ export default class TagsStore {
                 }
             }))
     }
+
+    static INSTANCE: TagsStore;
 }
+
+TagsStore.INSTANCE = new TagsStore();

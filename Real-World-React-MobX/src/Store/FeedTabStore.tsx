@@ -17,4 +17,8 @@ export default class FeedTabStore {
     public isEqualFeedTabData(tab: string, tag: string, name?: string): boolean {
         return this.tab === tab && this.tag === tag && this.name === name;
     }
+
+    static INSTANCE: FeedTabStore;
 }
+
+FeedTabStore.INSTANCE = new FeedTabStore();

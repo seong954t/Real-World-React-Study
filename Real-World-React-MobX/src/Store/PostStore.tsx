@@ -104,4 +104,8 @@ export default class PostStore {
                 }
             }))
     }
+
+    static INSTANCE: PostStore;
 }
+
+PostStore.INSTANCE = new PostStore();

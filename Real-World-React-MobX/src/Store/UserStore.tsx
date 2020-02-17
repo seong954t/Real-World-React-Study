@@ -89,4 +89,8 @@ export default class UserStore {
                 this.password = "";
             }))
     }
+
+    static INSTANCE: UserStore;
 }
+
+UserStore.INSTANCE = new UserStore();

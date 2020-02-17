@@ -55,4 +55,8 @@ export default class ProfileStore {
             }
         )
     }
+
+    static INSTANCE: ProfileStore;
 }
+
+ProfileStore.INSTANCE = new ProfileStore();
