@@ -1,10 +1,10 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import ProfileDTO from "../DTO/ProfileDTO";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class ProfileStore {
     @observable
-    private profile: ProfileDTO = {
+    private _profile: ProfileDTO = {
         following: false,
         username: "",
         bio: "",
@@ -12,26 +12,41 @@ export default class ProfileStore {
     };
 
     @observable
-    private isProfileLoading: boolean = false;
+    private _isProfileLoading: boolean = false;
 
     @observable
-    private isFollowLoading: boolean = false;
+    private _isFollowLoading: boolean = false;
+
+    @computed
+    get profile(){
+        return this._profile;
+    }
+
+    @computed
+    get isProfileLoading(){
+        return this._isProfileLoading;
+    }
+
+    @computed
+    get isFollowLoading(){
+        return this._isFollowLoading;
+    }
 
     @action
     public loadProfile = (username: string) => {
         console.log("loadProfile")
-        this.isProfileLoading = true;
+        this._isProfileLoading = true;
         RealWorldApi.getProfile(username)
             .then(action((result) => {
                     const {errors, profile} = result;
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);
                     } else {
-                        this.profile = profile;
+                        this._profile = profile;
                     }
                 }
             )).finally(() => {
-                this.isProfileLoading = false;
+                this._isProfileLoading = false;
 
             }
         )
@@ -39,17 +54,17 @@ export default class ProfileStore {
 
     @action
     public followUser(username: string) {
-        this.isFollowLoading = true;
-        RealWorldApi.followUser(username, this.profile.following)
+        this._isFollowLoading = true;
+        RealWorldApi.followUser(username, this._profile.following)
             .then(action((result) => {
                 const {errors, profile} = result;
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors)
                 } else if (profile !== undefined) {
-                    this.profile = profile;
+                    this._profile = profile;
                 }
             })).finally(() => {
-                this.isFollowLoading = false;
+                this._isFollowLoading = false;
             }
         )
     }

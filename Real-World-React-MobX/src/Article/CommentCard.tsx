@@ -42,7 +42,7 @@ class CommentCard extends React.Component<any, any> {
                             {new Date(info.createdAt).toDateString()}
                         </span>
                     </span>
-                    {Auth.isOwner(this.props.userStore, info.author.username) ? this.trashBox(info.id) : ''}
+                    {Auth.isOwner(this.props.userStore.user.username, info.author.username) ? this.trashBox(info.id) : ''}
                 </div>
             </div>
         ))

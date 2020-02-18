@@ -5,9 +5,9 @@ const Auth = {
     isSigned: (): boolean => {
         return localStorage.getItem(Auth.TOKEN_KEY) !== null;
     },
-    isOwner: (userStore: UserStore, username: string): boolean => {
+    isOwner: (username1: string, username2: string): boolean => {
         if (Auth.isSigned()) {
-            return username === userStore._user.username;
+            return username1 === username2;
         }
         return false;
     },

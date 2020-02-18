@@ -5,7 +5,7 @@ import Auth from "../Auth/Auth";
 
 export default class UserStore {
     @observable
-    public _user: UserDTO = {
+    private _user: UserDTO = {
         username: "",
         image: "",
         bio: "",

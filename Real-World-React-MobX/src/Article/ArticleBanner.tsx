@@ -48,7 +48,7 @@ class ArticleBanner extends React.Component<any, any> {
                                 <Link to={`/@${author.username}`}>{author.username}</Link>
                                 <p className="date m-0">{new Date(createdAt).toDateString()}</p>
                             </div>
-                            {Auth.isOwner(this.props.userStore, author.username) ? this.individualArticleButtons(slug) : ''}
+                            {Auth.isOwner(this.props.userStore.user.username, author.username) ? this.individualArticleButtons(slug) : ''}
                         </div>
                     </div>
                 </div>

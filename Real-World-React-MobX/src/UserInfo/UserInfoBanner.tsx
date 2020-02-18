@@ -1,32 +1,16 @@
 import React from "react";
 import "./UserInfo.css";
-import Auth from "../Auth/Auth";
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react";
 import Loading from "../Loading/Loading";
+import UserInfoBannerProps from "../Props/UserInfoBannerProps";
 
-@inject("profileStore", "userStore")
-@observer
-class UserInfoBanner extends React.PureComponent<any, any> {
-
-    componentDidMount(): void {
-        console.log("componentDidMount [ UserInfoBanner ]");
-        if(this.props.username !== this.props.profileStore.profile.username){
-            this.props.profileStore.loadProfile(this.props.username);
-        }
-    }
-
-    handleFollow = () => {
-        if(Auth.isSigned()){
-            this.props.profileStore.followUser(this.props.username);
-        }
-    };
+class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
 
     followButton = (username: string, following: boolean) => (
         <button
             className={`btn btn-sm btn-outline-secondary float-right ${following ? "active" : ""}`}
-            onClick={this.handleFollow}>
-            {this.props.profileStore.isFollowLoading ? <Loading className={"sm-spinner-border text-white mx-4"}/>  : (following ?
+            onClick={this.props.onClickFollow}>
+            {this.props.isFollowLoading ? <Loading className={"sm-spinner-border text-white mx-4"}/>  : (following ?
                 <span>
                     <i className="ion-minus-round"/> UnFollow {username}
                 </span> :
@@ -42,7 +26,7 @@ class UserInfoBanner extends React.PureComponent<any, any> {
     );
 
     render() {
-        const {username, bio, image, following} = this.props.profileStore.profile;
+        const {username, bio, image, following, isOwner, isDisable} = this.props;
 
         console.log("Render [ UserInfoBanner ]");
 
@@ -50,15 +34,20 @@ class UserInfoBanner extends React.PureComponent<any, any> {
             <div className="user-info-banner text-center">
                 <div className="container">
                     {
-                        this.props.profileStore.isProfileLoading ? '' :
-                        <div className="col-md-10 m-auto d-inline-block">
-                            <img className="user-img"
-                                 alt=""
-                                 src={image}/>
-                            <h4>{username}</h4>
-                            <p className="pb-2">{bio}</p>
-                            {Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}
-                        </div>
+                        isDisable ? '' :
+                            <div className="col-md-10 m-auto d-inline-block">
+                                <img className="user-img"
+                                     alt=""
+                                     src={image}/>
+                                <h4>{username}</h4>
+                                <p className="pb-2">{bio}</p>
+                                {/*{Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}*/}
+                                {
+                                    isOwner ?
+                                        this.editProfileButton() :
+                                        this.followButton(username, following ? following : false)
+                                }
+                            </div>
                     }
                 </div>
             </div>
