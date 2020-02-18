@@ -1,11 +1,11 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import UserDTO from "../DTO/UserDTO";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
 
 export default class UserStore {
     @observable
-    public user: UserDTO = {
+    public _user: UserDTO = {
         username: "",
         image: "",
         bio: "",
@@ -14,7 +14,7 @@ export default class UserStore {
     };
 
     @observable
-    public updatingUser: UserDTO = {
+    public _updatingUser: UserDTO = {
         username: "",
         image: "",
         bio: "",
@@ -27,13 +27,23 @@ export default class UserStore {
 
     @action
     public setUser(user: UserDTO) {
-        this.user = user;
-        this.updatingUser = user;
+        this._user = user;
+        this._updatingUser = user;
+    }
+
+    @computed
+    get updatingUser(){
+        return this._updatingUser;
+    }
+
+    @computed
+    get user(){
+        return this._user;
     }
 
     @action
     public setUpdatingUserInfo(key: keyof UserDTO, value: string) {
-        this.updatingUser[key] = value;
+        this._updatingUser[key] = value;
     }
 
     @action
@@ -43,16 +53,16 @@ export default class UserStore {
 
     @action
     public resetUpdatingUser(){
-        this.updatingUser = this.user;
+        this._updatingUser = this._user;
     }
 
     @action
     public resetUser = () => {
-        this.user.username = "";
-        this.user.image = "";
-        this.user.bio = "";
-        this.user.email = "";
-        this.user.token = "";
+        this._user.username = "";
+        this._user.image = "";
+        this._user.bio = "";
+        this._user.email = "";
+        this._user.token = "";
     };
 
 
@@ -65,8 +75,8 @@ export default class UserStore {
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors)
                     } else if (user !== undefined) {
-                        this.user = user;
-                        this.updatingUser = user;
+                        this._user = user;
+                        this._updatingUser = user;
                     }
                 }))
         }
@@ -74,14 +84,14 @@ export default class UserStore {
 
     @action
     public updateUser(): Promise<any>{
-        return RealWorldApi.updateUser(this.updatingUser.image, this.updatingUser.username, this.updatingUser.bio, this.updatingUser.email, this.password)
+        return RealWorldApi.updateUser(this._updatingUser.image, this._updatingUser.username, this._updatingUser.bio, this._updatingUser.email, this.password)
             .then(action((result) => {
                 const {errors, user} = result;
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors)
                 } else if (user !== undefined) {
-                    this.user = user;
-                    this.updatingUser = user;
+                    this._user = user;
+                    this._updatingUser = user;
                     Auth.setToken(JSON.stringify(user.token))
                 }
                 this.password = "";

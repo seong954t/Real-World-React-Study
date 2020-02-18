@@ -7,7 +7,7 @@ const Auth = {
     },
     isOwner: (userStore: UserStore, username: string): boolean => {
         if (Auth.isSigned()) {
-            return username === userStore.user.username;
+            return username === userStore._user.username;
         }
         return false;
     },

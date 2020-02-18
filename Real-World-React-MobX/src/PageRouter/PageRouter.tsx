@@ -2,12 +2,12 @@ import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from "../Home/Home";
 import Header from "../Header/Header";
-import Settings from "../Settings/Settings";
 import ArticleContainer from "../Article/ArticleContainer";
 import Post from "../Post/Post";
 import UserInfoContainer from "../UserInfo/UserInfoContainer";
 import SignInAdapter from "../Adapter/SignInAdapter";
 import SignUpAdapter from "../Adapter/SignUpAdapter";
+import SettingsAdapter from "../Adapter/SettingsAdapter";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -35,7 +35,7 @@ class PageRouter extends React.Component<any, any> {
                 <Route path="/article/:name" component={ArticleContainer}/>
                 <Route path="/editor" exact component={Post}/>
                 <Route path="/editor/:slug" component={Post}/>
-                <Route path="/settings" component={Settings}/>
+                <Route path="/settings" component={SettingsAdapter}/>
                 <Route path="/@:name/" exact component={UserInfoContainer}/>
                 <Route path="/@:name/:tab" component={UserInfoContainer}/>
             </Router>

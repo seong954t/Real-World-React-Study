@@ -35,6 +35,8 @@ export default class SignUpAdapter extends React.Component<Props, any>{
     render() {
         const {username, email, password, errors} = this.props.authStore;
 
+        console.log("Render [ SignUpAdapter ]")
+
         return (
             <SignUp
                 password={password}
