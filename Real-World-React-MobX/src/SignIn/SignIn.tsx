@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import SignInProps from "../Props/SignInProps";
+import SignProps from "../Props/SignProps";
 
-export default class SignIn extends React.Component<SignInProps, any> {
+export default class SignIn extends React.Component<SignProps, any> {
 
     errorElement = (errors: string[]) => (
         <ul className="error-message text-left">

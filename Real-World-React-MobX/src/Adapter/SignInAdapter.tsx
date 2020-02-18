@@ -11,7 +11,7 @@ interface Props extends RouteComponentProps{
     authStore: AuthStore
 }
 
-@inject("authStore")
+@inject("authStore", "userStore")
 @observer
 export default class SignInAdapter extends React.Component<Props, any>{
 
@@ -23,7 +23,7 @@ export default class SignInAdapter extends React.Component<Props, any>{
     handleSignIn = (e: any) => {
         e.preventDefault();
         const loginPromise = this.props.authStore.login().then((user) => {
-            UserStore.INSTANCE.setUser(user);
+            this.props.userStore.setUser(user);
         });
 
         PageRouter.pageRouteAfterPromise(loginPromise, this.props.history, "/");

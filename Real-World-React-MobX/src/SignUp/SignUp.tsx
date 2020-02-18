@@ -1,29 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react";
-import UserStore from "../Store/UserStore";
-import PageRouter from "../PageRouter/PageRouter";
+import SignProps from "../Props/SignProps";
 
-@inject("userStore", "authStore")
-@observer
-class SignUp extends React.Component<any, any> {
-
-    componentDidMount(): void {
-        console.log("componentDidMount [ SignUp ]");
-        this.props.authStore.resetAuthInfo();
-    }
-
-    handleSignUp = (e: any) => {
-        e.preventDefault();
-        const registrationPromise = this.props.authStore.registration().then((user: any) => {
-            UserStore.INSTANCE.setUser(user);
-        });
-        PageRouter.pageRouteAfterPromise(registrationPromise, this.props.history, "/");
-    };
-
-    handleChange = (e: any) => {
-        this.props.authStore.setAuthInfo(e.target.name, e.target.value)
-    };
+class SignUp extends React.Component<SignProps, any> {
 
     errorElement = (errors: string[]) => (
         <ul className="error-message text-left">
@@ -34,7 +13,7 @@ class SignUp extends React.Component<any, any> {
     );
 
     render() {
-        const {username, email, password, errors} = this.props.authStore;
+        const {username, email, password, errors, onChange, onSubmit} = this.props;
 
         console.log("Render [ SignUp ]");
 
@@ -44,18 +23,18 @@ class SignUp extends React.Component<any, any> {
                     <h1 className="mb-2">Sign Up</h1>
                     <Link to={"./login"} className="mb-2">Have an account?</Link>
                     {errors.length !== 0 ? this.errorElement(errors) : ''}
-                    <form className="text-right m-auto" onSubmit={this.handleSignUp}>
+                    <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Username" className="form-control form-control-lg"
-                                   value={username} onChange={this.handleChange} name="username"/>
+                                   value={username} onChange={onChange} name="username"/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Email" className="form-control form-control-lg"
-                                   value={email} onChange={this.handleChange} name="email"/>
+                                   value={email} onChange={onChange} name="email"/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="password" placeholder="Password" className="form-control form-control-lg"
-                                   value={password} onChange={this.handleChange} name="password"/>
+                                   value={password} onChange={onChange} name="password"/>
                         </fieldset>
                         <button className="btn btn-lg btn-success" type="submit">Sign Up</button>
                     </form>
