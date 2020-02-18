@@ -1,14 +1,14 @@
 import React from "react";
 import "./HomeBanner.css";
-import Auth from "../Auth/Auth";
+import HomeBannerProps from "../Props/HomeBannerProps";
 
-class HomeBanner extends React.PureComponent<any, any>{
+class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
 
     homeBanner = (
         <div className="banner text-center">
             <div className="container p-4 mb-4">
-                <h1 className="banner-logo">conduit</h1>
-                <p className="banner-p">A place to share your knowledge.</p>
+                <h1 className="banner-logo">{this.props.title}</h1>
+                <p className="banner-p">{this.props.description}</p>
             </div>
         </div>
     );
@@ -17,7 +17,7 @@ class HomeBanner extends React.PureComponent<any, any>{
         console.log("Render [ HomeBanner ]");
         return (
             <div>
-                {Auth.isSigned() ? '' : this.homeBanner}
+                {this.props.isDisable ? '' : this.homeBanner}
             </div>
         );
     }
