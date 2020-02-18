@@ -9,10 +9,10 @@ export default class ArticlesStore {
     readonly INDIVIDUAL_FEED_SIZE: number = 5;
 
     @observable
-    private articles: Map<string, ArticleDTO> = new Map<string, ArticleDTO>();
+    private _articles: Map<string, ArticleDTO> = new Map<string, ArticleDTO>();
 
     @observable
-    private article?: ArticleDTO;
+    private _article?: ArticleDTO;
 
     @observable
     private articlesCount: number = 0;
@@ -56,10 +56,10 @@ export default class ArticlesStore {
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors);
                 } else {
-                    this.articles.clear();
+                    this._articles.clear();
                     this._favoriteLoadings.clear();
                     articles.forEach((article: ArticleDTO) => {
-                        this.articles.set(article.slug, article);
+                        this._articles.set(article.slug, article);
                         this._favoriteLoadings.set(article.slug, false);
                     });
                     this.articlesCount = articlesCount;
@@ -77,21 +77,21 @@ export default class ArticlesStore {
     }
 
     @computed
-    get getArticles(): ArticleDTO[] {
-        return Array.from(this.articles.values());
+    get articles(): ArticleDTO[] {
+        return Array.from(this._articles.values());
     }
 
     @computed
-    get getArticle(): ArticleDTO{
-        return this.article || Object.create(null)
+    get article(): ArticleDTO | undefined{
+        return this._article
     }
 
     @action
     public loadArticle(slug: string) {
-        const article = this.articles.get(slug);
+        const article = this._articles.get(slug);
 
         if (article) {
-            this.article = article;
+            this._article = article;
         } else {
             RealWorldApi.getArticle(slug)
                 .then(action((result) => {
@@ -99,7 +99,7 @@ export default class ArticlesStore {
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);
                     } else {
-                        this.article = article;
+                        this._article = article;
                     }
                 }))
         }
@@ -113,14 +113,14 @@ export default class ArticlesStore {
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors);
                 } else {
-                    this.article = undefined;
+                    this._article = undefined;
                 }
             }))
     }
 
     @action
     public favoriteArticle(slug: string) {
-        const tempArticle = this.articles.get(slug);
+        const tempArticle = this._articles.get(slug);
 
         if (tempArticle !== undefined && Auth.isSigned()) {
             console.log("favoriteLoading 1 : ", this._favoriteLoadings.get(slug))
@@ -133,7 +133,7 @@ export default class ArticlesStore {
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);
                     } else {
-                        this.articles.set(slug, article);
+                        this._articles.set(slug, article);
                     }
                 })).finally(action(() => {
                 console.log("favoriteLoading 3 : ", this._favoriteLoadings.get(slug))

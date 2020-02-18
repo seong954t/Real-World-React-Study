@@ -22,7 +22,7 @@ class ArticleContainer extends React.Component<any, any> {
     }
 
     render() {
-        const article = this.props.articlesStore.getArticle;
+        const article = this.props.articlesStore.article;
 
         console.log("Render [ ArticleContainer ]");
 

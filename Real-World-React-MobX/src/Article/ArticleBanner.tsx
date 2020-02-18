@@ -30,7 +30,7 @@ class ArticleBanner extends React.Component<any, any> {
     );
 
     render() {
-        const {title, createdAt, author, slug} = this.props.articlesStore.getArticle;
+        const {title, createdAt, author, slug} = this.props.articlesStore.article;
 
         console.log("Render [ ArticleBanner ]");
 

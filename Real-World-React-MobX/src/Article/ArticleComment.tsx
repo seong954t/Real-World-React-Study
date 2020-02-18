@@ -43,7 +43,7 @@ class ArticleComment extends React.PureComponent<any, any> {
 
     addComments = (e: any) => {
         e.preventDefault();
-        this.props.commentsStore.addComment(this.props.articlesStore.getArticle.slug);
+        this.props.commentsStore.addComment(this.props.articlesStore.article.slug);
     };
 
     render() {

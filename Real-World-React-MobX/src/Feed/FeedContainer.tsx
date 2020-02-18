@@ -45,7 +45,7 @@ class FeedContainer extends React.Component<Props, any> {
 
     render() {
         const size = this.props.articlesStore.getPageListSize();
-        const articles = this.props.articlesStore.getArticles;
+        const articles = this.props.articlesStore.articles;
 
         console.log("Render [ FeedContainer ]");
 

@@ -1,85 +1,50 @@
 import React from "react";
-import ArticlePost from "../DTO/PostDTO";
-import {inject, observer} from "mobx-react";
+import PostProps from "../Props/PostProps";
 
-@inject("postStore")
-@observer
-class Post extends React.Component<any, ArticlePost> {
-
-    componentDidMount(): void {
-        console.log("componentDidMount [ Post ]");
-        const {slug} = this.props.match.params;
-        if (slug) {
-            this.props.postStore.loadPost(slug)
-        } else {
-            this.props.postStore.resetPost()
-        }
-    }
-
-    appendTag = (e: any) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            this.props.postStore.appendTag();
-        } else {
-            this.handleChange(e);
-        }
-    };
-
-    handleChange = (e: any) => {
-        if(e.target.name === "tag"){
-            this.props.postStore.setTag(e.target.value);
-        } else {
-            this.props.postStore.setPost(e.target.name, e.target.value)
-        }
-    };
+class Post extends React.Component<PostProps, any> {
 
     getTagElementList = () => (
-        this.props.postStore.tagList.map((info: string, _: number) => {
+        Array.from(this.props.tagList).map((tag: string, _: number) => {
             return (
-                <li className="tag-default popular-tag" key={info}>
-                    <i className="ion-close-round" onClick={() => this.props.postStore.removeTag(info)}/>{info}
+                <li className="tag-default popular-tag" key={tag}>
+                    <i className="ion-close-round" onClick={(e: any) => {e.tag = tag; this.props.onClickRemoveTag(e);}}/>{tag}
                 </li>
             )
         })
     );
 
-    handlePublish = (e: any) => {
-        e.preventDefault();
-        const {slug} = this.props.match.params;
-        if (slug === undefined) {
-            this.props.postStore.createArticle(this.props.history);
-        } else {
-            this.props.postStore.updateArticle(slug, this.props.history);
+    handleEnterPress = (e: any) => {
+        if (e.key === 'Enter') {
+            this.props.onEnterPressAtTagInput(e);
         }
-    };
+    }
 
     render() {
         const tagElementList = this.getTagElementList();
-        const {postStore} = this.props;
-        const {title, description, body} = postStore.post;
+        const {title, description, body, tag, onSubmit, onChangeInputAndTextArea} = this.props;
 
         console.log("Render [ Post ]");
 
         return (
-            <div className="container text-center mt-4" onSubmit={this.handlePublish}>
+            <div className="container text-center mt-4">
                 <div className="col-10 m-auto">
-                    <form className="text-right m-auto">
+                    <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Article Title" className="form-control" name="title"
-                                   value={title} onChange={this.handleChange}/>
+                                   value={title} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="text" placeholder="What's this article about?" className="form-control"
-                                   name="description" value={description} onChange={this.handleChange}/>
+                                   name="description" value={description} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
                             <textarea rows={8} placeholder="Write your article (in markdown)" className="form-control"
-                                      name="body" value={body} onChange={this.handleChange}/>
+                                      name="body" value={body} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Enter tags" className="form-control"
-                                   name="tag" value={postStore.tag} onChange={this.handleChange}
-                                   onKeyPress={this.appendTag}/>
+                                   name="tag" value={tag} onChange={onChangeInputAndTextArea}
+                                   onKeyPress={this.handleEnterPress}/>
                             <div className="text-left">
                                 {tagElementList}
                             </div>

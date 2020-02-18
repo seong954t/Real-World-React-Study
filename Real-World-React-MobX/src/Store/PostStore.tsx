@@ -1,10 +1,11 @@
 import {action, computed, observable} from "mobx";
 import PostDTO from "../DTO/PostDTO";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
+import {addObserver} from "mobx/lib/core/observable";
 
 export default class PostStore {
     @observable
-    public post: PostDTO = {
+    private _post: PostDTO = {
         tagList: new Set<string>(),
         description: "",
         body: "",
@@ -14,10 +15,15 @@ export default class PostStore {
     @observable
     tag: string = "";
 
+    @computed
+    get post(){
+        return this._post;
+    }
+
     @action
     public setPost(key: keyof PostDTO, value: string) {
         if(key !== "tagList"){
-            this.post[key] = value;
+            this._post[key] = value;
         }
     }
 
@@ -28,27 +34,28 @@ export default class PostStore {
 
     @computed
     get tagList(){
-        return Array.from(this.post.tagList);
+        return Array.from(this._post.tagList);
     }
 
 
     @action
     public appendTag() {
-        this.post.tagList.add(this.tag);
+        console.log(this._post);
+        this._post.tagList.add(this.tag);
         this.tag = "";
     }
 
     @action
     public removeTag(tag: string) {
-        this.post.tagList.delete(tag)
+        this._post.tagList.delete(tag)
     }
 
     @action
     public resetPost() {
-        this.post.tagList.clear();
-        this.post.description = "";
-        this.post.body = "";
-        this.post.title = "";
+        this._post.tagList.clear();
+        this._post.description = "";
+        this._post.body = "";
+        this._post.title = "";
     }
 
     @action
@@ -60,8 +67,9 @@ export default class PostStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     const {title, description, body, tagList} = article;
-                    this.post = {
-                        tagList: tagList,
+
+                    this._post = {
+                        tagList: new Set<string>(tagList),
                         description: description,
                         body: body,
                         title: title
@@ -71,33 +79,29 @@ export default class PostStore {
     }
 
     @action
-    public createArticle(history: any) {
-        const {title, description, body, tagList} = this.post;
-
-        RealWorldApi.createArticle(title, description, body, tagList)
+    public createArticle(): Promise<any> {
+        const {title, description, body, tagList} = this._post;
+        return RealWorldApi.createArticle(title, description, body, tagList)
             .then(action((result) => {
                 const {errors, article} = result;
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
-                    history.replace(`/article/${article.slug}`)
                 }
             }))
     }
 
     @action
-    public updateArticle(slug: string, history: any) {
-        const {title, description, body, tagList} = this.post;
-
-        RealWorldApi.updateArticle(title, description, body, tagList, slug)
+    public updateArticle(slug: string): Promise<any> {
+        const {title, description, body, tagList} = this._post;
+        return RealWorldApi.updateArticle(title, description, body, tagList, slug)
             .then(action((result) => {
                 const {errors, article} = result;
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors);
                 } else if (article !== undefined) {
                     this.resetPost();
-                    history.replace(`/article/${slug}`)
                 }
             }))
     }

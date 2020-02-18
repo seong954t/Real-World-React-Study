@@ -104,10 +104,9 @@ const RealWorldApi = {
                 title: title,
                 description: description,
                 body: body,
-                tagList: tagList
+                tagList: Array.from(tagList)
             }
         };
-
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
     updateArticle: (title: string, description: string, body: string, tagList: Set<String>, slug: string): Promise<any> => {
@@ -118,7 +117,7 @@ const RealWorldApi = {
                 title: title,
                 description: description,
                 body: body,
-                tagList: tagList
+                tagList: Array.from(tagList)
             }
         };
 
