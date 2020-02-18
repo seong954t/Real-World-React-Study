@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {inject, observer} from "mobx-react";
+import UserStore from "../Store/UserStore";
+import PageRouter from "../PageRouter/PageRouter";
 
 @inject("userStore", "authStore")
 @observer
@@ -13,7 +15,10 @@ class SignUp extends React.Component<any, any> {
 
     handleSignUp = (e: any) => {
         e.preventDefault();
-        this.props.authStore.registration(this.props.userStore, this.props.history);
+        const registrationPromise = this.props.authStore.registration().then((user: any) => {
+            UserStore.INSTANCE.setUser(user);
+        });
+        PageRouter.pageRouteAfterPromise(registrationPromise, this.props.history, "/");
     };
 
     handleChange = (e: any) => {

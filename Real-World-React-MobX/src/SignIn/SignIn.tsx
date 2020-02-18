@@ -1,9 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react";
 import SignInProps from "../Props/SignInProps";
 
-@observer
 export default class SignIn extends React.Component<SignInProps, any> {
 
     errorElement = (errors: string[]) => (
@@ -24,7 +22,7 @@ export default class SignIn extends React.Component<SignInProps, any> {
                 <div className="col-6 m-auto">
                     <h1 className="mb-2">Sign In</h1>
                     <Link to={"./register"} className="mb-2">Need an account?</Link>
-                    {errors.length !== 0 ? this.errorElement(errors) : ''}
+                    {errors ? this.errorElement(errors) : ''}
                     <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Email" className="form-control form-control-lg"

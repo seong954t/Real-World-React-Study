@@ -55,11 +55,11 @@ export default class AuthStore {
     }
 
     @action
-    public login(userStore: UserStore): Promise<any> {
+    public login(): Promise<any> {
         return RealWorldApi.login(this.authInfo.email, this.authInfo.password)
             .then(action((result) => {
-                this.responseHandler(userStore, result);
-            }))
+                return this.signHandler(result);
+            }));
     }
 
     @action
@@ -69,19 +69,15 @@ export default class AuthStore {
     }
 
     @action
-    public registration(userStore: UserStore, history: any) {
-        RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
+    public registration(): Promise<any> {
+        return RealWorldApi.registration(this.authInfo.username, this.authInfo.email, this.authInfo.password)
             .then(action((result) => {
-                this.responseHandler(userStore, result)
-                if (this._errors.length === 0) {
-                    history.replace("/")
-                }
+                return this.signHandler(result)
             }));
     }
 
-    private responseHandler(userStore: UserStore, result: any) {
+    private signHandler(result: any): Promise<any> {
         const {errors, user} = result;
-        console.log("result : ", result)
         if (errors !== undefined) {
             const arrayError: string[] = [];
             Object.keys(errors).forEach(key => {
@@ -91,10 +87,10 @@ export default class AuthStore {
             throw Response.error();
         } else if (user !== undefined) {
             this.resetAuthInfo();
-            userStore.setUser(user);
             Auth.setToken(user.token)
             RealWorldApi.setAuthHeader();
         }
+        return user;
     }
 
     static INSTANCE: AuthStore;
