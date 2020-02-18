@@ -1,17 +1,9 @@
 import React from "react";
 import './Header.css'
 import {Link} from "react-router-dom";
-import Auth from "../Auth/Auth";
-import {inject, observer} from "mobx-react";
+import HeaderProps from "../Props/HeaderProps";
 
-@inject("userStore")
-@observer
-class Header extends React.Component<any, any> {
-
-    componentDidMount(): void {
-        console.log("componentDidMount [ Header ]");
-        this.props.userStore.getCurrentUser();
-    }
+class Header extends React.Component<HeaderProps, any> {
 
     signedHeader = (username: string, image: string) => (
         <ul className="nav list-unstyled float-right justify-content-end">
@@ -57,7 +49,7 @@ class Header extends React.Component<any, any> {
     );
 
     render() {
-        const userInfo = this.props.userStore.user;
+        const {username, image, signed} = this.props;
 
         console.log("Render [ Header ]");
 
@@ -66,7 +58,7 @@ class Header extends React.Component<any, any> {
                 <div className="float-left">
                     <Link to={"/"} className="nav-brand nav justify-content-start">conduit</Link>
                 </div>
-                {Auth.isSigned() ? this.signedHeader(userInfo.username, userInfo.image) : this.defaultHeader}
+                {signed ? this.signedHeader(username, image) : this.defaultHeader}
             </nav>
         );
     }
