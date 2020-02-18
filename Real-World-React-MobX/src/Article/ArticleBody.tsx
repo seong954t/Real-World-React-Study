@@ -1,7 +1,7 @@
 import React from "react";
 import marked from "marked";
 
-class ArticleDescripter extends React.Component<{ tagList: string[], body: string }, {}> {
+class ArticleBody extends React.Component<{ tagList: string[], body: string }, {}> {
 
     tagListElements = (tagList: string[]) => (
         tagList.map((info: string, index: number) => (
@@ -12,7 +12,7 @@ class ArticleDescripter extends React.Component<{ tagList: string[], body: strin
         const {tagList, body} = this.props;
         const markedHTML = {__html: marked(body, {sanitize: true})};
         
-        console.log("Render [ ArticleDescripter ]");
+        console.log("Render [ ArticleBody ]");
 
         return (
             <div className="article-desc col-md-12 p-0">
@@ -32,4 +32,4 @@ class ArticleDescripter extends React.Component<{ tagList: string[], body: strin
     }
 }
 
-export default ArticleDescripter;
+export default ArticleBody;

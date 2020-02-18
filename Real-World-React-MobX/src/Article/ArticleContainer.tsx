@@ -1,21 +1,23 @@
 import React from "react";
 import ArticleBanner from "./ArticleBanner";
-import ArticleDescripter from "./ArticleDescripter";
+import ArticleBody from "./ArticleBody";
 import ArticleComment from "./ArticleComment";
 import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";
+import UserStore from "../Store/UserStore";
+import ArticleBannerAdapter from "../Adapter/ArticleBannerAdapter";
 
-interface Props extends RouteComponentProps{
-    articlesStore: ArticlesStore
+interface Props extends RouteComponentProps<{ name: string }> {
+    articlesStore: ArticlesStore,
+    userStore: UserStore
 }
 
-@inject("articlesStore")
+@inject("articlesStore", "userStore")
 @observer
-class ArticleContainer extends React.Component<any, any> {
+class ArticleContainer extends React.Component<Props, any> {
 
-    constructor(props: any) {
-        super(props);
+    componentDidMount(): void {
         console.log("constructor [ ArticleContainer ]")
         const slug = this.props.match.params.name;
         this.props.articlesStore.loadArticle(slug);
@@ -29,10 +31,14 @@ class ArticleContainer extends React.Component<any, any> {
         if (article) {
             return (
                 <div>
-                    <ArticleBanner history={this.props.history} article={article}/>
+                    <ArticleBannerAdapter history={this.props.history}
+                                          userStore={this.props.userStore}
+                                          articlesStore={this.props.articlesStore}
+                                          article={article}
+                    />
                     <div className="container row m-auto">
-                        <ArticleDescripter tagList={article.tagList} body={article.body}/>
-                        {article.slug === '' ? '' : <ArticleComment/>}
+                        <ArticleBody tagList={article.tagList} body={article.body}/>
+                        <ArticleComment/>
                     </div>
                 </div>
             )

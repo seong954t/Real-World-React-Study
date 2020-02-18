@@ -1,28 +1,16 @@
 import React from "react";
 import "./article.css";
-import Auth from "../Auth/Auth";
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react";
-import PageRouter from "../PageRouter/PageRouter";
+import ArticleBannerProps from "../Props/ArticleBannerProps";
 
-@inject("articlesStore", "userStore")
-@observer
-class ArticleBanner extends React.Component<any, any> {
-
-    handleDeleteArticle = (slug: string) => {
-        PageRouter.pageRouteAfterPromise(
-            this.props.articlesStore.deleteArticle(slug),
-            this.props.history,
-            "/"
-        )
-    };
+class ArticleBanner extends React.Component<ArticleBannerProps, any> {
 
     individualArticleButtons = (slug: string) => (
         <span>
             <Link className="btn btn-outline-secondary btn-sm"
                to={`/editor/${slug}`}>
                 <i className="ion-edit"/>Edit Article</Link>
-            <button className="btn btn-outline-danger btn-sm" onClick={() => this.handleDeleteArticle(slug)}>
+            <button className="btn btn-outline-danger btn-sm" onClick={this.props.onClickDelete}>
                 <i className="ion-edit"/>
                 Delete Article
             </button>
@@ -30,7 +18,7 @@ class ArticleBanner extends React.Component<any, any> {
     );
 
     render() {
-        const {title, createdAt, author, slug} = this.props.articlesStore.article;
+        const {title, createdAt, author, slug, isDisableEditAndDeleteButton} = this.props;
 
         console.log("Render [ ArticleBanner ]");
 
@@ -48,7 +36,7 @@ class ArticleBanner extends React.Component<any, any> {
                                 <Link to={`/@${author.username}`}>{author.username}</Link>
                                 <p className="date m-0">{new Date(createdAt).toDateString()}</p>
                             </div>
-                            {Auth.isOwner(this.props.userStore.user.username, author.username) ? this.individualArticleButtons(slug) : ''}
+                            {isDisableEditAndDeleteButton ? '' : this.individualArticleButtons(slug)}
                         </div>
                     </div>
                 </div>
