@@ -27,7 +27,7 @@ export default class ArticlesStore {
     private _isArticlesLoading: boolean = false;
 
     @observable
-    private favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
+    private _favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
 
     @computed
     get page(){
@@ -39,11 +39,16 @@ export default class ArticlesStore {
         return this._isArticlesLoading
     }
 
+    @computed
+    get favoriteLoadings(){
+        return this._favoriteLoadings;
+    }
+
     @action
     public loadArticles(tab: string, tag: string, name: string, page: number): void {
         const url = this.getRequestArticleUrl(tab, tag, name, page);
         if (page === 1) {
-            this._isArticlesLoading = true;
+            // this._isArticlesLoading = true;
         }
         RealWorldApi.getArticles(url)
             .then(action((result) => {
@@ -52,23 +57,23 @@ export default class ArticlesStore {
                     RealWorldApi.alertError(errors);
                 } else {
                     this.articles.clear();
-                    this.favoriteLoadings.clear();
+                    this._favoriteLoadings.clear();
                     articles.forEach((article: ArticleDTO) => {
                         this.articles.set(article.slug, article);
-                        this.favoriteLoadings.set(article.slug, false);
+                        this._favoriteLoadings.set(article.slug, false);
                     });
                     this.articlesCount = articlesCount;
                     this._page = page;
                 }
             })).finally(action(() => {
-                this._isArticlesLoading = false;
+                // this._isArticlesLoading = false;
             })
         )
     }
 
     @action
     public isArticleLoading(slug: string): boolean {
-        return this.favoriteLoadings.get(slug) || false;
+        return this._favoriteLoadings.get(slug) || false;
     }
 
     @computed
@@ -118,7 +123,9 @@ export default class ArticlesStore {
         const tempArticle = this.articles.get(slug);
 
         if (tempArticle !== undefined && Auth.isSigned()) {
-            this.favoriteLoadings.set(slug, true);
+            console.log("favoriteLoading 1 : ", this._favoriteLoadings.get(slug))
+            this._favoriteLoadings.set(slug, true);
+            console.log("favoriteLoading 2 : ", this._favoriteLoadings.get(slug))
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(action((result) => {
                     console.log(result);
@@ -129,7 +136,9 @@ export default class ArticlesStore {
                         this.articles.set(slug, article);
                     }
                 })).finally(action(() => {
-                    this.favoriteLoadings.set(slug, false);
+                console.log("favoriteLoading 3 : ", this._favoriteLoadings.get(slug))
+                    this._favoriteLoadings.set(slug, false);
+                    console.log("favoriteLoading 4 : ", this._favoriteLoadings.get(slug))
                 })
             )
         }

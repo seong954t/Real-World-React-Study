@@ -1,17 +1,14 @@
 import React from "react";
 import "./Feed.css"
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react";
 import Loading from "../Loading/Loading";
+import FeedProps from "../Props/FeedProps";
 
-@inject("articlesStore")
-@observer
-class Feed extends React.PureComponent<any, any> {
+class Feed extends React.PureComponent<FeedProps, any> {
 
     handleFavorite = (e: any): void => {
-        e.preventDefault();
-        const {article} = this.props;
-        this.props.articlesStore.favoriteArticle(article.slug);
+        e.slug = this.props.article.slug;
+        this.props.onClick(e);
     };
 
     render() {
@@ -21,7 +18,6 @@ class Feed extends React.PureComponent<any, any> {
                 {tag}
             </li>
         ));
-        const isFavoriteLoading = this.props.articlesStore.favoriteLoadings.get(article.slug);
 
         console.log("Render [ Feed ]");
 
@@ -39,7 +35,7 @@ class Feed extends React.PureComponent<any, any> {
                             onClick={this.handleFavorite}
                             className={`btn btn-sm btn-outline-success float-right ${article.favorited ? 'active' : ''}`}>
                         {
-                            !isFavoriteLoading ?
+                            !this.props.loading ?
                                 <span><i className="ion-heart"/>{article.favoritesCount}</span> :
                                 <Loading className="sm-spinner-border text-white"/>
                         }

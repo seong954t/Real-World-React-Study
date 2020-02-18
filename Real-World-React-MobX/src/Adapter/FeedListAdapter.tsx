@@ -15,6 +15,11 @@ interface Props {
 @observer
 export default class FeedListAdapter extends React.PureComponent<Props, any> {
 
+    handleFavorite = (e: any): void => {
+        e.preventDefault();
+        this.props.articlesStore.favoriteArticle(e.slug);
+    };
+
     render() {
         const {tab, tag, name} = this.props.feedTabStore;
 
@@ -27,6 +32,8 @@ export default class FeedListAdapter extends React.PureComponent<Props, any> {
                       name={name}
                       loading={this.props.articlesStore.isArticlesLoading}
                       isDefault={!Auth.isSigned()}
+                      onClick={this.handleFavorite}
+                      favoriteLoadings={this.props.articlesStore.favoriteLoadings}
             />
         );
     }

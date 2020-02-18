@@ -39,7 +39,7 @@ class FeedContainer extends React.Component<Props, any> {
 
     loadArticles(page: number): void {
         const {tab, tag, name} = this.props.feedTabStore;
-        this.props.articlesStore.loadArticles(tag, tab, name, page);
+        this.props.articlesStore.loadArticles(tab, tag, name, page);
     };
 
     render() {
