@@ -1,9 +1,9 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class TagsStore {
     @observable
-    private tags: string[] = [];
+    private _tags: string[] = [];
 
     @action
     public loadTags(): void{
@@ -13,9 +13,14 @@ export default class TagsStore {
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors);
                 } else if (tags !== undefined) {
-                    this.tags = tags;
+                    this._tags = tags;
                 }
             }))
+    }
+
+    @computed
+    get tags(){
+        return this._tags;
     }
 
     static INSTANCE: TagsStore;
