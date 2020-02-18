@@ -18,7 +18,7 @@ export default class ArticlesStore {
     private articlesCount: number = 0;
 
     @observable
-    private page: number = 1;
+    private _page: number = 1;
 
     @observable
     private FEED_SIZE: number = this.MAIN_FEED_SIZE;
@@ -28,6 +28,11 @@ export default class ArticlesStore {
 
     @observable
     private favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
+
+    @computed
+    get page(){
+        return this._page;
+    }
 
     @action
     public loadArticles(tab: string, tag: string, name: string, page: number): void {
@@ -48,7 +53,7 @@ export default class ArticlesStore {
                         this.favoriteLoadings.set(article.slug, false);
                     });
                     this.articlesCount = articlesCount;
-                    this.page = page;
+                    this._page = page;
                 }
             })).finally(action(() => {
                 this.isArticlesLoading = false;
@@ -106,11 +111,12 @@ export default class ArticlesStore {
     @action
     public favoriteArticle(slug: string) {
         const tempArticle = this.articles.get(slug);
-        this.favoriteLoadings.set(slug, true);
 
         if (tempArticle !== undefined && Auth.isSigned()) {
+            this.favoriteLoadings.set(slug, true);
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(action((result) => {
+                    console.log(result);
                     const {errors, article} = result;
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);

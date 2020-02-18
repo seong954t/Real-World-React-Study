@@ -1,52 +1,36 @@
 import React from "react";
 import FeedList from "./FeedList";
 import FeedPageList from "./FeedPageList";
-import {inject, observer} from "mobx-react";
-import queryString from "query-string";
+import {observer} from "mobx-react";
+import FeedTabStore from "../Store/FeedTabStore";
+import ArticlesStore from "../Store/ArticlesStore";
 
-@inject("feedTabStore", "articlesStore")
+interface Props {
+    feedTabStore: FeedTabStore,
+    articlesStore: ArticlesStore,
+    tab: string,
+    tag: string,
+    name: string
+}
+
 @observer
-class FeedContainer extends React.Component<any, any> {
+class FeedContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ FeedContainer ]");
-        const {search, params} = this.props;
-        if (search) {
-            const {tab, tag, name} = queryString.parse(search);
-            this.props.feedTabStore.initialize(tab, tag, name)
-        } else if (params) {
-            const {tab, tag, name} = params;
-            this.props.feedTabStore.initialize(tab, tag, name)
-        } else {
-            this.props.feedTabStore.initialize("", "", "")
-        }
+        const {tab, tag, name} = this.props;
+        this.props.feedTabStore.initialize(tab, tag, name)
         this.loadArticles(1);
     }
 
     componentDidUpdate(): void {
         console.log("componentDidUpdate [ FeedContainer ]");
-        const {search, params} = this.props;
-        if (search) {
-            const {tab, tag, name} = queryString.parse(search);
-            if (!this.props.feedTabStore.isEqualFeedTabData(tab, tag, name)) {
-                this.props.feedTabStore.initialize(tab, tag, name);
-                this.props.articlesStore.page = 1;
-                this.loadArticles(this.props.articlesStore.page)
-            }
-        } else if (params) {
-            const {tab, tag, name} = params;
-            if (!this.props.feedTabStore.isEqualFeedTabData(tab, tag, name)) {
-                this.props.feedTabStore.initialize(tab, tag, name);
-                this.props.articlesStore.page = 1;
-                this.loadArticles(this.props.articlesStore.page)
-            }
-        } else {
-            if (!this.props.feedTabStore.isEqualFeedTabData("", "", "")) {
-                this.props.feedTabStore.initialize("", "", "");
-                this.props.articlesStore.page = 1;
-                this.loadArticles(this.props.articlesStore.page)
-            }
+        const {tab, tag, name} = this.props;
+        if (!this.props.feedTabStore.isEqualFeedTabData(tab, tag, name)) {
+            this.props.feedTabStore.initialize(tab, tag, name)
+            this.loadArticles(1);
         }
+
     }
 
     handlePaging(target: any): void {
@@ -56,7 +40,7 @@ class FeedContainer extends React.Component<any, any> {
     };
 
     loadArticles(page: number): void {
-        const {tag, tab, name} = this.props.feedTabStore;
+        const {tab, tag, name} = this.props.feedTabStore;
         this.props.articlesStore.loadArticles(tag, tab, name, page);
     };
 
