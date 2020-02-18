@@ -48,7 +48,7 @@ export default class ArticlesStore {
     public loadArticles(tab: string, tag: string, name: string, page: number): void {
         const url = this.getRequestArticleUrl(tab, tag, name, page);
         if (page === 1) {
-            // this._isArticlesLoading = true;
+            this._isArticlesLoading = true;
         }
         RealWorldApi.getArticles(url)
             .then(action((result) => {
@@ -66,7 +66,7 @@ export default class ArticlesStore {
                     this._page = page;
                 }
             })).finally(action(() => {
-                // this._isArticlesLoading = false;
+                this._isArticlesLoading = false;
             })
         )
     }
