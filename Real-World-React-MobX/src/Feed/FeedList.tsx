@@ -43,7 +43,7 @@ class FeedList extends React.PureComponent<FeedListProps, any> {
 
     individualFeed = (tab: string, name: string) => (
         <ul className="nav list-unstyled list-group list-group-flush feed-nav">
-            <li className={`nav-item d-inline-block ${(tab === undefined) || (tab === 'all') ? 'active' : ''}`}>
+            <li className={`nav-item d-inline-block ${(tab === '') || (tab === 'all') ? 'active' : ''}`}>
                 <Link className="list-group-item" to={`/@${name}`}>MyArticles</Link>
             </li>
             <li className={`nav-item d-inline-block ${(tab === 'favorites') ? 'active' : ''}`}>
