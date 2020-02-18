@@ -28,7 +28,7 @@ class ArticleContainer extends React.Component<Props, any> {
     render() {
         const article = this.props.articlesStore.article;
 
-        console.log("Render [ ArticleContainer ]", article?.slug);
+        console.log("Render [ ArticleContainer ]");
 
         if (article) {
             return (
