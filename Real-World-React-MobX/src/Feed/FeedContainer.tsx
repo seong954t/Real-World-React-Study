@@ -1,5 +1,4 @@
 import React from "react";
-import FeedList from "./FeedList";
 import FeedPageList from "./FeedPageList";
 import {observer} from "mobx-react";
 import FeedTabStore from "../Store/FeedTabStore";
@@ -34,10 +33,8 @@ class FeedContainer extends React.Component<Props, any> {
 
     }
 
-    handlePaging(target: any): void {
-        const pageLinks: any = document.getElementsByClassName("page-link");
-        const page = Array(...pageLinks).indexOf(target) + 1;
-        this.loadArticles(page);
+    handlePaging = (e: any): void => {
+        this.loadArticles(parseInt(e.target.text));
     };
 
     loadArticles(page: number): void {
@@ -55,8 +52,13 @@ class FeedContainer extends React.Component<Props, any> {
             <div className="container col-md-9">
                 <FeedListAdapter articlesStore={this.props.articlesStore}
                                  feedTabStore={this.props.feedTabStore}
-                                 articles={articles}/>
-                <FeedPageList size={size} handler={this.handlePaging} page={this.props.articlesStore.page}/>
+                                 articles={articles}
+                />
+                <FeedPageList size={size}
+                              onClick={this.handlePaging}
+                              page={this.props.articlesStore.page}
+                              isDisable={this.props.articlesStore.isArticlesLoading}
+                />
             </div>
         );
     }

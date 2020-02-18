@@ -1,24 +1,21 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
 import FeedPageButton from "./FeedPageButton";
+import FeedPageListProps from "../Props/FeedPageListProps";
 
-@inject("articlesStore")
-@observer
-class FeedPageList extends React.PureComponent<any, any> {
+class FeedPageList extends React.PureComponent<FeedPageListProps, any> {
 
-    pageButtonList = (size: number) => [...Array(size)].map((_, i: number) => (
-        <FeedPageButton key={i+1} page={i+1}/>
+    pageButtonList = () => [...Array(this.props.size)].map((_, i: number) => (
+        <FeedPageButton key={i+1} page={i+1} isActive={(i+1) === this.props.page} onClick={this.props.onClick}/>
     ));
 
     render() {
-        const size = this.props.size;
 
         console.log("Render [ FeedPageList ]");
 
         return (
             <nav aria-label="...">
                 <ul className="pagination">
-                    {this.props.articlesStore.isArticlesLoading ? '' : (size > 1 ? this.pageButtonList(size) : '')}
+                    {this.props.isDisable ? '' : (this.props.size > 1 ? this.pageButtonList() : '')}
                 </ul>
             </nav>
         );
