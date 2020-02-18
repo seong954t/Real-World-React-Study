@@ -1,5 +1,5 @@
 import React from "react";
-import FeedPageList from "./FeedPageList";
+import FeedPageButtonList from "./FeedPageButtonList";
 import {observer} from "mobx-react";
 import FeedTabStore from "../Store/FeedTabStore";
 import ArticlesStore from "../Store/ArticlesStore";
@@ -54,10 +54,10 @@ class FeedContainer extends React.Component<Props, any> {
                                  feedTabStore={this.props.feedTabStore}
                                  articles={articles}
                 />
-                <FeedPageList size={size}
-                              onClick={this.handlePaging}
-                              page={this.props.articlesStore.page}
-                              isDisable={this.props.articlesStore.isArticlesLoading}
+                <FeedPageButtonList size={size}
+                                    onClick={this.handlePaging}
+                                    page={this.props.articlesStore.page}
+                                    isDisable={this.props.articlesStore.isArticlesLoading}
                 />
             </div>
         );

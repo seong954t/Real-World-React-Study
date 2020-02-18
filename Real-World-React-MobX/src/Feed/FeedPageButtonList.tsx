@@ -2,7 +2,7 @@ import React from "react";
 import FeedPageButton from "./FeedPageButton";
 import FeedPageListProps from "../Props/FeedPageListProps";
 
-class FeedPageList extends React.PureComponent<FeedPageListProps, any> {
+class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
 
     pageButtonList = () => [...Array(this.props.size)].map((_, i: number) => (
         <FeedPageButton key={i+1} page={i+1} isActive={(i+1) === this.props.page} onClick={this.props.onClick}/>
@@ -10,7 +10,7 @@ class FeedPageList extends React.PureComponent<FeedPageListProps, any> {
 
     render() {
 
-        console.log("Render [ FeedPageList ]");
+        console.log("Render [ FeedPageButtonList ]");
 
         return (
             <nav aria-label="...">
@@ -22,4 +22,4 @@ class FeedPageList extends React.PureComponent<FeedPageListProps, any> {
     }
 }
 
-export default FeedPageList;
+export default FeedPageButtonList;

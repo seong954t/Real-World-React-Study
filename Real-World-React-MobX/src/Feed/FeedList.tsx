@@ -1,6 +1,5 @@
 import React from "react";
 import Feed from "./Feed";
-import Auth from "../Auth/Auth";
 import ArticleDTO from "../DTO/ArticleDTO";
 import {Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
