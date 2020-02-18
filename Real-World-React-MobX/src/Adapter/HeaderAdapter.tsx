@@ -21,7 +21,7 @@ export default class HeaderAdapter extends React.Component<Props, any> {
     render() {
         const {username, image} = this.props.userStore.user;
 
-        console.log("Render [ Header ]");
+        console.log("Render [ HeaderAdapter ]");
 
         return (
             <Header username={username} image={image} isDefault={!Auth.isSigned()} title={Configuration.TITLE}/>
