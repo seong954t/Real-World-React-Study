@@ -4,43 +4,50 @@ import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class CommentsStore {
     @observable
-    private comments: Map<number, CommentDTO> = observable.map();
+    private _comments: Map<number, CommentDTO> = new Map<number, CommentDTO>();
 
     @observable
     public comment: string = "";
 
     @observable
-    private isCommentsLoading: boolean = false;
+    private _isCommentsLoading: boolean = false;
 
     @observable
     private slug: string = ""
 
+    @computed
+    get isCommentsLoading(){
+        return this._isCommentsLoading;
+    }
+
     @action
     public loadComments(slug: string) {
-        console.log("loadComments", slug)
-        this.isCommentsLoading = true;
-        this.slug = slug;
-        RealWorldApi.getComments(slug)
-            .then(action((result) => {
-                const {errors, comments} = result;
-                if (errors !== undefined) {
-                    RealWorldApi.alertError(errors);
-                } else {
-                    this.comments.clear();
-                    comments.forEach((comment: CommentDTO) => {
-                        this.comments.set(comment.id, comment);
-                    })
-                    this.comment = "";
-                }
-            })).finally(() => {
-                this.isCommentsLoading = false;
-            }
-        )
+        if(this.slug !== slug && !this._isCommentsLoading) {
+            this._isCommentsLoading = true;
+            this.slug = slug;
+            this.comment = "";
+            this._comments.clear();
+
+            RealWorldApi.getComments(slug)
+                .then(action((result) => {
+                    const {errors, comments} = result;
+                    if (errors !== undefined) {
+                        RealWorldApi.alertError(errors);
+                    } else {
+                        comments.forEach((comment: CommentDTO) => {
+                            this._comments.set(comment.id, comment);
+                        })
+                    }
+                })).finally(action(() => {
+                    this._isCommentsLoading = false;
+                })
+            )
+        }
     }
 
     @computed
-    get getComments() {
-        return Array.from(this.comments.values()).sort((a: CommentDTO, b: CommentDTO) => {
+    get comments() {
+        return Array.from(this._comments.values()).sort((a: CommentDTO, b: CommentDTO) => {
             return b.id - a.id
         });
     }
@@ -53,7 +60,7 @@ export default class CommentsStore {
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors)
                 } else {
-                    this.comments.set(comment.id, comment);
+                    this._comments.set(comment.id, comment);
                     this.comment = "";
                 }
             }))
@@ -67,7 +74,7 @@ export default class CommentsStore {
                 if (errors !== undefined) {
                     RealWorldApi.alertError(errors)
                 } else {
-                    this.comments.delete(id);
+                    this._comments.delete(id);
                 }
             }))
     }

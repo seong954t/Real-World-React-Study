@@ -1,24 +1,24 @@
 import React from "react";
 import "./article.css"
-import CommentCard from "./CommentCard";
-import Auth from "../Auth/Auth";
 import {Link} from "react-router-dom";
 import "./article.css"
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
+import ArticleCommentProps from "../Props/ArticleCommentProps";
+import Loading from "../Loading/Loading";
+import CommentDTO from "../DTO/CommentDTO";
+import CommentCard from "./CommentCard";
 
-@inject("commentsStore", "userStore", "articlesStore")
-@observer
-class ArticleComment extends React.PureComponent<any, any> {
+class ArticleComment extends React.PureComponent<ArticleCommentProps, any> {
 
     commentBox = () => (
-        <form onSubmit={this.addComments}>
+        <form onSubmit={this.props.onSubmit}>
             <div className="comment-write-box">
                 <fieldset className="form-group m-0">
                     <textarea rows={3} placeholder="Write a comment..." className="form-control p-3"
-                              value={this.props.commentsStore.comment} onChange={this.handleChange}/>
+                              value={this.props.comment} onChange={this.props.onChangeTextArea}/>
                 </fieldset>
                 <div className="card-footer">
-                    <img src={this.props.userStore.user.image}
+                    <img src={this.props.image}
                          alt=""
                          className="comment-author-img"/>
                     <button className="btn btn-sm btn-success float-right" type="submit">Post Comment
@@ -27,10 +27,6 @@ class ArticleComment extends React.PureComponent<any, any> {
             </div>
         </form>
     );
-
-    handleChange = (e: any) => {
-        this.props.commentsStore.comment = e.target.value;
-    };
 
     requestSignElement = () => (
         <div>
@@ -41,19 +37,30 @@ class ArticleComment extends React.PureComponent<any, any> {
         </div>
     );
 
-    addComments = (e: any) => {
-        e.preventDefault();
-        this.props.commentsStore.addComment(this.props.articlesStore.article.slug);
-    };
+    commentElements = (comments: CommentDTO[]) => (
+        comments.map((comment: CommentDTO, _) => (
+                <CommentCard comment={comment}
+                             isDisableTrashBox={comment.author.username !== this.props.username}
+                             onClickTrashBox={this.props.onClickTrashBox}
+                />
+            )
+        )
+    )
 
     render() {
         console.log("Render [ ArticleComment ]");
         return (
             <div className="col-md-8 m-auto">
                 <div className="mb-3">
-                    {Auth.isSigned() ? this.commentBox() : this.requestSignElement()}
+                    {this.props.isDisableCommentBox ? this.requestSignElement() : this.commentBox()}
                 </div>
-                <CommentCard/>
+                <div>
+                    {this.props.loading ?
+                        <div className={"text-center m-4"}>
+                            <Loading className={"text-success"}/>
+                        </div> :
+                        this.commentElements(this.props.comments)}
+                </div>
             </div>
         );
     }

@@ -1,5 +1,4 @@
 import React from "react";
-import ArticleBanner from "./ArticleBanner";
 import ArticleBody from "./ArticleBody";
 import ArticleComment from "./ArticleComment";
 import {inject, observer} from "mobx-react";
@@ -7,18 +6,21 @@ import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";
 import UserStore from "../Store/UserStore";
 import ArticleBannerAdapter from "../Adapter/ArticleBannerAdapter";
+import ArticleCommentAdapter from "../Adapter/ArticleCommentAdapter";
+import CommentsStore from "../Store/CommentsStore";
 
 interface Props extends RouteComponentProps<{ name: string }> {
+    commentsStore: CommentsStore,
     articlesStore: ArticlesStore,
     userStore: UserStore
 }
 
-@inject("articlesStore", "userStore")
+@inject("articlesStore", "userStore", "commentsStore")
 @observer
 class ArticleContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
-        console.log("constructor [ ArticleContainer ]")
+        console.log("componentDidMount [ ArticleContainer ]")
         const slug = this.props.match.params.name;
         this.props.articlesStore.loadArticle(slug);
     }
@@ -26,7 +28,7 @@ class ArticleContainer extends React.Component<Props, any> {
     render() {
         const article = this.props.articlesStore.article;
 
-        console.log("Render [ ArticleContainer ]");
+        console.log("Render [ ArticleContainer ]", article?.slug);
 
         if (article) {
             return (
@@ -38,7 +40,11 @@ class ArticleContainer extends React.Component<Props, any> {
                     />
                     <div className="container row m-auto">
                         <ArticleBody tagList={article.tagList} body={article.body}/>
-                        <ArticleComment/>
+                        <ArticleCommentAdapter commentsStore={this.props.commentsStore}
+                                               userStore={this.props.userStore}
+                                               articlesStore={this.props.articlesStore}
+                                               article={article}
+                        />
                     </div>
                 </div>
             )

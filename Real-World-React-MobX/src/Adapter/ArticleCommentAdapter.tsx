@@ -1,0 +1,62 @@
+import React from "react";
+import CommentsStore from "../Store/CommentsStore";
+import UserStore from "../Store/UserStore";
+import ArticlesStore from "../Store/ArticlesStore";
+import ArticleComment from "../Article/ArticleComment";
+import ArticleDTO from "../DTO/ArticleDTO";
+import Auth from "../Auth/Auth";
+import {observer} from "mobx-react";
+
+interface Props {
+    commentsStore: CommentsStore,
+    userStore: UserStore,
+    articlesStore: ArticlesStore,
+    article: ArticleDTO
+}
+
+@observer
+export default class ArticleCommentAdapter extends React.PureComponent<Props, any> {
+
+    componentDidMount(): void {
+        console.log("componentDidMount [ ArticleCommentAdapter ]");
+        this.props.commentsStore.loadComments(this.props.article.slug);
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
+        console.log("componentDidUpdate [ ArticleCommentAdapter ]");
+        if(this.props.article.slug !== prevProps.article.slug){
+            this.props.commentsStore.loadComments(this.props.article.slug);
+        }
+    }
+
+    handleChange = (e: any) => {
+        this.props.commentsStore.comment = e.target.value;
+    };
+
+    addComments = (e: any) => {
+        e.preventDefault();
+        this.props.commentsStore.addComment(this.props.article.slug);
+    };
+
+    deleteComment = (e: any) => {
+        const {slug} = this.props.article;
+        this.props.commentsStore.deleteComment(slug, e.id)
+    };
+
+    render() {
+        console.log("Render [ ArticleCommentAdapter ]");
+
+        return (
+            <ArticleComment image={this.props.userStore.user.image}
+                            username={this.props.userStore.user.username}
+                            onSubmit={this.addComments}
+                            comment={this.props.commentsStore.comment}
+                            isDisableCommentBox={!Auth.isSigned()}
+                            onChangeTextArea={this.handleChange}
+                            comments={this.props.commentsStore.comments}
+                            loading={this.props.commentsStore.isCommentsLoading}
+                            onClickTrashBox={this.deleteComment}
+            />
+        );
+    }
+}

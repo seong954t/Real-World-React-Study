@@ -1,7 +1,12 @@
 import React from "react";
 import marked from "marked";
 
-class ArticleBody extends React.Component<{ tagList: string[], body: string }, {}> {
+interface Props {
+    tagList: string[],
+    body: string
+}
+
+class ArticleBody extends React.Component<Props, any> {
 
     tagListElements = (tagList: string[]) => (
         tagList.map((info: string, index: number) => (
@@ -11,7 +16,7 @@ class ArticleBody extends React.Component<{ tagList: string[], body: string }, {
     render() {
         const {tagList, body} = this.props;
         const markedHTML = {__html: marked(body, {sanitize: true})};
-        
+
         console.log("Render [ ArticleBody ]");
 
         return (

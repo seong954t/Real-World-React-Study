@@ -2,7 +2,6 @@ import {ChangeEventHandler, FormEventHandler, KeyboardEventHandler, MouseEventHa
 import PostDTO from "../DTO/PostDTO";
 
 export default interface PostProps {
-    // post: PostDTO,
     title: string,
     description: string,
     body: string,
