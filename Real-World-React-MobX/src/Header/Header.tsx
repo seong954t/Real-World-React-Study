@@ -49,7 +49,7 @@ class Header extends React.Component<HeaderProps, any> {
     );
 
     render() {
-        const {username, image, signed} = this.props;
+        const {username, image, isDefault} = this.props;
 
         console.log("Render [ Header ]");
 
@@ -58,7 +58,7 @@ class Header extends React.Component<HeaderProps, any> {
                 <div className="float-left">
                     <Link to={"/"} className="nav-brand nav justify-content-start">conduit</Link>
                 </div>
-                {signed ? this.signedHeader(username, image) : this.defaultHeader}
+                {isDefault ? this.defaultHeader : this.signedHeader(username ? username : "", image ? image : "")}
             </nav>
         );
     }

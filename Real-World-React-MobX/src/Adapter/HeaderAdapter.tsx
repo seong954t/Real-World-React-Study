@@ -23,7 +23,7 @@ export default class HeaderAdapter extends React.Component<Props, any> {
         console.log("Render [ Header ]");
 
         return (
-            <Header username={username} image={image} signed={Auth.isSigned()}/>
+            <Header username={username} image={image} isDefault={!Auth.isSigned()}/>
         );
     }
 }
