@@ -4,6 +4,11 @@ import FeedPageButtonProps from "../Props/FeedPageButtonProps";
 
 class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
 
+    handlePageButton = (e: any) => {
+        e.page = this.props.page;
+        this.props.onClick(e);
+    }
+
     render() {
         const {page, isActive} = this.props;
 
@@ -11,7 +16,7 @@ class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
 
         return (
             <li key={page} className={`page-item ${isActive ? 'active' : ''}`}>
-                <Link className="page-link" aria-current="page" onClick={this.props.onClick} to=''>
+                <Link className="page-link" aria-current="page" onClick={this.handlePageButton} to=''>
                     {page}
                 </Link>
             </li>

@@ -34,7 +34,8 @@ class FeedContainer extends React.Component<Props, any> {
     }
 
     handlePaging = (e: any): void => {
-        this.loadArticles(parseInt(e.target.text));
+        e.preventDefault();
+        this.loadArticles(e.page);
     };
 
     loadArticles(page: number): void {
