@@ -53,7 +53,7 @@ export default class UserStore {
 
     @action
     public resetUpdatingUser(){
-        this._updatingUser = this._user;
+        this._updatingUser = {...this._user};
     }
 
     @action
