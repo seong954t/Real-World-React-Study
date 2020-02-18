@@ -4,6 +4,7 @@ import FeedPageList from "./FeedPageList";
 import {observer} from "mobx-react";
 import FeedTabStore from "../Store/FeedTabStore";
 import ArticlesStore from "../Store/ArticlesStore";
+import FeedListAdapter from "../Adapter/FeedListAdapter";
 
 interface Props {
     feedTabStore: FeedTabStore,
@@ -52,7 +53,9 @@ class FeedContainer extends React.Component<Props, any> {
 
         return (
             <div className="container col-md-9">
-                <FeedList articles={articles}/>
+                <FeedListAdapter articlesStore={this.props.articlesStore}
+                                 feedTabStore={this.props.feedTabStore}
+                                 articles={articles}/>
                 <FeedPageList size={size} handler={this.handlePaging} page={this.props.articlesStore.page}/>
             </div>
         );

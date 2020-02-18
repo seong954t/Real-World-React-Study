@@ -24,7 +24,7 @@ export default class ArticlesStore {
     private FEED_SIZE: number = this.MAIN_FEED_SIZE;
 
     @observable
-    private isArticlesLoading: boolean = false;
+    private _isArticlesLoading: boolean = false;
 
     @observable
     private favoriteLoadings: Map<string, boolean> = new Map<string, boolean>();
@@ -34,11 +34,16 @@ export default class ArticlesStore {
         return this._page;
     }
 
+    @computed
+    get isArticlesLoading(){
+        return this._isArticlesLoading
+    }
+
     @action
     public loadArticles(tab: string, tag: string, name: string, page: number): void {
         const url = this.getRequestArticleUrl(tab, tag, name, page);
         if (page === 1) {
-            this.isArticlesLoading = true;
+            this._isArticlesLoading = true;
         }
         RealWorldApi.getArticles(url)
             .then(action((result) => {
@@ -56,7 +61,7 @@ export default class ArticlesStore {
                     this._page = page;
                 }
             })).finally(action(() => {
-                this.isArticlesLoading = false;
+                this._isArticlesLoading = false;
             })
         )
     }

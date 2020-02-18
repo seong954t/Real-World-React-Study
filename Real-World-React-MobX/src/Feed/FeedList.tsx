@@ -3,12 +3,10 @@ import Feed from "./Feed";
 import Auth from "../Auth/Auth";
 import ArticleDTO from "../DTO/ArticleDTO";
 import {Link} from "react-router-dom";
-import {inject, observer} from "mobx-react"
 import Loading from "../Loading/Loading";
+import FeedListProps from "../Props/FeedListProps";
 
-@inject("feedTabStore", "articlesStore")
-@observer
-class FeedList extends React.PureComponent<any, any> {
+class FeedList extends React.PureComponent<FeedListProps, any> {
 
     noArticleNotion = (
         <div className="no-article-notion p-4">No articles are here... yet.</div>
@@ -34,7 +32,7 @@ class FeedList extends React.PureComponent<any, any> {
 
     mainFeed = (tab: string, tag: string) => (
         <ul className="nav list-unstyled list-group list-group-flush feed-nav">
-            {Auth.isSigned() ? this.singedFeed(tab) : ''}
+            {this.props.isDefault ? '' : this.singedFeed(tab)}
             <li className={`nav-item d-inline-block ${(tab === undefined) || (tab === '') || (tab === 'all') ? 'active' : ''}`}>
                 <Link className="list-group-item" to="/#">GlobalFeed</Link>
             </li>
@@ -55,8 +53,7 @@ class FeedList extends React.PureComponent<any, any> {
 
 
     render() {
-        const {articles} = this.props;
-        const {tab, tag, name} = this.props.feedTabStore;
+        const {articles, tab, tag, name} = this.props;
         const feedList = (articles === undefined) || (articles.length === 0) ? this.noArticleNotion : this.getFeedList(articles);
 
         console.log("Render [ FeedList ]");
@@ -64,13 +61,19 @@ class FeedList extends React.PureComponent<any, any> {
         return (
             <div className="container col-md-12">
                 <div>
-                    {!name ? this.mainFeed(tab, tag) : this.individualFeed(tab, name)}
+                    {
+                        !name ?
+                            this.mainFeed(tab ? tab : '', tag ? tag : '') :
+                            this.individualFeed(tab ? tab : '', name ? name : '')
+                    }
                 </div>
-                {this.props.articlesStore.isArticlesLoading ?
-                    <div className="text-center m-4">
-                        <Loading className="text-success"/>
-                    </div> :
-                    feedList}
+                {
+                    this.props.loading ?
+                        <div className="text-center m-4">
+                            <Loading className="text-success"/>
+                        </div> :
+                        feedList
+                }
             </div>
         );
     }
