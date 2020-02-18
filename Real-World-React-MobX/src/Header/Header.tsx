@@ -49,14 +49,14 @@ class Header extends React.Component<HeaderProps, any> {
     );
 
     render() {
-        const {username, image, isDefault} = this.props;
+        const {username, image, isDefault, title} = this.props;
 
         console.log("Render [ Header ]");
 
         return (
             <nav className="navbar container">
                 <div className="float-left">
-                    <Link to={"/"} className="nav-brand nav justify-content-start">conduit</Link>
+                    <Link to={"/"} className="nav-brand nav justify-content-start">{title}</Link>
                 </div>
                 {isDefault ? this.defaultHeader : this.signedHeader(username ? username : "", image ? image : "")}
             </nav>

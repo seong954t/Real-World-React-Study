@@ -3,6 +3,7 @@ import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
 import UserStore from "../Store/UserStore";
 import Header from "../Header/Header";
+import Configuration from "../Configuration/Configuration";
 
 
 interface Props {
@@ -23,7 +24,7 @@ export default class HeaderAdapter extends React.Component<Props, any> {
         console.log("Render [ Header ]");
 
         return (
-            <Header username={username} image={image} isDefault={!Auth.isSigned()}/>
+            <Header username={username} image={image} isDefault={!Auth.isSigned()} title={Configuration.TITLE}/>
         );
     }
 }

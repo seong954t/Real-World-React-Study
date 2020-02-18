@@ -1,5 +1,6 @@
 export default interface HeaderProps {
     username?: string,
     image?: string
-    isDefault: boolean
+    isDefault: boolean,
+    title: string
 }
