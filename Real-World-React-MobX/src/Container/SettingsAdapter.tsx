@@ -13,7 +13,7 @@ interface Props extends RouteComponentProps {
 
 @inject("userStore", "authStore")
 @observer
-export default class SettingsAdapter extends React.Component<Props, any> {
+export default class SettingsContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ SettingsAdapter ]");
