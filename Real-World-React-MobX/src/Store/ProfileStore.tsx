@@ -18,23 +18,22 @@ export default class ProfileStore {
     private _isFollowLoading: boolean = false;
 
     @computed
-    get profile(){
+    get profile() {
         return this._profile;
     }
 
     @computed
-    get isProfileLoading(){
+    get isProfileLoading() {
         return this._isProfileLoading;
     }
 
     @computed
-    get isFollowLoading(){
+    get isFollowLoading() {
         return this._isFollowLoading;
     }
 
     @action
     public loadProfile = (username: string) => {
-        console.log("loadProfile")
         this._isProfileLoading = true;
         RealWorldApi.getProfile(username)
             .then(action((result) => {
@@ -54,19 +53,21 @@ export default class ProfileStore {
 
     @action
     public followUser(username: string) {
-        this._isFollowLoading = true;
-        RealWorldApi.followUser(username, this._profile.following)
-            .then(action((result) => {
-                const {errors, profile} = result;
-                if (errors !== undefined) {
-                    RealWorldApi.alertError(errors)
-                } else if (profile !== undefined) {
-                    this._profile = profile;
+        if (!this._isFollowLoading) {
+            this._isFollowLoading = true;
+            RealWorldApi.followUser(username, this._profile.following)
+                .then(action((result) => {
+                    const {errors, profile} = result;
+                    if (errors !== undefined) {
+                        RealWorldApi.alertError(errors)
+                    } else if (profile !== undefined) {
+                        this._profile = profile;
+                    }
+                })).finally(() => {
+                    this._isFollowLoading = false;
                 }
-            })).finally(() => {
-                this._isFollowLoading = false;
-            }
-        )
+            )
+        }
     }
 
     static INSTANCE: ProfileStore;

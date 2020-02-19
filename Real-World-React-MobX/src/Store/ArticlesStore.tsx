@@ -47,28 +47,30 @@ export default class ArticlesStore {
     @action
     public loadArticles(tab: string, tag: string, name: string, page: number): void {
         const url = this.getRequestArticleUrl(tab, tag, name, page);
-        if (page === 1) {
-            this._isArticlesLoading = true;
+        if(!this._isArticlesLoading){
+            if (page === 1) {
+                this._isArticlesLoading = true;
+            }
+            RealWorldApi.getArticles(url)
+                .then(action((result) => {
+                    const {errors, articles, articlesCount} = result;
+                    if (errors !== undefined) {
+                        RealWorldApi.alertError(errors);
+                    } else {
+                        this._articles.clear();
+                        this._favoriteLoadings.clear();
+                        articles.forEach((article: ArticleDTO) => {
+                            this._articles.set(article.slug, article);
+                            this._favoriteLoadings.set(article.slug, false);
+                        });
+                        this.articlesCount = articlesCount;
+                        this._page = page;
+                    }
+                })).finally(action(() => {
+                    this._isArticlesLoading = false;
+                })
+            )
         }
-        RealWorldApi.getArticles(url)
-            .then(action((result) => {
-                const {errors, articles, articlesCount} = result;
-                if (errors !== undefined) {
-                    RealWorldApi.alertError(errors);
-                } else {
-                    this._articles.clear();
-                    this._favoriteLoadings.clear();
-                    articles.forEach((article: ArticleDTO) => {
-                        this._articles.set(article.slug, article);
-                        this._favoriteLoadings.set(article.slug, false);
-                    });
-                    this.articlesCount = articlesCount;
-                    this._page = page;
-                }
-            })).finally(action(() => {
-                this._isArticlesLoading = false;
-            })
-        )
     }
 
     @action
@@ -122,10 +124,8 @@ export default class ArticlesStore {
     public favoriteArticle(slug: string) {
         const tempArticle = this._articles.get(slug);
 
-        if (tempArticle !== undefined && Auth.isSigned()) {
-            console.log("favoriteLoading 1 : ", this._favoriteLoadings.get(slug))
+        if (tempArticle !== undefined && Auth.isSigned() && !this._favoriteLoadings.get(slug)) {
             this._favoriteLoadings.set(slug, true);
-            console.log("favoriteLoading 2 : ", this._favoriteLoadings.get(slug))
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(action((result) => {
                     console.log(result);
@@ -136,9 +136,7 @@ export default class ArticlesStore {
                         this._articles.set(slug, article);
                     }
                 })).finally(action(() => {
-                console.log("favoriteLoading 3 : ", this._favoriteLoadings.get(slug))
                     this._favoriteLoadings.set(slug, false);
-                    console.log("favoriteLoading 4 : ", this._favoriteLoadings.get(slug))
                 })
             )
         }
