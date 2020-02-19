@@ -16,7 +16,7 @@ interface Props {
 }
 
 @observer
-export default class ArticleCommentAdapter extends React.PureComponent<Props, any> {
+export default class ArticleCommentContainer extends React.PureComponent<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ ArticleCommentAdapter ]");
