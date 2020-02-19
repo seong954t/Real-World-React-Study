@@ -3,12 +3,12 @@ import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";
 import UserStore from "../Store/UserStore";
-import ArticleCommentAdapter from "../Adapter/ArticleCommentAdapter";
 import CommentsStore from "../Store/CommentsStore";
 import ArticleBody from "../Widget/Article/ArticleBody";
 import PageRouter from "../PageRouter/PageRouter";
 import ArticleBanner from "../Widget/Banner/ArticleBanner";
 import Auth from "../Auth/Auth";
+import ArticleCommentContainer from "./ArticleCommentContainer";
 
 interface Props extends RouteComponentProps<{ name: string }> {
     commentsStore: CommentsStore,
@@ -56,7 +56,7 @@ export default class ArticleContainer extends React.Component<Props, any> {
                     />
                     <div className="container row m-auto">
                         <ArticleBody tagList={article.tagList} body={article.body}/>
-                        <ArticleCommentAdapter commentsStore={this.props.commentsStore}
+                        <ArticleCommentContainer commentsStore={this.props.commentsStore}
                                                userStore={this.props.userStore}
                                                articlesStore={this.props.articlesStore}
                                                article={article}
