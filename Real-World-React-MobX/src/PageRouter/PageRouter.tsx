@@ -3,12 +3,12 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import SignInAdapter from "../Adapter/SignInAdapter";
 import SignUpAdapter from "../Adapter/SignUpAdapter";
 import SettingsAdapter from "../Adapter/SettingsAdapter";
-import HeaderAdapter from "../Adapter/HeaderAdapter";
 import UserStore from "../Store/UserStore";
 import PostAdapter from "../Adapter/PostAdapter";
 import HomeContainer from "../Container/HomeContainer";
 import ArticleContainer from "../Container/ArticleContainer";
 import UserInfoContainer from "../Container/UserInfoContainer";
+import HeaderContainer from "../Container/HeaderContainer";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -29,7 +29,7 @@ class PageRouter extends React.Component<any, any> {
 
         return (
             <Router>
-                <HeaderAdapter userStore={UserStore.INSTANCE}/>
+                <HeaderContainer userStore={UserStore.INSTANCE}/>
                 <Route path="/" exact component={HomeContainer}/>
                 <Route path="/login" component={SignInAdapter}/>
                 <Route path="/register" component={SignUpAdapter}/>

@@ -11,17 +11,17 @@ interface Props {
 }
 
 @observer
-export default class HeaderAdapter extends React.Component<Props, any> {
+export default class HeaderContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
-        console.log("componentDidMount [ HeaderAdapter ]");
+        console.log("componentDidMount [ HeaderContainer ]");
         this.props.userStore.getCurrentUser();
     }
 
     render() {
         const {username, image} = this.props.userStore.user;
 
-        console.log("Render [ HeaderAdapter ]");
+        console.log("Render [ HeaderContainer ]");
 
         return (
             <Header username={username} image={image} defaultHeader={!Auth.isSigned()} title={Configuration.TITLE}/>
