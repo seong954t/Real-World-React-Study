@@ -4,11 +4,11 @@ import SignInAdapter from "../Adapter/SignInAdapter";
 import SignUpAdapter from "../Adapter/SignUpAdapter";
 import SettingsAdapter from "../Adapter/SettingsAdapter";
 import UserStore from "../Store/UserStore";
-import PostAdapter from "../Adapter/PostAdapter";
 import HomeContainer from "../Container/HomeContainer";
 import ArticleContainer from "../Container/ArticleContainer";
 import UserInfoContainer from "../Container/UserInfoContainer";
 import HeaderContainer from "../Container/HeaderContainer";
+import PostContainer from "../Container/PostContainer";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -34,8 +34,8 @@ class PageRouter extends React.Component<any, any> {
                 <Route path="/login" component={SignInAdapter}/>
                 <Route path="/register" component={SignUpAdapter}/>
                 <Route path="/article/:name" component={ArticleContainer}/>
-                <Route path="/editor" exact component={PostAdapter}/>
-                <Route path="/editor/:slug" component={PostAdapter}/>
+                <Route path="/editor" exact component={PostContainer}/>
+                <Route path="/editor/:slug" component={PostContainer}/>
                 <Route path="/settings" component={SettingsAdapter}/>
                 <Route path="/@:name/" exact component={UserInfoContainer}/>
                 <Route path="/@:name/:tab" component={UserInfoContainer}/>
