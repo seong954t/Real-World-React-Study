@@ -21,7 +21,7 @@ class UserInfoContainer extends React.Component<Props, any> {
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
         const name = this.getUsername();
 
-        console.log("componentDidUpdate [ UserInfoBannerAdapter ]");
+        console.log("componentDidUpdate [ UserInfoContainer ]");
         if (name !== prevProps.match.params.name) {
             this.props.profileStore.loadProfile(name);
         }
@@ -30,7 +30,7 @@ class UserInfoContainer extends React.Component<Props, any> {
     componentDidMount(): void {
         const name = this.getUsername();
 
-        console.log("componentDidMount [ UserInfoBannerAdapter ]");
+        console.log("componentDidMount [ UserInfoContainer ]");
         if (name !== this.props.profileStore.profile.username) {
             this.props.profileStore.loadProfile(name);
         }
