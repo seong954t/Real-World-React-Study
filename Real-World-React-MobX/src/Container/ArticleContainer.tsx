@@ -3,10 +3,12 @@ import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";
 import UserStore from "../Store/UserStore";
-import ArticleBannerAdapter from "../Adapter/ArticleBannerAdapter";
 import ArticleCommentAdapter from "../Adapter/ArticleCommentAdapter";
 import CommentsStore from "../Store/CommentsStore";
 import ArticleBody from "../Widget/Article/ArticleBody";
+import PageRouter from "../PageRouter/PageRouter";
+import ArticleBanner from "../Widget/Banner/ArticleBanner";
+import Auth from "../Auth/Auth";
 
 interface Props extends RouteComponentProps<{ name: string }> {
     commentsStore: CommentsStore,
@@ -24,18 +26,33 @@ export default class ArticleContainer extends React.Component<Props, any> {
         this.props.articlesStore.loadArticle(slug);
     }
 
-    render() {
-        const article = this.props.articlesStore.article;
+    handleDeleteArticle = () => {
+        const {article} = this.props.articlesStore;
+        if (article) {
+            PageRouter.pageRouteAfterPromise(
+                this.props.articlesStore.deleteArticle(article.slug),
+                this.props.history,
+                "/"
+            )
+        }
+    };
 
+    render() {
+        const {article} = this.props.articlesStore;
         console.log("Render [ ArticleContainer ]");
 
         if (article) {
+            const {title, slug, author, createdAt} = article;
+
             return (
                 <div>
-                    <ArticleBannerAdapter history={this.props.history}
-                                          userStore={this.props.userStore}
-                                          articlesStore={this.props.articlesStore}
-                                          article={article}
+                    <ArticleBanner title={title}
+                                   createdAt={createdAt}
+                                   username={author.username}
+                                   image={author.image}
+                                   slug={slug}
+                                   onClickDelete={this.handleDeleteArticle}
+                                   isDisableEditAndDeleteButton={!Auth.isOwner(this.props.userStore.user.username, author.username)}
                     />
                     <div className="container row m-auto">
                         <ArticleBody tagList={article.tagList} body={article.body}/>
