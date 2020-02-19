@@ -1,14 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import SignInAdapter from "../Adapter/SignInAdapter";
-import SignUpAdapter from "../Adapter/SignUpAdapter";
-import SettingsAdapter from "../Adapter/SettingsAdapter";
 import UserStore from "../Store/UserStore";
 import HomeContainer from "../Container/HomeContainer";
 import ArticleContainer from "../Container/ArticleContainer";
 import UserInfoContainer from "../Container/UserInfoContainer";
 import HeaderContainer from "../Container/HeaderContainer";
 import PostContainer from "../Container/PostContainer";
+import SettingsContainer from "../Container/SettingsContainer";
+import SignUpContainer from "../Container/SignUpContainer";
+import SignInContainer from "../Container/SignInContainer";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -31,12 +31,12 @@ class PageRouter extends React.Component<any, any> {
             <Router>
                 <HeaderContainer userStore={UserStore.INSTANCE}/>
                 <Route path="/" exact component={HomeContainer}/>
-                <Route path="/login" component={SignInAdapter}/>
-                <Route path="/register" component={SignUpAdapter}/>
+                <Route path="/login" component={SignInContainer}/>
+                <Route path="/register" component={SignUpContainer}/>
                 <Route path="/article/:name" component={ArticleContainer}/>
                 <Route path="/editor" exact component={PostContainer}/>
                 <Route path="/editor/:slug" component={PostContainer}/>
-                <Route path="/settings" component={SettingsAdapter}/>
+                <Route path="/settings" component={SettingsContainer}/>
                 <Route path="/@:name/" exact component={UserInfoContainer}/>
                 <Route path="/@:name/:tab" component={UserInfoContainer}/>
             </Router>

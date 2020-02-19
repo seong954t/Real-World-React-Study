@@ -13,7 +13,7 @@ interface Props extends RouteComponentProps{
 
 @inject("authStore", "userStore")
 @observer
-export default class SignInAdapter extends React.Component<Props, any>{
+export default class SignInContainer extends React.Component<Props, any>{
 
     componentDidMount(): void {
         console.log("componentDidMount [ SignInAdapter ]");
