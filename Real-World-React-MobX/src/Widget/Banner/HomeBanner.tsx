@@ -1,8 +1,8 @@
 import React from "react";
-import "./HomeBanner.css";
+import "./banner.css";
 import HomeBannerProps from "../Props/HomeBannerProps";
 
-class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
+export default class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
 
     homeBanner = (
         <div className="banner text-center">
@@ -22,5 +22,3 @@ class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
         );
     }
 }
-
-export default HomeBanner;

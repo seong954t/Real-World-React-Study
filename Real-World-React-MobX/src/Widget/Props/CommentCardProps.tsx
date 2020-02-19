@@ -1,8 +1,11 @@
-import CommentDTO from "../DTO/CommentDTO";
 import {MouseEventHandler} from "react";
 
 export default interface CommentCardProps {
-    comment: CommentDTO,
+    id?: number,
+    body: string,
+    username: string,
+    image: string,
+    createdAt: string,
     isDisableTrashBox?: boolean,
     onClickTrashBox: MouseEventHandler<HTMLElement>
 }

@@ -18,7 +18,7 @@ interface Props extends RouteComponentProps {
 
 @inject("tagsStore")
 @observer
-class Home extends React.Component<Props, any> {
+class HomeContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ Home ]");

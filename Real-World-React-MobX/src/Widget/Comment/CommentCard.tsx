@@ -2,10 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import CommentCardProps from "../Props/CommentCardProps";
 
-class CommentCard extends React.Component<CommentCardProps, any> {
+export default class CommentCard extends React.Component<CommentCardProps, any> {
 
     handleTrashBox = (e: any) => {
-        e.id = this.props.comment.id;
+        e.id = this.props.id;
         this.props.onClickTrashBox(e);
     }
 
@@ -17,28 +17,29 @@ class CommentCard extends React.Component<CommentCardProps, any> {
     );
 
     render() {
+        const {id, body, username, image, createdAt} = this.props;
+
         console.log("Render [ CommentCard ]");
 
-        const {comment} = this.props;
         return (
-            <div key={comment.id} className="card mb-3">
+            <div key={id} className="card mb-3">
                 <div className="p-3">
-                    <p className="card-text">{comment.body}</p>
+                    <p className="card-text">{body}</p>
                 </div>
                 <div className="card-footer">
-                    <Link to={`/@${comment.author.username}`}>
-                        <img src={comment.author.image}
+                    <Link to={`/@${username}`}>
+                        <img src={image}
                              alt=""
                              className="author-image comment-another-img"
                              role="presentation"/>
                     </Link>
                     &nbsp;
                     <span>
-                        <Link className="comment-author" to={`/@${comment.author.username}`}>
-                            {comment.author.username}
+                        <Link className="comment-author" to={`/@${username}`}>
+                            {username}
                         </Link>
                         <span className="comment-date">
-                            {new Date(comment.createdAt).toDateString()}
+                            {new Date(createdAt).toDateString()}
                         </span>
                     </span>
                     {this.props.isDisableTrashBox ? '' : this.trashBox()}
@@ -47,5 +48,3 @@ class CommentCard extends React.Component<CommentCardProps, any> {
         )
     }
 }
-
-export default CommentCard;
