@@ -6,7 +6,7 @@ interface Props {
     body: string
 }
 
-class ArticleBody extends React.Component<Props, any> {
+export default class ArticleBody extends React.Component<Props, any> {
 
     tagListElements = (tagList: string[]) => (
         tagList.map((info: string, index: number) => (
@@ -36,5 +36,3 @@ class ArticleBody extends React.Component<Props, any> {
         );
     }
 }
-
-export default ArticleBody;

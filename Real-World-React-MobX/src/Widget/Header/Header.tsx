@@ -3,7 +3,7 @@ import './Header.css'
 import {Link} from "react-router-dom";
 import HeaderProps from "../Props/HeaderProps";
 
-class Header extends React.Component<HeaderProps, any> {
+export default class Header extends React.Component<HeaderProps, any> {
 
     signedHeader = (username: string, image: string) => (
         <ul className="nav list-unstyled float-right justify-content-end">
@@ -67,5 +67,3 @@ class Header extends React.Component<HeaderProps, any> {
         );
     }
 }
-
-export default Header;

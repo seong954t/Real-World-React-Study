@@ -1,9 +1,9 @@
 import React from "react";
-import "./article.css";
+import "./banner.css";
 import {Link} from "react-router-dom";
 import ArticleBannerProps from "../Props/ArticleBannerProps";
 
-class ArticleBanner extends React.Component<ArticleBannerProps, any> {
+export default class ArticleBanner extends React.Component<ArticleBannerProps, any> {
 
     individualArticleButtons = (slug: string) => (
         <span>
@@ -18,7 +18,7 @@ class ArticleBanner extends React.Component<ArticleBannerProps, any> {
     );
 
     render() {
-        const {title, createdAt, author, slug, isDisableEditAndDeleteButton} = this.props;
+        const {title, createdAt, username, image, slug, isDisableEditAndDeleteButton} = this.props;
 
         console.log("Render [ ArticleBanner ]");
 
@@ -28,15 +28,19 @@ class ArticleBanner extends React.Component<ArticleBannerProps, any> {
                     <div className="col-md-10 m-auto d-inline-block ">
                         <h1>{title}</h1>
                         <div className="feed mt-4">
-                            <Link to={`/@${author.username}`}>
-                                <img src={author.image}
+                            <Link to={`/@${username}`}>
+                                <img src={image}
                                      alt="" className="author-image"/>
                             </Link>
                             <div className="info">
-                                <Link to={`/@${author.username}`}>{author.username}</Link>
+                                <Link to={`/@${username}`}>{username}</Link>
                                 <p className="date m-0">{new Date(createdAt).toDateString()}</p>
                             </div>
-                            {isDisableEditAndDeleteButton ? '' : this.individualArticleButtons(slug)}
+                            {
+                                isDisableEditAndDeleteButton ?
+                                '' :
+                                this.individualArticleButtons(slug ? slug : '')
+                            }
                         </div>
                     </div>
                 </div>
@@ -44,5 +48,3 @@ class ArticleBanner extends React.Component<ArticleBannerProps, any> {
         );
     }
 }
-
-export default ArticleBanner;

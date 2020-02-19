@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import SignProps from "../Props/SignProps";
 
-class SignUp extends React.Component<SignProps, any> {
+export default class SignUp extends React.Component<SignProps, any> {
 
     errorElement = (errors: string[]) => (
         <ul className="error-message text-left">
@@ -43,5 +43,3 @@ class SignUp extends React.Component<SignProps, any> {
         );
     }
 }
-
-export default SignUp;

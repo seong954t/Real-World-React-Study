@@ -1,11 +1,11 @@
 import {MouseEventHandler} from "react";
-import AuthorDTO from "../DTO/AuthorDTO";
 
 export default interface ArticleBannerProps {
     title: string,
     createdAt: string,
-    slug: string,
-    author: AuthorDTO,
-    onClickDelete: MouseEventHandler<HTMLButtonElement>,
+    slug?: string,
+    username: string,
+    image?: string,
+    onClickDelete?: MouseEventHandler<HTMLButtonElement>,
     isDisableEditAndDeleteButton?: boolean
 }

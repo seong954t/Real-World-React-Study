@@ -2,7 +2,7 @@ import React from "react";
 import FeedPageButton from "./FeedPageButton";
 import FeedPageListProps from "../Props/FeedPageListProps";
 
-class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
+export default class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
 
     pageButtonList = () => [...Array(this.props.size)].map((_, i: number) => (
         <FeedPageButton key={i+1}
@@ -25,5 +25,3 @@ class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
         );
     }
 }
-
-export default FeedPageButtonList;

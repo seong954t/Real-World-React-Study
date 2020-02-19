@@ -2,7 +2,7 @@ import React from "react";
 import "./tags.css";
 import {Link} from "react-router-dom";
 
-class Tags extends React.PureComponent<{tags: string[]}, any>{
+export default class Tags extends React.PureComponent<{tags: string[]}, any>{
 
     tagList = () => (
         this.props.tags.map((tag: string, index: number) => (
@@ -24,5 +24,3 @@ class Tags extends React.PureComponent<{tags: string[]}, any>{
         );
     }
 }
-
-export default Tags;

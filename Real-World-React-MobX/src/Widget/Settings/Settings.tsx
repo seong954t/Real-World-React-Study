@@ -1,7 +1,7 @@
 import React from "react";
 import SettingsProps from "../Props/SettingsProps";
 
-class Settings extends React.Component<SettingsProps, any> {
+export default class Settings extends React.Component<SettingsProps, any> {
 
     render() {
         const {password, email, username, bio, image, onChangeInputAndTextArea, onSubmit, onClickLogout} = this.props;
@@ -45,5 +45,3 @@ class Settings extends React.Component<SettingsProps, any> {
         )
     }
 }
-
-export default Settings;

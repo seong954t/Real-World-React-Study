@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import FeedPageButtonProps from "../Props/FeedPageButtonProps";
 
-class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
+export default class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
 
     handlePageButton = (e: any) => {
         e.page = this.props.page;
@@ -23,5 +23,3 @@ class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
         );
     }
 }
-
-export default FeedPageButton;
