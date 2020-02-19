@@ -4,9 +4,7 @@ import ArticleDTO from "../DTO/ArticleDTO";
 import {Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
 import FeedListProps from "../Props/FeedListProps";
-import {observer} from "mobx-react";
 
-@observer
 class FeedList extends React.PureComponent<FeedListProps, any> {
 
     noArticleNotion = (

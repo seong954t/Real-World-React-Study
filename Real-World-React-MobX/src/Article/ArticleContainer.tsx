@@ -1,6 +1,5 @@
 import React from "react";
 import ArticleBody from "./ArticleBody";
-import ArticleComment from "./ArticleComment";
 import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";

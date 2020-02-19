@@ -2,7 +2,6 @@ import React from "react";
 import "./article.css"
 import {Link} from "react-router-dom";
 import "./article.css"
-import {observer} from "mobx-react";
 import ArticleCommentProps from "../Props/ArticleCommentProps";
 import Loading from "../Loading/Loading";
 import CommentDTO from "../DTO/CommentDTO";
