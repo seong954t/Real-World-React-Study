@@ -2,6 +2,10 @@ import React, {MouseEventHandler} from "react";
 import CommentDTO from "../DTO/CommentDTO";
 import CommentCard from "../Widget/Comment/CommentCard";
 import Loading from "../Widget/Loading/Loading";
+<<<<<<< HEAD:Real-World-React-MobX/src/Container/CommentCardList.tsx
+=======
+import CommentCardListProps from "../Props/CommentCardListProps";
+>>>>>>> master:Real-World-React-MobX/src/Comment/CommentCardList.tsx
 
 interface Props {
     username: string,
