@@ -1,21 +1,34 @@
 import React, {MouseEventHandler} from "react";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Feed from "../Widget/Feed/Feed";
+import FeedTab from "../Widget/Feed/FeedTab";
+import Auth from "../Auth/Auth";
+import Loading from "../Widget/Loading/Loading";
+import ArticlesStore from "../Store/ArticlesStore";
+import FeedTabStore from "../Store/FeedTabStore";
+import {observer} from "mobx-react";
 
 interface Props {
-    articles: ArticleDTO[],
-    favoriteLoadings?: Map<string, boolean>,
-    onClickFavorite: MouseEventHandler<HTMLButtonElement>
+    articlesStore: ArticlesStore,
+    feedTabStore: FeedTabStore,
+    articles: ArticleDTO[]
 }
 
-export default class FeedList extends React.PureComponent<Props, any> {
+@observer
+export default class FeedListContainer extends React.PureComponent<Props, any> {
 
     noArticleNotion = (
         <div className="no-article-notion p-4">No articles are here... yet.</div>
     );
 
-    getFeedList = (articles: ArticleDTO[]) => (
-        articles.map((article: ArticleDTO, _) => (
+    handleFavorite = (e: any): void => {
+        e.preventDefault();
+        this.props.articlesStore.favoriteArticle(e.slug);
+    };
+
+    getFeedList = () => {
+        const {articles} = this.props
+        return articles.map((article: ArticleDTO, _) => (
             <Feed key={article.slug}
                   createdAt={article.createdAt}
                   username={article.author.username}
@@ -26,21 +39,33 @@ export default class FeedList extends React.PureComponent<Props, any> {
                   image={article.author.image}
                   tagList={article.tagList}
                   description={article.description}
-                  onClickFavorite={this.props.onClickFavorite}
-                  loading={this.props.favoriteLoadings?.get(article.slug)}
+                  onClickFavorite={this.handleFavorite}
+                  loading={this.props.articlesStore.favoriteLoadings?.get(article.slug)}
             />
         ))
-    );
+    };
 
     render() {
-        const {articles} = this.props;
-        const feedList = (articles === undefined) || (articles.length === 0) ? this.noArticleNotion : this.getFeedList(articles);
+        const {articles, feedTabStore, articlesStore} = this.props;
+        const feedList = (articles === undefined) || (articles.length === 0) ? this.noArticleNotion : this.getFeedList();
 
         console.log("Render [ FeedList ]");
 
         return (
-            // feedList
-            this.noArticleNotion
+            <div className="container col-md-12">
+                <FeedTab tab={feedTabStore.tab}
+                         tag={feedTabStore.tag}
+                         name={feedTabStore.name}
+                         isDefault={!Auth.isSigned()}
+                />
+                {
+                    articlesStore.isArticlesLoading ?
+                        <div className="text-center m-4">
+                            <Loading className="text-success"/>
+                        </div> :
+                        feedList
+                }
+            </div>
         );
     }
 }

@@ -4,6 +4,7 @@ import FeedTabStore from "../Store/FeedTabStore";
 import ArticlesStore from "../Store/ArticlesStore";
 import FeedListAdapter from "../Adapter/FeedListAdapter";
 import FeedPageButtonList from "../Widget/Feed/FeedPageButtonList";
+import FeedListContainer from "./FeedList";
 
 interface Props {
     feedTabStore: FeedTabStore,
@@ -51,7 +52,7 @@ class FeedContainer extends React.Component<Props, any> {
 
         return (
             <div className="container col-md-9">
-                <FeedListAdapter articlesStore={this.props.articlesStore}
+                <FeedListContainer articlesStore={this.props.articlesStore}
                                  feedTabStore={this.props.feedTabStore}
                                  articles={articles}
                 />
