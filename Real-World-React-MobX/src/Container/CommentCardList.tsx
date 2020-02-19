@@ -1,10 +1,16 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
 import CommentDTO from "../DTO/CommentDTO";
 import CommentCard from "../Widget/Comment/CommentCard";
 import Loading from "../Widget/Loading/Loading";
-import CommentCardListProps from "../Props/CommentCardListProps";
 
-export default class CommentCardList extends React.PureComponent<CommentCardListProps, any> {
+interface Props {
+    username: string,
+    comments: CommentDTO[],
+    loading?: boolean,
+    onClickTrashBox: MouseEventHandler<HTMLButtonElement>
+}
+
+export default class CommentCardList extends React.PureComponent<Props, any> {
 
     commentElements = (comments: CommentDTO[]) => (
         comments.map((comment: CommentDTO, _) => (
