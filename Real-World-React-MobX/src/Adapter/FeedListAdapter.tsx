@@ -5,6 +5,8 @@ import FeedTabStore from "../Store/FeedTabStore";
 import FeedList from "../Feed/FeedList";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Auth from "../Auth/Auth";
+import Loading from "../Loading/Loading";
+import FeedTab from "../Feed/FeedTab";
 
 interface Props {
     articlesStore: ArticlesStore,
@@ -26,15 +28,23 @@ export default class FeedListAdapter extends React.PureComponent<Props, any> {
         console.log("Render [ FeedListAdapter ]");
 
         return (
-            <FeedList articles={this.props.articles}
-                      tab={tab}
-                      tag={tag}
-                      name={name}
-                      loading={this.props.articlesStore.isArticlesLoading}
-                      isDefault={!Auth.isSigned()}
-                      onClickFavorite={this.handleFavorite}
-                      favoriteLoadings={this.props.articlesStore.favoriteLoadings}
-            />
+            <div className="container col-md-12">
+                <FeedTab tab={tab}
+                         tag={tag}
+                         name={name}
+                         isDefault={!Auth.isSigned()}
+                />
+                {
+                    this.props.articlesStore.isArticlesLoading ?
+                        <div className="text-center m-4">
+                            <Loading className="text-success"/>
+                        </div> :
+                        <FeedList articles={this.props.articles}
+                                  onClickFavorite={this.handleFavorite}
+                                  favoriteLoadings={this.props.articlesStore.favoriteLoadings}
+                        />
+                }
+            </div>
         );
-    }
+    };
 }

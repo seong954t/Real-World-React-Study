@@ -16,7 +16,7 @@ interface Props {
 
 export default class ArticleBannerAdapter extends React.Component<Props, any> {
 
-    handleDeleteArticle = (e: any) => {
+    handleDeleteArticle = () => {
         PageRouter.pageRouteAfterPromise(
             this.props.articlesStore.deleteArticle(this.props.article.slug),
             this.props.history,
@@ -26,7 +26,7 @@ export default class ArticleBannerAdapter extends React.Component<Props, any> {
 
     render() {
         const {title, slug, author, createdAt} = this.props.article;
-
+        console.log("Render [ ArticleBannerAdapter ]");
         return (
             <ArticleBanner title={title}
                            slug={slug}
@@ -36,5 +36,5 @@ export default class ArticleBannerAdapter extends React.Component<Props, any> {
                            isDisableEditAndDeleteButton={!Auth.isOwner(this.props.userStore.user.username, author.username)}
             />
         );
-    }
+    };
 }

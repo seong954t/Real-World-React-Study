@@ -20,14 +20,14 @@ export default class ArticleCommentAdapter extends React.PureComponent<Props, an
     componentDidMount(): void {
         console.log("componentDidMount [ ArticleCommentAdapter ]");
         this.props.commentsStore.loadComments(this.props.article.slug);
-    }
+    };
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
         console.log("componentDidUpdate [ ArticleCommentAdapter ]");
         if(this.props.article.slug !== prevProps.article.slug){
             this.props.commentsStore.loadComments(this.props.article.slug);
         }
-    }
+    };
 
     handleChange = (e: any) => {
         this.props.commentsStore.comment = e.target.value;
@@ -58,5 +58,5 @@ export default class ArticleCommentAdapter extends React.PureComponent<Props, an
                             onClickTrashBox={this.deleteComment}
             />
         );
-    }
+    };
 }

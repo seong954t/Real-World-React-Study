@@ -44,7 +44,7 @@ class ArticleComment extends React.PureComponent<ArticleCommentProps, any> {
                 />
             )
         )
-    )
+    );
 
     render() {
         console.log("Render [ ArticleComment ]");
@@ -54,11 +54,13 @@ class ArticleComment extends React.PureComponent<ArticleCommentProps, any> {
                     {this.props.isDisableCommentBox ? this.requestSignElement() : this.commentBox()}
                 </div>
                 <div>
-                    {this.props.loading ?
-                        <div className={"text-center m-4"}>
-                            <Loading className={"text-success"}/>
-                        </div> :
-                        this.commentElements(this.props.comments)}
+                    {
+                        this.props.loading ?
+                            <div className={"text-center m-4"}>
+                                <Loading className={"text-success"}/>
+                            </div> :
+                            this.commentElements(this.props.comments)
+                    }
                 </div>
             </div>
         );
