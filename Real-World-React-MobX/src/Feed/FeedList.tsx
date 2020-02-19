@@ -15,7 +15,11 @@ class FeedList extends React.PureComponent<FeedListProps, any> {
 
     getFeedList = (articles: ArticleDTO[]) => (
         articles.map((article: ArticleDTO, _) => (
-            <Feed key={article.slug} article={article} onClick={this.props.onClick} loading={this.props.favoriteLoadings?.get(article.slug)}/>
+            <Feed key={article.slug}
+                  article={article}
+                  onClickFavorite={this.props.onClickFavorite}
+                  loading={this.props.favoriteLoadings?.get(article.slug)}
+            />
         ))
     );
 

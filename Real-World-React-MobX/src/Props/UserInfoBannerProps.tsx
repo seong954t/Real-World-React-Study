@@ -7,6 +7,6 @@ export default interface UserInfoBannerProps {
     bio?: string,
     image?: string,
     isOwner?: boolean,
-    isDisable?: boolean,
+    hide?: boolean,
     isFollowLoading?: boolean
 }

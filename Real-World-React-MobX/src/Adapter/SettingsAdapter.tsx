@@ -54,9 +54,9 @@ export default class SettingsAdapter extends React.Component<Props, any> {
                       username={username}
                       bio={bio ? bio : ''}
                       image={image ? image : ''}
-                      onChange={this.handleChange}
+                      onChangeInputAndTextArea={this.handleChange}
                       onSubmit={this.handleUpdateSettings}
-                      onClick={this.handleLogout}
+                      onClickLogout={this.handleLogout}
             />
         )
     }

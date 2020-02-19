@@ -43,7 +43,7 @@ export default class UserInfoBannerAdapter extends React.Component<Props, any> {
         return (
             <UserInfoBanner username={username}
                             onClickFollow={this.handleFollow}
-                            isDisable={this.props.profileStore.isProfileLoading}
+                            hide={this.props.profileStore.isProfileLoading}
                             bio={bio}
                             following={following}
                             image={image}

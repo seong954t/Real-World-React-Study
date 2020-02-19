@@ -3,6 +3,6 @@ import {MouseEventHandler} from "react";
 
 export default interface FeedProps{
     article: ArticleDTO,
-    onClick: MouseEventHandler<HTMLButtonElement>,
+    onClickFavorite: MouseEventHandler<HTMLButtonElement>,
     loading?: boolean
 }

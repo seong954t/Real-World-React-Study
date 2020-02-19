@@ -1,5 +1,4 @@
 import {ChangeEventHandler, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from "react";
-import PostDTO from "../DTO/PostDTO";
 
 export default interface PostProps {
     title: string,

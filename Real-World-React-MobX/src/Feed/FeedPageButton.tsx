@@ -6,7 +6,7 @@ class FeedPageButton extends React.PureComponent<FeedPageButtonProps, any>{
 
     handlePageButton = (e: any) => {
         e.page = this.props.page;
-        this.props.onClick(e);
+        this.props.onClickPage(e);
     }
 
     render() {

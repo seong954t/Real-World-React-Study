@@ -5,7 +5,11 @@ import FeedPageListProps from "../Props/FeedPageListProps";
 class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
 
     pageButtonList = () => [...Array(this.props.size)].map((_, i: number) => (
-        <FeedPageButton key={i+1} page={i+1} isActive={(i+1) === this.props.page} onClick={this.props.onClick}/>
+        <FeedPageButton key={i+1}
+                        page={i+1}
+                        isActive={(i+1) === this.props.page}
+                        onClickPage={this.props.onClickPage}
+        />
     ));
 
     render() {

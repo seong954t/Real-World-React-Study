@@ -41,7 +41,7 @@ export default class SignInAdapter extends React.Component<Props, any>{
         return (
             <SignIn
                 onSubmit={this.handleSignIn}
-                onChange={this.handleChange}
+                onChangeInput={this.handleChange}
                 email={email}
                 password={password}
                 errors={errors}

@@ -13,7 +13,7 @@ class SignUp extends React.Component<SignProps, any> {
     );
 
     render() {
-        const {username, email, password, errors, onChange, onSubmit} = this.props;
+        const {username, email, password, errors, onChangeInput, onSubmit} = this.props;
 
         console.log("Render [ SignUp ]");
 
@@ -26,15 +26,15 @@ class SignUp extends React.Component<SignProps, any> {
                     <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Username" className="form-control form-control-lg"
-                                   value={username} onChange={onChange} name="username"/>
+                                   value={username} onChange={onChangeInput} name="username"/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Email" className="form-control form-control-lg"
-                                   value={email} onChange={onChange} name="email"/>
+                                   value={email} onChange={onChangeInput} name="email"/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="password" placeholder="Password" className="form-control form-control-lg"
-                                   value={password} onChange={onChange} name="password"/>
+                                   value={password} onChange={onChangeInput} name="password"/>
                         </fieldset>
                         <button className="btn btn-lg btn-success" type="submit">Sign Up</button>
                     </form>

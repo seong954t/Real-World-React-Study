@@ -13,7 +13,7 @@ export default class SignIn extends React.Component<SignProps, any> {
     );
 
     render() {
-        const {email, password, errors, onChange, onSubmit} = this.props;
+        const {email, password, errors, onChangeInput, onSubmit} = this.props;
 
         console.log("Render [ SignIn ]");
 
@@ -26,11 +26,11 @@ export default class SignIn extends React.Component<SignProps, any> {
                     <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">
                             <input type="text" placeholder="Email" className="form-control form-control-lg"
-                                   value={email} name="email" onChange={onChange}/>
+                                   value={email} name="email" onChange={onChangeInput}/>
                         </fieldset>
                         <fieldset className="form-group">
                             <input type="password" placeholder="Password" className="form-control form-control-lg"
-                                   value={password} name="password" onChange={onChange}/>
+                                   value={password} name="password" onChange={onChangeInput}/>
                         </fieldset>
                         <button className="btn btn-lg btn-success" type="submit">Sign in</button>
                     </form>

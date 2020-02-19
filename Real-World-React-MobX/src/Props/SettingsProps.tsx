@@ -6,7 +6,7 @@ export default interface SettingsProps {
     username: string,
     bio: string,
     image: string,
-    onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+    onChangeInputAndTextArea: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
     onSubmit: FormEventHandler<HTMLFormElement>,
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClickLogout: MouseEventHandler<HTMLButtonElement>
 }

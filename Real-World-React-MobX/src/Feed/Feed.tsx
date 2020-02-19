@@ -8,7 +8,7 @@ class Feed extends React.PureComponent<FeedProps, any> {
 
     handleFavorite = (e: any): void => {
         e.slug = this.props.article.slug;
-        this.props.onClick(e);
+        this.props.onClickFavorite(e);
     };
 
     render() {

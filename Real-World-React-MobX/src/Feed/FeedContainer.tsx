@@ -56,7 +56,7 @@ class FeedContainer extends React.Component<Props, any> {
                                  articles={articles}
                 />
                 <FeedPageButtonList size={size}
-                                    onClick={this.handlePaging}
+                                    onClickPage={this.handlePaging}
                                     page={this.props.articlesStore.page}
                                     isDisable={this.props.articlesStore.isArticlesLoading}
                 />

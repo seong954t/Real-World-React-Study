@@ -40,7 +40,7 @@ export default class SignUpAdapter extends React.Component<Props, any>{
         return (
             <SignUp
                 password={password}
-                onChange={this.handleChange}
+                onChangeInput={this.handleChange}
                 onSubmit={this.handleSignUp}
                 email={email}
                 errors={errors}

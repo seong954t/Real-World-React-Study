@@ -34,7 +34,7 @@ class Home extends React.Component<Props, any> {
 
         return (
             <div>
-                <HomeBanner title={Configuration.TITLE} description={Configuration.DESCRIPTION} isDisable={Auth.isSigned()}/>
+                <HomeBanner title={Configuration.TITLE} description={Configuration.DESCRIPTION} hide={Auth.isSigned()}/>
                 <div className="container row m-auto">
                     <FeedContainer articlesStore={ArticlesStore.INSTANCE}
                                    feedTabStore={FeedTabStore.INSTANCE}

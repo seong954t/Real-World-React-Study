@@ -17,7 +17,7 @@ class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
         console.log("Render [ HomeBanner ]");
         return (
             <div>
-                {this.props.isDisable ? '' : this.homeBanner}
+                {this.props.hide ? '' : this.homeBanner}
             </div>
         );
     }

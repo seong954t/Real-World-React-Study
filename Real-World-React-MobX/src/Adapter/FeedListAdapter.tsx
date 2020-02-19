@@ -32,7 +32,7 @@ export default class FeedListAdapter extends React.PureComponent<Props, any> {
                       name={name}
                       loading={this.props.articlesStore.isArticlesLoading}
                       isDefault={!Auth.isSigned()}
-                      onClick={this.handleFavorite}
+                      onClickFavorite={this.handleFavorite}
                       favoriteLoadings={this.props.articlesStore.favoriteLoadings}
             />
         );

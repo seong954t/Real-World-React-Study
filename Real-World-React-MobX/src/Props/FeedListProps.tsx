@@ -9,5 +9,5 @@ export default interface FeedListProps {
     name?: string
     loading?: boolean,
     isDefault: boolean,
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClickFavorite: MouseEventHandler<HTMLButtonElement>
 }

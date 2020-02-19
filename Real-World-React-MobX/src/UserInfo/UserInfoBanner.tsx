@@ -26,7 +26,7 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
     );
 
     render() {
-        const {username, bio, image, following, isOwner, isDisable} = this.props;
+        const {username, bio, image, following, isOwner, hide} = this.props;
 
         console.log("Render [ UserInfoBanner ]");
 
@@ -34,14 +34,13 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
             <div className="user-info-banner text-center">
                 <div className="container">
                     {
-                        isDisable ? '' :
+                        hide ? '' :
                             <div className="col-md-10 m-auto d-inline-block">
                                 <img className="user-img"
                                      alt=""
                                      src={image}/>
                                 <h4>{username}</h4>
                                 <p className="pb-2">{bio}</p>
-                                {/*{Auth.isOwner(this.props.userStore, username) ? this.editProfileButton() : this.followButton(username, following)}*/}
                                 {
                                     isOwner ?
                                         this.editProfileButton() :

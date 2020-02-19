@@ -2,7 +2,7 @@ import React, {ChangeEventHandler, FormEventHandler, MouseEventHandler} from "re
 
 export default interface SignProps {
     onSubmit: FormEventHandler<HTMLFormElement>,
-    onChange: ChangeEventHandler<HTMLInputElement>,
+    onChangeInput: ChangeEventHandler<HTMLInputElement>,
     username?: string,
     email: string,
     password: string,
