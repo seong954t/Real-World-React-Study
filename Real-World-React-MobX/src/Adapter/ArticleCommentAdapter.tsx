@@ -2,10 +2,11 @@ import React from "react";
 import CommentsStore from "../Store/CommentsStore";
 import UserStore from "../Store/UserStore";
 import ArticlesStore from "../Store/ArticlesStore";
-import ArticleComment from "../Article/ArticleComment";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
+import CommentEditor from "../Comment/CommentEditor";
+import CommentCardList from "../Comment/CommentCardList";
 
 interface Props {
     commentsStore: CommentsStore,
@@ -24,7 +25,7 @@ export default class ArticleCommentAdapter extends React.PureComponent<Props, an
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
         console.log("componentDidUpdate [ ArticleCommentAdapter ]");
-        if(this.props.article.slug !== prevProps.article.slug){
+        if (this.props.article.slug !== prevProps.article.slug) {
             this.props.commentsStore.loadComments(this.props.article.slug);
         }
     };
@@ -47,16 +48,17 @@ export default class ArticleCommentAdapter extends React.PureComponent<Props, an
         console.log("Render [ ArticleCommentAdapter ]");
 
         return (
-            <ArticleComment image={this.props.userStore.user.image}
-                            username={this.props.userStore.user.username}
-                            onSubmit={this.addComments}
-                            comment={this.props.commentsStore.comment}
-                            isDisableCommentBox={!Auth.isSigned()}
-                            onChangeTextArea={this.handleChange}
-                            comments={this.props.commentsStore.comments}
-                            loading={this.props.commentsStore.isCommentsLoading}
-                            onClickTrashBox={this.deleteComment}
-            />
+            <div className="col-md-8 m-auto">
+                <CommentEditor comment={this.props.commentsStore.comment}
+                               image={this.props.userStore.user.image}
+                               onChangeTextArea={this.handleChange}
+                               onSubmit={this.addComments}
+                               isDisableCommentBox={!Auth.isSigned()}
+                />
+                <CommentCardList username={this.props.userStore.user.username}
+                                 comments={this.props.commentsStore.comments}
+                                 onClickTrashBox={this.deleteComment}/>
+            </div>
         );
     };
 }
