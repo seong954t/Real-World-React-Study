@@ -1,10 +1,10 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import SignIn from "../SignIn/SignIn";
 import PageRouter from "../PageRouter/PageRouter";
 import UserStore from "../Store/UserStore";
 import AuthStore from "../Store/AuthStore";
 import {RouteComponentProps} from "react-router";
+import SignIn from "../Widget/SignIn/SignIn";
 
 interface Props extends RouteComponentProps{
     userStore: UserStore,

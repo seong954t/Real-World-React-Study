@@ -5,8 +5,8 @@ import ArticlesStore from "../Store/ArticlesStore";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
-import CommentEditor from "../Comment/CommentEditor";
-import CommentCardList from "../Comment/CommentCardList";
+import CommentEditor from "../Widget/Comment/CommentEditor";
+import CommentCardList from "../Container/CommentCardList";
 
 interface Props {
     commentsStore: CommentsStore,

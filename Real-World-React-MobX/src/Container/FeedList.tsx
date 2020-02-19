@@ -1,9 +1,14 @@
-import React from "react";
-import Feed from "./Feed";
+import React, {MouseEventHandler} from "react";
 import ArticleDTO from "../DTO/ArticleDTO";
-import FeedListProps from "../Props/FeedListProps";
+import Feed from "../Widget/Feed/Feed";
 
-class FeedList extends React.PureComponent<FeedListProps, any> {
+export default interface Props {
+    articles: ArticleDTO[],
+    favoriteLoadings?: Map<string, boolean>,
+    onClickFavorite: MouseEventHandler<HTMLButtonElement>
+}
+
+export default class FeedList extends React.PureComponent<Props, any> {
 
     noArticleNotion = (
         <div className="no-article-notion p-4">No articles are here... yet.</div>
@@ -12,7 +17,15 @@ class FeedList extends React.PureComponent<FeedListProps, any> {
     getFeedList = (articles: ArticleDTO[]) => (
         articles.map((article: ArticleDTO, _) => (
             <Feed key={article.slug}
-                  article={article}
+                  createdAt={article.createdAt}
+                  username={article.author.username}
+                  slug={article.slug}
+                  title={article.title}
+                  favoritesCount={article.favoritesCount}
+                  favorited={article.favorited}
+                  image={article.author.image}
+                  tagList={article.tagList}
+                  description={article.description}
                   onClickFavorite={this.props.onClickFavorite}
                   loading={this.props.favoriteLoadings?.get(article.slug)}
             />
@@ -30,5 +43,3 @@ class FeedList extends React.PureComponent<FeedListProps, any> {
         );
     }
 }
-
-export default FeedList;

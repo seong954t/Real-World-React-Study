@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, FormEventHandler, MouseEventHandler} from "react";
+import React, {ChangeEventHandler, FormEventHandler} from "react";
 
 export default interface SignProps {
     onSubmit: FormEventHandler<HTMLFormElement>,

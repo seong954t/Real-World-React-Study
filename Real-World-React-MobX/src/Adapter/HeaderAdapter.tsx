@@ -2,8 +2,8 @@ import React from "react";
 import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
 import UserStore from "../Store/UserStore";
-import Header from "../Header/Header";
 import Configuration from "../Configuration/Configuration";
+import Header from "../Widget/Header/Header";
 
 
 interface Props {

@@ -1,5 +1,4 @@
 import React from "react";
-import FeedContainer from "../Feed/FeedContainer";
 import {RouteComponentProps} from "react-router";
 import ArticlesStore from "../Store/ArticlesStore";
 import FeedTabStore from "../Store/FeedTabStore";
@@ -7,6 +6,7 @@ import UserInfoBannerAdapter from "../Adapter/UserInfoBannerAdapter";
 import ProfileStore from "../Store/ProfileStore";
 import {inject, observer} from "mobx-react";
 import UserStore from "../Store/UserStore";
+import FeedContainer from "./FeedContainer";
 
 interface Props extends RouteComponentProps<{ tab: string, tag: string, name: string }> {
     profileStore: ProfileStore,
