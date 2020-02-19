@@ -11,7 +11,7 @@ interface Props extends RouteComponentProps<{ slug: string }> {
 
 @inject("postStore")
 @observer
-export default class PostAdapter extends React.Component<Props, any> {
+export default class PostContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ PostAdapter ]");
