@@ -1,5 +1,4 @@
 import React from "react";
-import ArticleBody from "./ArticleBody";
 import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
 import ArticlesStore from "../Store/ArticlesStore";
@@ -7,6 +6,7 @@ import UserStore from "../Store/UserStore";
 import ArticleBannerAdapter from "../Adapter/ArticleBannerAdapter";
 import ArticleCommentAdapter from "../Adapter/ArticleCommentAdapter";
 import CommentsStore from "../Store/CommentsStore";
+import ArticleBody from "../Widget/Article/ArticleBody";
 
 interface Props extends RouteComponentProps<{ name: string }> {
     commentsStore: CommentsStore,
@@ -16,7 +16,7 @@ interface Props extends RouteComponentProps<{ name: string }> {
 
 @inject("articlesStore", "userStore", "commentsStore")
 @observer
-class ArticleContainer extends React.Component<Props, any> {
+export default class ArticleContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ ArticleContainer ]")
@@ -54,5 +54,3 @@ class ArticleContainer extends React.Component<Props, any> {
         }
     }
 }
-
-export default ArticleContainer;

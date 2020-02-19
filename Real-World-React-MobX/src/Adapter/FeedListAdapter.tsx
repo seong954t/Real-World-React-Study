@@ -2,11 +2,11 @@ import React from "react";
 import {observer} from "mobx-react";
 import ArticlesStore from "../Store/ArticlesStore";
 import FeedTabStore from "../Store/FeedTabStore";
-import FeedList from "../Feed/FeedList";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Auth from "../Auth/Auth";
-import Loading from "../Loading/Loading";
-import FeedTab from "../Feed/FeedTab";
+import FeedTab from "../Widget/Feed/FeedTab";
+import Loading from "../Widget/Loading/Loading";
+import FeedList from "../Container/FeedList";
 
 interface Props {
     articlesStore: ArticlesStore,

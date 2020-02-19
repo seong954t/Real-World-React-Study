@@ -3,8 +3,8 @@ import {RouteComponentProps} from "react-router";
 import UserStore from "../Store/UserStore";
 import AuthStore from "../Store/AuthStore";
 import PageRouter from "../PageRouter/PageRouter";
-import SignUp from "../SignUp/SignUp";
 import {inject, observer} from "mobx-react";
+import SignUp from "../Widget/SignUp/SignUp";
 
 interface Props extends RouteComponentProps{
     userStore: UserStore,

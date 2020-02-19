@@ -2,8 +2,8 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router";
 import PostStore from "../Store/PostStore";
-import Post from "../Post/Post";
 import PageRouter from "../PageRouter/PageRouter";
+import Post from "../Widget/Post/Post";
 
 interface Props extends RouteComponentProps<{ slug: string }> {
     postStore: PostStore

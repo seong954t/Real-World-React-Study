@@ -4,7 +4,7 @@ import PageRouter from "../PageRouter/PageRouter";
 import {RouteComponentProps} from "react-router";
 import UserStore from "../Store/UserStore";
 import AuthStore from "../Store/AuthStore";
-import Settings from "../Settings/Settings";
+import Settings from "../Widget/Settings/Settings";
 
 interface Props extends RouteComponentProps {
     userStore: UserStore,

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Feed.css"
 import {Link} from "react-router-dom";
 import FeedPageButtonProps from "../Props/FeedPageButtonProps";
 

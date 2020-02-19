@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import "./Feed.css"
 import FeedTabProps from "../Props/FeedTabProps";
 
 export default class FeedTab extends React.Component<FeedTabProps, any>{

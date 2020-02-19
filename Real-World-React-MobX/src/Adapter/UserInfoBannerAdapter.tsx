@@ -1,9 +1,9 @@
 import React from "react";
-import UserInfoBanner from "../UserInfo/UserInfoBanner";
 import ProfileStore from "../Store/ProfileStore";
 import Auth from "../Auth/Auth";
 import UserStore from "../Store/UserStore";
 import {observer} from "mobx-react";
+import UserInfoBanner from "../Widget/Banner/UserInfoBanner";
 
 interface Props {
     profileStore: ProfileStore,

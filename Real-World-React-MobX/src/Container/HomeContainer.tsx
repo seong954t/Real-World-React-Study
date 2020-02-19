@@ -1,7 +1,4 @@
 import React from "react";
-import HomeBanner from "./HomeBanner";
-import FeedContainer from "../Feed/FeedContainer";
-import Tags from "../Tags/Tags";
 import {inject, observer} from "mobx-react"
 import Auth from "../Auth/Auth";
 import Configuration from "../Configuration/Configuration";
@@ -10,6 +7,9 @@ import TagsStore from "../Store/TagsStore";
 import FeedTabStore from "../Store/FeedTabStore";
 import ArticlesStore from "../Store/ArticlesStore";
 import queryString from "query-string";
+import HomeBanner from "../Widget/Banner/HomeBanner";
+import FeedContainer from "./FeedContainer";
+import Tags from "../Widget/Tags/Tags";
 
 
 interface Props extends RouteComponentProps {
@@ -18,7 +18,7 @@ interface Props extends RouteComponentProps {
 
 @inject("tagsStore")
 @observer
-class HomeContainer extends React.Component<Props, any> {
+export default class HomeContainer extends React.Component<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ Home ]");
@@ -48,5 +48,3 @@ class HomeContainer extends React.Component<Props, any> {
         );
     }
 }
-
-export default Home;
