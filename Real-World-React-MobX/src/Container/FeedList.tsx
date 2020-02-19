@@ -2,7 +2,7 @@ import React, {MouseEventHandler} from "react";
 import ArticleDTO from "../DTO/ArticleDTO";
 import Feed from "../Widget/Feed/Feed";
 
-export default interface Props {
+interface Props {
     articles: ArticleDTO[],
     favoriteLoadings?: Map<string, boolean>,
     onClickFavorite: MouseEventHandler<HTMLButtonElement>
@@ -39,7 +39,8 @@ export default class FeedList extends React.PureComponent<Props, any> {
         console.log("Render [ FeedList ]");
 
         return (
-            feedList
+            // feedList
+            this.noArticleNotion
         );
     }
 }
