@@ -3,9 +3,9 @@ class LINK {
     SIGN_IN = "/login";
     SIGN_UP = "/register";
     SETTINGS = "/settings";
-    USER = (username: string) => `/@${username}`;
-    ARTICLE = (slug: string) => `/article/${slug}`;
-    EDITOR = (slug?: string) => `/editor/${slug}`;
+    USER = (username: string) => `/@${username}/`;
+    ARTICLE = (slug: string) => `/article/${slug}/`;
+    EDITOR = (slug?: string) => `/editor/${slug}/`;
     static INSTANCE: LINK = new LINK();
 }
 

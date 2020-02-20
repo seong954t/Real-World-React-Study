@@ -72,8 +72,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, JSON.parse(body));
     },
     getProfile: (username: string): Promise<any> => {
-        const url = RealWorldApi.domain + `profiles/${username}`;
-
+        const url = RealWorldApi.domain + `profiles/${username}/`;
         return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH : Header.DEFAULT))
     },
     followUser: (username: string, followed: boolean) => {
@@ -93,7 +92,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.GET, header)
     },
     getArticle: (slug: string): Promise<any> => {
-        const url = RealWorldApi.domain + `articles/${slug}`;
+        const url = RealWorldApi.domain + `articles/${slug}/`;
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT);
     },
     createArticle: (title: string, description: string, body: string, tagList: Set<String>): Promise<any> => {
@@ -110,7 +109,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
     },
     updateArticle: (title: string, description: string, body: string, tagList: Set<String>, slug: string): Promise<any> => {
-        const url = RealWorldApi.domain + `articles/${slug}`;
+        const url = RealWorldApi.domain + `articles/${slug}/`;
 
         const responseBody = {
             article: {
@@ -124,7 +123,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, responseBody)
     },
     deleteArticle: (slug: string): Promise<any> => {
-        const url = RealWorldApi.domain + `articles/${slug}`;
+        const url = RealWorldApi.domain + `articles/${slug}/`;
 
         return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
     },
@@ -145,7 +144,7 @@ const RealWorldApi = {
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
     },
     deleteComment: (slug: string, id: number): Promise<any> => {
-        const url = RealWorldApi.domain + `articles/${slug}/comments/${id}`;
+        const url = RealWorldApi.domain + `articles/${slug}/comments/${id}/`;
 
         return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
     },

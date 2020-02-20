@@ -46,7 +46,6 @@ export default class ProfileStore {
                 }
             )).finally(() => {
                 this._isProfileLoading = false;
-
             }
         )
     };

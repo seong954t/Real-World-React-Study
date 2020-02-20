@@ -55,7 +55,7 @@ class UserInfoContainer extends React.Component<Props, any> {
         const {tab, tag, name} = params;
         const {bio, following, image} = this.props.profileStore.profile;
 
-        console.log("Render [ UserInfoContainer ]", this.props.articlesStore);
+        console.log("Render [ UserInfoContainer ]");
 
         return (
             <div>
