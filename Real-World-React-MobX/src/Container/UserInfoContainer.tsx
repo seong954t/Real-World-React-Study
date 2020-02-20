@@ -11,7 +11,9 @@ import UserInfoBanner from "../Widget/Banner/UserInfoBanner";
 
 interface Props extends RouteComponentProps<{ tab: string, tag: string, name: string }> {
     profileStore: ProfileStore,
-    userStore: UserStore
+    userStore: UserStore,
+    articlesStore: ArticlesStore,
+    feedTabStore: FeedTabStore
 }
 
 @inject("profileStore", "userStore")
@@ -67,8 +69,8 @@ class UserInfoContainer extends React.Component<Props, any> {
                                 linkToSettings={"/settings"}
                 />
                 <div className="container row m-auto">
-                    <FeedContainer articlesStore={ArticlesStore.INSTANCE}
-                                   feedTabStore={FeedTabStore.INSTANCE}
+                    <FeedContainer articlesStore={this.props.articlesStore}
+                                   feedTabStore={this.props.feedTabStore}
                                    tab={tab}
                                    tag={tag}
                                    name={name}

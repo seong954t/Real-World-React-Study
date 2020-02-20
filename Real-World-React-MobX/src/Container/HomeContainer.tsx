@@ -13,10 +13,12 @@ import Tags from "../Widget/Tags/Tags";
 
 
 interface Props extends RouteComponentProps {
-    tagsStore: TagsStore
+    tagsStore: TagsStore,
+    articlesStore: ArticlesStore,
+    feedTabStore: FeedTabStore
 }
 
-@inject("tagsStore")
+@inject("tagsStore", "articlesStore", "feedTabStore")
 @observer
 export default class HomeContainer extends React.Component<Props, any> {
 
@@ -36,8 +38,8 @@ export default class HomeContainer extends React.Component<Props, any> {
             <div>
                 <HomeBanner title={Configuration.TITLE} description={Configuration.DESCRIPTION} hide={Auth.isSigned()}/>
                 <div className="container row m-auto">
-                    <FeedContainer articlesStore={ArticlesStore.INSTANCE}
-                                   feedTabStore={FeedTabStore.INSTANCE}
+                    <FeedContainer articlesStore={this.props.articlesStore}
+                                   feedTabStore={this.props.feedTabStore}
                                    tab={tab ? tab.toString() : ''}
                                    tag={tag ? tag.toString() : ''}
                                    name={name ? name.toString() : ''}

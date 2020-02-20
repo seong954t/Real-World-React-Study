@@ -9,10 +9,11 @@ import PostContainer from "../Container/PostContainer";
 import SignInContainer from "../Container/SignInContainer";
 import SignUpContainer from "../Container/SignUpContainer";
 import SettingsContainer from "../Container/SettingsContainer";
+import * as H from "history";
 
 class PageRouter extends React.Component<any, any> {
 
-    static pageRoute(history: any, destination: string){
+    static pageRoute(history: H.History, destination: string){
         history.replace(destination);
     }
 

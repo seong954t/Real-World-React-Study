@@ -23,7 +23,7 @@ export default class SignUpContainer extends React.Component<Props, any>{
     handleSignUp = (e: any) => {
         e.preventDefault();
         const registrationPromise = this.props.authStore.registration().then((user: any) => {
-            UserStore.INSTANCE.setUser(user);
+            this.props.userStore.setUser(user);
         });
         PageRouter.pageRouteAfterPromise(registrationPromise, this.props.history, "/");
     }
