@@ -45,6 +45,7 @@ export default class SignUpContainer extends React.Component<Props, any>{
                 email={email}
                 errors={errors}
                 username={username}
+                linkToSignIn={"./login"}
             />
         );
     }

@@ -21,7 +21,7 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
     );
 
     editProfileButton = () => (
-        <Link className="btn btn-sm btn-outline-secondary float-right" to="/settings"><i className="ion-gear-a"/> Edit
+        <Link className="btn btn-sm btn-outline-secondary float-right" to={this.props.linkToSettings || ''}><i className="ion-gear-a"/> Edit
             Profile Settings</Link>
     );
 

@@ -1,6 +1,7 @@
 import {MouseEventHandler} from "react";
+import LinkToProps from "./LinkToProps";
 
-export default interface UserInfoBannerProps {
+export default interface UserInfoBannerProps extends LinkToProps{
     onClickFollow: MouseEventHandler<HTMLButtonElement>,
     username: string,
     following?: boolean,

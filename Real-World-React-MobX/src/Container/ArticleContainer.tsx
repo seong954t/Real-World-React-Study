@@ -50,7 +50,7 @@ export default class ArticleContainer extends React.Component<Props, any> {
                                    createdAt={createdAt}
                                    username={author.username}
                                    image={author.image}
-                                   linkToEdit={`/editor/${slug}`}
+                                   linkToEditor={`/editor/${slug}`}
                                    linkToUser={`/@${author.username}`}
                                    onClickDelete={this.handleDeleteArticle}
                                    isDisableEditAndDeleteButton={!Auth.isOwner(this.props.userStore.user.username, author.username)}

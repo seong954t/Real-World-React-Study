@@ -21,7 +21,7 @@ export default class SignUp extends React.Component<SignProps, any> {
             <div className="container text-center">
                 <div className="col-6 m-auto">
                     <h1 className="mb-2">Sign Up</h1>
-                    <Link to={"./login"} className="mb-2">Have an account?</Link>
+                    <Link to={this.props.linkToSignIn || ''} className="mb-2">Have an account?</Link>
                     {errors.length !== 0 ? this.errorElement(errors) : ''}
                     <form className="text-right m-auto" onSubmit={onSubmit}>
                         <fieldset className="form-group">

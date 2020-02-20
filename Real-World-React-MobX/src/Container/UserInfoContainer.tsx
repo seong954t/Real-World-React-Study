@@ -64,6 +64,7 @@ class UserInfoContainer extends React.Component<Props, any> {
                                 image={image}
                                 isOwner={Auth.isOwner(this.props.userStore.user.username, name)}
                                 isFollowLoading={this.props.profileStore.isFollowLoading}
+                                linkToSettings={"/settings"}
                 />
                 <div className="container row m-auto">
                     <FeedContainer articlesStore={ArticlesStore.INSTANCE}

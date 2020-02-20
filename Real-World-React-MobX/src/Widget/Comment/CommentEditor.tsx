@@ -26,9 +26,9 @@ export default class CommentEditor extends React.PureComponent<CommentEditorProp
 
     requestSignElement = () => (
         <div>
-            <Link to={"/login"}>Sign in </Link>
+            <Link to={this.props.linkToSignIn || ''}>Sign in </Link>
             or
-            <Link to={"/register"}> sign up </Link>
+            <Link to={this.props.linkToSignUp || ''}> sign up </Link>
             to add comments on this article.
         </div>
     );

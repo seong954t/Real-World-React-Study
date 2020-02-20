@@ -54,6 +54,8 @@ export default class ArticleCommentContainer extends React.PureComponent<Props, 
                                onChangeTextArea={this.handleChange}
                                onSubmit={this.addComments}
                                isDisableCommentBox={!Auth.isSigned()}
+                               linkToSignIn={"/login"}
+                               linkToSignUp={"/register"}
                 />
                 <CommentCardList username={this.props.userStore.user.username}
                                  comments={this.props.commentsStore.comments}

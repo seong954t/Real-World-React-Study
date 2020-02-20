@@ -28,7 +28,7 @@ export default class CommentCard extends React.Component<CommentCardProps, any> 
                     <p className="card-text">{body}</p>
                 </div>
                 <div className="card-footer">
-                    <Link to={linkToUser ? linkToUser : ''}>
+                    <Link to={linkToUser || ''}>
                         <img src={image}
                              alt=""
                              className="author-image comment-another-img"
@@ -36,7 +36,7 @@ export default class CommentCard extends React.Component<CommentCardProps, any> 
                     </Link>
                     &nbsp;
                     <span>
-                        <Link className="comment-author" to={linkToUser ? linkToUser : ''}>
+                        <Link className="comment-author" to={linkToUser || ''}>
                             {username}
                         </Link>
                         <span className="comment-date">
