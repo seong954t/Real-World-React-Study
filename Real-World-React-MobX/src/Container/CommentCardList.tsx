@@ -21,6 +21,7 @@ export default class CommentCardList extends React.PureComponent<Props, any> {
                              id={comment.id}
                              isDisableTrashBox={comment.author.username !== this.props.username}
                              onClickTrashBox={this.props.onClickTrashBox}
+                             linkToUser={`/@${comment.author.username}`}
                 />
             )
         )

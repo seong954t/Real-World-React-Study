@@ -18,7 +18,7 @@ export default class CommentCard extends React.Component<CommentCardProps, any> 
     );
 
     render() {
-        const {id, body, username, image, createdAt} = this.props;
+        const {id, body, username, image, createdAt, linkToUser} = this.props;
 
         console.log("Render [ CommentCard ]");
 
@@ -28,7 +28,7 @@ export default class CommentCard extends React.Component<CommentCardProps, any> 
                     <p className="card-text">{body}</p>
                 </div>
                 <div className="card-footer">
-                    <Link to={`/@${username}`}>
+                    <Link to={linkToUser ? linkToUser : ''}>
                         <img src={image}
                              alt=""
                              className="author-image comment-another-img"
@@ -36,7 +36,7 @@ export default class CommentCard extends React.Component<CommentCardProps, any> 
                     </Link>
                     &nbsp;
                     <span>
-                        <Link className="comment-author" to={`/@${username}`}>
+                        <Link className="comment-author" to={linkToUser ? linkToUser : ''}>
                             {username}
                         </Link>
                         <span className="comment-date">

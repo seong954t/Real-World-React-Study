@@ -7,5 +7,6 @@ export default interface CommentCardProps {
     image: string,
     createdAt: string,
     isDisableTrashBox?: boolean,
-    onClickTrashBox: MouseEventHandler<HTMLElement>
+    onClickTrashBox: MouseEventHandler<HTMLElement>,
+    linkToUser?:string
 }
