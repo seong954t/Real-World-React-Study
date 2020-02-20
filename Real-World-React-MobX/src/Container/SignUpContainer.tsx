@@ -5,6 +5,7 @@ import AuthStore from "../Store/AuthStore";
 import PageRouter from "../PageRouter/PageRouter";
 import {inject, observer} from "mobx-react";
 import SignUp from "../Widget/SignUp/SignUp";
+import Config from "../Configuration/Config";
 
 interface Props extends RouteComponentProps{
     userStore: UserStore,
@@ -45,7 +46,7 @@ export default class SignUpContainer extends React.Component<Props, any>{
                 email={email}
                 errors={errors}
                 username={username}
-                linkToSignIn={"./login"}
+                linkToSignIn={Config.LINK.SIGN_IN}
             />
         );
     }

@@ -8,6 +8,7 @@ import UserStore from "../Store/UserStore";
 import FeedContainer from "./FeedContainer";
 import Auth from "../Auth/Auth";
 import UserInfoBanner from "../Widget/Banner/UserInfoBanner";
+import Config from "../Configuration/Config";
 
 interface Props extends RouteComponentProps<{ tab: string, tag: string, name: string }> {
     profileStore: ProfileStore,
@@ -16,7 +17,7 @@ interface Props extends RouteComponentProps<{ tab: string, tag: string, name: st
     feedTabStore: FeedTabStore
 }
 
-@inject("profileStore", "userStore")
+@inject("profileStore", "userStore", "articlesStore", "feedTabStore")
 @observer
 class UserInfoContainer extends React.Component<Props, any> {
 
@@ -54,7 +55,7 @@ class UserInfoContainer extends React.Component<Props, any> {
         const {tab, tag, name} = params;
         const {bio, following, image} = this.props.profileStore.profile;
 
-        console.log("Render [ UserInfoContainer ]");
+        console.log("Render [ UserInfoContainer ]", this.props.articlesStore);
 
         return (
             <div>
@@ -66,7 +67,7 @@ class UserInfoContainer extends React.Component<Props, any> {
                                 image={image}
                                 isOwner={Auth.isOwner(this.props.userStore.user.username, name)}
                                 isFollowLoading={this.props.profileStore.isFollowLoading}
-                                linkToSettings={"/settings"}
+                                linkToSettings={Config.LINK.SETTINGS}
                 />
                 <div className="container row m-auto">
                     <FeedContainer articlesStore={this.props.articlesStore}

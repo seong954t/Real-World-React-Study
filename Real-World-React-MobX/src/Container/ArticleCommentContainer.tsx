@@ -7,6 +7,7 @@ import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
 import CommentEditor from "../Widget/Comment/CommentEditor";
 import CommentCardList from "../Container/CommentCardList";
+import Config from "../Configuration/Config";
 
 interface Props {
     commentsStore: CommentsStore,
@@ -54,8 +55,8 @@ export default class ArticleCommentContainer extends React.PureComponent<Props, 
                                onChangeTextArea={this.handleChange}
                                onSubmit={this.addComments}
                                isDisableCommentBox={!Auth.isSigned()}
-                               linkToSignIn={"/login"}
-                               linkToSignUp={"/register"}
+                               linkToSignIn={Config.LINK.SIGN_IN}
+                               linkToSignUp={Config.LINK.SIGN_UP}
                 />
                 <CommentCardList username={this.props.userStore.user.username}
                                  comments={this.props.commentsStore.comments}

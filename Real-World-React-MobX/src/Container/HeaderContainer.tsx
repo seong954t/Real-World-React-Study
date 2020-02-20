@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "../Auth/Auth";
 import {observer} from "mobx-react";
 import UserStore from "../Store/UserStore";
-import Configuration from "../Configuration/Configuration";
+import Config from "../Configuration/Config";
 import Header from "../Widget/Header/Header";
 
 
@@ -27,13 +27,13 @@ export default class HeaderContainer extends React.Component<Props, any> {
             <Header username={username}
                     image={image}
                     defaultHeader={!Auth.isSigned()}
-                    title={Configuration.TITLE}
-                    linkToHome={"/"}
-                    linkToUser={`/@${username}`}
-                    linkToEditor={"/editor"}
-                    linkToSettings={"/settings"}
-                    linkToSignIn={"/login"}
-                    linkToSignUp={"/register"}
+                    title={Config.TITLE}
+                    linkToHome={Config.LINK.HOME}
+                    linkToUser={Config.LINK.USER(username)}
+                    linkToEditor={Config.LINK.EDITOR()}
+                    linkToSettings={Config.LINK.SETTINGS}
+                    linkToSignIn={Config.LINK.SIGN_IN}
+                    linkToSignUp={Config.LINK.SIGN_UP}
             />
         );
     }

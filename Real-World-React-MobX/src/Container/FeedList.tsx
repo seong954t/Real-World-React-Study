@@ -7,6 +7,7 @@ import Loading from "../Widget/Loading/Loading";
 import ArticlesStore from "../Store/ArticlesStore";
 import FeedTabStore from "../Store/FeedTabStore";
 import {observer} from "mobx-react";
+import Config from "../Configuration/Config";
 
 interface Props {
     articlesStore: ArticlesStore,
@@ -40,8 +41,8 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
                   description={article.description}
                   onClickFavorite={this.handleFavorite}
                   loading={this.props.articlesStore.favoriteLoadings?.get(article.slug)}
-                  linkToArticle={`/article/${article.slug}`}
-                  linkToUser={`/@${article.author.username}`}
+                  linkToArticle={Config.LINK.ARTICLE(article.slug)}
+                  linkToUser={Config.LINK.USER(article.author.username)}
             />
         ))
     };

@@ -9,6 +9,7 @@ import PageRouter from "../PageRouter/PageRouter";
 import ArticleBanner from "../Widget/Banner/ArticleBanner";
 import Auth from "../Auth/Auth";
 import ArticleCommentContainer from "./ArticleCommentContainer";
+import Config from "../Configuration/Config";
 
 interface Props extends RouteComponentProps<{ name: string }> {
     commentsStore: CommentsStore,
@@ -50,8 +51,8 @@ export default class ArticleContainer extends React.Component<Props, any> {
                                    createdAt={createdAt}
                                    username={author.username}
                                    image={author.image}
-                                   linkToEditor={`/editor/${slug}`}
-                                   linkToUser={`/@${author.username}`}
+                                   linkToEditor={Config.LINK.EDITOR(slug)}
+                                   linkToUser={Config.LINK.USER(author.username)}
                                    onClickDelete={this.handleDeleteArticle}
                                    isDisableEditAndDeleteButton={!Auth.isOwner(this.props.userStore.user.username, author.username)}
                     />

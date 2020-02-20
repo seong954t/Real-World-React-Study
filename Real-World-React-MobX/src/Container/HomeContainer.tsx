@@ -1,7 +1,7 @@
 import React from "react";
 import {inject, observer} from "mobx-react"
 import Auth from "../Auth/Auth";
-import Configuration from "../Configuration/Configuration";
+import Config from "../Configuration/Config";
 import {RouteComponentProps} from "react-router";
 import TagsStore from "../Store/TagsStore";
 import FeedTabStore from "../Store/FeedTabStore";
@@ -36,7 +36,7 @@ export default class HomeContainer extends React.Component<Props, any> {
 
         return (
             <div>
-                <HomeBanner title={Configuration.TITLE} description={Configuration.DESCRIPTION} hide={Auth.isSigned()}/>
+                <HomeBanner title={Config.TITLE} description={Config.DESCRIPTION} hide={Auth.isSigned()}/>
                 <div className="container row m-auto">
                     <FeedContainer articlesStore={this.props.articlesStore}
                                    feedTabStore={this.props.feedTabStore}

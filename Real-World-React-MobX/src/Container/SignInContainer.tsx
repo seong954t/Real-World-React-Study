@@ -5,6 +5,7 @@ import UserStore from "../Store/UserStore";
 import AuthStore from "../Store/AuthStore";
 import {RouteComponentProps} from "react-router";
 import SignIn from "../Widget/SignIn/SignIn";
+import Config from "../Configuration/Config";
 
 interface Props extends RouteComponentProps{
     userStore: UserStore,
@@ -45,7 +46,7 @@ export default class SignInContainer extends React.Component<Props, any>{
                 email={email}
                 password={password}
                 errors={errors}
-                linkToSignUp={"./register"}
+                linkToSignUp={Config.LINK.SIGN_UP}
             />
         );
     }
