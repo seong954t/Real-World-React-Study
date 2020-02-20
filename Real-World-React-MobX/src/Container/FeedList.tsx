@@ -11,7 +11,6 @@ import {observer} from "mobx-react";
 interface Props {
     articlesStore: ArticlesStore,
     feedTabStore: FeedTabStore,
-    articles: ArticleDTO[]
 }
 
 @observer
@@ -27,7 +26,7 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
     };
 
     getFeedList = () => {
-        const {articles} = this.props
+        const {articles} = this.props.articlesStore
         return articles.map((article: ArticleDTO, _) => (
             <Feed key={article.slug}
                   createdAt={article.createdAt}
@@ -46,7 +45,8 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
     };
 
     render() {
-        const {articles, feedTabStore, articlesStore} = this.props;
+        const {feedTabStore, articlesStore} = this.props;
+        const {articles} = articlesStore;
         const feedList = (articles === undefined) || (articles.length === 0) ? this.noArticleNotion : this.getFeedList();
 
         console.log("Render [ FeedList ]");

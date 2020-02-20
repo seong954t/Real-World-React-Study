@@ -43,7 +43,6 @@ export default class UserStore {
                         RealWorldApi.alertError(errors)
                     } else if (user !== undefined) {
                         this._user = user;
-                        // this._updatingUser = user;
                     }
                 }))
         }
@@ -59,10 +58,8 @@ export default class UserStore {
                     RealWorldApi.alertError(errors)
                 } else if (user !== undefined) {
                     this._user = user;
-                    // this._updatingUser = user;
                     Auth.setToken(JSON.stringify(user.token))
                 }
-                // this.password = "";
             }))
     }
 

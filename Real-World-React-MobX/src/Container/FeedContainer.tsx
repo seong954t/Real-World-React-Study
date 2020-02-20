@@ -52,8 +52,7 @@ class FeedContainer extends React.Component<Props, any> {
         return (
             <div className="container col-md-9">
                 <FeedListContainer articlesStore={this.props.articlesStore}
-                                 feedTabStore={this.props.feedTabStore}
-                                 articles={articles}
+                                   feedTabStore={this.props.feedTabStore}
                 />
                 <FeedPageButtonList size={size}
                                     onClickPage={this.handlePaging}

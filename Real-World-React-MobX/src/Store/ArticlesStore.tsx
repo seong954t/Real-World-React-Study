@@ -41,7 +41,7 @@ export default class ArticlesStore {
 
     @computed
     get favoriteLoadings(){
-        return new Map<string, boolean>(this._favoriteLoadings);
+        return this._favoriteLoadings;
     }
 
     @action
