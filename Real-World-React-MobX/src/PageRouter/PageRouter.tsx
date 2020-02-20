@@ -6,9 +6,9 @@ import ArticleContainer from "../Container/ArticleContainer";
 import UserInfoContainer from "../Container/UserInfoContainer";
 import HeaderContainer from "../Container/HeaderContainer";
 import PostContainer from "../Container/PostContainer";
-import SignInContainer from "../Container/SignInAdapter";
-import SignUpContainer from "../Container/SignUpAdapter";
-import SettingsContainer from "../Container/SettingsAdapter";
+import SignInContainer from "../Container/SignInContainer";
+import SignUpContainer from "../Container/SignUpContainer";
+import SettingsContainer from "../Container/SettingsContainer";
 
 class PageRouter extends React.Component<any, any> {
 
