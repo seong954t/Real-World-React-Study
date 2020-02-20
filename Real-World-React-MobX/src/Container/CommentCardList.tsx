@@ -14,7 +14,8 @@ export default class CommentCardList extends React.PureComponent<Props, any> {
 
     commentElements = (comments: CommentDTO[]) => (
         comments.map((comment: CommentDTO, _) => (
-                <CommentCard image={comment.author.image}
+                <CommentCard key={comment.id}
+                             image={comment.author.image}
                              username={comment.author.username}
                              createdAt={comment.createdAt}
                              body={comment.body}
