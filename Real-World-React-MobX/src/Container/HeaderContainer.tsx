@@ -24,7 +24,17 @@ export default class HeaderContainer extends React.Component<Props, any> {
         console.log("Render [ HeaderContainer ]");
 
         return (
-            <Header username={username} image={image} defaultHeader={!Auth.isSigned()} title={Configuration.TITLE}/>
+            <Header username={username}
+                    image={image}
+                    defaultHeader={!Auth.isSigned()}
+                    title={Configuration.TITLE}
+                    linkToHome={"/"}
+                    linkToUser={`/@${username}`}
+                    linkToEditor={"/editor"}
+                    linkToSettings={"/settings"}
+                    linkToSignIn={"/login"}
+                    linkToSignUp={"/register"}
+            />
         );
     }
 }
