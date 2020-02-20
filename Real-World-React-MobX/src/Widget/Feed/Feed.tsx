@@ -7,12 +7,12 @@ import FeedProps from "../Props/FeedProps";
 export default class Feed extends React.PureComponent<FeedProps, any> {
 
     handleFavorite = (e: any): void => {
-        e.slug = this.props.slug;
+        e.id = this.props.id;
         this.props.onClickFavorite(e);
     };
 
     render() {
-        const {slug, createdAt, image, username, description, title, tagList, favorited, favoritesCount} = this.props;
+        const {createdAt, image, username, description, title, tagList, favorited, favoritesCount, linkToUser, linkToArticle} = this.props;
         const tagElementList = tagList?.map((tag: string, index: number) => (
             <li key={index} className="tag-default preview-tag mr-1">
                 {tag}
@@ -24,11 +24,11 @@ export default class Feed extends React.PureComponent<FeedProps, any> {
         return (
             <div className="feed-preview pb-4 pt-4">
                 <div className="feed mb-4">
-                    <Link to={`/@${username}`}>
+                    <Link to={linkToUser ? linkToUser : ''}>
                         <img src={image} alt="" className="author-image"/>
                     </Link>
                     <div className="info">
-                        <Link to={`/@${username}`}>{username}</Link>
+                        <Link to={linkToUser ? linkToUser : ''}>{username}</Link>
                         <p className="date m-0">{new Date(createdAt).toDateString()}</p>
                     </div>
                     <button type="button"
@@ -41,7 +41,7 @@ export default class Feed extends React.PureComponent<FeedProps, any> {
                         }
                     </button>
                 </div>
-                <Link className="preview-link" to={`/article/${slug}`}>
+                <Link className="preview-link" to={linkToArticle ? linkToArticle : ''}>
                     <h1>{title}</h1>
                     <p className="preview-desc">{description}</p>
                     <span>Read more...</span>

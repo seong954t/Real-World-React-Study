@@ -22,7 +22,7 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
 
     handleFavorite = (e: any): void => {
         e.preventDefault();
-        this.props.articlesStore.favoriteArticle(e.slug);
+        this.props.articlesStore.favoriteArticle(e.id);
     };
 
     getFeedList = () => {
@@ -31,7 +31,7 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
             <Feed key={article.slug}
                   createdAt={article.createdAt}
                   username={article.author.username}
-                  slug={article.slug}
+                  id={article.slug}
                   title={article.title}
                   favoritesCount={article.favoritesCount}
                   favorited={article.favorited}
@@ -40,6 +40,8 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
                   description={article.description}
                   onClickFavorite={this.handleFavorite}
                   loading={this.props.articlesStore.favoriteLoadings?.get(article.slug)}
+                  linkToArticle={`/article/${article.slug}`}
+                  linkToUser={`/@${article.author.username}`}
             />
         ))
     };

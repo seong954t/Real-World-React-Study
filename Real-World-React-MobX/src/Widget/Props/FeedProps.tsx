@@ -1,7 +1,7 @@
 import {MouseEventHandler} from "react";
 
 export default interface FeedProps{
-    slug: string,
+    id: string,
     tagList?: string[],
     username: string,
     image?: string,
@@ -11,5 +11,7 @@ export default interface FeedProps{
     title: string,
     description?: string,
     onClickFavorite: MouseEventHandler<HTMLButtonElement>,
-    loading?: boolean
+    loading?: boolean,
+    linkToUser?: string,
+    linkToArticle?: string
 }
