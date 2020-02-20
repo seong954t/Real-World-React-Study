@@ -5,10 +5,10 @@ import ArticleBannerProps from "../Props/ArticleBannerProps";
 
 export default class ArticleBanner extends React.Component<ArticleBannerProps, any> {
 
-    individualArticleButtons = (slug: string) => (
+    individualArticleButtons = (to: string) => (
         <span>
             <Link className="btn btn-outline-secondary btn-sm"
-               to={`/editor/${slug}`}>
+               to={to}>
                 <i className="ion-edit"/>Edit Article</Link>
             <button className="btn btn-outline-danger btn-sm" onClick={this.props.onClickDelete}>
                 <i className="ion-edit"/>
@@ -18,7 +18,7 @@ export default class ArticleBanner extends React.Component<ArticleBannerProps, a
     );
 
     render() {
-        const {title, createdAt, username, image, slug, isDisableEditAndDeleteButton} = this.props;
+        const {title, createdAt, username, image, linkToEdit, linkToUser, isDisableEditAndDeleteButton} = this.props;
 
         console.log("Render [ ArticleBanner ]");
 
@@ -28,18 +28,18 @@ export default class ArticleBanner extends React.Component<ArticleBannerProps, a
                     <div className="col-md-10 m-auto d-inline-block ">
                         <h1>{title}</h1>
                         <div className="feed mt-4">
-                            <Link to={`/@${username}`}>
+                            <Link to={linkToUser ? linkToUser : ''}>
                                 <img src={image}
                                      alt="" className="author-image"/>
                             </Link>
                             <div className="info">
-                                <Link to={`/@${username}`}>{username}</Link>
+                                <Link to={linkToUser ? linkToUser : ''}>{username}</Link>
                                 <p className="date m-0">{new Date(createdAt).toDateString()}</p>
                             </div>
                             {
                                 isDisableEditAndDeleteButton ?
                                 '' :
-                                this.individualArticleButtons(slug ? slug : '')
+                                this.individualArticleButtons(linkToEdit ? linkToEdit : '')
                             }
                         </div>
                     </div>
