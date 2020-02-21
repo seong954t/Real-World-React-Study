@@ -5,7 +5,7 @@ class LINK {
     SETTINGS = "/settings";
     USER = (username: string) => `/@${username}/`;
     ARTICLE = (slug: string) => `/article/${slug}/`;
-    EDITOR = (slug?: string) => `/editor/${slug}/`;
+    EDITOR = (slug?: string) => `/editor/${slug ? slug + '/' : ''}`;
     static INSTANCE: LINK = new LINK();
 }
 
