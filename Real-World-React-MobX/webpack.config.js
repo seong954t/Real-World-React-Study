@@ -5,7 +5,7 @@ module.exports = {
     mode     : "development",
     devtool  : "eval",
     resolve  : {
-        extensions: ['.js', '.tsx', '.ts','.json']
+        extensions: ['.js', '.tsx', '.ts', '.json']
     },
     entry    : './src/index.tsx',
     module   : {
@@ -17,21 +17,21 @@ module.exports = {
                 options: {
                     presets: ['@babel/preset-env', '@babel/preset-react', '@babel/typescript'],
                     plugins: [
-                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                        ["@babel/plugin-proposal-decorators", {"legacy": true}],
                         '@babel/plugin-proposal-class-properties',
                         '@babel/plugin-transform-runtime'
                     ]
                 }
             },
             {
-                test: /\.(css)|(less)$/,
+                test   : /\.(css)|(less)$/,
                 exclude: /node_modules/,
-                use: [
+                use    : [
                     {
                         loader: 'style-loader',
                     },
                     {
-                        loader: 'css-loader',
+                        loader : 'css-loader',
                         options: {
                             modules: {
                                 localIdentName: '[local]'
@@ -42,12 +42,16 @@ module.exports = {
                         loader: "less-loader"
                     }
                 ]
+            },
+            {
+                test   : /\.(png)$/,
+                loader : 'url-loader'
             }
         ]
     },
     output   : {
-        path    : `${__dirname}/dist`,
-        filename: "bundle.js",
+        path      : `${__dirname}/dist`,
+        filename  : "bundle.js",
         publicPath: "/"
     },
     plugins  : [
