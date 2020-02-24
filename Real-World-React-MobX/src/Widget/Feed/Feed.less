@@ -1,3 +1,5 @@
+@import (reference) "../style/color/color.less";
+
 .author-image {
     display: inline-block;
     vertical-align: middle;
@@ -77,9 +79,9 @@
     }
 
     .active {
-        background: #fff;
-        border-bottom: 2px solid #5cb85c;
-        color: #5cb85c;
+        background: @color-white;
+        border-bottom: 2px solid @color-green;
+        color: @color-green;
         pointer-events: none;
     }
 }
@@ -88,13 +90,13 @@
     display: inline-block;
 
     &:not(.active) {
-        color: #5cb85c !important;
+        color: @color-green !important;
     }
 
     &.active .page-link {
         color: white !important;
-        background-color: #5cb85c;
-        border-color: #5cb85c;
+        background-color: @color-green;
+        border-color: @color-green;
     }
 }
 

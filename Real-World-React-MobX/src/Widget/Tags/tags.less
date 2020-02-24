@@ -1,3 +1,4 @@
+@import (reference) "../style/color/color.less";
 .tag-list{
     list-style: none;
     display: inline-block;
@@ -12,12 +13,12 @@
 }
 
 .popular-tag{
-    background-color: #818a91;
-    color: #fff;
+    background-color: @color-gray;
+    color: @color-white;
     padding: .1rem .6rem;
     &:hover{
-        background-color: #687077;
-        color: #fff;
+        background-color: @color-dark-gray;
+        color: @color-white;
     }
 }
 
