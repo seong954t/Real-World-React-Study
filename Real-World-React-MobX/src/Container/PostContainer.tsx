@@ -37,11 +37,13 @@ export default class PostContainer extends React.Component<Props, any> {
         const {slug} = this.props.match.params;
         let publishArticlePromise: Promise<any>;
         if (!slug) {
-            publishArticlePromise = this.props.postStore.createArticle();
+            publishArticlePromise = this.props.postStore.createArticle().then((article) => {
+                PageRouter.pageRouteAfterPromise(publishArticlePromise, this.props.history, `/article/${article.slug}`)
+            })
         } else {
             publishArticlePromise = this.props.postStore.updateArticle(slug);
+            PageRouter.pageRouteAfterPromise(publishArticlePromise, this.props.history, `/article/${slug}`)
         }
-        PageRouter.pageRouteAfterPromise(publishArticlePromise, this.props.history, `/article/${slug}`)
     };
 
     handleChange = (e: any) => {
