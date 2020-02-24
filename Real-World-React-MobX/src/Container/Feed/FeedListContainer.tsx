@@ -1,13 +1,13 @@
 import React, {MouseEventHandler} from "react";
-import ArticleDTO from "../DTO/ArticleDTO";
-import Feed from "../Widget/Feed/Feed";
-import FeedTab from "../Widget/Feed/FeedTab";
-import Auth from "../Auth/Auth";
-import Loading from "../Widget/Loading/Loading";
-import ArticlesStore from "../Store/ArticlesStore";
-import FeedTabStore from "../Store/FeedTabStore";
+import ArticleDTO from "../../DTO/ArticleDTO";
+import Feed from "../../Widget/Feed/Feed";
+import FeedTab from "../../Widget/Feed/FeedTab";
+import Auth from "../../Auth/Auth";
+import Loading from "../../Widget/Loading/Loading";
+import ArticlesStore from "../../Store/ArticlesStore";
+import FeedTabStore from "../../Store/FeedTabStore";
 import {observer} from "mobx-react";
-import LINK from "../PageRouter/Link";
+import LINK from "../../PageRouter/Link";
 
 interface Props {
     articlesStore: ArticlesStore,

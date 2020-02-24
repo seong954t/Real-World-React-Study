@@ -1,11 +1,11 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import PageRouter from "../PageRouter/PageRouter";
+import PageRouter from "../../../PageRouter/PageRouter";
 import {RouteComponentProps} from "react-router";
-import UserStore from "../Store/UserStore";
-import AuthStore from "../Store/AuthStore";
-import Settings from "../Widget/Settings/Settings";
-import UserDTO from "../DTO/UserDTO";
+import UserStore from "../../../Store/UserStore";
+import AuthStore from "../../../Store/AuthStore";
+import Settings from "../../../Widget/Settings/Settings";
+import UserDTO from "../../../DTO/UserDTO";
 
 interface Props extends RouteComponentProps {
     userStore: UserStore,

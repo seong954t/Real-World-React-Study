@@ -1,13 +1,13 @@
 import React from "react";
-import CommentsStore from "../Store/CommentsStore";
-import UserStore from "../Store/UserStore";
-import ArticlesStore from "../Store/ArticlesStore";
-import ArticleDTO from "../DTO/ArticleDTO";
-import Auth from "../Auth/Auth";
+import CommentsStore from "../../Store/CommentsStore";
+import UserStore from "../../Store/UserStore";
+import ArticlesStore from "../../Store/ArticlesStore";
+import ArticleDTO from "../../DTO/ArticleDTO";
+import Auth from "../../Auth/Auth";
 import {observer} from "mobx-react";
-import CommentEditor from "../Widget/Comment/CommentEditor";
-import CommentCardList from "../Container/CommentCardList";
-import LINK from "../PageRouter/Link";
+import CommentEditor from "../../Widget/Comment/CommentEditor";
+import CommentCardList from "./CommentCardList";
+import LINK from "../../PageRouter/Link";
 
 interface Props {
     commentsStore: CommentsStore,
@@ -17,7 +17,7 @@ interface Props {
 }
 
 @observer
-export default class ArticleCommentContainer extends React.PureComponent<Props, any> {
+export default class CommentContainer extends React.PureComponent<Props, any> {
 
     componentDidMount(): void {
         console.log("componentDidMount [ ArticleCommentAdapter ]");

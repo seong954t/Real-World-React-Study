@@ -1,8 +1,8 @@
 import React, {MouseEventHandler} from "react";
-import CommentDTO from "../DTO/CommentDTO";
-import CommentCard from "../Widget/Comment/CommentCard";
-import Loading from "../Widget/Loading/Loading";
-import LINK from "../PageRouter/Link";
+import CommentDTO from "../../DTO/CommentDTO";
+import CommentCard from "../../Widget/Comment/CommentCard";
+import Loading from "../../Widget/Loading/Loading";
+import LINK from "../../PageRouter/Link";
 
 interface Props {
     username: string,

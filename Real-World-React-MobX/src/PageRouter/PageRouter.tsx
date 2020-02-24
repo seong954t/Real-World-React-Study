@@ -1,14 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import UserStore from "../Store/UserStore";
-import HomeContainer from "../Container/HomeContainer";
-import ArticleContainer from "../Container/ArticleContainer";
-import UserInfoContainer from "../Container/UserInfoContainer";
-import HeaderContainer from "../Container/HeaderContainer";
-import PostContainer from "../Container/PostContainer";
-import SignInContainer from "../Container/SignInContainer";
-import SignUpContainer from "../Container/SignUpContainer";
-import SettingsContainer from "../Container/SettingsContainer";
+import HomeContainer from "../Container/Page/Home/HomeContainer";
+import ArticleContainer from "../Container/Page/Article/ArticleContainer";
+import UserInfoContainer from "../Container/Page/Profile/UserInfoContainer";
+import HeaderContainer from "../Container/Header/HeaderContainer";
+import PostContainer from "../Container/Page/Post/PostContainer";
+import SignInContainer from "../Container/Page/Sign/SignInContainer";
+import SignUpContainer from "../Container/Page/Sign/SignUpContainer";
+import SettingsContainer from "../Container/Page/Settings/SettingsContainer";
 import * as H from "history";
 
 class PageRouter extends React.Component<any, any> {

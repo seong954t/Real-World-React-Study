@@ -1,14 +1,14 @@
 import React from "react";
 import {RouteComponentProps} from "react-router";
-import ArticlesStore from "../Store/ArticlesStore";
-import FeedTabStore from "../Store/FeedTabStore";
-import ProfileStore from "../Store/ProfileStore";
+import ArticlesStore from "../../../Store/ArticlesStore";
+import FeedTabStore from "../../../Store/FeedTabStore";
+import ProfileStore from "../../../Store/ProfileStore";
 import {inject, observer} from "mobx-react";
-import UserStore from "../Store/UserStore";
-import FeedContainer from "./FeedContainer";
-import Auth from "../Auth/Auth";
-import UserInfoBanner from "../Widget/Banner/UserInfoBanner";
-import LINK from "../PageRouter/Link";
+import UserStore from "../../../Store/UserStore";
+import FeedContainer from "../../Feed/FeedContainer";
+import Auth from "../../../Auth/Auth";
+import UserInfoBanner from "../../../Widget/Banner/UserInfoBanner";
+import LINK from "../../../PageRouter/Link";
 
 interface Props extends RouteComponentProps<{ tab: string, tag: string, name: string }> {
     profileStore: ProfileStore,

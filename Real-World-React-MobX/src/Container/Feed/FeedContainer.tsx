@@ -1,9 +1,9 @@
 import React from "react";
 import {observer} from "mobx-react";
-import FeedTabStore from "../Store/FeedTabStore";
-import ArticlesStore from "../Store/ArticlesStore";
-import FeedPageButtonList from "../Widget/Feed/FeedPageButtonList";
-import FeedListContainer from "./FeedList";
+import FeedTabStore from "../../Store/FeedTabStore";
+import ArticlesStore from "../../Store/ArticlesStore";
+import FeedPageButtonList from "../../Widget/Feed/FeedPageButtonList";
+import FeedListContainer from "./FeedListContainer";
 
 interface Props {
     feedTabStore: FeedTabStore,

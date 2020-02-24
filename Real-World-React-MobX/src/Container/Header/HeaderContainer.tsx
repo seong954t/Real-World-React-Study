@@ -1,10 +1,10 @@
 import React from "react";
-import Auth from "../Auth/Auth";
+import Auth from "../../Auth/Auth";
 import {observer} from "mobx-react";
-import UserStore from "../Store/UserStore";
-import Config from "../Configuration/Config";
-import Header from "../Widget/Header/Header";
-import LINK from "../PageRouter/Link";
+import UserStore from "../../Store/UserStore";
+import Config from "../../Configuration/Config";
+import Header from "../../Widget/Header/Header";
+import LINK from "../../PageRouter/Link";
 
 
 interface Props {

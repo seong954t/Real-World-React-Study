@@ -1,15 +1,15 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import {RouteComponentProps} from "react-router"
-import ArticlesStore from "../Store/ArticlesStore";
-import UserStore from "../Store/UserStore";
-import CommentsStore from "../Store/CommentsStore";
-import ArticleBody from "../Widget/Article/ArticleBody";
-import PageRouter from "../PageRouter/PageRouter";
-import ArticleBanner from "../Widget/Banner/ArticleBanner";
-import Auth from "../Auth/Auth";
-import ArticleCommentContainer from "./ArticleCommentContainer";
-import LINK from "../PageRouter/Link";
+import ArticlesStore from "../../../Store/ArticlesStore";
+import UserStore from "../../../Store/UserStore";
+import CommentsStore from "../../../Store/CommentsStore";
+import ArticleBody from "../../../Widget/Article/ArticleBody";
+import PageRouter from "../../../PageRouter/PageRouter";
+import ArticleBanner from "../../../Widget/Banner/ArticleBanner";
+import Auth from "../../../Auth/Auth";
+import ArticleCommentContainer from "../../Comment/CommentContainer";
+import LINK from "../../../PageRouter/Link";
 
 interface Props extends RouteComponentProps<{ name: string }> {
     commentsStore: CommentsStore,

@@ -1,14 +1,14 @@
 import React from "react";
 import {inject, observer} from "mobx-react"
-import Auth from "../Auth/Auth";
-import Config from "../Configuration/Config";
+import Auth from "../../../Auth/Auth";
+import Config from "../../../Configuration/Config";
 import {RouteComponentProps} from "react-router";
-import TagsStore from "../Store/TagsStore";
-import FeedTabStore from "../Store/FeedTabStore";
-import ArticlesStore from "../Store/ArticlesStore";
-import HomeBanner from "../Widget/Banner/HomeBanner";
-import FeedContainer from "./FeedContainer";
-import Tags from "../Widget/Tags/Tags";
+import TagsStore from "../../../Store/TagsStore";
+import FeedTabStore from "../../../Store/FeedTabStore";
+import ArticlesStore from "../../../Store/ArticlesStore";
+import HomeBanner from "../../../Widget/Banner/HomeBanner";
+import FeedContainer from "../../Feed/FeedContainer";
+import Tags from "../../../Widget/Tags/Tags";
 import queryString from "query-string";
 
 interface Props extends RouteComponentProps {
