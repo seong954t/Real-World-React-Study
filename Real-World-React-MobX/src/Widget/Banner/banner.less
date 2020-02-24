@@ -1,4 +1,5 @@
 @import (reference) "../style/color/color.less";
+@import (reference) "../style/image/image.less";
 
 .article-info-banner{
     color: @color-white;
@@ -12,16 +13,11 @@
 
 .author-image {
     display: inline-block;
-    vertical-align: middle;
-    height: 32px;
-    width: 32px;
-    border-radius: 30px;
+    .circle-image-md;
 }
 
 .user-img{
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
+    .circle-image-lg;
     margin-bottom: 1rem;
 }
 

@@ -89,6 +89,7 @@ export default class PostStore {
                 } else if (article !== undefined) {
                     this.resetPost();
                 }
+                return article;
             }))
     }
 
