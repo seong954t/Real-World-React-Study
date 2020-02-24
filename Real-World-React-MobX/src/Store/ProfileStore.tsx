@@ -33,6 +33,16 @@ export default class ProfileStore {
     }
 
     @action
+    public resetProfile() {
+        this._profile = {
+            following: false,
+                username: "",
+            bio: "",
+            image: ""
+        };
+    }
+
+    @action
     public loadProfile = (username: string) => {
         this._isProfileLoading = true;
         RealWorldApi.getProfile(username)

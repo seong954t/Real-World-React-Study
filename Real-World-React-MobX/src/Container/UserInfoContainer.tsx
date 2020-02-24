@@ -50,6 +50,10 @@ class UserInfoContainer extends React.Component<Props, any> {
         return this.props.match.params.name;
     }
 
+    componentWillUnmount(): void {
+        this.props.profileStore.resetProfile();
+    }
+
     render() {
         const {params} = this.props.match;
         const {tab, tag, name} = params;
