@@ -2,7 +2,7 @@ import React, {MouseEventHandler} from "react";
 import CommentDTO from "../DTO/CommentDTO";
 import CommentCard from "../Widget/Comment/CommentCard";
 import Loading from "../Widget/Loading/Loading";
-import Config from "../Configuration/Config";
+import LINK from "../PageRouter/Link";
 
 interface Props {
     username: string,
@@ -23,7 +23,7 @@ export default class CommentCardList extends React.PureComponent<Props, any> {
                              id={comment.id}
                              isDisableTrashBox={comment.author.username !== this.props.username}
                              onClickTrashBox={this.props.onClickTrashBox}
-                             linkToUser={Config.LINK.USER(comment.author.username)}
+                             linkToUser={LINK.USER(comment.author.username)}
                 />
             )
         )

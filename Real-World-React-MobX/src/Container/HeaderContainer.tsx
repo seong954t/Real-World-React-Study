@@ -4,6 +4,7 @@ import {observer} from "mobx-react";
 import UserStore from "../Store/UserStore";
 import Config from "../Configuration/Config";
 import Header from "../Widget/Header/Header";
+import LINK from "../PageRouter/Link";
 
 
 interface Props {
@@ -28,12 +29,12 @@ export default class HeaderContainer extends React.Component<Props, any> {
                     image={image}
                     defaultHeader={!Auth.isSigned()}
                     title={Config.TITLE}
-                    linkToHome={Config.LINK.HOME}
-                    linkToUser={Config.LINK.USER(username)}
-                    linkToEditor={Config.LINK.EDITOR()}
-                    linkToSettings={Config.LINK.SETTINGS}
-                    linkToSignIn={Config.LINK.SIGN_IN}
-                    linkToSignUp={Config.LINK.SIGN_UP}
+                    linkToHome={LINK.HOME}
+                    linkToUser={LINK.USER(username)}
+                    linkToEditor={LINK.EDITOR()}
+                    linkToSettings={LINK.SETTINGS}
+                    linkToSignIn={LINK.SIGN_IN}
+                    linkToSignUp={LINK.SIGN_UP}
             />
         );
     }

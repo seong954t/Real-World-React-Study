@@ -8,7 +8,7 @@ import UserStore from "../Store/UserStore";
 import FeedContainer from "./FeedContainer";
 import Auth from "../Auth/Auth";
 import UserInfoBanner from "../Widget/Banner/UserInfoBanner";
-import Config from "../Configuration/Config";
+import LINK from "../PageRouter/Link";
 
 interface Props extends RouteComponentProps<{ tab: string, tag: string, name: string }> {
     profileStore: ProfileStore,
@@ -71,7 +71,7 @@ class UserInfoContainer extends React.Component<Props, any> {
                                 image={image}
                                 isOwner={Auth.isOwner(this.props.userStore.user.username, name)}
                                 isFollowLoading={this.props.profileStore.isFollowLoading}
-                                linkToSettings={Config.LINK.SETTINGS}
+                                linkToSettings={LINK.SETTINGS}
                 />
                 <div className="container row m-auto">
                     <FeedContainer articlesStore={this.props.articlesStore}

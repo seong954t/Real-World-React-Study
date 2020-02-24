@@ -6,11 +6,10 @@ import {RouteComponentProps} from "react-router";
 import TagsStore from "../Store/TagsStore";
 import FeedTabStore from "../Store/FeedTabStore";
 import ArticlesStore from "../Store/ArticlesStore";
-import queryString from "query-string";
 import HomeBanner from "../Widget/Banner/HomeBanner";
 import FeedContainer from "./FeedContainer";
 import Tags from "../Widget/Tags/Tags";
-
+import queryString from "query-string";
 
 interface Props extends RouteComponentProps {
     tagsStore: TagsStore,
