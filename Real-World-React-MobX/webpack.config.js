@@ -24,7 +24,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.(css)|(less)$/,
                 exclude: /node_modules/,
                 use: [
                     {
@@ -37,6 +37,9 @@ module.exports = {
                                 localIdentName: '[local]'
                             },
                         }
+                    },
+                    {
+                        loader: "less-loader"
                     }
                 ]
             }

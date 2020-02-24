@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.less';
 import PageRouter from "./PageRouter/PageRouter";
 
 const App = () => {

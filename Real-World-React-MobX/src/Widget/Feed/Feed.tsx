@@ -1,5 +1,5 @@
 import React from "react";
-import "./Feed.css"
+import "./Feed.less"
 import {Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
 import FeedProps from "../Props/FeedProps";
@@ -43,7 +43,7 @@ export default class Feed extends React.PureComponent<FeedProps, any> {
                 </div>
                 <Link className="preview-link" to={linkToArticle ? linkToArticle : ''}>
                     <h1>{title}</h1>
-                    <p className="preview-desc">{description}</p>
+                    <p>{description}</p>
                     <span>Read more...</span>
                 </Link>
                 <div className="text-right">

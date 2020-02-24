@@ -1,5 +1,5 @@
 import React from "react";
-import "./Loading.css"
+import "./Loading.less"
 
 export default class Loading extends React.Component<any, any> {
     render() {

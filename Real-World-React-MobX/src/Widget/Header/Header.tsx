@@ -1,5 +1,5 @@
 import React from "react";
-import './Header.css'
+import './Header.less'
 import {Link} from "react-router-dom";
 import HeaderProps from "../Props/HeaderProps";
 

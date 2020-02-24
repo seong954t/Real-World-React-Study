@@ -1,5 +1,5 @@
 import React from "react";
-import "./banner.css";
+import "./banner.less";
 import {Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
 import UserInfoBannerProps from "../Props/UserInfoBannerProps";

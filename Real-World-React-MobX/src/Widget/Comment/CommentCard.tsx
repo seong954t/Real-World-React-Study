@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./comment.css"
+import "./comment.less"
 import CommentCardProps from "../Props/CommentCardProps";
 
 export default class CommentCard extends React.Component<CommentCardProps, any> {

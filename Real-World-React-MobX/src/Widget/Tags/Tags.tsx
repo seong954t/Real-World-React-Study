@@ -1,5 +1,5 @@
 import React from "react";
-import "./tags.css";
+import "./tags.less";
 import {Link} from "react-router-dom";
 
 export default class Tags extends React.PureComponent<{tags: string[]}, any>{

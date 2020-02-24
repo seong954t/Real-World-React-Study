@@ -1,6 +1,6 @@
 import React from "react";
 import FeedPageButton from "./FeedPageButton";
-import "./Feed.css"
+import "./Feed.less"
 import FeedPageListProps from "../Props/FeedPageListProps";
 
 export default class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {

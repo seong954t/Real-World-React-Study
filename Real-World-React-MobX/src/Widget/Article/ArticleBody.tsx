@@ -1,5 +1,6 @@
 import React from "react";
 import marked from "marked";
+import "./article.less"
 
 interface Props {
     tagList: string[],
