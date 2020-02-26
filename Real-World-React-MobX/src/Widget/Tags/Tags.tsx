@@ -2,11 +2,19 @@ import React from "react";
 import "./tags.less";
 import {Link} from "react-router-dom";
 
-export default class Tags extends React.PureComponent<{tags: string[]}, any>{
+
+interface Props {
+    title: string,
+    tags: string[],
+    className?: string,
+    linkToTagFn: (tag: string) => string
+}
+
+export default class Tags extends React.PureComponent<Props, any>{
 
     tagList = () => (
         this.props.tags.map((tag: string, index: number) => (
-            <Link key={index} to={`/?tab=tag&tag=${tag}`} className="tag-default popular-tag">{tag}</Link>
+            <Link key={index} to={this.props.linkToTagFn(tag)} className="tag-popular">{tag}</Link>
         ))
     );
 
@@ -15,7 +23,7 @@ export default class Tags extends React.PureComponent<{tags: string[]}, any>{
         return (
             <div className="col-md-3">
                 <div className="tag-box">
-                    <p>Popular Tags</p>
+                    <p>{this.props.title}</p>
                     <div className="tag-list">
                         {this.tagList()}
                     </div>

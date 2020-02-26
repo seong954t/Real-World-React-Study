@@ -26,6 +26,10 @@ export default class HomeContainer extends React.Component<Props, any> {
         this.props.tagsStore.loadTags();
     }
 
+    linkToTagFunction = (tag: string) => {
+        return `/?tab=tag&tag=${tag}`
+    }
+
 
     render() {
         const {tags} = this.props.tagsStore;
@@ -43,7 +47,10 @@ export default class HomeContainer extends React.Component<Props, any> {
                                    tag={tag ? tag.toString() : ''}
                                    name={name ? name.toString() : ''}
                     />
-                    <Tags tags={tags}/>
+                    <Tags tags={tags}
+                          title="Popular Tags"
+                          linkToTagFn={this.linkToTagFunction}
+                    />
                 </div>
             </div>
         );
