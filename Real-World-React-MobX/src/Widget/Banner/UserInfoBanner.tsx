@@ -10,7 +10,7 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
         <button
             className={`btn btn-sm btn-outline-secondary float-right ${following ? "active" : ""}`}
             onClick={this.props.onClickFollow}>
-            {this.props.isFollowLoading ? <Loading className={"sm-spinner-border text-white mx-4"}/>  : (following ?
+            {this.props.isFollowLoading ? <Loading className={"sm-spinner-border mx-4"}/>  : (following ?
                 <span>
                     <i className="ion-minus-round"/> UnFollow {username}
                 </span> :

@@ -1,3 +1,5 @@
+@import (reference) "../Style/Color/color";
+
 .spinner-border {
     display: inline-block;
     width: 32px;
@@ -8,6 +10,18 @@
     border-radius: 50%;
     -webkit-animation: spinner-border .75s linear infinite;
     animation: spinner-border .75s linear infinite;
+
+    &.green{
+        color: @color-green;
+    }
+
+    &.mx{
+        margin: 0 2rem;
+    }
+
+    &.my{
+        margin: 2rem 0;
+    }
 }
 
 @keyframes spinner-border {

@@ -59,6 +59,7 @@ export default class CommentContainer extends React.PureComponent<Props, any> {
                                linkToSignUp={LINK.SIGN_UP}
                 />
                 <CommentCardList username={this.props.userStore.user.username}
+                                 loading={this.props.commentsStore.isCommentsLoading}
                                  comments={this.props.commentsStore.comments}
                                  onClickTrashBox={this.deleteComment}/>
             </div>
