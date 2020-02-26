@@ -1,0 +1,52 @@
+@import (reference) "../style/color/color";
+@import (reference) "../Style/Image/image";
+
+.feed-header {
+    margin-bottom: 24px;
+
+    .author-image {
+        vertical-align: middle;
+        display: inline-block;
+        .circle-image-md;
+    }
+
+    .info {
+        margin: 0 1.5rem 0 .3rem;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1rem;
+
+        .date {
+            color: #bbb;
+            font-size: .8rem;
+            display: block;
+            margin: 0;
+        }
+    }
+
+    .favorite-button {
+        float: right;
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+        color: @color-green;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: transparent;
+        border: 1px solid @color-green;
+
+        &:hover {
+            color: @color-white;
+            background-color: @color-green;
+        }
+
+        &.active {
+            color: @color-white;
+            background-color: @color-green;
+        }
+    }
+}

@@ -40,7 +40,7 @@ export default class HomeContainer extends React.Component<Props, any> {
         return (
             <div>
                 <HomeBanner title={Config.TITLE} description={Config.DESCRIPTION} hide={Auth.isSigned()}/>
-                <div className="container row m-auto">
+                <div className="container">
                     <FeedContainer articlesStore={this.props.articlesStore}
                                    feedTabStore={this.props.feedTabStore}
                                    tab={tab ? tab.toString() : ''}

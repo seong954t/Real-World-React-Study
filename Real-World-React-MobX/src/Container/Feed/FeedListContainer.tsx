@@ -18,7 +18,7 @@ interface Props {
 export default class FeedListContainer extends React.PureComponent<Props, any> {
 
     noArticleNotion = (
-        <div className="no-article-notion p-4">No articles are here... yet.</div>
+        <div className="no-article-notion">No articles are here... yet.</div>
     );
 
     handleFavorite = (e: any): void => {
@@ -55,7 +55,7 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
         console.log("Render [ FeedList ]");
 
         return (
-            <div className="container col-md-12">
+            <div className="container col-12">
                 <FeedTab tab={feedTabStore.tab}
                          tag={feedTabStore.tag}
                          name={feedTabStore.name}

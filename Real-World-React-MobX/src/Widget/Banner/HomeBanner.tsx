@@ -2,7 +2,7 @@ import React from "react";
 import "./banner.less";
 import HomeBannerProps from "../Props/HomeBannerProps";
 
-export default class HomeBanner extends React.PureComponent<HomeBannerProps, any>{
+export default class HomeBanner extends React.PureComponent<HomeBannerProps, any> {
 
     homeBanner = (
         <div className="banner text-center">
@@ -16,9 +16,7 @@ export default class HomeBanner extends React.PureComponent<HomeBannerProps, any
     render() {
         console.log("Render [ HomeBanner ]");
         return (
-            <div>
-                {this.props.hide ? '' : this.homeBanner}
-            </div>
+            this.props.hide ? null : this.homeBanner
         );
     }
 }
