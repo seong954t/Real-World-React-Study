@@ -20,6 +20,7 @@ export default class Feed extends React.PureComponent<FeedProps, any> {
                             favorited={favorited}
                             image={image}
                             linkToUser={linkToUser}
+                            loading={this.props.loading}
                             favoritesCount={favoritesCount}
                             onClickFavorite={this.props.onClickFavorite}
                 />
