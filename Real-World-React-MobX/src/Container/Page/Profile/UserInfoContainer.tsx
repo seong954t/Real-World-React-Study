@@ -73,12 +73,13 @@ class UserInfoContainer extends React.Component<Props, any> {
                                 isFollowLoading={this.props.profileStore.isFollowLoading}
                                 linkToSettings={LINK.SETTINGS}
                 />
-                <div className="container row m-auto">
+                <div className="container">
                     <FeedContainer articlesStore={this.props.articlesStore}
                                    feedTabStore={this.props.feedTabStore}
                                    tab={tab}
                                    tag={tag}
                                    name={name}
+                                   className={"col-12"}
                     />
                 </div>
             </div>

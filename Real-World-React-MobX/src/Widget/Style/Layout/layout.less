@@ -6,12 +6,6 @@
     margin-left: auto;
 }
 
-@media (min-width: 1200px){
-    .container {
-        max-width: 1140px;
-    }
-}
-
 .px-15px {
     .px(15px);
 }
@@ -37,10 +31,29 @@
     position: relative;
     .px-15px;
     width: @degree;
-    box-sizing: border-box;
 }
 
 .px(@degree: 0px){
     padding-left: @degree;
     padding-right: @degree;
+}
+
+@media (min-width: 768px){
+    .container {
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .col-12, .col-9, .col-6, .col-3{
+        width: 100%;
+    }
 }

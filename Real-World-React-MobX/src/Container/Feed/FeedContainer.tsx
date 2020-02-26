@@ -10,7 +10,8 @@ interface Props {
     articlesStore: ArticlesStore,
     tab: string,
     tag: string,
-    name: string
+    name: string,
+    className?: string
 }
 
 @observer
@@ -49,7 +50,7 @@ class FeedContainer extends React.Component<Props, any> {
         console.log("Render [ FeedContainer ]");
 
         return (
-            <div className="container col-9">
+            <div className={`container ${this.props.className}`}>
                 <FeedListContainer articlesStore={this.props.articlesStore}
                                    feedTabStore={this.props.feedTabStore}
                 />
