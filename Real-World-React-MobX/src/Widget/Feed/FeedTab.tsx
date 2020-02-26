@@ -32,7 +32,7 @@ export default class FeedTab extends React.Component<FeedTabProps, any>{
             <li className={`nav-item ${this.isDefaultTab() ? 'active' : ''}`}>
                 <Link className="list-group-item" to={`/@${name}`}>MyArticles</Link>
             </li>
-            <li className={`nav-item d-inline-block ${(tab === 'favorites') ? 'active' : ''}`}>
+            <li className={`nav-item ${(tab === 'favorites') ? 'active' : ''}`}>
                 <Link className="list-group-item" to={`/@${name}/favorites`}>Favorited Articles</Link>
             </li>
         </ul>

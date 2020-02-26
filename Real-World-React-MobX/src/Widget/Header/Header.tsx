@@ -6,7 +6,7 @@ import HeaderProps from "../Props/HeaderProps";
 export default class Header extends React.Component<HeaderProps, any> {
 
     signedHeader = (username: string, image: string) => (
-        <ul className="list-group">
+        <ul className="header-list-group">
             <li className="nav-item">
                 <Link to={this.props.linkToHome || ''} className="nav-link text-secondary">Home</Link>
             </li>
@@ -34,7 +34,7 @@ export default class Header extends React.Component<HeaderProps, any> {
     );
 
     defaultHeader = (
-        <ul className="list-group">
+        <ul className="header-list-group">
             <li className="nav-item">
                 <Link to={this.props.linkToHome || ''} className="nav-link text-secondary">Home</Link>
             </li>
@@ -53,9 +53,9 @@ export default class Header extends React.Component<HeaderProps, any> {
         console.log("Render [ Header ]");
 
         return (
-            <nav className="navbar container">
-                <div className="float-left">
-                    <Link to={this.props.linkToHome || ''} className="nav-brand nav justify-content-start">{title}</Link>
+            <nav className="container">
+                <div className="nav-brand-wrapper">
+                    <Link to={this.props.linkToHome || ''} className="nav-brand">{title}</Link>
                 </div>
                 {
                     defaultHeader && defaultHeader === true ?
