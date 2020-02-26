@@ -5,31 +5,46 @@
     margin-left: auto;
 }
 
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .px-15px {
-    padding-left: 15px;
-    padding-right: 15px;
+    .px(15px);
 }
 
 .col-12 {
-    position: relative;
-    width: 100%;
-    .px-15px;
+    .col();
 }
 
 .col-9 {
-    position: relative;
-    width: 75%;
-    .px-15px;
+    .col(75%);
 }
 
 .col-6 {
-    position: relative;
-    width: 50%;
-    .px-15px;
+    .col(50%);
 }
 
 .col-3 {
+    .col(25%);
+}
+
+.col(@degree: 100%){
     position: relative;
-    width: 25%;
     .px-15px;
+    width: @degree;
+    flex: 0 0 @degree;
+    box-sizing: border-box;
+}
+
+.px(@degree: 0px){
+    padding-left: @degree;
+    padding-right: @degree;
 }
