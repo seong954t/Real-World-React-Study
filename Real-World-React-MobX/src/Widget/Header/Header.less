@@ -2,19 +2,42 @@
 @import (reference) "../Style/Image/image.less";
 @import (reference) "../Style/Font/font.less";
 
-.nav-brand {
-    font-family: @font-logo;
-    font-size: 1.5rem !important;
-    padding-top: 0 !important;
-    margin-right: 2rem !important;
-    color: @color-green !important;
-
-    &:hover {
-        text-decoration: none;
+.nav-brand-wrapper{
+    display: inline-block;
+    padding: 15px;
+    .nav-brand {
+        font-family: @font-logo;
+        font-size: 24px;
+        padding-top: 0;
+        color: @color-green;
     }
 }
+
 
 .header-author-img {
     .circle-image-sm;
     margin-right: 5px;
+}
+
+.header-list-group {
+    display: inline-block;
+    padding: 0;
+    float: right;
+
+    .nav-item {
+        display: inline-block;
+
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 18px;
+            color: #aaa;
+
+            img{
+                vertical-align: bottom;
+            }
+        }
+    }
 }
