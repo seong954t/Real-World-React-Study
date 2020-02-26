@@ -1,26 +1,12 @@
-@import (reference) "../style/color/color.less";
-@import (reference) "../Style/Image/image.less";
+@import (reference) "../style/color/color";
+@import (reference) "../Style/Image/image";
+@import (reference) "../Style/Tag/tag";
+@import "../Style/Layout/layout";
 
-.author-image {
-    display: inline-block;
-    .circle-image-md;
-}
-
-.info {
-    margin: 0 1.5rem 0 .3rem;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1rem;
-}
-
-.date {
-    color: #bbb;
-    font-size: .8rem;
-    display: block;
-}
-
-.feed-preview {
+.feed-container {
     border-top: 1px solid rgba(0, 0, 0, .1);
+    padding-top: 24px;
+    padding-bottom: 24px;
 
     h1 {
         font-weight: 600 !important;
@@ -39,17 +25,11 @@
     }
 }
 
-.tag-list {
-    list-style: none;
-    display: inline-block;
+.feed-header {
+    margin-bottom: 24px;
 }
 
-.preview-tag {
-    color: #aaa;
-}
-
-
-.preview-link {
+.feed-contents {
     &:hover {
         text-decoration: none;
     }
@@ -60,6 +40,67 @@
         font-weight: 300;
         color: #bbb;
         vertical-align: middle;
+    }
+}
+
+.feed-footer {
+    text-align: right;
+}
+
+.author-image {
+    display: inline-block;
+    .circle-image-md;
+}
+
+.info {
+    margin: 0 1.5rem 0 .3rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1rem;
+}
+
+.date {
+    color: #bbb;
+    font-size: .8rem;
+    display: block;
+    margin: 0;
+}
+
+
+.tag-feed {
+    .tag-default;
+    color: #aaa;
+    margin-right: 2px;
+}
+
+.tag-feed-list {
+    .tag-list;
+    .col-6;
+}
+
+.favorite-button {
+    float: right!important;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    color: @color-green;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid @color-green;
+
+    &:hover{
+        color: @color-white;
+        background-color: @color-green;
+    }
+
+    &.active{
+        color: @color-white;
+        background-color: @color-green;
     }
 }
 

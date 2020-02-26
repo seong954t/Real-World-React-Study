@@ -1,19 +1,6 @@
 @import (reference) "../Style/Color/color";
+@import (reference) "../Style/Tag/tag";
 @import "../Style/Layout/layout";
-
-.tag-list {
-    list-style: none;
-    display: inline-block;
-}
-
-.tag-default {
-    font-size: 12.5px;
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    display: inline-block;
-    padding: 2px 10px;
-    word-break: break-word;
-}
 
 .tag-popular {
     .tag-default;
@@ -35,4 +22,8 @@
     padding: 10px;
     background: #f3f3f3;
     border-radius: 4px;
+}
+
+.tag-popular-list{
+    .tag-list;
 }

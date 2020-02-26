@@ -21,10 +21,10 @@ export default class Tags extends React.PureComponent<Props, any>{
     render() {
         console.log("Render [ Tags ]");
         return (
-            <div className={`container ${this.props.className}`}>
+            <div className={`container ${this.props.className || ""}`}>
                 <div className="tag-box">
                     <p>{this.props.title}</p>
-                    <div className="tag-list">
+                    <div className="tag-popular-list">
                         {this.tagList()}
                     </div>
                 </div>
