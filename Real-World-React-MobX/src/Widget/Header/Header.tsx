@@ -6,8 +6,7 @@ import HeaderProps from "../Props/HeaderProps";
 export default class Header extends React.Component<HeaderProps, any> {
 
     signedHeader = (username: string, image: string) => (
-        <ul className="nav list-unstyled float-right justify-content-end">
-
+        <ul className="list-group">
             <li className="nav-item">
                 <Link to={this.props.linkToHome || ''} className="nav-link text-secondary">Home</Link>
             </li>
@@ -35,7 +34,7 @@ export default class Header extends React.Component<HeaderProps, any> {
     );
 
     defaultHeader = (
-        <ul className="nav list-unstyled float-right justify-content-end">
+        <ul className="list-group">
             <li className="nav-item">
                 <Link to={this.props.linkToHome || ''} className="nav-link text-secondary">Home</Link>
             </li>

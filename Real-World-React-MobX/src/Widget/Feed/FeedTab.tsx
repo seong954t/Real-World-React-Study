@@ -12,15 +12,15 @@ export default class FeedTab extends React.Component<FeedTabProps, any>{
     );
 
     tagFeed = () => (
-        <li className="nav-item d-inline-block active">
+        <li className="nav-item active">
             <Link className="list-group-item" to="/#"><i className="ion-pound"/>{this.props.tag}</Link>
         </li>
     );
 
     mainFeed = (tab: string, tag: string) => (
-        <ul className="nav list-unstyled list-group list-group-flush feed-nav">
+        <ul className="list-group">
             {this.props.isDefault ? '' : this.singedFeed()}
-            <li className={`nav-item d-inline-block ${this.isDefaultTab() ? 'active' : ''}`}>
+            <li className={`nav-item ${this.isDefaultTab() ? 'active' : ''}`}>
                 <Link className="list-group-item" to="/#">GlobalFeed</Link>
             </li>
             {(this.props.tab === 'tag') && tag !== undefined ? this.tagFeed() : ''}
@@ -28,8 +28,8 @@ export default class FeedTab extends React.Component<FeedTabProps, any>{
     );
 
     individualFeed = (tab: string, name: string) => (
-        <ul className="nav list-unstyled list-group list-group-flush feed-nav">
-            <li className={`nav-item d-inline-block ${this.isDefaultTab() ? 'active' : ''}`}>
+        <ul className="list-group">
+            <li className={`nav-item ${this.isDefaultTab() ? 'active' : ''}`}>
                 <Link className="list-group-item" to={`/@${name}`}>MyArticles</Link>
             </li>
             <li className={`nav-item d-inline-block ${(tab === 'favorites') ? 'active' : ''}`}>
