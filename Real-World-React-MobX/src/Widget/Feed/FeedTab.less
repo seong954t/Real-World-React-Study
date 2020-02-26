@@ -1,0 +1,27 @@
+@import (reference) "../style/color/color";
+
+.feed-nav a {
+    text-decoration: none;
+}
+
+.list-group {
+    display: inline-block;
+}
+
+.nav-item {
+    &:not(.active) a {
+        color: #aaa;
+    }
+
+    .active {
+        background: @color-white;
+        border-bottom: 2px solid @color-green;
+        color: @color-green;
+        pointer-events: none;
+    }
+}
+
+.no-article-notion {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    padding: 16px;
+}

@@ -1,8 +1,9 @@
+@import (reference) "./Widget/Style/Color/color";
 a {
-    color: #5cb85c;
-    &:focus, &:hover {
-        color: #3d8b3d;
-        text-decoration: underline;
+    color: @color-green;
+    text-decoration: none;
+    &:hover, &:focus, &:link, &.active {
+        text-decoration: none;
     }
 }
 
