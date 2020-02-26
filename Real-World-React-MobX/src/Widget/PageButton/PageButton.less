@@ -1,0 +1,42 @@
+@import (reference) "../style/color/color.less";
+
+.page-item {
+    display: inline-block;
+
+    &:not(.active) {
+        color: @color-green !important;
+    }
+
+    &.active .page-link {
+        color: white !important;
+        background-color: @color-green;
+        border-color: @color-green;
+    }
+}
+
+.pagination {
+    display: block;
+    padding-left: 0;
+    list-style: none;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    color: inherit !important;
+    background-color: @color-white;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: none;
+    }
+    &:active{
+        text-decoration: none;
+    }
+    &:link{
+        text-decoration: none;
+    }
+}

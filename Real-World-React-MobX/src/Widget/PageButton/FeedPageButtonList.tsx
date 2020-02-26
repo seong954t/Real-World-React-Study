@@ -1,6 +1,6 @@
 import React from "react";
 import FeedPageButton from "./FeedPageButton";
-import "./Feed.less"
+import "./PageButton.less"
 import FeedPageListProps from "../Props/FeedPageListProps";
 
 export default class FeedPageButtonList extends React.PureComponent<FeedPageListProps, any> {
@@ -18,7 +18,7 @@ export default class FeedPageButtonList extends React.PureComponent<FeedPageList
         console.log("Render [ FeedPageButtonList ]");
 
         return (
-            <nav aria-label="...">
+            <nav>
                 <ul className="pagination">
                     {this.props.isDisable ? '' : (this.props.size > 1 ? this.pageButtonList() : '')}
                 </ul>
