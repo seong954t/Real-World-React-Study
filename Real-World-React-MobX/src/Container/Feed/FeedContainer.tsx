@@ -49,7 +49,7 @@ class FeedContainer extends React.Component<Props, any> {
         console.log("Render [ FeedContainer ]");
 
         return (
-            <div className="container col-md-9">
+            <div className="container col-9">
                 <FeedListContainer articlesStore={this.props.articlesStore}
                                    feedTabStore={this.props.feedTabStore}
                 />
