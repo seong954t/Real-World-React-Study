@@ -1,5 +1,5 @@
 import React from "react";
-import "./banner.less";
+import "./UserInfoBanner.less";
 import {Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
 import UserInfoBannerProps from "../Props/UserInfoBannerProps";
@@ -8,7 +8,7 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
 
     followButton = (username: string, following: boolean) => (
         <button
-            className={`btn btn-sm btn-outline-secondary float-right ${following ? "active" : ""}`}
+            className={`follow-button ${following ? "active" : ""}`}
             onClick={this.props.onClickFollow}>
             {this.props.isFollowLoading ? <Loading className={"sm-spinner-border mx-4"}/>  : (following ?
                 <span>
@@ -31,11 +31,11 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
         console.log("Render [ UserInfoBanner ]");
 
         return (
-            <div className="user-info-banner text-center">
+            <div className="user-info-banner">
                 <div className="container">
                     {
                         hide ? '' :
-                            <div className="col-md-10 m-auto d-inline-block">
+                            <div className="col-12">
                                 <img className="user-img"
                                      alt=""
                                      src={image}/>

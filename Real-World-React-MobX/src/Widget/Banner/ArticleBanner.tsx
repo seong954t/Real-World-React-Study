@@ -1,5 +1,5 @@
 import React from "react";
-import "./banner.less";
+import "./ArticleBanner.less";
 import {Link} from "react-router-dom";
 import ArticleBannerProps from "../Props/ArticleBannerProps";
 
@@ -23,18 +23,18 @@ export default class ArticleBanner extends React.Component<ArticleBannerProps, a
         console.log("Render [ ArticleBanner ]");
 
         return (
-            <div className="article-info-banner text-left">
+            <div className="article-info-banner">
                 <div className="container">
-                    <div className="col-md-10 m-auto d-inline-block ">
+                    <div className="col-12">
                         <h1>{title}</h1>
-                        <div className="feed mt-4">
+                        <div>
                             <Link to={linkToUser || ''}>
                                 <img src={image}
                                      alt="" className="author-image"/>
                             </Link>
                             <div className="info">
                                 <Link to={linkToUser || ''}>{username}</Link>
-                                <p className="date m-0">{new Date(createdAt).toDateString()}</p>
+                                <p className="date">{new Date(createdAt).toDateString()}</p>
                             </div>
                             {
                                 isDisableEditAndDeleteButton ?
