@@ -48,7 +48,7 @@ export default class FeedTab extends React.Component<FeedTabProps, any>{
         console.log("Render [ FeedTab ]");
 
         return (
-            <div className={`container ${this.props.className}`}>
+            <div className={`container ${this.props.className || ""}`}>
                 {
                     !name ?
                         this.mainFeed(tab ? tab : '', tag ? tag : '') :
