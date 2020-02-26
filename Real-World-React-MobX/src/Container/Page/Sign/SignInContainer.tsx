@@ -4,7 +4,7 @@ import PageRouter from "../../../PageRouter/PageRouter";
 import UserStore from "../../../Store/UserStore";
 import AuthStore from "../../../Store/AuthStore";
 import {RouteComponentProps} from "react-router";
-import SignIn from "../../../Widget/SignIn/SignIn";
+import SignIn from "../../../Widget/Sign/SignIn";
 import LINK from "../../../PageRouter/Link";
 
 interface Props extends RouteComponentProps{

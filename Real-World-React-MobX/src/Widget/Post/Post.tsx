@@ -1,13 +1,14 @@
 import React from "react";
 import PostProps from "../Props/PostProps";
+import "../Tags/tags.less"
 
 class Post extends React.Component<PostProps, any> {
 
     getTagElementList = () => (
         Array.from(this.props.tagList).map((tag: string, _: number) => {
             return (
-                <li className="tag-default popular-tag" key={tag}>
-                    <i className="ion-close-round" onClick={(e: any) => {e.tag = tag; this.props.onClickRemoveTag(e);}}/>{tag}
+                <li className="tag-popular" key={tag}>
+                    <i className="ion-close-round" onClick={(e: any) => {e.tag = tag; this.props.onClickRemoveTag(e);}}/> {tag}
                 </li>
             )
         })
@@ -26,30 +27,30 @@ class Post extends React.Component<PostProps, any> {
         console.log("Render [ Post ]");
 
         return (
-            <div className="container text-center mt-4">
-                <div className="col-10 m-auto">
-                    <form className="text-right m-auto" onSubmit={onSubmit}>
+            <div className="container form-wrapper">
+                <div className="col-9">
+                    <form className="sign-form" onSubmit={onSubmit}>
                         <fieldset className="form-group">
-                            <input type="text" placeholder="Article Title" className="form-control" name="title"
+                            <input type="text" placeholder="Article Title" name="title"
                                    value={title} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
-                            <input type="text" placeholder="What's this article about?" className="form-control"
+                            <input type="text" placeholder="What's this article about?"
                                    name="description" value={description} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
-                            <textarea rows={8} placeholder="Write your article (in markdown)" className="form-control"
+                            <textarea rows={8} placeholder="Write your article (in markdown)"
                                       name="body" value={body} onChange={onChangeInputAndTextArea}/>
                         </fieldset>
                         <fieldset className="form-group">
-                            <input type="text" placeholder="Enter tags" className="form-control"
+                            <input type="text" placeholder="Enter tags"
                                    name="tag" value={tag} onChange={onChangeInputAndTextArea}
                                    onKeyPress={this.handleEnterPress}/>
-                            <div className="text-left">
+                            <div className="entered-tag-list">
                                 {tagElementList}
                             </div>
                         </fieldset>
-                        <button className="btn btn-lg btn-success" type="submit">Publish Article</button>
+                        <button className="button-success" type="submit">Publish Article</button>
                     </form>
                 </div>
             </div>
