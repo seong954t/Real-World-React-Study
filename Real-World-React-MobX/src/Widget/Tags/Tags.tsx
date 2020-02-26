@@ -21,7 +21,7 @@ export default class Tags extends React.PureComponent<Props, any>{
     render() {
         console.log("Render [ Tags ]");
         return (
-            <div className="col-md-3">
+            <div className={`container ${this.props.className}`}>
                 <div className="tag-box">
                     <p>{this.props.title}</p>
                     <div className="tag-list">
