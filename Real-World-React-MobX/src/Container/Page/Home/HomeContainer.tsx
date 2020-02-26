@@ -46,6 +46,7 @@ export default class HomeContainer extends React.Component<Props, any> {
                                    tab={tab ? tab.toString() : ''}
                                    tag={tag ? tag.toString() : ''}
                                    name={name ? name.toString() : ''}
+                                   className={"col-9"}
                     />
                     <Tags tags={tags}
                           title="Popular Tags"

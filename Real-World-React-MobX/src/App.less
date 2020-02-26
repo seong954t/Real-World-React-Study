@@ -1,7 +1,17 @@
 @import (reference) "./Widget/Style/Color/color";
+
+* {
+    box-sizing: border-box;
+}
+
+html{
+    padding-bottom: 2rem;
+}
+
 a {
     color: @color-green;
     text-decoration: none;
+
     &:hover, &:focus, &:link, &.active {
         text-decoration: none;
     }
