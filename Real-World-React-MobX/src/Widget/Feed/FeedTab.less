@@ -1,23 +1,29 @@
 @import (reference) "../style/color/color";
 
-.feed-nav a {
-    text-decoration: none;
-}
-
 .list-group {
     display: inline-block;
-}
+    padding: 0;
 
-.nav-item {
-    &:not(.active) a {
-        color: #aaa;
-    }
+    .nav-item {
+        display: inline-block;
 
-    .active {
-        background: @color-white;
-        border-bottom: 2px solid @color-green;
-        color: @color-green;
-        pointer-events: none;
+        &:not(.active) a {
+            color: #aaa;
+        }
+
+        &.active {
+            background: @color-white;
+            border-bottom: 1px solid @color-green;
+            color: @color-green;
+            pointer-events: none;
+        }
+
+        .list-group-item {
+            position: relative;
+            display: inline-block;
+            padding: 20px 20px;
+            box-sizing: border-box;
+        }
     }
 }
 
@@ -25,3 +31,5 @@
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding: 16px;
 }
+
+
