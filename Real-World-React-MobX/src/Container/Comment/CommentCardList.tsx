@@ -35,8 +35,8 @@ export default class CommentCardList extends React.PureComponent<Props, any> {
             <div>
                 {
                     this.props.loading ?
-                        <div style={{textAlign: "center"}}>
-                            <Loading className={"green mx my"}/>
+                        <div>
+                            <Loading className={"green my"}/>
                         </div> :
                         this.commentElements(this.props.comments)
                 }
