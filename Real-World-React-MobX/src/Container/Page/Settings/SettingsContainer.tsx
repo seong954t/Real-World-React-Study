@@ -26,10 +26,10 @@ export default class SettingsContainer extends React.Component<Props, State> {
         bio: '',
         email: '',
         password: ''
-    }
+    };
 
     componentDidMount(): void {
-        console.log("componentDidMount [ SettingsAdapter ]");
+        console.log("componentDidMount [ SettingsContainer ]");
         this.setState({
             ...this.props.userStore.user,
             password: ""
@@ -65,7 +65,7 @@ export default class SettingsContainer extends React.Component<Props, State> {
     render() {
         const {password, email, username, bio, image} = this.state;
 
-        console.log("Render [ SettingsAdapter ]");
+        console.log("Render [ SettingsContainer ]");
 
         return (
             <Settings password={password}
