@@ -26,7 +26,7 @@ export default class ArticleBanner extends React.Component<ArticleBannerProps, a
                 <div className="container">
                     <div className="col-12">
                         <h1>{title}</h1>
-                        <div className="user-info">
+                        <div>
                             <Link to={linkToUser || ''}>
                                 <img src={image}
                                      alt="" className="author-image"/>
