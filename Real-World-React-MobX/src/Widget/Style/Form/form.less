@@ -1,84 +1,92 @@
 @import (reference) "../Color/color";
 
-.form-wrapper {
+h1 {
+    margin: 0 0 1rem 0;
+}
+
+a {
+    display: block;
+    margin: 0 0 1.5rem 0;
+}
+
+button {
+    padding: .75rem 1.5rem;
+    font-size: 1.25rem;
+    border-radius: .3rem;
+    display: block;
+    font-weight: 400;
+    line-height: 1.25;
     text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+}
 
-    h1 {
-        margin: 0 0 1rem 0;
-    }
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
 
-    a {
-        display: block;
-        margin: 0 0 1.5rem 0;
-    }
+fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 1rem;
 
-    button {
+    input, textarea {
+        font-family: Arial;
         padding: .75rem 1.5rem;
         font-size: 1.25rem;
         border-radius: .3rem;
         display: block;
-        font-weight: 400;
+        width: 100%;
         line-height: 1.25;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
+        color: #55595c;
+        background-color: @color-white;
+        background-image: none;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .15);
     }
+}
+
+.form-wrapper {
+    text-align: center;
 
     .sign-form {
         width: 100%;
         display: table;
         margin: auto;
 
-        fieldset {
-            border: none;
-            padding: 0;
-            margin-bottom: 1rem;
 
-            input, textarea {
-                font-family: Arial;
-                padding: .75rem 1.5rem;
-                font-size: 1.25rem;
-                border-radius: .3rem;
-                display: block;
-                width: 100%;
-                line-height: 1.25;
-                color: #55595c;
-                background-color: @color-white;
-                background-image: none;
-                background-clip: padding-box;
-                border: 1px solid rgba(0, 0, 0, .15);
-            }
-        }
-
-        .button-success {
-            position: relative;
-            color: @color-green;
-            background-color: @color-white;
-            border: 1px solid @color-green;
-            float: right;
-            &:hover {
-                color: @color-white;
-                background-color: @color-green;
-            }
-        }
     }
+}
 
-    hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 1px solid rgba(0,0,0,.1);
+.button-success {
+    position: relative;
+    color: @color-green;
+    background-color: @color-white;
+    border: 1px solid @color-green;
+    float: right;
+    &:hover {
+        color: @color-white;
+        background-color: @color-green;
     }
+}
 
-    .button-danger {
-        color: @color-red;
-        background-color: @color-white;
-        border: 1px solid @color-red;
+.button-success-sm{
+    .button-success;
+    padding: .5rem .7rem;
+    font-size: .75rem;
+}
 
-        &:hover {
-            color: @color-white;
-            background-color: @color-red;
-        }
+.button-danger {
+    color: @color-red;
+    background-color: @color-white;
+    border: 1px solid @color-red;
+
+    &:hover {
+        color: @color-white;
+        background-color: @color-red;
     }
 }

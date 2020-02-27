@@ -1,13 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import CommentEditorProps from "../Props/CommentEditorProps";
+import "../Style/Form/form.less"
 
 export default class CommentEditor extends React.PureComponent<CommentEditorProps, any> {
 
     commentBox = () => (
         <form onSubmit={this.props.onSubmit}>
             <div className="comment-write-box">
-                <fieldset className="form-group m-0">
+                <fieldset>
                     <textarea rows={3} placeholder="Write a comment..." className="form-control p-3"
                               value={this.props.comment} onChange={this.props.onChangeTextArea}/>
                 </fieldset>
@@ -15,8 +16,7 @@ export default class CommentEditor extends React.PureComponent<CommentEditorProp
                     <img src={this.props.image}
                          alt=""
                          className="comment-author-img"/>
-                    <button className="btn btn-sm btn-success float-right" type="submit">Post Comment
-                    </button>
+                    <button className="button-success-sm" type="submit">Post Comment</button>
                 </div>
             </div>
         </form>
@@ -34,7 +34,7 @@ export default class CommentEditor extends React.PureComponent<CommentEditorProp
     render() {
         console.log("Render [ CommentEditor ]");
         return (
-            <div className="mb-3">
+            <div>
                 {this.props.isDisableCommentBox ? this.requestSignElement() : this.commentBox()}
             </div>
         );
