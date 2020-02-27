@@ -28,7 +28,7 @@ class UserInfoContainer extends React.Component<Props, any> {
         if (name !== prevProps.match.params.name) {
             this.props.profileStore.loadProfile(name);
         }
-    }
+    };
 
     componentDidMount(): void {
         const name = this.getUsername();
@@ -37,7 +37,7 @@ class UserInfoContainer extends React.Component<Props, any> {
         if (name !== this.props.profileStore.profile.username) {
             this.props.profileStore.loadProfile(name);
         }
-    }
+    };
 
     handleFollow = (e: any) => {
         e.preventDefault();
@@ -48,11 +48,7 @@ class UserInfoContainer extends React.Component<Props, any> {
 
     getUsername = (): string => {
         return this.props.match.params.name;
-    }
-
-    componentWillUnmount(): void {
-        this.props.profileStore.resetProfile();
-    }
+    };
 
     render() {
         const {params} = this.props.match;
