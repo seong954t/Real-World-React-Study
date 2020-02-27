@@ -7,12 +7,11 @@ export default class ArticleBanner extends React.Component<ArticleBannerProps, a
 
     individualArticleButtons = () => (
         <span>
-            <Link className="btn btn-outline-secondary btn-sm"
+            <Link className="button-edit"
                to={this.props.linkToEditor || ''}>
-                <i className="ion-edit"/>Edit Article</Link>
-            <button className="btn btn-outline-danger btn-sm" onClick={this.props.onClickDelete}>
-                <i className="ion-edit"/>
-                Delete Article
+                <i className="ion-edit"/> Edit Article</Link>
+            <button className="button-delete" onClick={this.props.onClickDelete}>
+                <i className="ion-trash-a"/> Delete Article
             </button>
         </span>
     );
