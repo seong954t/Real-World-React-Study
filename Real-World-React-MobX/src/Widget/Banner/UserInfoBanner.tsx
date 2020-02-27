@@ -32,7 +32,7 @@ class UserInfoBanner extends React.PureComponent<UserInfoBannerProps, any> {
 
         return (
             <div className="user-info-banner">
-                <div className="container user-info-container">
+                <div className="container">
                     {
                         hide ? '' :
                             <div className="col-12">
