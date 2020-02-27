@@ -56,9 +56,9 @@ export default class ArticleContainer extends React.Component<Props, any> {
                                    onClickDelete={this.handleDeleteArticle}
                                    isDisableEditAndDeleteButton={!Auth.isOwner(this.props.userStore.user.username, author.username)}
                     />
-                    <div className="container row m-auto">
+                    <div className="container">
                         <ArticleBody tagList={article.tagList} body={article.body}/>
-                        <div style={{textAlign: "center"}}>
+                        <div>
                             <ArticleCommentContainer commentsStore={this.props.commentsStore}
                                                      userStore={this.props.userStore}
                                                      articlesStore={this.props.articlesStore}
