@@ -1,6 +1,7 @@
 import React from "react";
 import marked from "marked";
 import "./article.less"
+import "../Style/Tag/tag.less"
 
 interface Props {
     tagList: string[],
@@ -21,13 +22,13 @@ export default class ArticleBody extends React.Component<Props, any> {
         console.log("Render [ ArticleBody ]");
 
         return (
-            <div className="article-desc col-md-12 p-0">
-                <div className="col-md-12 p-0">
+            <div className="article-desc col-12">
+                <div className="col-md-12">
                     <div className="article-marked">
                         <div dangerouslySetInnerHTML={markedHTML}></div>
                     </div>
                     <div>
-                        <ul className="tag-list p-0">
+                        <ul className="tag-list">
                             {this.tagListElements(tagList)}
                         </ul>
                     </div>
