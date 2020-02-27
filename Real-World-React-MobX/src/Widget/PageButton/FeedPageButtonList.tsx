@@ -18,7 +18,7 @@ export default class FeedPageButtonList extends React.PureComponent<FeedPageList
         console.log("Render [ FeedPageButtonList ]");
 
         return (
-            <nav>
+            <nav className="col-12">
                 <ul className="pagination">
                     {this.props.isDisable ? '' : (this.props.size > 1 ? this.pageButtonList() : '')}
                 </ul>

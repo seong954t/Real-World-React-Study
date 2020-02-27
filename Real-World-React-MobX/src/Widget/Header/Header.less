@@ -1,41 +1,44 @@
-@import (reference) "../style/color/color.less";
-@import (reference) "../Style/Image/image.less";
-@import (reference) "../Style/Font/font.less";
+@import (reference) "../style/color/color";
+@import (reference) "../Style/Image/image";
+@import (reference) "../Style/Font/font";
+@import (reference) "../Style/Layout/layout";
 
-.nav-brand-wrapper{
-    display: inline-block;
-    padding: 15px;
-    .nav-brand {
-        font-family: @font-logo;
-        font-size: 24px;
-        padding-top: 0;
-        color: @color-green;
+.header-container{
+    display: table;
+
+    .nav-brand-wrapper{
+        display: block;
+        float: left;
+        padding: 15px;
+        .nav-brand {
+            font-family: @font-logo;
+            font-size: 24px;
+            padding-top: 0;
+            color: @color-green;
+        }
     }
-}
 
 
-.header-author-img {
-    .circle-image-sm;
-    margin-right: 5px;
-}
+    .header-list-group {
+        display: block;
+        padding: 0;
+        float: right;
 
-.header-list-group {
-    display: inline-block;
-    padding: 0;
-    float: right;
+        .nav-item {
+            display: block;
+            float: left;
+            .nav-link {
+                position: relative;
+                display: block;
+                padding: 15px;
+                font-size: 18px;
+                color: #aaa;
 
-    .nav-item {
-        display: inline-block;
-
-        .nav-link {
-            position: relative;
-            display: inline-block;
-            padding: 15px;
-            font-size: 18px;
-            color: #aaa;
-
-            img{
-                vertical-align: bottom;
+                .header-author-img {
+                    .circle-image-sm;
+                    margin-right: 5px;
+                    vertical-align: bottom;
+                }
             }
         }
     }

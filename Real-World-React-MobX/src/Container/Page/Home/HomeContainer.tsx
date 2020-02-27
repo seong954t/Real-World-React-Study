@@ -46,12 +46,12 @@ export default class HomeContainer extends React.Component<Props, any> {
                                    tab={tab ? tab.toString() : ''}
                                    tag={tag ? tag.toString() : ''}
                                    name={name ? name.toString() : ''}
-                                   className={"col-9"}
+                                   className={"col-9 float-left"}
                     />
                     <Tags tags={tags}
                           title="Popular Tags"
                           linkToTagFn={this.linkToTagFunction}
-                          className={"col-3"}
+                          className={"col-3 float-left"}
                     />
                 </div>
             </div>

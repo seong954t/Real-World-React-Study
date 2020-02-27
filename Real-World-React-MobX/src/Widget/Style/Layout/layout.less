@@ -27,10 +27,11 @@
 }
 
 .col(@degree: 100%){
-    display: inline-block;
+    display: block;
     position: relative;
     .px-15px;
     width: @degree;
+    margin: auto;
 }
 
 .px(@degree: 0px){
@@ -50,10 +51,16 @@
     }
 }
 
-
-
 @media (max-width: 768px) {
     .col-12, .col-9, .col-6, .col-3{
         width: 100%;
     }
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
 }

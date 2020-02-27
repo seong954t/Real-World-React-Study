@@ -1,31 +1,24 @@
 .circle-image-lg {
-    width: 100px;
-    height: 100px;
-    background-size: 100px;
-    border-radius: 50px;
-    display: inline-block;
+    .circle-image();
 }
 
 .circle-image-md {
-    width: 32px;
-    height: 32px;
-    background-size: 32px;
-    border-radius: 16px;
-    display: inline-block;
+    .circle-image(32px);
 }
 
 .circle-image-sm {
-    width: 26px;
-    height: 26px;
-    background-size: 26px;
-    border-radius: 13px;
-    display: inline-block;
+    .circle-image(26px);
 }
 
 .circle-image-xsm {
-    width: 20px;
-    height: 20px;
-    background-size: 20px;
-    border-radius: 10px;
-    display: inline-block;
+    .circle-image(20px);
+}
+
+.circle-image(@size: 100px){
+    width: @size;
+    height: @size;
+    background-size: @size;
+    border-radius: @size/2;
+    display: block;
+    float: left;
 }

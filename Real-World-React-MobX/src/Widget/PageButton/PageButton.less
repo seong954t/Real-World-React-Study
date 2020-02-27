@@ -1,7 +1,9 @@
 @import (reference) "../style/color/color.less";
+@import (reference) "../Style/Layout/layout";
 
 .page-item {
-    display: inline-block;
+    display: block;
+    float: left;
 
     &:not(.active) {
         color: @color-green !important;
@@ -15,8 +17,7 @@
 }
 
 .pagination {
-    display: block;
-    padding-left: 0;
+    .col-12;
     list-style: none;
 }
 

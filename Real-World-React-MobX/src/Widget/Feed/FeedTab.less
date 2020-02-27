@@ -1,11 +1,12 @@
 @import (reference) "../style/color/color";
 
 .list-group {
-    display: inline-block;
+    display: table;
     padding: 0;
 
     .nav-item {
-        display: inline-block;
+        display: block;
+        float: left;
 
         &:not(.active) a {
             color: #aaa;
@@ -20,7 +21,7 @@
 
         .list-group-item {
             position: relative;
-            display: inline-block;
+            display: block;
             padding: 20px 20px;
         }
     }

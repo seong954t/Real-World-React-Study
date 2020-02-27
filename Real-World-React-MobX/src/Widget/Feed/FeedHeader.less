@@ -1,18 +1,22 @@
 @import (reference) "../style/color/color";
 @import (reference) "../Style/Image/image";
+@import (reference) "../Style/Layout/layout";
 
 .feed-header {
+    .col-12;
+    float: left;
     margin-bottom: 24px;
 
     .author-image {
         vertical-align: middle;
-        display: inline-block;
+        display: block;
         .circle-image-md;
     }
 
     .info {
         margin: 0 1.5rem 0 .3rem;
-        display: inline-block;
+        display: block;
+        float: left;
         vertical-align: middle;
         line-height: 1rem;
 
@@ -31,7 +35,7 @@
         line-height: 1.5;
         border-radius: .2rem;
         color: @color-green;
-        display: inline-block;
+        display: block;
         font-weight: 400;
         text-align: center;
         vertical-align: middle;
