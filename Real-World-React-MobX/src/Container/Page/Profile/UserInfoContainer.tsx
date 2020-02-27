@@ -79,7 +79,7 @@ class UserInfoContainer extends React.Component<Props, any> {
                                    tab={tab}
                                    tag={tag}
                                    name={name}
-                                   className={"col-12"}
+                                   className={"col-9"}
                     />
                 </div>
             </div>
