@@ -2,8 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 import CommentEditorProps from "../Props/CommentEditorProps";
 
-
-
 export default class CommentEditor extends React.PureComponent<CommentEditorProps, any> {
 
     commentBox = () => (

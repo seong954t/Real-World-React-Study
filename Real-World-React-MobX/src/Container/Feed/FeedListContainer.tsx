@@ -63,8 +63,8 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
                 />
                 {
                     articlesStore.isArticlesLoading ?
-                        <div style={{textAlign: "center"}}>
-                            <Loading className="green mx my"/>
+                        <div>
+                            <Loading className="green my"/>
                         </div> :
                         feedList
                 }

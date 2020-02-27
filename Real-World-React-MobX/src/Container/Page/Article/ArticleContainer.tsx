@@ -58,11 +58,13 @@ export default class ArticleContainer extends React.Component<Props, any> {
                     />
                     <div className="container row m-auto">
                         <ArticleBody tagList={article.tagList} body={article.body}/>
-                        <ArticleCommentContainer commentsStore={this.props.commentsStore}
-                                               userStore={this.props.userStore}
-                                               articlesStore={this.props.articlesStore}
-                                               article={article}
-                        />
+                        <div style={{textAlign: "center"}}>
+                            <ArticleCommentContainer commentsStore={this.props.commentsStore}
+                                                     userStore={this.props.userStore}
+                                                     articlesStore={this.props.articlesStore}
+                                                     article={article}
+                            />
+                        </div>
                     </div>
                 </div>
             )

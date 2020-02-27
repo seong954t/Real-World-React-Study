@@ -49,7 +49,7 @@ export default class CommentContainer extends React.PureComponent<Props, any> {
         console.log("Render [ ArticleCommentAdapter ]");
 
         return (
-            <div className="col-md-8 m-auto">
+            <div className="col-9">
                 <CommentEditor comment={this.props.commentsStore.comment}
                                image={this.props.userStore.user.image}
                                onChangeTextArea={this.handleChange}
