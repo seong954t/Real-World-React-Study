@@ -6,7 +6,7 @@ import FeedTabProps from "../Props/FeedTabProps";
 export default class FeedTab extends React.Component<FeedTabProps, any>{
 
     singedFeed = () => (
-        <li className={`nav-item d-inline-block ${(this.props.tab === 'feed') ? 'active' : ''}`}>
+        <li className={`nav-item ${(this.props.tab === 'feed') ? 'active' : ''}`}>
             <Link className="list-group-item" to="/?tab=feed">Your Feed</Link>
         </li>
     );

@@ -13,7 +13,7 @@ export default class Feed extends React.PureComponent<FeedProps, any> {
         console.log("Render [ Feed ]");
 
         return (
-            <div className="feed-container">
+            <div className="feed-container col-12 float-left">
                 <FeedHeader id={this.props.id} 
                             username={username}
                             createdAt={createdAt} 

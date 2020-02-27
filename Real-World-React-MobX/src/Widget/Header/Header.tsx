@@ -53,7 +53,7 @@ export default class Header extends React.Component<HeaderProps, any> {
         console.log("Render [ Header ]");
 
         return (
-            <nav className="container">
+            <nav className="container header-container">
                 <div className="nav-brand-wrapper">
                     <Link to={this.props.linkToHome || ''} className="nav-brand">{title}</Link>
                 </div>
