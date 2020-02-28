@@ -51,7 +51,7 @@ export default class HomeContainer extends React.Component<Props, any> {
                     <Tags tags={tags}
                           title="Popular Tags"
                           linkToTagFn={this.linkToTagFunction}
-                          className={"col-3 float-left"}
+                          className={`col-3 float-left`}
                     />
                 </div>
             </div>

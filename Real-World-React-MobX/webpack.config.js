@@ -33,9 +33,10 @@ module.exports = {
                     {
                         loader : 'css-loader',
                         options: {
+                            localsConvention: "camelCaseOnly",
                             modules: {
                                 localIdentName: '[local]'
-                            },
+                            }
                         }
                     },
                     {
