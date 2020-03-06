@@ -20,6 +20,9 @@ const Auth = {
     },
     setToken: (token: string) => {
         localStorage.setItem(Auth.TOKEN_KEY, token);
+    },
+    resetToken: () => {
+        localStorage.removeItem(Auth.TOKEN_KEY);
     }
 };
 
