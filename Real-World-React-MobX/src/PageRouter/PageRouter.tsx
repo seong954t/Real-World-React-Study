@@ -10,6 +10,7 @@ import SignInContainer from "../Container/Page/Sign/SignInContainer";
 import SignUpContainer from "../Container/Page/Sign/SignUpContainer";
 import SettingsContainer from "../Container/Page/Settings/SettingsContainer";
 import * as H from "history";
+import {TestPage} from "../Refactor/TestPage";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -40,6 +41,7 @@ class PageRouter extends React.Component<any, any> {
                 <Route path="/settings" component={SettingsContainer}/>
                 <Route path="/@:name/" exact component={UserInfoContainer}/>
                 <Route path="/@:name/:tab" component={UserInfoContainer}/>
+                <Route path="/test" component={TestPage}/>
             </Router>
         );
     }

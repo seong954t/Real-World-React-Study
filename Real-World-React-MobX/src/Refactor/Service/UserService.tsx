@@ -1,10 +1,10 @@
 import {action, observable} from "mobx";
-import UserVo from "../Vo/UserVo";
-import ErrorsVo from "../Vo/ErrorsVo";
+import UserVo from "../../Vo/UserVo";
+import ErrorsVo from "../../Vo/ErrorsVo";
 import RealWorldApi from "../Request/RealWorldApi";
-import {User} from "../Model/User";
-import {Errors} from "../Model/Errors";
-import Auth from "../Auth/Auth";
+import {User} from "../../Model/User";
+import {Errors} from "../../Model/Errors";
+import Auth from "../../Auth/Auth";
 
 export class UserService {
 
