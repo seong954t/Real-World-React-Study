@@ -12,7 +12,7 @@ export class AuthService {
     @observable errors: ErrorsVo | null = null;
 
     @action
-    login(email: string, password: string): Promise<any> {
+    login(email: string, password: string) {
         return RealWorldApi.login(email, password)
             .then(action((result) => {
                 if (result instanceof User) {
@@ -33,16 +33,17 @@ export class AuthService {
     }
 
     @action
-    registration(username: string, email: string, password: string): Promise<any> {
+    registration(username: string, email: string, password: string) {
         return RealWorldApi.registration(username, email, password)
             .then(action((result) => {
-                    if (result instanceof User) {
-                        this.user = new User(result);
-                        Auth.setToken(this.user.token);
-                    } else if (result instanceof Errors) {
-                        this.errors = new Errors(result)
-                    }
-                }))
+                const {errors, user} = result;
+                if (user) {
+                    this.user = new User(user);
+                    Auth.setToken(this.user.token);
+                } else if (errors) {
+                    this.errors = new Errors(errors)
+                }
+            }))
     }
 
     @action
