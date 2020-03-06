@@ -1,10 +1,10 @@
 import {action, computed, observable} from "mobx";
-import CommentDTO from "../DTO/CommentDTO";
+import CommentVo from "../Vo/CommentVo";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class CommentsStore {
     @observable
-    private _comments: Map<number, CommentDTO> = new Map<number, CommentDTO>();
+    private _comments: Map<number, CommentVo> = new Map<number, CommentVo>();
 
     @observable
     public comment: string = "";
@@ -34,7 +34,7 @@ export default class CommentsStore {
                     if (errors !== undefined) {
                         RealWorldApi.alertError(errors);
                     } else {
-                        comments.forEach((comment: CommentDTO) => {
+                        comments.forEach((comment: CommentVo) => {
                             this._comments.set(comment.id, comment);
                         })
                     }
@@ -47,7 +47,7 @@ export default class CommentsStore {
 
     @computed
     get comments() {
-        return Array.from(this._comments.values()).sort((a: CommentDTO, b: CommentDTO) => {
+        return Array.from(this._comments.values()).sort((a: CommentVo, b: CommentVo) => {
             return b.id - a.id
         });
     }

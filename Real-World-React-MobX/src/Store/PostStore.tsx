@@ -1,5 +1,5 @@
 import {action, computed, observable} from "mobx";
-import PostDTO from "../DTO/PostDTO";
+import PostDTO from "../Vo/PostVo";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import {addObserver} from "mobx/lib/core/observable";
 

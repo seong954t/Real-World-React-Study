@@ -5,14 +5,14 @@ import {RouteComponentProps} from "react-router";
 import UserStore from "../../../Store/UserStore";
 import AuthStore from "../../../Store/AuthStore";
 import Settings from "../../../Widget/Settings/Settings";
-import UserDTO from "../../../DTO/UserDTO";
+import UserVo from "../../../Vo/UserVo";
 
 interface Props extends RouteComponentProps {
     userStore: UserStore,
     authStore: AuthStore
 }
 
-interface State extends UserDTO {
+interface State extends UserVo {
     password: string
 }
 

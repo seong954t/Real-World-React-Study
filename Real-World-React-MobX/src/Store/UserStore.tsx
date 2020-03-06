@@ -1,11 +1,11 @@
 import {action, computed, observable} from "mobx";
-import UserDTO from "../DTO/UserDTO";
+import UserVo from "../Vo/UserVo";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
 
 export default class UserStore {
     @observable
-    private _user: UserDTO = {
+    private _user: UserVo = {
         username: "",
         image: "",
         bio: "",
@@ -14,7 +14,7 @@ export default class UserStore {
     };
 
     @action
-    public setUser(user: UserDTO) {
+    public setUser(user: UserVo) {
         this._user = user;
     }
 

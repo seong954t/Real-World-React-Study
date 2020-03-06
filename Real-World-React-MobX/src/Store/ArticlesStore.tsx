@@ -1,5 +1,5 @@
 import {action, computed, observable, ObservableMap} from "mobx";
-import ArticleDTO from "../DTO/ArticleDTO";
+import ArticleVo from "../Vo/ArticleVo";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 import Auth from "../Auth/Auth";
 
@@ -9,10 +9,10 @@ export default class ArticlesStore {
     readonly INDIVIDUAL_FEED_SIZE: number = 5;
 
     @observable
-    private _articles: Map<string, ArticleDTO> = new Map<string, ArticleDTO>();
+    private _articles: Map<string, ArticleVo> = new Map<string, ArticleVo>();
 
     @observable
-    private _article?: ArticleDTO;
+    private _article?: ArticleVo;
 
     @observable
     private articlesCount: number = 0;
@@ -59,7 +59,7 @@ export default class ArticlesStore {
                     } else {
                         this._articles.clear();
                         this._favoriteLoadings.clear();
-                        articles.forEach((article: ArticleDTO) => {
+                        articles.forEach((article: ArticleVo) => {
                             this._articles.set(article.slug, article);
                             this._favoriteLoadings.set(article.slug, false);
                         });
@@ -79,12 +79,12 @@ export default class ArticlesStore {
     }
 
     @computed
-    get articles(): ArticleDTO[] {
+    get articles(): ArticleVo[] {
         return Array.from(this._articles.values());
     }
 
     @computed
-    get article(): ArticleDTO | undefined{
+    get article(): ArticleVo | undefined{
         return this._article
     }
 
