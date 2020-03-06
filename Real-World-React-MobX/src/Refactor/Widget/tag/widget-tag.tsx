@@ -8,10 +8,10 @@ interface Props extends HTMLAttributes<HTMLSpanElement>{
 export class WidgetTag extends React.Component<Props, any> {
 
     render() {
-        const {children, ...htmlAttrs} = this.props;
+        const {children, className,...htmlAttrs} = this.props;
 
         return (
-            <span className={"widget-tag"} {...htmlAttrs}>
+            <span className={`widget-tag ${className}`} {...htmlAttrs}>
                 {children}
             </span>
         );

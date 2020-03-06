@@ -22,7 +22,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
 export class WidgetMiniInfo extends React.Component<Props, any> {
 
     render() {
-        const {className, src, title, titleColor, subtitle, subtitleColor, imageSize, titleFontSize, subtitleFontSize, type, ...htmlAttrs} = this.props;
+        const {src, title, titleColor, subtitle, subtitleColor, imageSize, titleFontSize, subtitleFontSize, type, className, ...htmlAttrs} = this.props;
 
         const typeElement = (type === WidgetMiniInfoType.DEFAULT ?
                 <>
@@ -75,7 +75,7 @@ export class WidgetMiniInfo extends React.Component<Props, any> {
 
 
         return (
-            <div className={`mini-profile`} {...htmlAttrs}>
+            <div {...htmlAttrs} className={`widget-mini-profile ${className}`}>
                 <img className="mini-profile-image"
                      src={src}
                      width={imageSize}
