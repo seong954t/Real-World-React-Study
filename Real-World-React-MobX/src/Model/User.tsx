@@ -7,7 +7,7 @@ export class User implements UserVo {
     bio: string = "";
     image: string = "";
 
-    constructor(user: Readonly<UserVo>) {
+    constructor(user?: Readonly<UserVo>) {
         if(user){
             this.email = user.email;
             this.token = user.token;
