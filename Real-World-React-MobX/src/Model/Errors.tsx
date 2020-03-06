@@ -1,7 +1,8 @@
 import ErrorsVo from "../Vo/ErrorsVo";
+import {observable} from "mobx";
 
 export class Errors implements ErrorsVo {
-    body: string[] = [];
+    @observable body: string[] = [];
 
     constructor(errors?: Readonly<ErrorsVo>) {
         if (errors) {
