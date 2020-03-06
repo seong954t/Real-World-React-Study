@@ -1,4 +1,4 @@
-export default interface postDTO{
+export default interface postVo{
     title: string,
     description: string,
     body: string,

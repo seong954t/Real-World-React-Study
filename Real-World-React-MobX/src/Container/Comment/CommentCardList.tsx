@@ -1,20 +1,20 @@
 import React, {MouseEventHandler} from "react";
-import CommentDTO from "../../DTO/CommentDTO";
+import CommentVo from "../../Vo/CommentVo";
 import CommentCard from "../../Widget/Comment/CommentCard";
 import Loading from "../../Widget/Loading/Loading";
 import LINK from "../../PageRouter/Link";
 
 interface Props {
     username: string,
-    comments: CommentDTO[],
+    comments: CommentVo[],
     loading?: boolean,
     onClickTrashBox: MouseEventHandler<HTMLButtonElement>
 }
 
 export default class CommentCardList extends React.PureComponent<Props, any> {
 
-    commentElements = (comments: CommentDTO[]) => (
-        comments.map((comment: CommentDTO, _) => (
+    commentElements = (comments: CommentVo[]) => (
+        comments.map((comment: CommentVo, _) => (
                 <CommentCard key={comment.id}
                              image={comment.author.image}
                              username={comment.author.username}

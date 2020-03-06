@@ -1,6 +1,6 @@
-import AuthorDTO from "./AuthorDTO";
+import AuthorVo from "./AuthorVo";
 
-export default interface ArticleDTO {
+export default interface ArticleVo {
     slug: string,
     title: string,
     description: string,
@@ -10,5 +10,5 @@ export default interface ArticleDTO {
     updatedAt: string,
     favorited: boolean,
     favoritesCount: number,
-    author: AuthorDTO
+    author: AuthorVo
 }

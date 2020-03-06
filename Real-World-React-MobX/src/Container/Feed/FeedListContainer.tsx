@@ -1,5 +1,5 @@
 import React, {MouseEventHandler} from "react";
-import ArticleDTO from "../../DTO/ArticleDTO";
+import ArticleVo from "../../Vo/ArticleVo";
 import Feed from "../../Widget/Feed/Feed";
 import FeedTab from "../../Widget/Feed/FeedTab";
 import Auth from "../../Auth/Auth";
@@ -28,7 +28,7 @@ export default class FeedListContainer extends React.PureComponent<Props, any> {
 
     getFeedList = () => {
         const {articles} = this.props.articlesStore
-        return articles.map((article: ArticleDTO, _) => (
+        return articles.map((article: ArticleVo, _) => (
             <Feed key={article.slug}
                   createdAt={article.createdAt}
                   username={article.author.username}

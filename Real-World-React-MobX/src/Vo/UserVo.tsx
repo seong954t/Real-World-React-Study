@@ -1,4 +1,4 @@
-export default interface UserDTO {
+export default interface UserVo {
     email: string,
     token?: string,
     username: string,

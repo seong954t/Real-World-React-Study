@@ -1,4 +1,4 @@
-export default interface AuthorDTO {
+export default interface AuthorVo {
     username: string,
     bio: string,
     image: string,

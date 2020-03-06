@@ -1,10 +1,10 @@
 import {action, computed, observable} from "mobx";
-import ProfileDTO from "../DTO/ProfileDTO";
+import ProfileVo from "../Vo/ProfileVo";
 import RealWorldApi from "../RealWordApi/RealWorldApi";
 
 export default class ProfileStore {
     @observable
-    private _profile: ProfileDTO = {
+    private _profile: ProfileVo = {
         following: false,
         username: "",
         bio: "",

@@ -2,7 +2,7 @@ import React from "react";
 import CommentsStore from "../../Store/CommentsStore";
 import UserStore from "../../Store/UserStore";
 import ArticlesStore from "../../Store/ArticlesStore";
-import ArticleDTO from "../../DTO/ArticleDTO";
+import ArticleVo from "../../Vo/ArticleVo";
 import Auth from "../../Auth/Auth";
 import {observer} from "mobx-react";
 import CommentEditor from "../../Widget/Comment/CommentEditor";
@@ -13,7 +13,7 @@ interface Props {
     commentsStore: CommentsStore,
     userStore: UserStore,
     articlesStore: ArticlesStore,
-    article: ArticleDTO
+    article: ArticleVo
 }
 
 @observer
