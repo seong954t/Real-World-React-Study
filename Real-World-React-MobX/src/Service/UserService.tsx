@@ -6,13 +6,15 @@ import {User} from "../Model/User";
 import {Errors} from "../Model/Errors";
 import Auth from "../Auth/Auth";
 
-export class AuthService {
+export class UserService {
 
     @observable user: UserVo | null = null;
     @observable errors: ErrorsVo | null = null;
+    @observable isLoading: boolean = false;
 
     @action
     login(email: string, password: string) {
+        this.isLoading = true;
         return RealWorldApi.login(email, password)
             .then(action((result) => {
                 if (result instanceof User) {
@@ -21,6 +23,8 @@ export class AuthService {
                 } else if (result instanceof Errors) {
                     this.errors = new Errors(result)
                 }
+            })).finally(action(() => {
+                this.isLoading = false;
             }))
     }
 
@@ -34,6 +38,7 @@ export class AuthService {
 
     @action
     registration(username: string, email: string, password: string) {
+        this.isLoading = true;
         return RealWorldApi.registration(username, email, password)
             .then(action((result) => {
                 const {errors, user} = result;
@@ -43,17 +48,45 @@ export class AuthService {
                 } else if (errors) {
                     this.errors = new Errors(errors)
                 }
+            })).finally(action(() => {
+                this.isLoading = false;
             }))
     }
 
     @action
-    updateUser(user: UserVo) {
-        this.user = user;
+    updateUser(image: string, username: string, bio: string, email: string, password: string): Promise<any> {
+        this.isLoading = true;
+        return RealWorldApi.updateUser(image, username, bio, email, password)
+            .then(action((result) => {
+                const {errors, user} = result;
+                if (errors !== undefined) {
+                    this.user = new User(user);
+                    Auth.setToken(this.user.token)
+                }
+            })).finally(action(() => {
+                this.isLoading = false;
+            }))
     }
 
-    private static _instance = new AuthService();
+    @action
+    public loadUser = () => {
+        if (Auth.isSigned()) {
+            this.isLoading = true;
+            RealWorldApi.getUser()
+                .then(action((result) => {
+                    const {errors, user} = result;
+                    if (user) {
+                        this.user = new User(user);
+                    }
+                })).finally(action(() => {
+                    this.isLoading = false;
+                }))
+        }
+    };
 
-    static get instance(): AuthService {
+    private static _instance = new UserService();
+
+    static get instance(): UserService {
         return this._instance;
     }
 }
