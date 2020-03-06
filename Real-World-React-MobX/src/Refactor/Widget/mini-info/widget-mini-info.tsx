@@ -19,7 +19,7 @@ export class WidgetMiniInfo extends React.Component<Props, any> {
         const {className, src, title, titleColor, date, dateColor, imageSize, titleFontSize, dateFontSize, ...htmlAttrs} = this.props;
 
         return (
-            <div {...htmlAttrs} className={`mini-profile`}>
+            <div className={`mini-profile`} {...htmlAttrs}>
                 <img className="mini-profile-image"
                      src={src}
                      width={imageSize}

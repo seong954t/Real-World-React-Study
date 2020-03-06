@@ -1,5 +1,6 @@
 import React from "react";
 import {WidgetMiniInfo} from "./Widget/mini-info/widget-mini-info";
+import {WidgetTag} from "./Widget/tag/widget-tag";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -16,6 +17,10 @@ export class TestPage extends React.Component<any, any> {
                                 src={"https://avatars1.githubusercontent.com/u/19300604?s=400&u=a9419b174dafadd4ba7dda60638fc2ba5ee49b67&v=4"}
                 />
                 <div>widget-mini-info</div>
+                <div>
+                    <WidgetTag style={{marginRight: "3px"}}>hehe</WidgetTag><WidgetTag style={{marginRight: "3px"}}>hehe</WidgetTag><WidgetTag style={{marginRight: "3px"}}>hehe</WidgetTag><WidgetTag style={{marginRight: "3px"}}>hehe</WidgetTag><WidgetTag style={{marginRight: "3px"}}>hehe</WidgetTag>
+                </div>
+                <div>widget-tag</div>
             </div>
         );
     }
