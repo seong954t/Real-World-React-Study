@@ -1,7 +1,7 @@
-import ArticleVo from "../Vo/ArticleVo";
+import ArticleVo from "../../Vo/ArticleVo";
 import {action, computed, observable} from "mobx";
-import RealWorldApi from "../RealWordApi/RealWorldApi";
-import Auth from "../Auth/Auth";
+import RealWorldApi from "../../RealWordApi/RealWorldApi";
+import Auth from "../../Auth/Auth";
 
 export class FeedService {
 

@@ -1,6 +1,6 @@
 import {action, observable} from "mobx";
-import {Profile} from "../Model/Profile";
-import RealWorldApi from "../RealWordApi/RealWorldApi";
+import {Profile} from "../../Model/Profile";
+import RealWorldApi from "../../RealWordApi/RealWorldApi";
 
 export class ProfileService {
 
