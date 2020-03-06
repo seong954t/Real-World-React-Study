@@ -1,6 +1,4 @@
 import Auth from "../Auth/Auth";
-import UserVo from "../Vo/UserVo";
-import ErrorsVo from "../Vo/ErrorsVo";
 
 const Method = {
     GET: "GET",
@@ -23,7 +21,7 @@ const Header = {
 
 const RealWorldApi = {
     domain: "https://conduit.productionready.io/api/",
-    login: (email: string, password: string): Promise<UserVo | ErrorsVo> => {
+    login: (email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "users/login";
         const body = {
             user: {
@@ -37,7 +35,7 @@ const RealWorldApi = {
     logout: () => {
 
     },
-    registration: (username: string, email: string, password: string): Promise<UserVo | ErrorsVo> => {
+    registration: (username: string, email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "users";
         const body = {
             user: {
@@ -48,6 +46,10 @@ const RealWorldApi = {
         };
 
         return RealWorldApi.requestApi(url, Method.POST, Header.DEFAULT, body);
+    },
+    getTags: (): Promise<any> => {
+        const url = RealWorldApi.domain + "tags";
+        return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
     },
     requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<any> => {
         const init = body === undefined ? {
