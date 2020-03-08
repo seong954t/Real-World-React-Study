@@ -1,5 +1,5 @@
-import CommentVo from "../Vo/CommentVo";
-import AuthorVo from "../Vo/AuthorVo";
+import CommentVo from "../../Vo/CommentVo";
+import AuthorVo from "../../Vo/AuthorVo";
 import {Author} from "./Author";
 
 export class Comment implements CommentVo {

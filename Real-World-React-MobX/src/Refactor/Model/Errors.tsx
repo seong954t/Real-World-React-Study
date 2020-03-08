@@ -1,4 +1,4 @@
-import ErrorsVo from "../Vo/ErrorsVo";
+import ErrorsVo from "../../Vo/ErrorsVo";
 import {observable} from "mobx";
 
 export class Errors implements ErrorsVo {
