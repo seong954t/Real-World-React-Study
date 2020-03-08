@@ -1,4 +1,4 @@
-import UserVo from "../Vo/UserVo";
+import UserVo from "../../Vo/UserVo";
 
 export class User implements UserVo {
     email: string = "";

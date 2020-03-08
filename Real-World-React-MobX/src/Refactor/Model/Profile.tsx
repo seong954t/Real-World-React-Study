@@ -1,4 +1,4 @@
-import ProfileVo from "../Vo/ProfileVo";
+import ProfileVo from "../../Vo/ProfileVo";
 import {observable} from "mobx";
 
 export class Profile implements ProfileVo {

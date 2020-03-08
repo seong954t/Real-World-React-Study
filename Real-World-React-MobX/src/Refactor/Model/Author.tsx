@@ -1,4 +1,4 @@
-import AuthorVo from "../Vo/AuthorVo";
+import AuthorVo from "../../Vo/AuthorVo";
 import {observable} from "mobx";
 
 export class Author implements AuthorVo {

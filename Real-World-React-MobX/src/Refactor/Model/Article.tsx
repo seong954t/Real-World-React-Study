@@ -1,5 +1,5 @@
-import ArticleVo from "../Vo/ArticleVo";
-import AuthorVo from "../Vo/AuthorVo";
+import ArticleVo from "../../Vo/ArticleVo";
+import AuthorVo from "../../Vo/AuthorVo";
 import {Author} from "./Author";
 import {observable} from "mobx";
 
