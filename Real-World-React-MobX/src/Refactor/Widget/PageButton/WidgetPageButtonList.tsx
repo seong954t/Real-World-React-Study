@@ -4,7 +4,8 @@ import {observer} from "mobx-react";
 import {observable} from "mobx";
 import "./WidgetPageButtonList.less";
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+interface Props {
+    className?: string,
     color?: string,
     onButtonItemClick?: MouseEventHandler<HTMLButtonElement>,
     from: number,
@@ -22,7 +23,7 @@ export class WidgetPageButtonList extends React.Component<Props> {
     }
 
     range = (from: number, to: number) => {
-        return Array.from({length: to - from}, (_, i) => from + i);
+        return Array.from({length: to - from + 1}, (_, i) => from + i);
     }
 
 
@@ -43,10 +44,8 @@ export class WidgetPageButtonList extends React.Component<Props> {
     }
 
     render() {
-        const {children, className, ...htmlAttrs} = this.props;
-
         return (
-            <div {...htmlAttrs} className={`page-button-list ${className}`}>
+            <div className={`page-button-list ${this.props.className || ''}`}>
                 {this.pageButtonItems()}
             </div>
         );

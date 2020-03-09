@@ -19,7 +19,7 @@ export class FeedService {
     @action
     loadArticles(tab: string, tag: string, name: string, page: number): void {
         const url = this.getRequestArticleUrl(tab, tag, name, page);
-        if(!this.isArticlesLoading){
+        if (!this.isArticlesLoading) {
             if (page === 1) {
                 this.isArticlesLoading = true;
             }
@@ -96,9 +96,11 @@ export class FeedService {
         return url + query;
     };
 
-    private static _instance = new FeedService();
+    static _instance: FeedService;
 
     static get instance(): FeedService {
         return this._instance;
     }
 }
+
+FeedService._instance = new FeedService();

@@ -25,9 +25,11 @@ export class WidgetMiniInfo extends React.Component<Props, any> {
 
     appendLinkTo = (element: any) => {
         if (this.props.linkToTitle) {
-            return (<Link to={this.props.linkToTitle}>
-                {element}
-            </Link>)
+            return (
+                <Link to={this.props.linkToTitle}>
+                    {element}
+                </Link>
+            )
         }
         return element;
     }

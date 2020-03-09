@@ -8,9 +8,15 @@ import Auth from "../../Auth/Auth";
 
 export class UserService {
 
-    @observable user: UserVo | null = null;
-    @observable errors: ErrorsVo | null = null;
-    @observable isLoading: boolean = false;
+    @observable user: UserVo;
+    @observable errors: ErrorsVo;
+    @observable isLoading: boolean;
+
+    constructor() {
+        this.user = new User();
+        this.errors = new Errors();
+        this.isLoading = false;
+    }
 
     @action
     login(email: string, password: string) {
@@ -32,8 +38,8 @@ export class UserService {
     logout() {
         RealWorldApi.logout();
         Auth.resetToken();
-        this.user = null;
-        this.errors = null;
+        this.user = new User();
+        this.errors = new Errors();
     }
 
     @action
@@ -74,19 +80,22 @@ export class UserService {
             this.isLoading = true;
             RealWorldApi.getUser()
                 .then(action((result) => {
+                    console.log(result);
                     const {errors, user} = result;
                     if (user) {
                         this.user = new User(user);
                     }
                 })).finally(action(() => {
-                    this.isLoading = false;
-                }))
+                this.isLoading = false;
+            }))
         }
     };
 
-    private static _instance = new UserService();
+    static _instance: UserService;
 
     static get instance(): UserService {
         return this._instance;
     }
 }
+
+UserService._instance = new UserService();

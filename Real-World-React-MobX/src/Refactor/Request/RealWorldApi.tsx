@@ -51,7 +51,7 @@ const RealWorldApi = {
     },
     getUser: (): Promise<any> => {
         const url = RealWorldApi.domain + "user";
-        return RealWorldApi.requestApi(url, Method.GET, Header.AUTH);
+        return RealWorldApi.requestApi(url, Method.GET, Header.AUTH());
     },
     updateUser: (image: string, username: string, bio: string, email: string, password: string): Promise<any> => {
         const url = RealWorldApi.domain + "user";
@@ -66,7 +66,7 @@ const RealWorldApi = {
             }
         }`;
 
-        return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, JSON.parse(body));
+        return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH(), JSON.parse(body));
     },
     getTags: (): Promise<any> => {
         const url = RealWorldApi.domain + "tags";
@@ -87,7 +87,7 @@ const RealWorldApi = {
                 tagList: Array.from(tagList)
             }
         };
-        return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
+        return RealWorldApi.requestApi(url, Method.POST, Header.AUTH(), responseBody)
     },
     updateArticle: (title: string, description: string, body: string, tagList: string[], slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/`;
@@ -101,12 +101,12 @@ const RealWorldApi = {
             }
         };
 
-        return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH, responseBody)
+        return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH(), responseBody)
     },
     deleteArticle: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/`;
 
-        return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
+        return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH())
     },
     requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<any> => {
         const init = body === undefined ? {

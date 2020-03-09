@@ -4,16 +4,16 @@ import {Link} from "react-router-dom";
 import "./GFeedTabItem.less";
 
 interface Props {
-    vm: GFeedTabItemVM,
+    vm: GFeedTabItemVM
     active: boolean
 }
 
 export class GFeedTabItem extends React.Component<Props>{
     render() {
-        const {title, linkToTap} = this.props.vm;
+        const {title, linkToTab} = this.props.vm;
         return (
-            <span className={`feed-tab ${this.props.active ? "active" : ""}`}>
-                <Link to={linkToTap}>
+            <span className={`feed-tab ${this.props.vm.active ? "active" : ""}`}>
+                <Link to={linkToTab}>
                     {title}
                 </Link>
             </span>

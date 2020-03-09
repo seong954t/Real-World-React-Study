@@ -1,0 +1,51 @@
+@import (reference) "../../Widget/Style/Color/Color";
+@import (reference) "../../Widget/Style/Font/Font";
+@import (reference) "../../Widget/Style/Layout/Layout";
+
+.main-header-container {
+    overflow: auto;
+
+    .main-header-logo-wrapper {
+        display: block;
+        float: left;
+        padding: 15px;
+
+        .main-header-logo {
+            font-family: @font-logo;
+            font-size: 24px;
+            padding-top: 0;
+            color: @color-green;
+        }
+    }
+
+
+    .header-tab-list {
+        display: block;
+        padding: 0;
+        float: right;
+
+        .header-tab-item {
+            display: block;
+            float: left;
+            padding: 15px;
+
+            .header-link {
+                position: relative;
+                display: block;
+                font-size: 18px;
+                color: #aaa;
+
+                .header-author-img {
+                    width: 26px;
+                    height: 26px;
+                    background-size: 26px;
+                    border-radius: 13px;
+                    display: block;
+                    //float: left;
+                    margin-right: 5px;
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+}

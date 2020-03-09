@@ -1,4 +1,4 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import RealWorldApi from "../Request/RealWorldApi";
 
 export class TagService {
@@ -15,14 +15,22 @@ export class TagService {
                 if (tags) {
                     this.tags = tags;
                 }
+                console.log(this.tags)
             })).finally(action(() => {
                 this.isLoading = false;
             }))
     }
 
-    private static _instance = new TagService();
+    @computed
+    get tagList() {
+        return this.tags;
+    }
+
+    static _instance: TagService;
 
     static get instance(): TagService {
         return this._instance;
     }
 }
+
+TagService._instance = new TagService();
