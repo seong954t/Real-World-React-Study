@@ -16,6 +16,7 @@ import queryString from "query-string";
 import Auth from "../../../../Auth/Auth";
 import {GTagBox} from "../../../Garget/TagBox/View/GTagBox";
 import {TagService} from "../../../Service/TagService";
+import "./HomePage.less";
 
 interface Props extends RouteComponentProps {
     tagsStore: TagsStore,
@@ -59,13 +60,19 @@ export class HomePage extends React.Component<Props> {
 
         return (
             <Main image={image} username={username}>
-                <GFeedTabList vm={new FeedTabListVM(feedList, this.props.location.search)}/>
-                <GFeedList vm={new FeedListVM(this.feedService.articles)}></GFeedList>
-                <WidgetPageButtonList from={1}
-                                      to={this.feedService.getPageListSize()}
-                                      color={"#5CB85C"}
-                />
-                <GTagBox tagList={this.tagService.tagList}/>
+                <div className={"container"}>
+                    <div className={"feed-container"}>
+                        <GFeedTabList vm={new FeedTabListVM(feedList, this.props.location.search)}/>
+                        <GFeedList vm={new FeedListVM(this.feedService.articles)}></GFeedList>
+                        <WidgetPageButtonList from={1}
+                                              to={this.feedService.getPageListSize()}
+                                              color={"#5CB85C"}
+                        />
+                    </div>
+                    <div className={"tag-container"}>
+                        <GTagBox tagList={this.tagService.tagList}/>
+                    </div>
+                </div>
             </Main>
         );
     }
