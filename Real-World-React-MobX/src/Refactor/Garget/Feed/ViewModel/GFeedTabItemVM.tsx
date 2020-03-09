@@ -1,4 +1,4 @@
-export abstract class GFeedTabVM {
+export abstract class GFeedTabItemVM {
     abstract title: string;
-    abstract linkToTitle: string;
+    abstract linkToTap: string;
 }

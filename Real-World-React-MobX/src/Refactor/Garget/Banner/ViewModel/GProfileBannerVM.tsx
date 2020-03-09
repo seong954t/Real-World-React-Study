@@ -1,5 +1,5 @@
 import ProfileVo from "../../../Vo/ProfileVo";
 
-export class ProfileBannerVM {
-    profileVO: ProfileVo;
+export abstract class GProfileBannerVM {
+    abstract profile: ProfileVo;
 }

@@ -1,19 +1,19 @@
 import React from "react";
-import {GFeedTabVM} from "../ViewModel/GFeedTabVM";
+import {GFeedTabItemVM} from "../ViewModel/GFeedTabItemVM";
 import {Link} from "react-router-dom";
-import "./GFeedTab.less";
+import "./GFeedTabItem.less";
 
 interface Props {
-    vm: GFeedTabVM,
+    vm: GFeedTabItemVM,
     active: boolean
 }
 
-export class GFeedTab extends React.Component<Props>{
+export class GFeedTabItem extends React.Component<Props>{
     render() {
-        const {title, linkToTitle} = this.props.vm;
+        const {title, linkToTap} = this.props.vm;
         return (
             <span className={`feed-tab ${this.props.active ? "active" : ""}`}>
-                <Link to={linkToTitle}>
+                <Link to={linkToTap}>
                     {title}
                 </Link>
             </span>

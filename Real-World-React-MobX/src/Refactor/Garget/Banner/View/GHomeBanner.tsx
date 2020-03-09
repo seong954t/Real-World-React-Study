@@ -1,5 +1,5 @@
 import React from "react";
-import "./HomeBanner.less";
+import "./GHomeBanner.less";
 
 interface Props {
     title: string,
