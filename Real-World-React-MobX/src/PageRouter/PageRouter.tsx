@@ -11,9 +11,15 @@ import SignUpContainer from "../Container/Page/Sign/SignUpContainer";
 import SettingsContainer from "../Container/Page/Settings/SettingsContainer";
 import * as H from "history";
 import {TestPage} from "../Refactor/TestPage";
-import {HomePage} from "../Refactor/Page/Home/HomePage";
+import {HomePage} from "../Refactor/Page/Home/View/HomePage";
+import {UserService} from "../Refactor/Service/UserService";
 
 class PageRouter extends React.Component<any, any> {
+
+    constructor(props: any) {
+        super(props);
+        UserService.instance.loadUser();
+    }
 
     static pageRoute(history: H.History, destination: string){
         history.replace(destination);
