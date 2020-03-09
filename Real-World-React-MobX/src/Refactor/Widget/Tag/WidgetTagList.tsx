@@ -3,7 +3,7 @@ import {WidgetTagItem} from "./WidgetTagItem";
 import "./WidgetTagList.less"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-    tagList: Array<string>,
+    tagList: string[],
     tagBackgroundColor?: string,
     tagColor?: string,
     tagBorder?: string
@@ -17,18 +17,19 @@ export class WidgetTagList extends React.Component<Props> {
         border: this.props.tagBorder || ''
     };
 
-    tagItems = this.props.tagList.map((tagName) => {
+    tagItems = () => {
+        return this.props.tagList.map((tagName) => {
             return <WidgetTagItem style={this.style}>
                 {tagName}
             </WidgetTagItem>
         })
+    };
 
     render() {
         const {className, ...htmlAttrs} = this.props;
-
         return (
             <div {...htmlAttrs} className={`widget-tag-item-list ${className}`}>
-                {this.tagItems}
+                {this.tagItems()}
             </div>
         );
     }

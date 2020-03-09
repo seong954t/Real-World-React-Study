@@ -10,7 +10,7 @@ export class GFeedList extends React.Component<Props>{
 
     feedItems = () => {
         return this.props.vm.feedItemList.map((feed) => {
-            return <GFeedItem vm={feed}></GFeedItem>
+            return <GFeedItem key={feed.article.slug} vm={feed}></GFeedItem>
         })
     }
 
