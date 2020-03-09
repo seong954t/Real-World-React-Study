@@ -1,5 +1,5 @@
 import React, {HTMLAttributes} from "react";
-import "./widget-form.less";
+import "./WidgetForm.less";
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
 
