@@ -4,7 +4,8 @@ import ArticleVo from "../../../Vo/ArticleVo";
 import {FeedItemVM} from "./FeedItemVM";
 import {Article} from "../../../Model/Article";
 
-export class FeedListVM extends GFeedListVM{
+export class FeedListVM extends GFeedListVM {
+
     feedItemList: Array<GFeedItemVM>;
 
     constructor(feedList: ArticleVo[]) {
