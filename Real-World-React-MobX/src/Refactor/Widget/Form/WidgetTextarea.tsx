@@ -2,7 +2,7 @@ import React, {HTMLAttributes} from "react";
 import "./WidgetForm.less";
 
 interface Props extends HTMLAttributes<HTMLTextAreaElement> {
-
+    rows?: number
 }
 
 export class WidgetTextarea extends React.Component<Props, any> {
