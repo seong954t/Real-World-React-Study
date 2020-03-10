@@ -24,6 +24,8 @@ import {GArticleBanner} from "./Garget/Banner/View/GArticleBanner";
 import {GArticleBannerVM} from "./Garget/Banner/ViewModel/GArticleBannerVM";
 import {GArticleContent} from "./Garget/Article/View/GArticleContent";
 import {GArticleContentVM} from "./Garget/Article/ViewModel/GArticleContentVM";
+import {GCommentEditor} from "./Garget/Comment/View/GCommentEditor";
+import {GCommentEditorVM} from "./Garget/Comment/ViewModel/GCommentEditorVM";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -130,6 +132,11 @@ export class TestPage extends React.Component<any, any> {
                 <div>
                     <GArticleContent vm={new TestArticleContentVM()}></GArticleContent>
                     asdgasdgasdg
+                </div>
+                <br></br>
+
+                <div>
+                    <GCommentEditor vm={new TestCommentEditorVM()}></GCommentEditor>
                 </div>
             </div>
         );
@@ -257,5 +264,18 @@ class TestArticleContentVM extends GArticleContentVM {
                 following: false
             }
         }
+    }
+}
+
+class TestCommentEditorVM extends GCommentEditorVM{
+    onClickPost: MouseEventHandler<HTMLButtonElement>;
+    image: string;
+
+    constructor() {
+        super();
+        this.onClickPost = () => {
+            console.log("aaa")
+        }
+        this.image = "image"
     }
 }
