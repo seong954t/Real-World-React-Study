@@ -9,7 +9,7 @@ import {observer} from "mobx-react";
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 
 interface Props {
-    vm: GFeedItemVM
+    vm: GFeedItemVM,
 }
 
 @observer
@@ -23,7 +23,6 @@ export class GFeedItem extends React.Component<Props> {
     render() {
         const {author, createdAt, description, favorited, favoritesCount, tagList, title} = this.props.vm.article;
         const {image, username} = author;
-
         return (
             <div className={"feed-item col-12"}>
                 <div className={"feed-header"}>
@@ -36,14 +35,12 @@ export class GFeedItem extends React.Component<Props> {
                                     subtitle={createdAt}
                                     subtitleFontSize={"12px"}
                                     subtitleColor={"#BBBBBB"}
-                                    type={WidgetMiniInfoType.DEFAULT}
-                    />
+                                    type={WidgetMiniInfoType.DEFAULT}/>
 
                     <WidgetColorButton className={"favorite-button"}
                                        color={"#5CB85C"}
                                        active={favorited}
-                                       onClick={this.onClickFavoriteHandler}
-                    >
+                                       onClick={this.onClickFavoriteHandler}>
                         <span><i className="ion-heart"></i>{favoritesCount}</span>
                     </WidgetColorButton>
                 </div>
@@ -58,8 +55,7 @@ export class GFeedItem extends React.Component<Props> {
                     <WidgetTagList className={"feed-tag-list"} tagList={tagList}
                                    tagBackgroundColor={"#ffffff"}
                                    tagColor={"#aaa"}
-                                   tagBorder={"1px solid #ddd"}
-                    />
+                                   tagBorder={"1px solid #ddd"}/>
                 </div>
             </div>
         );
