@@ -1,7 +1,7 @@
-import React, {HTMLAttributes} from "react";
+import React, {HTMLAttributes, TextareaHTMLAttributes} from "react";
 import "./WidgetForm.less";
 
-interface Props extends HTMLAttributes<HTMLTextAreaElement> {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     rows?: number
 }
 
