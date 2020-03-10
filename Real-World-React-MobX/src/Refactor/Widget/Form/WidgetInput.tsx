@@ -1,7 +1,7 @@
-import React, {HTMLAttributes} from "react";
+import React, {InputHTMLAttributes} from "react";
 import "./WidgetForm.less";
 
-interface Props extends HTMLAttributes<HTMLInputElement> {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 }
 

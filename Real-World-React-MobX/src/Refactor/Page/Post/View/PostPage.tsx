@@ -2,6 +2,7 @@ import React from "react";
 import {Main} from "../../../Garget/Main/Main";
 import {WidgetInput} from "../../../Widget/Form/WidgetInput";
 import {WidgetTextarea} from "../../../Widget/Form/WidgetTextarea";
+import "../../../Garget/Form/Form.less";
 import "./PostPage.less";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";

@@ -2,6 +2,7 @@ import React from "react";
 import {WidgetInput} from "../../../Widget/Form/WidgetInput";
 import {WidgetTextarea} from "../../../Widget/Form/WidgetTextarea";
 import {Main} from "../../../Garget/Main/Main";
+import "../../../Garget/Form/Form.less";
 import "./SettingsPage.less";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 
