@@ -52,7 +52,7 @@ export class SettingsPage extends React.Component<Props, State> {
             this.props.history,
             LINK.REFACTOR.HOME
         )
-    }
+    };
 
     render() {
         return (
