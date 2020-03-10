@@ -11,11 +11,12 @@ export class UserService {
     @observable user: UserVo;
     @observable errors: ErrorsVo;
     @observable isLoading: boolean;
-
+    @observable isLoad: boolean;
     constructor() {
         this.user = new User();
         this.errors = new Errors();
         this.isLoading = false;
+        this.isLoad = false;
     }
 
     @action
@@ -68,9 +69,11 @@ export class UserService {
         return RealWorldApi.updateUser(image, username, bio, email, password)
             .then(action((result) => {
                 const {errors, user} = result;
-                if (errors !== undefined) {
+                if (user) {
                     this.user = new User(user);
                     Auth.setToken(this.user.token)
+                } else if(errors) {
+                    throw Response.error();
                 }
             })).finally(action(() => {
                 this.isLoading = false;
@@ -90,7 +93,10 @@ export class UserService {
                     }
                 })).finally(action(() => {
                 this.isLoading = false;
+                this.isLoad = true;
             }))
+        } else{
+            this.isLoad = true;
         }
     };
 
