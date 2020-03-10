@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 export class WidgetColorButton extends React.Component<Props, any> {
 
     defaultStyle = {
-        backgroundColor: "white",
+        backgroundColor: "inherit",
         color: this.props.color,
         border: `1px solid ${this.props.color}`
     };
