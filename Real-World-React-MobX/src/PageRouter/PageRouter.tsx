@@ -18,12 +18,14 @@ import {SettingsPage} from "../Refactor/Page/Settings/View/SettingsPage";
 import {PostPage} from "../Refactor/Page/Post/View/PostPage";
 import {SignUpPage} from "../Refactor/Page/Sign/View/SignUpPage";
 import {SignInPage} from "../Refactor/Page/Sign/View/SignInPage";
+import {observer} from "mobx-react";
 
+@observer
 class PageRouter extends React.Component<any, any> {
-
+    readonly userService = UserService.instance;
     constructor(props: any) {
         super(props);
-        UserService.instance.loadUser();
+        this.userService.loadUser();
     }
 
     static pageRoute(history: H.History, destination: string){
@@ -54,16 +56,21 @@ class PageRouter extends React.Component<any, any> {
                 <Route path="/@:name/" exact component={UserInfoContainer}/>
                 <Route path="/@:name/:tab" component={UserInfoContainer}/>
                 <Route path="/test" component={TestPage}/>
+                {
+                    this.userService.isLoad ?
+                    (<>
+                        <Route path="/refactor" exact component={HomePage}/>
+                        <Route path="/refactor/login" component={SignInPage}/>
+                        <Route path="/refactor/register" component={SignUpPage}/>
+                        {/*<Route path="/refactor/article/:name" component={ArticleContainer}/>*/}
+                        <Route path="/refactor/editor" exact component={PostPage}/>
+                        {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
+                        <Route path="/refactor/settings" component={SettingsPage}/>
+                        <Route path="/refactor/@:name/" exact component={ProfilePage}/>
+                        <Route path="/refactor/@:name/:tab" component={ProfilePage}/>
+                    </>) : ''
+                }
 
-                <Route path="/refactor" exact component={HomePage}/>
-                <Route path="/refactor/login" component={SignInPage}/>
-                <Route path="/refactor/register" component={SignUpPage}/>
-                {/*<Route path="/refactor/article/:name" component={ArticleContainer}/>*/}
-                <Route path="/refactor/editor" exact component={PostPage}/>
-                {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
-                <Route path="/refactor/settings" component={SettingsPage}/>
-                <Route path="/refactor/@:name/" exact component={ProfilePage}/>
-                <Route path="/refactor/@:name/:tab" component={ProfilePage}/>
             </Router>
         );
     }
