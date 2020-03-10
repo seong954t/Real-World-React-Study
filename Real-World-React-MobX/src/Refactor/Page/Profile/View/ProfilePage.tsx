@@ -85,11 +85,12 @@ export class ProfilePage extends React.Component<Props> {
 
     render() {
         const {name, tab} = this.props.match.params;
-        console.log(this.props.match.params);
+
         const feedList = [FeedTabType.MYARTICLES, FeedTabType.FAVORITEDARITCLES];
         const articles = this.feedService.articles;
         const profile = this.profileService.profile;
 
+        console.log("this.feedService.isArticlesLoading : ", this.feedService.isArticlesLoading)
         return (
             <Main>
                 {
@@ -100,13 +101,19 @@ export class ProfilePage extends React.Component<Props> {
                 }
                 <div className={"profile-feed-container col-6"}>
                     <GFeedTabList vm={new ProfileFeedTabListVM(feedList, name, tab)}/>
-                    <GFeedList vm={new FeedListVM(articles)}
-                               isArticlesLoading={this.feedService.isArticlesLoading}></GFeedList>
-                    <WidgetPageButtonList from={1}
-                                          to={this.feedService.getPageListSize()}
-                                          color={"#5CB85C"}
-                                          onButtonItemClick={this.pageButtonClickHandler}
-                    />
+                    {
+                        this.feedService.isArticlesLoading ?
+                            <WidgetLoading className={"green my"}/> :
+                            <>
+                                <GFeedList vm={new FeedListVM(articles)}></GFeedList>
+                                <WidgetPageButtonList from={1}
+                                                      to={this.feedService.getPageListSize()}
+                                                      color={"#5CB85C"}
+                                                      onButtonItemClick={this.pageButtonClickHandler}
+                                />
+                            </>
+                    }
+
                 </div>
             </Main>
         );

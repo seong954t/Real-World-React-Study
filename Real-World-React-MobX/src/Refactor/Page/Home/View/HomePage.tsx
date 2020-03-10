@@ -15,6 +15,8 @@ import {GTagLinkBox} from "../../../Garget/TagBox/View/GTagLinkBox";
 import {TagService} from "../../../Service/TagService";
 import "./HomePage.less";
 import {FeedTabType} from "../../../Garget/Feed/View/FeedTabType";
+import {GHomeBanner} from "../../../Garget/Banner/View/GHomeBanner";
+import {WidgetLoading} from "../../../Widget/Loading/WidgetLoading";
 
 interface Props extends RouteComponentProps {
 
@@ -67,15 +69,23 @@ export class HomePage extends React.Component<Props> {
 
         return (
             <Main>
+                {Auth.isSigned() ? '' : <GHomeBanner title={"conduit"} description={"A place to share your knowledge."}/>}
                 <div className={"container"}>
                     <div className={"feed-container col-9"}>
                         <GFeedTabList vm={new FeedTabListVM(feedList, this.props.location.search)}/>
-                        <GFeedList vm={new FeedListVM(articles)} isArticlesLoading={this.feedService.isArticlesLoading}></GFeedList>
-                        <WidgetPageButtonList from={1}
-                                              to={this.feedService.getPageListSize()}
-                                              color={"#5CB85C"}
-                                              onButtonItemClick={this.pageButtonClickHandler}
-                        />
+                        {
+                            this.feedService.isArticlesLoading ?
+                                <WidgetLoading className={"green my"}/> :
+                                <>
+                                    <GFeedList vm={new FeedListVM(articles)}></GFeedList>
+                                    <WidgetPageButtonList from={1}
+                                                          to={this.feedService.getPageListSize()}
+                                                          color={"#5CB85C"}
+                                                          onButtonItemClick={this.pageButtonClickHandler}
+                                    />
+                                </>
+                        }
+
                     </div>
                     <div className={"tag-container col-3"}>
                         <GTagLinkBox tagList={tagList}/>
