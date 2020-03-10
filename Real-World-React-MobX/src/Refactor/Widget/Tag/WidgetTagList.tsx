@@ -1,12 +1,13 @@
 import React, {HTMLAttributes} from "react";
 import {WidgetTagItem} from "./WidgetTagItem";
 import "./WidgetTagList.less"
+import {computed} from "mobx";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-    tagList: string[],
+    tagList: Array<string>,
     tagBackgroundColor?: string,
     tagColor?: string,
-    tagBorder?: string
+    tagBorder?: string,
 }
 
 export class WidgetTagList extends React.Component<Props> {
@@ -17,11 +18,14 @@ export class WidgetTagList extends React.Component<Props> {
         border: this.props.tagBorder || ''
     };
 
-    tagItems = () => {
+    @computed
+    get tagItems() {
         return this.props.tagList.map((tagName) => {
-            return <WidgetTagItem style={this.style}>
-                {tagName}
-            </WidgetTagItem>
+            return (
+                <WidgetTagItem style={this.style}>
+                    {tagName}
+                </WidgetTagItem>
+            )
         })
     };
 
@@ -29,7 +33,7 @@ export class WidgetTagList extends React.Component<Props> {
         const {className, ...htmlAttrs} = this.props;
         return (
             <div {...htmlAttrs} className={`widget-tag-item-list ${className}`}>
-                {this.tagItems()}
+                {this.tagItems}
             </div>
         );
     }

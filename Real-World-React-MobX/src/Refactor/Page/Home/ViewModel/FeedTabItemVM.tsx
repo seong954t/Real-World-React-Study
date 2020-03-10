@@ -1,6 +1,7 @@
 import {GFeedTabItemVM} from "../../../Garget/Feed/ViewModel/GFeedTabItemVM";
-import LINK from "../../../../PageRouter/Link";
+// @ts-ignore
 import queryString from "query-string";
+import {FeedTabType} from "../../../Garget/Feed/View/FeedTabType";
 
 export class FeedTabItemVM extends GFeedTabItemVM {
     title: string;
@@ -17,9 +18,9 @@ export class FeedTabItemVM extends GFeedTabItemVM {
     getLinkToTab(title: string, query: string): string {
         const {tag} = queryString.parse(query);
         switch (title) {
-            case "Your Feed":
+            case FeedTabType.YOURFEED:
                 return "/refactor/?tab=feed";
-            case "GlobalFeed":
+            case FeedTabType.GLOBALFEED:
                 return "/refactor/";
             default:
                 return `?tab=tag&tag=${tag}`;
@@ -28,9 +29,9 @@ export class FeedTabItemVM extends GFeedTabItemVM {
 
     isActive(title: string, query: string): boolean {
         const {tab, tag} = queryString.parse(query);
-        if(!tab && title === "GlobalFeed"){
+        if(!tab && title === FeedTabType.GLOBALFEED){
             return true;
-        } else if(tab === "feed" && title === "Your Feed"){
+        } else if(tab === "feed" && title === FeedTabType.YOURFEED){
             return true;
         } else if(tab === "tag" && title === `#${tag}`){
             return true;

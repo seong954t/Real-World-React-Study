@@ -38,9 +38,11 @@ export class ProfileService {
         }
     }
 
-    private static _instance = new ProfileService();
+    static _instance: ProfileService;
 
     static get instance(): ProfileService {
         return this._instance;
     }
 }
+
+ProfileService._instance = new ProfileService();

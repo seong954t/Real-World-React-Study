@@ -9,7 +9,7 @@ export class Article implements ArticleVo {
     title: string = "";
     description: string = "";
     body: string = "";
-    tagList: string[] = [];
+    tagList: Array<string> = new Array<string>();
     createdAt: string = "";
     updatedAt: string = "";
     @observable favorited: boolean = false;

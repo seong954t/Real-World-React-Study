@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import React, {ReactNode} from "react";
 import LINK from "../../../PageRouter/Link";
 import "./Main.less";
+// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../Widget/MiniInfo/WidgetMiniInfo";
 
 interface Props{
@@ -15,22 +16,22 @@ export class Main extends React.Component<Props, any> {
     signedHeader = (username: string, image: string) => (
         <ul className="header-tab-list">
             <li className="header-tab-item">
-                <Link to={LINK.HOME} className="header-link ">Home</Link>
+                <Link to={LINK.REFACTOR.HOME} className="header-link ">Home</Link>
             </li>
             <li className="header-tab-item">
-                <Link to={LINK.EDITOR()} className="header-link ">
+                <Link to={LINK.REFACTOR.EDITOR()} className="header-link ">
                     <i className="ion-compose"/>
                     &nbsp;New Post
                 </Link>
             </li>
             <li className="header-tab-item">
-                <Link to={LINK.SETTINGS} className="header-link ">
+                <Link to={LINK.REFACTOR.SETTINGS} className="header-link ">
                     <i className="ion-gear-a"/>
                     &nbsp;Settings
                 </Link>
             </li>
             <li className="header-tab-item">
-                <Link to={LINK.USER(username)} className="header-link">
+                <Link to={LINK.REFACTOR.USER(username)} className="header-link">
                     <WidgetMiniInfo src={image}
                                     imageSize={"26px"}
                                     title={""}
@@ -46,13 +47,13 @@ export class Main extends React.Component<Props, any> {
     defaultHeader = (
         <ul className="header-tab-list">
             <li className="header-tab-item">
-                <Link to={LINK.HOME} className="header-link ">Home</Link>
+                <Link to={LINK.REFACTOR.HOME} className="header-link ">Home</Link>
             </li>
             <li className="header-tab-item">
-                <Link to={LINK.SIGN_IN} className="header-link ">Sign In</Link>
+                <Link to={LINK.REFACTOR.SIGN_IN} className="header-link ">Sign In</Link>
             </li>
             <li className="header-tab-item">
-                <Link to={LINK.SIGN_UP} className="header-link ">Sign up</Link>
+                <Link to={LINK.REFACTOR.SIGN_UP} className="header-link ">Sign up</Link>
             </li>
         </ul>
     );
@@ -66,7 +67,7 @@ export class Main extends React.Component<Props, any> {
             <>
                 <nav className="container main-header-container">
                     <div className="main-header-logo-wrapper">
-                        <Link to={LINK.HOME} className="main-header-logo">conduit</Link>
+                        <Link to={LINK.REFACTOR.HOME} className="main-header-logo">conduit</Link>
                     </div>
                     {username ? this.signedHeader(username, image || '') : this.defaultHeader}
                 </nav>

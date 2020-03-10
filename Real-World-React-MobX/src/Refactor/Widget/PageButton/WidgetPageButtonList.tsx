@@ -24,7 +24,7 @@ export class WidgetPageButtonList extends React.Component<Props> {
 
     range = (from: number, to: number) => {
         return Array.from({length: to - from + 1}, (_, i) => from + i);
-    }
+    };
 
 
     pageButtonItems = () => {
@@ -40,8 +40,9 @@ export class WidgetPageButtonList extends React.Component<Props> {
         if(this.props.onButtonItemClick){
             this.props.onButtonItemClick(e);
         }
+
         this.selected = e.uid;
-    }
+    };
 
     render() {
         return (

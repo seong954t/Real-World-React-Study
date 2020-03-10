@@ -38,7 +38,7 @@ class PageRouter extends React.Component<any, any> {
 
         return (
             <Router>
-                <HeaderContainer userStore={UserStore.INSTANCE}/>
+                {/*<HeaderContainer userStore={UserStore.INSTANCE}/>*/}
                 <Route path="/" exact component={HomeContainer}/>
                 <Route path="/login" component={SignInContainer}/>
                 <Route path="/register" component={SignUpContainer}/>

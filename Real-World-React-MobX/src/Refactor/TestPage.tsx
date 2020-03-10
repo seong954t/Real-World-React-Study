@@ -113,8 +113,8 @@ export class TestPage extends React.Component<any, any> {
                 <br></br>
 
                 <div>
-                    <GFeedTabItem vm={new FeedTabVM()} active={true}></GFeedTabItem>
-                    <GFeedTabItem vm={new FeedTabVM()} active={false}></GFeedTabItem>
+                    <GFeedTabItem vm={new TestFeedTabVM()} active={true}></GFeedTabItem>
+                    <GFeedTabItem vm={new TestFeedTabVM()} active={false}></GFeedTabItem>
                 </div>
             </div>
         );
@@ -147,7 +147,8 @@ class FeedItemVM extends GFeedItemVM {
         this.linkToUser = "/linkToUser";
         this.onClickFavorite = (e) => {
             console.log(e);
-        }
+        };
+
         this.article = new Article({
             slug: "slug",
             author: {
@@ -177,13 +178,15 @@ class FeedListVM extends GFeedListVM {
     }
 }
 
-class FeedTabVM extends GFeedTabItemVM {
+class TestFeedTabVM extends GFeedTabItemVM {
     title: string;
-    linkToTap: string;
+    linkToTab: string;
+    active: boolean;
 
     constructor() {
         super();
         this.title = "GlobalFeed";
-        this.linkToTap = "linkToTap";
+        this.linkToTab = "linkToTap";
+        this.active = false;
     }
 }
