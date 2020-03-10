@@ -5,11 +5,13 @@ import "./Main.less";
 // @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../Widget/MiniInfo/WidgetMiniInfo";
 import {UserService} from "../../Service/UserService";
+import {observer} from "mobx-react";
 
 interface Props{
     children?: ReactNode
 }
 
+@observer
 export class Main extends React.Component<Props, any> {
     readonly userService = UserService.instance;
 
