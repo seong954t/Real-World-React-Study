@@ -16,6 +16,8 @@ import {UserService} from "../Refactor/Service/UserService";
 import {ProfilePage} from "../Refactor/Page/Profile/View/ProfilePage";
 import {SettingsPage} from "../Refactor/Page/Settings/View/SettingsPage";
 import {PostPage} from "../Refactor/Page/Post/View/PostPage";
+import {SignUpPage} from "../Refactor/Page/Sign/View/SignUpPage";
+import {SignInPage} from "../Refactor/Page/Sign/View/SignInPage";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -54,8 +56,8 @@ class PageRouter extends React.Component<any, any> {
                 <Route path="/test" component={TestPage}/>
 
                 <Route path="/refactor" exact component={HomePage}/>
-                {/*<Route path="/refactor/login" component={SignInContainer}/>*/}
-                {/*<Route path="/refactor/register" component={SignUpContainer}/>*/}
+                <Route path="/refactor/login" component={SignInPage}/>
+                <Route path="/refactor/register" component={SignUpPage}/>
                 {/*<Route path="/refactor/article/:name" component={ArticleContainer}/>*/}
                 <Route path="/refactor/editor" exact component={PostPage}/>
                 {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
