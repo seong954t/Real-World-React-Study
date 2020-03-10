@@ -12,7 +12,7 @@ interface Props {
 export class GCommentEditor extends React.Component<Props, any> {
     render() {
         return (
-            <div className={"comment-editor-wrapper"}>
+            <div className={"comment-wrapper"}>
                 <textarea className={"comment-editor"} rows={3}></textarea>
                 <div className={"comment-footer"}>
                     <WidgetMiniInfo src={this.props.vm.image}

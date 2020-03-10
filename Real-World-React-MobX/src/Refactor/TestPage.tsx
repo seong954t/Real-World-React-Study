@@ -26,6 +26,9 @@ import {GArticleContent} from "./Garget/Article/View/GArticleContent";
 import {GArticleContentVM} from "./Garget/Article/ViewModel/GArticleContentVM";
 import {GCommentEditor} from "./Garget/Comment/View/GCommentEditor";
 import {GCommentEditorVM} from "./Garget/Comment/ViewModel/GCommentEditorVM";
+import {GCommentItem} from "./Garget/Comment/View/GCommentItem";
+import {GCommentItemVM} from "./Garget/Comment/ViewModel/GCommentItemVM";
+import CommentVo from "./Vo/CommentVo";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -137,6 +140,11 @@ export class TestPage extends React.Component<any, any> {
 
                 <div>
                     <GCommentEditor vm={new TestCommentEditorVM()}></GCommentEditor>
+                </div>
+                <br></br>
+
+                <div>
+                    <GCommentItem vm={new TestCommentItemVM()}></GCommentItem>
                 </div>
             </div>
         );
@@ -275,7 +283,27 @@ class TestCommentEditorVM extends GCommentEditorVM{
         super();
         this.onClickPost = () => {
             console.log("aaa")
-        }
+        };
         this.image = "image"
+    }
+}
+
+class TestCommentItemVM extends GCommentItemVM{
+    comment: CommentVo;
+
+    constructor() {
+        super();
+        this.comment = {
+            body: "body",
+            createdAt: "Fri Mar 06 2020",
+            updatedAt: "Fri Mar 06 2020",
+            id: 10,
+            author: {
+                username: "username",
+                bio: "bio",
+                image: "image",
+                following: false
+            }
+        }
     }
 }
