@@ -29,6 +29,8 @@ import {GCommentEditorVM} from "./Garget/Comment/ViewModel/GCommentEditorVM";
 import {GCommentItem} from "./Garget/Comment/View/GCommentItem";
 import {GCommentItemVM} from "./Garget/Comment/ViewModel/GCommentItemVM";
 import CommentVo from "./Vo/CommentVo";
+import {GCommentListVM} from "./Garget/Comment/ViewModel/GCommentListVM";
+import {GCommentList} from "./Garget/Comment/View/GCommentList";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -128,7 +130,8 @@ export class TestPage extends React.Component<any, any> {
                 <br></br>
 
                 <div>
-                    <GArticleBanner vm={new TestArticleBannerVM()} editButton={<button>asdgasdgasdg</button>} deleteButton={<button>aaaaaaaa</button>}></GArticleBanner>
+                    <GArticleBanner vm={new TestArticleBannerVM()} editButton={<button>asdgasdgasdg</button>}
+                                    deleteButton={<button>aaaaaaaa</button>}></GArticleBanner>
                 </div>
                 <br></br>
 
@@ -145,6 +148,11 @@ export class TestPage extends React.Component<any, any> {
 
                 <div>
                     <GCommentItem vm={new TestCommentItemVM()}></GCommentItem>
+                </div>
+                <br></br>
+
+                <div>
+                    <GCommentList vm={new TestCommentListVM()}/>
                 </div>
             </div>
         );
@@ -224,6 +232,7 @@ class TestFeedTabVM extends GFeedTabItemVM {
 class TestArticleBannerVM extends GArticleBannerVM {
     article: ArticleVo;
     linkToUser: string;
+
     constructor() {
         super();
         this.linkToUser = "/test2";
@@ -249,6 +258,7 @@ class TestArticleBannerVM extends GArticleBannerVM {
 
 class TestArticleContentVM extends GArticleContentVM {
     article: ArticleVo;
+
     constructor() {
         super();
         this.article = {
@@ -275,7 +285,7 @@ class TestArticleContentVM extends GArticleContentVM {
     }
 }
 
-class TestCommentEditorVM extends GCommentEditorVM{
+class TestCommentEditorVM extends GCommentEditorVM {
     onClickPost: MouseEventHandler<HTMLButtonElement>;
     image: string;
 
@@ -288,7 +298,7 @@ class TestCommentEditorVM extends GCommentEditorVM{
     }
 }
 
-class TestCommentItemVM extends GCommentItemVM{
+class TestCommentItemVM extends GCommentItemVM {
     comment: CommentVo;
     linkToUser: string;
     showTrashBox?: boolean;
@@ -310,6 +320,17 @@ class TestCommentItemVM extends GCommentItemVM{
         };
         this.linkToUser = "/test2";
         this.showTrashBox = true;
-        this.onClickTrashBox = () => {alert("Aaa")}
+        this.onClickTrashBox = () => {
+            alert("Aaa")
+        }
+    }
+}
+
+class TestCommentListVM extends GCommentListVM {
+    commentItemList: Array<GCommentItemVM>;
+
+    constructor() {
+        super();
+        this.commentItemList = [new TestCommentItemVM(), new TestCommentItemVM(), new TestCommentItemVM(), new TestCommentItemVM()]
     }
 }
