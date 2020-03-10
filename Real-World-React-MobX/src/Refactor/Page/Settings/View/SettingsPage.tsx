@@ -8,8 +8,13 @@ import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 import {UserService} from "../../../Service/UserService";
 import PageRouter from "../../../../PageRouter/PageRouter";
 import LINK from "../../../../PageRouter/Link";
+import {RouteComponentProps} from "react-router";
 
-export class SettingsPage extends React.Component<any, any>{
+interface Props extends RouteComponentProps {
+
+}
+
+export class SettingsPage extends React.Component<Props, any>{
     readonly userService = UserService.instance;
 
     onClickLogoutHandler = () => {
