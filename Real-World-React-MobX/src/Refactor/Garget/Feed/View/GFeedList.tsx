@@ -7,11 +7,11 @@ interface Props {
     vm: GFeedListVM,
 }
 
-export class GFeedList extends React.Component<Props>{
+export class GFeedList extends React.Component<Props> {
 
     feedItems = () => {
         return this.props.vm.feedItemList.map((feed) => {
-            return <GFeedItem key={feed.article.slug} vm={feed} ></GFeedItem>
+            return <GFeedItem key={feed.article.slug} vm={feed}/>
         })
     };
 

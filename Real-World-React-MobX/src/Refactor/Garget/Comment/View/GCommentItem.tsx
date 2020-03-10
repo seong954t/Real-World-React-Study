@@ -8,11 +8,11 @@ interface Props {
     vm: GCommentItemVM,
 }
 
-export class GCommentItem extends React.Component<Props, any> {
+export class GCommentItem extends React.Component<Props> {
     render() {
         return (
             <div className={"comment-wrapper"}>
-                <div className={"comment-item"}>
+                <div className={"comment-body"}>
                     {this.props.vm.comment.body}
                 </div>
                 <div className={"comment-footer"}>
