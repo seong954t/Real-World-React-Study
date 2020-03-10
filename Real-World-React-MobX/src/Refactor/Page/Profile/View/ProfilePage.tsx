@@ -51,11 +51,11 @@ export class ProfilePage extends React.Component<Props> {
 
         if (this.userService.user.username === profile.username) {
             return (
-                <WidgetColorButton color={"#687077"}>
-                    <Link className="follow-button" to={LINK.REFACTOR.SETTINGS}>
+                <Link className="follow-button" to={LINK.REFACTOR.SETTINGS}>
+                    <WidgetColorButton color={"#687077"}>
                         <i className="ion-gear-a"></i> Edit Profile Settings
-                    </Link>
-                </WidgetColorButton>
+                    </WidgetColorButton>
+                </Link>
             )
         } else if (followLoading) {
             return (
