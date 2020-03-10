@@ -1,3 +1,5 @@
+@import (reference) "../../../Widget/Style/Color/Color";
+
 .comment-wrapper {
     border: 1px solid #E5E5E5;
     border-radius: .2rem;
@@ -28,6 +30,16 @@
 
         .comment-post-button {
             float:right;
+        }
+
+        .button-wrapper {
+            float: right;
+            color: @color-gray;
+        }
+
+        .button-wrapper:hover{
+            cursor: pointer;
+            color: @color-dark-gray;
         }
     }
 }

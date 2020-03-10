@@ -290,6 +290,9 @@ class TestCommentEditorVM extends GCommentEditorVM{
 
 class TestCommentItemVM extends GCommentItemVM{
     comment: CommentVo;
+    linkToUser: string;
+    showTrashBox?: boolean;
+    onClickTrashBox?: any;
 
     constructor() {
         super();
@@ -304,6 +307,9 @@ class TestCommentItemVM extends GCommentItemVM{
                 image: "image",
                 following: false
             }
-        }
+        };
+        this.linkToUser = "/test2";
+        this.showTrashBox = true;
+        this.onClickTrashBox = () => {alert("Aaa")}
     }
 }
