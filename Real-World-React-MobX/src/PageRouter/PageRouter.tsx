@@ -13,6 +13,9 @@ import * as H from "history";
 import {TestPage} from "../Refactor/TestPage";
 import {HomePage} from "../Refactor/Page/Home/View/HomePage";
 import {UserService} from "../Refactor/Service/UserService";
+import {ProfilePage} from "../Refactor/Page/Profile/View/ProfilePage";
+import {SettingsPage} from "../Refactor/Page/Settings/View/SettingsPage";
+import {PostPage} from "../Refactor/Page/Post/View/PostPage";
 
 class PageRouter extends React.Component<any, any> {
 
@@ -54,11 +57,11 @@ class PageRouter extends React.Component<any, any> {
                 {/*<Route path="/refactor/login" component={SignInContainer}/>*/}
                 {/*<Route path="/refactor/register" component={SignUpContainer}/>*/}
                 {/*<Route path="/refactor/article/:name" component={ArticleContainer}/>*/}
-                {/*<Route path="/refactor/editor" exact component={PostContainer}/>*/}
+                <Route path="/refactor/editor" exact component={PostPage}/>
                 {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
-                {/*<Route path="/refactor/settings" component={SettingsContainer}/>*/}
-                {/*<Route path="/refactor/@:name/" exact component={UserInfoContainer}/>*/}
-                {/*<Route path="/refactor/@:name/:tab" component={UserInfoContainer}/>*/}
+                <Route path="/refactor/settings" component={SettingsPage}/>
+                <Route path="/refactor/@:name/" exact component={ProfilePage}/>
+                <Route path="/refactor/@:name/:tab" component={ProfilePage}/>
             </Router>
         );
     }
