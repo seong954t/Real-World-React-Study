@@ -73,7 +73,7 @@ export class HomePage extends React.Component<Props> {
                 <div className={"container"}>
                     <div className={"feed-container col-9"}>
                         <GFeedTabList vm={new FeedTabListVM(feedList, this.props.location.search)}/>
-                        <GFeedList vm={new FeedListVM(articles)}></GFeedList>
+                        <GFeedList vm={new FeedListVM(articles)} isArticlesLoading={this.feedService.isArticlesLoading}></GFeedList>
                         <WidgetPageButtonList from={1}
                                               to={this.feedService.getPageListSize()}
                                               color={"#5CB85C"}
