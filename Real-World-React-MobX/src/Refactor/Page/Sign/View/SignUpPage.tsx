@@ -9,6 +9,11 @@ import {WidgetInput} from "../../../Widget/Form/WidgetInput";
 import {UserService} from "../../../Service/UserService";
 import PageRouter from "../../../../PageRouter/PageRouter";
 import {observer} from "mobx-react";
+import {RouteComponentProps} from "react-router";
+
+interface Props extends RouteComponentProps {
+
+}
 
 interface State {
     username: string,
@@ -17,7 +22,7 @@ interface State {
 }
 
 @observer
-export class SignUpPage extends React.Component<any, State> {
+export class SignUpPage extends React.Component<Props, State> {
     readonly userService = UserService.instance;
 
     state = {

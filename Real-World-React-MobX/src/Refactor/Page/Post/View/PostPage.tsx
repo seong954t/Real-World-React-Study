@@ -6,8 +6,13 @@ import "../../../Garget/Form/Form.less";
 import "./PostPage.less";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";
+import {RouteComponentProps} from "react-router";
 
-export class PostPage extends React.Component<any, any> {
+interface Props extends RouteComponentProps {
+
+}
+
+export class PostPage extends React.Component<Props, any> {
 
     tagList = () => {
         return (
