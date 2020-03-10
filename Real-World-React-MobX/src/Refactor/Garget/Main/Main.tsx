@@ -6,6 +6,8 @@ import "./Main.less";
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../Widget/MiniInfo/WidgetMiniInfo";
 import {UserService} from "../../Service/UserService";
 import {observer} from "mobx-react";
+import Auth from "../../../Auth/Auth";
+import {GHomeBanner} from "../Banner/View/GHomeBanner";
 
 interface Props{
     children?: ReactNode
@@ -71,8 +73,9 @@ export class Main extends React.Component<Props, any> {
                     <div className="main-header-logo-wrapper">
                         <Link to={LINK.REFACTOR.HOME} className="main-header-logo">conduit</Link>
                     </div>
-                    {username ? this.signedHeader(username, image || '') : this.defaultHeader}
+                    {Auth.isSigned() ? this.signedHeader(username, image || '') : this.defaultHeader}
                 </nav>
+                {Auth.isSigned() ? '' : <GHomeBanner title={"conduit"} description={"A place to share your knowledge."}/>}
                 <section>
                     {this.props.children}
                 </section>
