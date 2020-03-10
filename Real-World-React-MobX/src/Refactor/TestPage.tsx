@@ -22,6 +22,8 @@ import {GFeedTabItem} from "./Garget/Feed/View/GFeedTabItem";
 import {GFeedTabItemVM} from "./Garget/Feed/ViewModel/GFeedTabItemVM";
 import {GArticleBanner} from "./Garget/Banner/View/GArticleBanner";
 import {GArticleBannerVM} from "./Garget/Banner/ViewModel/GArticleBannerVM";
+import {GArticleContent} from "./Garget/Article/View/GArticleContent";
+import {GArticleContentVM} from "./Garget/Article/ViewModel/GArticleContentVM";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -123,6 +125,12 @@ export class TestPage extends React.Component<any, any> {
                 <div>
                     <GArticleBanner vm={new TestArticleBannerVM()} editButton={<button>asdgasdgasdg</button>} deleteButton={<button>aaaaaaaa</button>}></GArticleBanner>
                 </div>
+                <br></br>
+
+                <div>
+                    <GArticleContent vm={new TestArticleContentVM()}></GArticleContent>
+                    asdgasdgasdg
+                </div>
             </div>
         );
     }
@@ -209,6 +217,34 @@ class TestArticleBannerVM extends GArticleBannerVM {
             title: "title",
             description: "description",
             body: "body",
+            tagList: ["tag1", "tag2", "tag3", "tag4", "tag1", "tag2", "tag3", "tag4"],
+            createdAt: "Fri Mar 06 2020",
+            updatedAt: "Fri Mar 06 2020",
+            favorited: false,
+            favoritesCount: 3,
+            author: {
+                username: "username",
+                bio: "bio",
+                image: "image",
+                following: false
+            }
+        }
+    }
+}
+
+class TestArticleContentVM extends GArticleContentVM {
+    article: ArticleVo;
+    constructor() {
+        super();
+        this.article = {
+            slug: "slug",
+            title: "title",
+            description: "description",
+            body: "# ![React + Mobx Example App](https://github.com/gothinkster/react-mobx-realworld-example-app/raw/master/project-logo.png)\n" +
+                "\n" +
+                "> ### React + Mobx codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) spec and API.\n" +
+                "\n" +
+                "### [Reference Demo](https://react-mobx.realworld.io/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)",
             tagList: ["tag1", "tag2", "tag3", "tag4", "tag1", "tag2", "tag3", "tag4"],
             createdAt: "Fri Mar 06 2020",
             updatedAt: "Fri Mar 06 2020",
