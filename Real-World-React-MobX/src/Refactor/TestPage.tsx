@@ -20,6 +20,8 @@ import {GFeedList} from "./Garget/Feed/View/GFeedList";
 import {GFeedListVM} from "./Garget/Feed/ViewModel/GFeedListVM";
 import {GFeedTabItem} from "./Garget/Feed/View/GFeedTabItem";
 import {GFeedTabItemVM} from "./Garget/Feed/ViewModel/GFeedTabItemVM";
+import {GArticleBanner} from "./Garget/Banner/View/GArticleBanner";
+import {GArticleBannerVM} from "./Garget/Banner/ViewModel/GArticleBannerVM";
 
 export class TestPage extends React.Component<any, any> {
 
@@ -116,6 +118,11 @@ export class TestPage extends React.Component<any, any> {
                     <GFeedTabItem vm={new TestFeedTabVM()} active={true}></GFeedTabItem>
                     <GFeedTabItem vm={new TestFeedTabVM()} active={false}></GFeedTabItem>
                 </div>
+                <br></br>
+
+                <div>
+                    <GArticleBanner vm={new TestArticleBannerVM()} editButton={<button>asdgasdgasdg</button>} deleteButton={<button>aaaaaaaa</button>}></GArticleBanner>
+                </div>
             </div>
         );
     }
@@ -188,5 +195,31 @@ class TestFeedTabVM extends GFeedTabItemVM {
         this.title = "GlobalFeed";
         this.linkToTab = "linkToTap";
         this.active = false;
+    }
+}
+
+class TestArticleBannerVM extends GArticleBannerVM {
+    article: ArticleVo;
+    linkToUser: string;
+    constructor() {
+        super();
+        this.linkToUser = "/test2";
+        this.article = {
+            slug: "slug",
+            title: "title",
+            description: "description",
+            body: "body",
+            tagList: ["tag1", "tag2", "tag3", "tag4", "tag1", "tag2", "tag3", "tag4"],
+            createdAt: "Fri Mar 06 2020",
+            updatedAt: "Fri Mar 06 2020",
+            favorited: false,
+            favoritesCount: 3,
+            author: {
+                username: "username",
+                bio: "bio",
+                image: "image",
+                following: false
+            }
+        }
     }
 }
