@@ -1,7 +1,6 @@
 import React from "react";
 import {Main} from "../../../Garget/Main/Main";
 import {observer} from "mobx-react";
-import {UserService} from "../../../Service/UserService";
 import {GFeedList} from "../../../Garget/Feed/View/GFeedList";
 import {GFeedTabList} from "../../../Garget/Feed/View/GFeedTabList";
 import {WidgetPageButtonList} from "../../../Widget/PageButton/WidgetPageButtonList";
@@ -23,7 +22,6 @@ interface Props extends RouteComponentProps {
 
 @observer
 export class HomePage extends React.Component<Props> {
-    readonly userService = UserService.instance;
     readonly feedService = FeedService.instance;
     readonly tagService = TagService.instance;
 
@@ -63,13 +61,12 @@ export class HomePage extends React.Component<Props> {
 
     render() {
         console.log("HomePage");
-        const {image, username} = this.userService.user;
         const feedList = this.getFeedTabList(Auth.isSigned());
         const tagList = this.tagService.tagList;
         const articles = this.feedService.articles;
 
         return (
-            <Main image={image} username={username}>
+            <Main>
                 <div className={"container"}>
                     <div className={"feed-container col-9"}>
                         <GFeedTabList vm={new FeedTabListVM(feedList, this.props.location.search)}/>

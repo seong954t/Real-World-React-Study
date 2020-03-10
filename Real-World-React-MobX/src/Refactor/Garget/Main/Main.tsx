@@ -4,14 +4,14 @@ import LINK from "../../../PageRouter/Link";
 import "./Main.less";
 // @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../Widget/MiniInfo/WidgetMiniInfo";
+import {UserService} from "../../Service/UserService";
 
 interface Props{
-    username?: string,
-    image?: string,
     children?: ReactNode
 }
 
 export class Main extends React.Component<Props, any> {
+    readonly userService = UserService.instance;
 
     signedHeader = (username: string, image: string) => (
         <ul className="header-tab-list">
@@ -59,7 +59,7 @@ export class Main extends React.Component<Props, any> {
     );
 
     render() {
-        const {username, image} = this.props;
+        const {image, username} = this.userService.user;
 
         console.log("Render [ Header ]");
 

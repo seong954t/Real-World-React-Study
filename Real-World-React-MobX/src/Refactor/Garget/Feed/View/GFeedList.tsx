@@ -19,7 +19,7 @@ export class GFeedList extends React.Component<Props>{
     render() {
         return (
             <div className={"feed-list"}>
-                {this.props.isArticlesLoading ? <WidgetLoading/> : this.feedItems()}
+                {this.props.isArticlesLoading ? <WidgetLoading className={"green my"}/> : this.feedItems()}
             </div>
         );
     }
