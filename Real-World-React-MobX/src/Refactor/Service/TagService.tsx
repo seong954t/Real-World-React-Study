@@ -3,7 +3,7 @@ import RealWorldApi from "../Request/RealWorldApi";
 
 export class TagService {
 
-    @observable tags: string[] = [];
+    @observable tags: Array<string> = new Array<string>();
     @observable isLoading: boolean = false;
 
     @action
@@ -13,9 +13,8 @@ export class TagService {
             .then(action((result) => {
                 const {errors, tags} = result;
                 if (tags) {
-                    this.tags = tags;
+                    this.tags = Array.from(tags);
                 }
-                console.log(this.tags)
             })).finally(action(() => {
                 this.isLoading = false;
             }))

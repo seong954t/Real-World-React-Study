@@ -5,6 +5,7 @@ import "./GFeedItem.less";
 import {Link} from "react-router-dom";
 import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";
 import {observer} from "mobx-react";
+// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 
 interface Props {
@@ -17,7 +18,7 @@ export class GFeedItem extends React.Component<Props> {
     onClickFavoriteHandler = (e: any) => {
         e.slug = this.props.vm.article.slug;
         this.props.vm.onClickFavorite(e);
-    }
+    };
 
     render() {
         const {author, createdAt, description, favorited, favoritesCount, tagList, title} = this.props.vm.article;

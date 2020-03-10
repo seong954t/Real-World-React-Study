@@ -23,7 +23,7 @@ export class ArticleService {
     }
 
     @action
-    public createArticle(title: string, description: string, body: string, tagList: string[]): Promise<any> {
+    public createArticle(title: string, description: string, body: string, tagList: Array<string>): Promise<any> {
         this.isLoading = true;
         return RealWorldApi.createArticle(title, description, body, tagList)
             .then(action((result) => {
@@ -37,7 +37,7 @@ export class ArticleService {
     }
 
     @action
-    updateArticle(title: string, description: string, body: string, tagList: string[], slug: string): Promise<any> {
+    updateArticle(title: string, description: string, body: string, tagList: Array<string>, slug: string): Promise<any> {
         this.isLoading = true;
         return RealWorldApi.updateArticle(title, description, body, tagList, slug)
             .then(action((result) => {
@@ -65,9 +65,11 @@ export class ArticleService {
             })
     }
 
-    private static _instance = new ArticleService();
+    static _instance: ArticleService;
 
     static get instance(): ArticleService {
         return this._instance;
     }
 }
+
+ArticleService._instance = new ArticleService();

@@ -12,7 +12,7 @@ export class GFeedList extends React.Component<Props>{
         return this.props.vm.feedItemList.map((feed) => {
             return <GFeedItem key={feed.article.slug} vm={feed}></GFeedItem>
         })
-    }
+    };
 
     render() {
         return (
