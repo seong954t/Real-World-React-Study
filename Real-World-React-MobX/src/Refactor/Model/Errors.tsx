@@ -4,9 +4,9 @@ import {observable} from "mobx";
 export class Errors implements ErrorsVo {
     @observable body: string[] = [];
 
-    constructor(errors?: Readonly<ErrorsVo>) {
+    constructor(errors?: string[]) {
         if (errors) {
-            this.body = errors.body;
+            this.body = errors;
         }
     }
 

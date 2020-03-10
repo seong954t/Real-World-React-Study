@@ -23,11 +23,13 @@ export class UserService {
         this.isLoading = true;
         return RealWorldApi.login(email, password)
             .then(action((result) => {
-                if (result instanceof User) {
-                    this.user = new User(result);
+                const {errors, user} = result;
+                if (user) {
+                    this.user = new User(user);
                     Auth.setToken(this.user.token);
-                } else if (result instanceof Errors) {
-                    this.errors = new Errors(result)
+                } else if (errors) {
+                    this.errors = new Errors(this.getErrors(errors));
+                    throw Response.error();
                 }
             })).finally(action(() => {
                 this.isLoading = false;
@@ -52,7 +54,8 @@ export class UserService {
                     this.user = new User(user);
                     Auth.setToken(this.user.token);
                 } else if (errors) {
-                    this.errors = new Errors(errors)
+                    this.errors = new Errors(this.getErrors(errors));
+                    throw Response.error();
                 }
             })).finally(action(() => {
                 this.isLoading = false;
@@ -89,6 +92,19 @@ export class UserService {
                 this.isLoading = false;
             }))
         }
+    };
+
+    @action
+    public resetErrors = () => {
+        this.errors = new Errors();
+    };
+
+    private getErrors = (errors: any) => {
+        const arrayError: string[] = [];
+        Object.keys(errors).forEach(key => {
+            arrayError.push(key + " " + errors[key].toString())
+        });
+        return arrayError;
     };
 
     static _instance: UserService;

@@ -5,8 +5,17 @@ import {Main} from "../../../Garget/Main/Main";
 import "../../../Garget/Form/Form.less";
 import "./SettingsPage.less";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
+import {UserService} from "../../../Service/UserService";
+import PageRouter from "../../../../PageRouter/PageRouter";
+import LINK from "../../../../PageRouter/Link";
 
 export class SettingsPage extends React.Component<any, any>{
+    readonly userService = UserService.instance;
+
+    onClickLogoutHandler = () => {
+        this.userService.logout();
+        PageRouter.pageRoute(this.props.history, LINK.REFACTOR.HOME);
+    };
 
     render() {
         return (
@@ -19,10 +28,16 @@ export class SettingsPage extends React.Component<any, any>{
                     <WidgetInput placeholder={"Email"}></WidgetInput>
                     <WidgetInput placeholder={"New Password"}></WidgetInput>
                     <div className={"setting-button-wrapper"}>
-                        <WidgetColorButton className={"settings-button"} color={"#5CB85C"}>Update Settings</WidgetColorButton>
+                        <WidgetColorButton className={"settings-button"}
+                                           color={"#5CB85C"}>
+                            Update Settings
+                        </WidgetColorButton>
                     </div>
                     <hr/>
-                    <WidgetColorButton color={"#b4242f"}>Or click here to logout.</WidgetColorButton>
+                    <WidgetColorButton color={"#b4242f"}
+                                       onClick={this.onClickLogoutHandler}>
+                        Or click here to logout.
+                    </WidgetColorButton>
                 </form>
             </Main>
         );
