@@ -5,7 +5,6 @@ import {WidgetLoading} from "../../../Widget/Loading/WidgetLoading";
 
 interface Props {
     vm: GFeedListVM,
-    isArticlesLoading?: boolean;
 }
 
 export class GFeedList extends React.Component<Props>{
@@ -19,7 +18,7 @@ export class GFeedList extends React.Component<Props>{
     render() {
         return (
             <div className={"feed-list"}>
-                {this.props.isArticlesLoading ? <WidgetLoading className={"green my"}/> : this.feedItems()}
+                {this.feedItems()}
             </div>
         );
     }
