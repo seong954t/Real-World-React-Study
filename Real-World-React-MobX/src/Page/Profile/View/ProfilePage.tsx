@@ -17,6 +17,7 @@ import {LoadingSize, WidgetLoading} from "../../../Widget/Loading/WidgetLoading"
 import {UserService} from "../../../Service/UserService";
 import {Link} from "react-router-dom";
 import LINK from "../../../PageRouter/Link";
+import "./ProfilePage.less";
 
 interface Props extends RouteComponentProps<{ name: string, tab: string }> {
 
@@ -98,14 +99,16 @@ export class ProfilePage extends React.Component<Props> {
         const articles = this.feedService.articles;
         const profile = this.profileService.profile;
 
-        console.log("this.feedService.isArticlesLoading : ", this.feedService.isArticlesLoading)
         return (
             <Main>
                 {
                     this.profileService.isProfileLoading ?
                         '' :
-                        <GProfileBanner vm={new ProfileBannerVM(profile)}
-                                        button={this.profileBannerButton(this.profileService.isFollowLoading)}/>
+                    <GProfileBanner vm={new ProfileBannerVM(profile)}>
+                        <div className="profile-button-container">
+                            {this.profileBannerButton(this.profileService.isFollowLoading)}
+                        </div>
+                    </GProfileBanner>
                 }
                 <div className={"profile-feed-container col-6"}>
                     <GFeedTabList vm={new ProfileFeedTabListVM(feedList, name, tab)}/>

@@ -4,8 +4,7 @@ import {observer} from "mobx-react";
 import "./GProfileBanner.less"
 
 interface Props {
-    vm: GProfileBannerVM,
-    button: any
+    vm: GProfileBannerVM
 }
 
 @observer
@@ -23,7 +22,7 @@ export class GProfileBanner extends React.Component<Props>{
                              src={image}/>
                         <h4 className="profile-username">{username}</h4>
                         <p className="profile-description">{bio}</p>
-                        <div className="profile-button-container">{this.props.button}</div>
+                        {this.props.children}
                     </div>
                 </div>
             </div>
