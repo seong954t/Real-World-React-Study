@@ -11,15 +11,17 @@ export class FeedItemVM extends GFeedItemVM {
     article: ArticleVo;
     linkToUser: string;
     linkToArticle: string;
+    isFavoriteLoading: boolean;
 
     constructor(article: Article) {
         super();
         this.article = article;
         this.linkToUser = LINK.USER(this.article.author.username);
         this.linkToArticle = LINK.ARTICLE(this.article.slug);
-    }
+        this.isFavoriteLoading = this.feedService.isFavoriteLoadings.get(this.article.slug) || false;
+    };
 
     onClickFavorite = (e: any) => {
         this.feedService.favoriteArticle(this.article.slug);
-    }
+    };
 }

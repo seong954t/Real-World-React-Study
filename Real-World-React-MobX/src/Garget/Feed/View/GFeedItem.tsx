@@ -7,6 +7,7 @@ import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";
 import {observer} from "mobx-react";
 // @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
+import {LoadingSize, WidgetLoading} from "../../../Widget/Loading/WidgetLoading";
 
 interface Props {
     vm: GFeedItemVM,
@@ -18,6 +19,7 @@ export class GFeedItem extends React.Component<Props> {
     render() {
         const {author, createdAt, description, favorited, favoritesCount, tagList, title} = this.props.vm.article;
         const {image, username} = author;
+        console.log("this.props.vm.isFavoriteLoading : ", this.props.vm.isFavoriteLoading)
         return (
             <div className={"feed-item col-12"}>
                 <div className={"feed-header"}>
@@ -36,7 +38,13 @@ export class GFeedItem extends React.Component<Props> {
                                        color={"#5CB85C"}
                                        active={favorited}
                                        onClick={this.props.vm.onClickFavorite}>
-                        <span><i className="ion-heart"/>{favoritesCount}</span>
+                        <span>
+                            {
+                                this.props.vm.isFavoriteLoading ?
+                                    <WidgetLoading loadingSize={LoadingSize.SM}/> :
+                                    <><i className="ion-heart"/>{favoritesCount}</>
+                            }
+                        </span>
                     </WidgetColorButton>
                 </div>
 
