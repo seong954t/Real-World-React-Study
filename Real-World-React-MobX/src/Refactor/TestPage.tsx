@@ -130,8 +130,7 @@ export class TestPage extends React.Component<any, any> {
                 <br></br>
 
                 <div>
-                    <GArticleBanner vm={new TestArticleBannerVM()} editButton={<button>asdgasdgasdg</button>}
-                                    deleteButton={<button>aaaaaaaa</button>}></GArticleBanner>
+                    <GArticleBanner vm={new TestArticleBannerVM()}/>
                 </div>
                 <br></br>
 
@@ -230,8 +229,13 @@ class TestFeedTabVM extends GFeedTabItemVM {
 }
 
 class TestArticleBannerVM extends GArticleBannerVM {
+
     article: ArticleVo;
     linkToUser: string;
+    linkToEdit?: string;
+    showEditButton?: boolean;
+    showDeleteButton?: boolean;
+    onClickDeleteButton?: any;
 
     constructor() {
         super();
@@ -252,7 +256,9 @@ class TestArticleBannerVM extends GArticleBannerVM {
                 image: "image",
                 following: false
             }
-        }
+        };
+        this.showEditButton = true;
+        this.showDeleteButton = true;
     }
 }
 
