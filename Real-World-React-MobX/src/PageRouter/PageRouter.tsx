@@ -1,29 +1,20 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import UserStore from "../Store/UserStore";
-import HomeContainer from "../Container/Page/Home/HomeContainer";
-import ArticleContainer from "../Container/Page/Article/ArticleContainer";
-import UserInfoContainer from "../Container/Page/Profile/UserInfoContainer";
-import HeaderContainer from "../Container/Header/HeaderContainer";
-import PostContainer from "../Container/Page/Post/PostContainer";
-import SignInContainer from "../Container/Page/Sign/SignInContainer";
-import SignUpContainer from "../Container/Page/Sign/SignUpContainer";
-import SettingsContainer from "../Container/Page/Settings/SettingsContainer";
 import * as H from "history";
-import {TestPage} from "../Refactor/TestPage";
-import {HomePage} from "../Refactor/Page/Home/View/HomePage";
-import {UserService} from "../Refactor/Service/UserService";
-import {ProfilePage} from "../Refactor/Page/Profile/View/ProfilePage";
-import {SettingsPage} from "../Refactor/Page/Settings/View/SettingsPage";
-import {PostPage} from "../Refactor/Page/Post/View/PostPage";
-import {SignUpPage} from "../Refactor/Page/Sign/View/SignUpPage";
-import {SignInPage} from "../Refactor/Page/Sign/View/SignInPage";
+import {HomePage} from "../Page/Home/View/HomePage";
+import {UserService} from "../Service/UserService";
+import {ProfilePage} from "../Page/Profile/View/ProfilePage";
+import {SettingsPage} from "../Page/Settings/View/SettingsPage";
+import {PostPage} from "../Page/Post/View/PostPage";
+import {SignUpPage} from "../Page/Sign/View/SignUpPage";
+import {SignInPage} from "../Page/Sign/View/SignInPage";
 import {observer} from "mobx-react";
-import {ArticlePage} from "../Refactor/Page/Article/View/ArticlePage";
+import {ArticlePage} from "../Page/Article/View/ArticlePage";
 
 @observer
 class PageRouter extends React.Component<any, any> {
     readonly userService = UserService.instance;
+
     constructor(props: any) {
         super(props);
         this.userService.loadUser();
@@ -46,29 +37,18 @@ class PageRouter extends React.Component<any, any> {
 
         return (
             <Router>
-                {/*<HeaderContainer userStore={UserStore.INSTANCE}/>*/}
-                <Route path="/" exact component={HomeContainer}/>
-                <Route path="/login" component={SignInContainer}/>
-                <Route path="/register" component={SignUpContainer}/>
-                <Route path="/article/:name" component={ArticleContainer}/>
-                <Route path="/editor" exact component={PostContainer}/>
-                <Route path="/editor/:slug" component={PostContainer}/>
-                <Route path="/settings" component={SettingsContainer}/>
-                <Route path="/@:name/" exact component={UserInfoContainer}/>
-                <Route path="/@:name/:tab" component={UserInfoContainer}/>
-                <Route path="/test" component={TestPage}/>
                 {
                     this.userService.isLoad ?
                     (<>
-                        <Route path="/refactor" exact component={HomePage}/>
-                        <Route path="/refactor/login" component={SignInPage}/>
-                        <Route path="/refactor/register" component={SignUpPage}/>
-                        <Route path="/refactor/article/:name" component={ArticlePage}/>
-                        <Route path="/refactor/editor" exact component={PostPage}/>
-                        {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
-                        <Route path="/refactor/settings" component={SettingsPage}/>
-                        <Route path="/refactor/@:name/" exact component={ProfilePage}/>
-                        <Route path="/refactor/@:name/:tab" component={ProfilePage}/>
+                        <Route path="/" exact component={HomePage}/>
+                        <Route path="/login" component={SignInPage}/>
+                        <Route path="/register" component={SignUpPage}/>
+                        <Route path="/article/:name" component={ArticlePage}/>
+                        <Route path="/editor" exact component={PostPage}/>
+                        <Route path="/editor/:slug" component={PostPage}/>
+                        <Route path="/settings" component={SettingsPage}/>
+                        <Route path="/@:name/" exact component={ProfilePage}/>
+                        <Route path="/@:name/:tab" component={ProfilePage}/>
                     </>) : ''
                 }
 
