@@ -41,14 +41,14 @@ export class GFeedItem extends React.Component<Props> {
                                        color={"#5CB85C"}
                                        active={favorited}
                                        onClick={this.onClickFavoriteHandler}>
-                        <span><i className="ion-heart"></i>{favoritesCount}</span>
+                        <span><i className="ion-heart"/>{favoritesCount}</span>
                     </WidgetColorButton>
                 </div>
 
                 <Link className={"feed-content"} to={this.props.vm.linkToArticle}>
-                    <h1>{title}</h1>
-                    <p>{description}</p>
-                    <span>Read more...</span>
+                    <p className={"feed-title"}>{title}</p>
+                    <p className={"feed-description"}>{description}</p>
+                    <span className={"feed-more"}>Read more...</span>
                 </Link>
 
                 <div className={"feed-footer"}>
