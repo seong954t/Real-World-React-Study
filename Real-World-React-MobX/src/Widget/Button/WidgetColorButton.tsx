@@ -43,8 +43,7 @@ export class WidgetColorButton extends React.Component<Props, any> {
             <button {...htmlAttrs} className={`widget-color-button ${className || ''}`}
                     style={this.props.active ? this.activeStyle : this.defaultStyle}
                     onMouseEnter={this.changeColorAndBackground}
-                    onMouseLeave={this.changeColorAndBackground}
-            >
+                    onMouseLeave={this.changeColorAndBackground}>
                 {children}
             </button>
         );
