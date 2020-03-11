@@ -13,7 +13,7 @@ interface Props{
 }
 
 @observer
-export class Main extends React.Component<Props, any> {
+export class Main extends React.Component<Props> {
     readonly userService = UserService.instance;
 
     signedHeader = (username: string, image: string) => (
@@ -41,7 +41,7 @@ export class Main extends React.Component<Props, any> {
                                     subtitle={username}
                                     subtitleColor={"#AAAAAA"}
                                     subtitleFontSize={"18px"}
-                                    type={WidgetMiniInfoType.INLINE}></WidgetMiniInfo>
+                                    type={WidgetMiniInfoType.INLINE}/>
                 </Link>
             </li>
         </ul>

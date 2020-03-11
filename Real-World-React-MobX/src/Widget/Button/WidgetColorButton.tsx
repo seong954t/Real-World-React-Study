@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
     active?: boolean
 }
 
-export class WidgetColorButton extends React.Component<Props, any> {
+export class WidgetColorButton extends React.Component<Props> {
 
     defaultStyle = {
         backgroundColor: "inherit",

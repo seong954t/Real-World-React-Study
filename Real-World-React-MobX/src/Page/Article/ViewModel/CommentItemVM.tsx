@@ -3,6 +3,7 @@ import CommentVo from "../../../Vo/CommentVo";
 import LINK from "../../../PageRouter/Link";
 import {UserService} from "../../../Service/UserService";
 import {CommentService} from "../../../Service/CommentService";
+import {MouseEventHandler} from "react";
 
 export class CommentItemVM extends GCommentItemVM{
 
@@ -11,9 +12,9 @@ export class CommentItemVM extends GCommentItemVM{
 
     comment: CommentVo;
     linkToUser: string;
-    onClickTrashBox: any;
+    onClickTrashBox: MouseEventHandler<HTMLSpanElement>;
     showTrashBox: boolean;
-    slug: string
+    slug: string;
 
     constructor(comment: CommentVo, slug: string) {
         super();

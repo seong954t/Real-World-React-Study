@@ -1,4 +1,4 @@
-import React, {TextareaHTMLAttributes} from "react";
+import React, {MouseEventHandler, TextareaHTMLAttributes} from "react";
 // @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
@@ -6,10 +6,10 @@ import "./GComment.less";
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement>{
     image: string,
-    onClickPost: any,
+    onClickPost: MouseEventHandler<HTMLButtonElement>,
 }
 
-export class GCommentEditor extends React.Component<Props, any> {
+export class GCommentEditor extends React.Component<Props> {
     render() {
         const {image, onClickPost, className, ...Attributes} = this.props;
 

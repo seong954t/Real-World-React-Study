@@ -21,7 +21,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
     linkToTitle?: string
 }
 
-export class WidgetMiniInfo extends React.Component<Props, any> {
+export class WidgetMiniInfo extends React.Component<Props> {
 
     appendLinkTo = (element: any) => {
         if (this.props.linkToTitle) {

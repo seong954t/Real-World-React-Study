@@ -27,7 +27,7 @@ export class HomePage extends React.Component<Props> {
     readonly feedService = FeedService.instance;
     readonly tagService = TagService.instance;
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
         const {tab, tag, name} = queryString.parse(this.props.location.search);
         this.feedService.loadArticles(tab, tag, name, 1);

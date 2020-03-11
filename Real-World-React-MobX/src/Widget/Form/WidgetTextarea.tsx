@@ -5,7 +5,7 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     rows?: number
 }
 
-export class WidgetTextarea extends React.Component<Props, any> {
+export class WidgetTextarea extends React.Component<Props> {
 
 
     render() {
