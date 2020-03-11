@@ -25,7 +25,6 @@ import {GArticleBannerVM} from "./Garget/Banner/ViewModel/GArticleBannerVM";
 import {GArticleContent} from "./Garget/Article/View/GArticleContent";
 import {GArticleContentVM} from "./Garget/Article/ViewModel/GArticleContentVM";
 import {GCommentEditor} from "./Garget/Comment/View/GCommentEditor";
-import {GCommentEditorVM} from "./Garget/Comment/ViewModel/GCommentEditorVM";
 import {GCommentItem} from "./Garget/Comment/View/GCommentItem";
 import {GCommentItemVM} from "./Garget/Comment/ViewModel/GCommentItemVM";
 import CommentVo from "./Vo/CommentVo";
@@ -141,7 +140,7 @@ export class TestPage extends React.Component<any, any> {
                 <br></br>
 
                 <div>
-                    <GCommentEditor vm={new TestCommentEditorVM()}></GCommentEditor>
+                    <GCommentEditor image={"image"} onClickPost={() => {}}></GCommentEditor>
                 </div>
                 <br></br>
 
@@ -259,6 +258,7 @@ class TestArticleBannerVM extends GArticleBannerVM {
         };
         this.showEditButton = true;
         this.showDeleteButton = true;
+        this.linkToEdit = "/test2";
     }
 }
 
@@ -288,19 +288,6 @@ class TestArticleContentVM extends GArticleContentVM {
                 following: false
             }
         }
-    }
-}
-
-class TestCommentEditorVM extends GCommentEditorVM {
-    onClickPost: MouseEventHandler<HTMLButtonElement>;
-    image: string;
-
-    constructor() {
-        super();
-        this.onClickPost = () => {
-            console.log("aaa")
-        };
-        this.image = "image"
     }
 }
 

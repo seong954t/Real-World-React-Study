@@ -34,7 +34,7 @@ export class GArticleBanner extends React.Component<Props> {
                                         type={WidgetMiniInfoType.DEFAULT}/>
                         {
                             this.props.vm.showEditButton ?
-                                (<Link to={this.props.vm.linkToEdit}><WidgetColorButton className={"article-edit-button"} color={"#CCCCCC"}>
+                                (<Link to={this.props.vm.linkToEdit || ''}><WidgetColorButton className={"article-edit-button"} color={"#CCCCCC"}>
                                     <i className="ion-edit"></i> Edit Article
                                 </WidgetColorButton></Link>) :
                                 ''

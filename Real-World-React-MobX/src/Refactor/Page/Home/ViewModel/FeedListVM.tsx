@@ -10,7 +10,7 @@ export class FeedListVM extends GFeedListVM {
 
     constructor(feedList: ArticleVo[]) {
         super();
-        this.feedItemList = new Array();
+        this.feedItemList = new Array<GFeedItemVM>();
         feedList.map((article) => {
             this.feedItemList.push(new FeedItemVM(new Article(article)))
         })
