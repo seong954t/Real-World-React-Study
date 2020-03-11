@@ -1,7 +1,7 @@
 import {action, computed, observable} from "mobx";
 import CommentVo from "../Vo/CommentVo";
 import {Comment} from "../Model/Comment";
-import RealWorldApi from "../Request/RealWorldApi";
+import RealWorldApi from "../RealWorldApi/RealWorldApi";
 
 export class CommentService {
 

@@ -1,7 +1,7 @@
 import ArticleVo from "../Vo/ArticleVo";
 import {action, observable} from "mobx";
 import {Article} from "../Model/Article";
-import RealWorldApi from "../Request/RealWorldApi";
+import RealWorldApi from "../RealWorldApi/RealWorldApi";
 
 export class ArticleService {
 
