@@ -1,5 +1,5 @@
 import {action, computed, observable} from "mobx";
-import RealWorldApi from "../Request/RealWorldApi";
+import RealWorldApi from "../RealWorldApi/RealWorldApi";
 
 export class TagService {
 
