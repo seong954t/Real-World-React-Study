@@ -68,9 +68,29 @@ const RealWorldApi = {
 
         return RealWorldApi.requestApi(url, Method.PUT, Header.AUTH(), JSON.parse(body));
     },
+    getProfile: (username: string): Promise<any> => {
+        const url = RealWorldApi.domain + `profiles/${username}/`;
+        return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH : Header.DEFAULT))
+    },
+    followUser: (username: string, followed: boolean) => {
+        const url = RealWorldApi.domain + `profiles/${username}/follow`;
+
+        return RealWorldApi.requestApi(url, (followed ? Method.DELETE : Method.POST), Header.AUTH)
+    },
     getTags: (): Promise<any> => {
         const url = RealWorldApi.domain + "tags";
         return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
+    },
+    getArticles: (url: string): Promise<any> => {
+        let header;
+
+        if (Auth.isSigned()) {
+            header = Header.AUTH
+        } else {
+            header = Header.DEFAULT;
+        }
+
+        return RealWorldApi.requestApi(url, Method.GET, header)
     },
     getArticle: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/`;
@@ -107,6 +127,32 @@ const RealWorldApi = {
         const url = RealWorldApi.domain + `articles/${slug}/`;
 
         return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH())
+    },
+    addComment: (slug: string, body: string): Promise<any> => {
+        const url = RealWorldApi.domain + `articles/${slug}/comments`;
+
+        const responseBody = {
+            comment: {
+                body: body
+            }
+        };
+
+        return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
+    },
+    getComments: (slug: string): Promise<any> => {
+        const url = RealWorldApi.domain + `articles/${slug}/comments`;
+
+        return RealWorldApi.requestApi(url, Method.GET, Header.DEFAULT)
+    },
+    deleteComment: (slug: string, id: number): Promise<any> => {
+        const url = RealWorldApi.domain + `articles/${slug}/comments/${id}/`;
+
+        return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
+    },
+    favoriteArticle: (slug: string, favorited: boolean): Promise<any> => {
+        const url = RealWorldApi.domain + `articles/${slug}/favorite`;
+
+        return RealWorldApi.requestApi(url, (favorited ? Method.DELETE : Method.POST), Header.AUTH)
     },
     requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<any> => {
         const init = body === undefined ? {

@@ -1,7 +1,7 @@
 import {action, computed, observable} from "mobx";
 import CommentVo from "../Vo/CommentVo";
-import RealWorldApi from "../../RealWordApi/RealWorldApi";
 import {Comment} from "../Model/Comment";
+import RealWorldApi from "../Request/RealWorldApi";
 
 export class CommentService {
 
@@ -18,7 +18,7 @@ export class CommentService {
                 .then(action((result) => {
                     const {errors, comments} = result;
                     if (errors !== undefined) {
-                        RealWorldApi.alertError(errors);
+                        throw Response.error();
                     } else {
                         comments.forEach((comment: CommentVo) => {
                             this._comments.set(comment.id, new Comment(comment));
@@ -44,7 +44,7 @@ export class CommentService {
             .then(action((result) => {
                 const {errors, comment} = result;
                 if (errors !== undefined) {
-                    RealWorldApi.alertError(errors)
+                    throw Response.error();
                 } else {
                     this._comments.set(comment.id, new Comment(comment));
                 }
@@ -57,7 +57,7 @@ export class CommentService {
             .then(action((result) => {
                 const {errors} = result;
                 if (errors !== undefined) {
-                    RealWorldApi.alertError(errors)
+                    throw Response.error();
                 } else {
                     this._comments.delete(id);
                 }

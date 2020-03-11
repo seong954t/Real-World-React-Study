@@ -65,27 +65,29 @@ export class SignInPage extends React.Component<Props, State> {
     render() {
         return (
             <Main>
-                <form className={"form-container col-6"}>
-                    <p className={"form-title"}>Sign In</p>
-                    <Link to={LINK.REFACTOR.SIGN_UP} className={"form-description"}>Need an account?</Link>
-                    {this.errorElement()}
-                    <WidgetInput placeholder={"Email"}
-                                 name={"email"}
-                                 value={this.state.email}
-                                 onChange={this.onChangeHandler}/>
-                    <WidgetInput placeholder={"Password"}
-                                 type={"password"}
-                                 name={"password"}
-                                 value={this.state.password}
-                                 onChange={this.onChangeHandler}/>
-                    <div className={"sign-button-wrapper"}>
-                        <WidgetColorButton className={"sign-button"}
-                                           color={"#5CB85C"}
-                                           onClick={this.signInHandler}>
-                            Sing In
-                        </WidgetColorButton>
-                    </div>
-                </form>
+                <div className={"container"}>
+                    <form className={"form-container col-6"}>
+                        <p className={"form-title"}>Sign In</p>
+                        <Link to={LINK.REFACTOR.SIGN_UP} className={"form-description"}>Need an account?</Link>
+                        {this.errorElement()}
+                        <WidgetInput placeholder={"Email"}
+                                     name={"email"}
+                                     value={this.state.email}
+                                     onChange={this.onChangeHandler}/>
+                        <WidgetInput placeholder={"Password"}
+                                     type={"password"}
+                                     name={"password"}
+                                     value={this.state.password}
+                                     onChange={this.onChangeHandler}/>
+                        <div className={"sign-button-wrapper"}>
+                            <WidgetColorButton className={"sign-button"}
+                                               color={"#5CB85C"}
+                                               onClick={this.signInHandler}>
+                                Sing In
+                            </WidgetColorButton>
+                        </div>
+                    </form>
+                </div>
             </Main>
         );
     }
