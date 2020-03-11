@@ -1,7 +1,7 @@
 import ArticleVo from "../../Vo/ArticleVo";
 import {action, computed, observable} from "mobx";
-import RealWorldApi from "../../RealWordApi/RealWorldApi";
 import Auth from "../../Auth/Auth";
+import RealWorldApi from "../Request/RealWorldApi";
 
 export class FeedService {
 
@@ -27,7 +27,7 @@ export class FeedService {
                 .then(action((result) => {
                     const {errors, articles, articlesCount} = result;
                     if (errors !== undefined) {
-                        RealWorldApi.alertError(errors);
+                        throw Response.error();
                     } else {
                         this._articles.clear();
                         this.isFavoriteLoadings.clear();
@@ -56,7 +56,7 @@ export class FeedService {
                     console.log(result);
                     const {errors, article} = result;
                     if (errors !== undefined) {
-                        RealWorldApi.alertError(errors);
+                        throw Response.error();
                     } else {
                         this._articles.set(slug, article);
                     }

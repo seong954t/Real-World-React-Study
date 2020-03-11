@@ -30,17 +30,19 @@ export class PostPage extends React.Component<Props, any> {
     render() {
         return (
             <Main>
-                <form className={"form-container col-6"}>
-                    <WidgetInput placeholder={"Article Title"}></WidgetInput>
-                    <WidgetInput placeholder={"What's this article about?"}></WidgetInput>
-                    <WidgetTextarea placeholder={"Write your article (in markdown)"} rows={9}></WidgetTextarea>
-                    <WidgetInput placeholder={"Enter tags"}></WidgetInput>
-                    {this.tagList()}
-                    <div className={"publish-button-wrapper"}>
-                        <WidgetColorButton className={"publish-button"} color={"#5CB85C"}>Publish
-                            Article</WidgetColorButton>
-                    </div>
-                </form>
+                <div className={"container"}>
+                    <form className={"form-container"}>
+                        <WidgetInput placeholder={"Article Title"}></WidgetInput>
+                        <WidgetInput placeholder={"What's this article about?"}></WidgetInput>
+                        <WidgetTextarea placeholder={"Write your article (in markdown)"} rows={9}></WidgetTextarea>
+                        <WidgetInput placeholder={"Enter tags"}></WidgetInput>
+                        {this.tagList()}
+                        <div className={"publish-button-wrapper"}>
+                            <WidgetColorButton className={"publish-button"} color={"#5CB85C"}>Publish
+                                Article</WidgetColorButton>
+                        </div>
+                    </form>
+                </div>
             </Main>
         );
     }
