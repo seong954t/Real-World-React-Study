@@ -6,4 +6,5 @@ export abstract class GFeedItemVM {
     abstract linkToUser: string;
     abstract linkToArticle: string;
     abstract onClickFavorite: MouseEventHandler<HTMLButtonElement>;
+    abstract isFavoriteLoading?: boolean;
 }
