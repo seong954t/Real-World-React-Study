@@ -29,7 +29,7 @@ export class ArticleService {
             .then(action((result) => {
                 const {errors, article} = result;
                 if (article) {
-                    this.article = article;
+                    return this.article = article;
                 }
             })).finally(action(() => {
                 this.isLoading = false;

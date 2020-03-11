@@ -5,10 +5,12 @@ import {WidgetTextarea} from "../../../Widget/Form/WidgetTextarea";
 import "../../../Garget/Form/Form.less";
 import "./PostPage.less";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
-import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";
 import {RouteComponentProps} from "react-router";
 import {ArticleService} from "../../../Service/ArticleService";
 import {GXButtonTagItem} from "../../../Garget/TagBox/View/GXButtonTagItem";
+import PageRouter from "../../../../PageRouter/PageRouter";
+import LINK from "../../../../PageRouter/Link";
+import ArticleVo from "../../../Vo/ArticleVo";
 
 interface Props extends RouteComponentProps<{ slug: string }> {
 
@@ -83,7 +85,8 @@ export class PostPage extends React.Component<Props, State> {
             <div className={"tag-list-wrapper"}>
                 {
                     Array.from(this.state.tagList).map((tag) => {
-                        return <GXButtonTagItem className={"x-tag-item"} onClickXButton={this.onClickXButtonHandler} uid={tag}>
+                        return <GXButtonTagItem className={"x-tag-item"} onClickXButton={this.onClickXButtonHandler}
+                                                uid={tag}>
                             {tag}
                         </GXButtonTagItem>
                     })
@@ -92,11 +95,50 @@ export class PostPage extends React.Component<Props, State> {
         )
     };
 
+    handleEnterPress = (e: any) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const tempTagList = this.state.tagList;
+            tempTagList.add(this.state.tag);
+            this.setState({
+                tagList: tempTagList,
+                tag: ""
+            })
+        }
+    };
+
+    onPublishArticle = (e: any) => {
+        e.preventDefault();
+        if (this.slug) {
+            PageRouter.pageRouteAfterPromise(
+                this.articleService.updateArticle(
+                    this.state.title,
+                    this.state.description,
+                    this.state.body,
+                    Array.from(this.state.tagList),
+                    this.slug),
+                this.props.history,
+                LINK.REFACTOR.ARTICLE(this.slug)
+            );
+        } else {
+            this.articleService.createArticle(
+                this.state.title,
+                this.state.description,
+                this.state.body,
+                Array.from(this.state.tagList))
+                .then((article: ArticleVo) => {
+                    if(article) {
+                        PageRouter.pageRoute(this.props.history, LINK.REFACTOR.ARTICLE(article.slug))
+                    }
+                })
+        }
+    };
+
     render() {
         return (
             <Main>
                 <div className={"container"}>
-                    <form className={"form-container"}>
+                    <form className={"form-container"} onSubmit={this.onPublishArticle}>
                         <WidgetInput placeholder={"Article Title"}
                                      name={"title"}
                                      value={this.state.title}
@@ -112,6 +154,7 @@ export class PostPage extends React.Component<Props, State> {
                         <WidgetInput placeholder={"Enter tags"}
                                      name={"tag"}
                                      value={this.state.tag}
+                                     onKeyPress={this.handleEnterPress}
                                      onChange={this.onChangeHandler}/>
                         {this.tagList()}
                         <div className={"publish-button-wrapper"}>
