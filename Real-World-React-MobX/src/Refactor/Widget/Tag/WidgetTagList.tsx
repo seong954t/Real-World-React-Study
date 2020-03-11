@@ -18,8 +18,7 @@ export class WidgetTagList extends React.Component<Props> {
         border: this.props.tagBorder || ''
     };
 
-    @computed
-    get tagItems() {
+    tagItems = () => {
         return this.props.tagList.map((tagName) => {
             return (
                 <WidgetTagItem style={this.style}>
@@ -33,7 +32,7 @@ export class WidgetTagList extends React.Component<Props> {
         const {className, ...htmlAttrs} = this.props;
         return (
             <div {...htmlAttrs} className={`widget-tag-item-list ${className}`}>
-                {this.tagItems}
+                {this.tagItems()}
             </div>
         );
     }
