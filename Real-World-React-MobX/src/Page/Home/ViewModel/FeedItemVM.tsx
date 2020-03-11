@@ -5,6 +5,9 @@ import LINK from "../../../PageRouter/Link";
 import {FeedService} from "../../../Service/FeedService";
 
 export class FeedItemVM extends GFeedItemVM {
+
+    readonly feedService = FeedService.instance;
+
     article: ArticleVo;
     linkToUser: string;
     linkToArticle: string;
@@ -17,6 +20,6 @@ export class FeedItemVM extends GFeedItemVM {
     }
 
     onClickFavorite = (e: any) => {
-        FeedService.instance.favoriteArticle(e.slug);
+        this.feedService.favoriteArticle(this.article.slug);
     }
 }
