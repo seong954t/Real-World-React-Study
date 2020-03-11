@@ -5,7 +5,7 @@ import RealWorldApi from "../Request/RealWorldApi";
 
 export class ArticleService {
 
-    @observable article: ArticleVo | null = null;
+    @observable article: ArticleVo = new Article();
     @observable isLoading: boolean = false;
 
     @action
@@ -58,7 +58,7 @@ export class ArticleService {
             .then(action((result) => {
                 const {errors} = result;
                 if (!errors) {
-                    this.article = null;
+                    this.article = new Article();
                 }
             })).finally(() => {
                 this.isLoading = false;

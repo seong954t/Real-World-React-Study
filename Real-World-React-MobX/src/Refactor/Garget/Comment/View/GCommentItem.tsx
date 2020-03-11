@@ -5,7 +5,7 @@ import "./GComment.less";
 import {GCommentItemVM} from "../ViewModel/GCommentItemVM";
 
 interface Props {
-    vm: GCommentItemVM,
+    vm: GCommentItemVM
 }
 
 export class GCommentItem extends React.Component<Props> {

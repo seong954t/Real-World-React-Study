@@ -19,6 +19,7 @@ import {PostPage} from "../Refactor/Page/Post/View/PostPage";
 import {SignUpPage} from "../Refactor/Page/Sign/View/SignUpPage";
 import {SignInPage} from "../Refactor/Page/Sign/View/SignInPage";
 import {observer} from "mobx-react";
+import {ArticlePage} from "../Refactor/Page/Article/View/ArticlePage";
 
 @observer
 class PageRouter extends React.Component<any, any> {
@@ -62,7 +63,7 @@ class PageRouter extends React.Component<any, any> {
                         <Route path="/refactor" exact component={HomePage}/>
                         <Route path="/refactor/login" component={SignInPage}/>
                         <Route path="/refactor/register" component={SignUpPage}/>
-                        {/*<Route path="/refactor/article/:name" component={ArticleContainer}/>*/}
+                        <Route path="/refactor/article/:name" component={ArticlePage}/>
                         <Route path="/refactor/editor" exact component={PostPage}/>
                         {/*<Route path="/refactor/editor/:slug" component={PostContainer}/>*/}
                         <Route path="/refactor/settings" component={SettingsPage}/>
