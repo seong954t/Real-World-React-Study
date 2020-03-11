@@ -15,11 +15,6 @@ interface Props {
 @observer
 export class GFeedItem extends React.Component<Props> {
 
-    onClickFavoriteHandler = (e: any) => {
-        e.slug = this.props.vm.article.slug;
-        this.props.vm.onClickFavorite(e);
-    };
-
     render() {
         const {author, createdAt, description, favorited, favoritesCount, tagList, title} = this.props.vm.article;
         const {image, username} = author;
@@ -40,7 +35,7 @@ export class GFeedItem extends React.Component<Props> {
                     <WidgetColorButton className={"favorite-button"}
                                        color={"#5CB85C"}
                                        active={favorited}
-                                       onClick={this.onClickFavoriteHandler}>
+                                       onClick={this.props.vm.onClickFavorite}>
                         <span><i className="ion-heart"/>{favoritesCount}</span>
                     </WidgetColorButton>
                 </div>

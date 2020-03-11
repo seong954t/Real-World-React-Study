@@ -14,13 +14,13 @@ export class WidgetPageButtonItem extends React.Component<Props> {
         backgroundColor: this.props.color || 'black',
         borderColor: this.props.color || 'black',
         color: "#FFFFFF"
-    }
+    };
 
     defaultStyle = {
         backgroundColor: "#FFFFFF",
         borderColor: "#DEE2E5",
         color: this.props.color || 'black',
-    }
+    };
 
     clickHandler = (e: any) => {
         const {uid, onClick} = this.props;
@@ -28,7 +28,7 @@ export class WidgetPageButtonItem extends React.Component<Props> {
             e.uid = this.props.uid;
             onClick(e);
         }
-    }
+    };
 
     render() {
         const {children, className, ...htmlAttrs} = this.props;
