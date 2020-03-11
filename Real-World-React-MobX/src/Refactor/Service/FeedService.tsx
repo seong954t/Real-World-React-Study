@@ -53,7 +53,6 @@ export class FeedService {
             this.isFavoriteLoadings.set(slug, true);
             RealWorldApi.favoriteArticle(slug, tempArticle.favorited)
                 .then(action((result) => {
-                    console.log(result);
                     const {errors, article} = result;
                     if (errors !== undefined) {
                         throw Response.error();
