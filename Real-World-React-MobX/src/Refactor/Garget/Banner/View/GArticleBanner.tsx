@@ -41,7 +41,9 @@ export class GArticleBanner extends React.Component<Props> {
                         }
                         {
                             this.props.vm.showDeleteButton ?
-                                (<WidgetColorButton className={"article-delete-button"} color={"#B85C5C"}>
+                                (<WidgetColorButton className={"article-delete-button"}
+                                                    color={"#B85C5C"}
+                                                    onClick={this.props.vm.onClickDeleteButton}>
                                     <i className="ion-trash-a"></i> Delete Article
                                 </WidgetColorButton>) :
                                 ''

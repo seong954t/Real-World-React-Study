@@ -13,8 +13,9 @@ import {UserService} from "../../../Service/UserService";
 import {RouteComponentProps} from "react-router";
 import {observer} from "mobx-react";
 import "./ArticlePage.less";
+import {WidgetLoading} from "../../../Widget/Loading/WidgetLoading";
 
-interface Props extends RouteComponentProps<{ name: string }>{
+interface Props extends RouteComponentProps<{ name: string }> {
 
 }
 
@@ -62,22 +63,32 @@ export class ArticlePage extends React.Component<Props, State> {
 
         return (
             <Main>
-                <GArticleBanner vm={new ArticleBannerVM(this.articleService.article)}/>
-                <div className={"container"}>
-                    <GArticleContent vm={new ArticleContentVM(this.articleService.article)}/>
-                    <div className={"container col-9"}>
-                        <GCommentEditor value={this.state.comment}
-                                        placeholder={"Write a comment..."}
-                                        onChange={this.onChangeHandler}
-                                        name={"comment"}
-                                        rows={3}
-                                        image={this.userService.user.image}
-                                        onClickPost={this.onClickPostHandler}/>
-                        <div className={"comment-item-list-wrapper"} >
-                            <GCommentList vm={new CommentListVM(commentItemList, this.slug)}/>
-                        </div>
-                    </div>
-                </div>
+                {
+                    this.articleService.isLoading || !this.articleService.article.slug ?
+                        '' :
+                        <>
+                            <GArticleBanner vm={new ArticleBannerVM(this.articleService.article)}/>
+                            <div className={"container"}>
+                                <GArticleContent vm={new ArticleContentVM(this.articleService.article)}/>
+                                <div className={"container col-9"}>
+                                    <GCommentEditor value={this.state.comment}
+                                                    placeholder={"Write a comment..."}
+                                                    onChange={this.onChangeHandler}
+                                                    name={"comment"}
+                                                    rows={3}
+                                                    image={this.userService.user.image}
+                                                    onClickPost={this.onClickPostHandler}/>
+                                    {
+                                        this.commentService.isCommentsLoading ?
+                                            <WidgetLoading className={"green my"}/> :
+                                            <div className={"comment-item-list-wrapper"}>
+                                                <GCommentList vm={new CommentListVM(commentItemList, this.slug)}/>
+                                            </div>
+                                    }
+                                </div>
+                            </div>
+                        </>
+                }
             </Main>
         );
     }
