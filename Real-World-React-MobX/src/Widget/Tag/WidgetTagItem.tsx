@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
     linkToTag?: string;
 }
 
-export class WidgetTagItem extends React.Component<Props, any> {
+export class WidgetTagItem extends React.Component<Props> {
 
     getTagElement = (element: any) => {
         if (this.props.linkToTag) {

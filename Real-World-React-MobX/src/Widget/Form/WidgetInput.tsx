@@ -5,7 +5,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 }
 
-export class WidgetInput extends React.Component<Props, any> {
+export class WidgetInput extends React.Component<Props> {
 
 
     render() {

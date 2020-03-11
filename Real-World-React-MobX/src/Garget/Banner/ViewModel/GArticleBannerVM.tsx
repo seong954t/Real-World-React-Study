@@ -1,4 +1,5 @@
 import ArticleVo from "../../../Vo/ArticleVo";
+import {MouseEventHandler} from "react";
 
 export abstract class GArticleBannerVM {
     abstract article: ArticleVo;
@@ -6,5 +7,5 @@ export abstract class GArticleBannerVM {
     abstract showEditButton?: boolean;
     abstract linkToEdit?: string;
     abstract showDeleteButton?: boolean;
-    abstract onClickDeleteButton?: any;
+    abstract onClickDeleteButton?: MouseEventHandler<HTMLButtonElement>;
 }

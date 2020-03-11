@@ -3,6 +3,7 @@ import ArticleVo from "../../../Vo/ArticleVo";
 import LINK from "../../../PageRouter/Link";
 import {UserService} from "../../../Service/UserService";
 import {ArticleService} from "../../../Service/ArticleService";
+import {MouseEventHandler} from "react";
 
 export class ArticleBannerVM extends GArticleBannerVM{
 
@@ -12,7 +13,7 @@ export class ArticleBannerVM extends GArticleBannerVM{
     article: ArticleVo;
     linkToEdit: string;
     linkToUser: string;
-    onClickDeleteButton: any;
+    onClickDeleteButton: MouseEventHandler<HTMLButtonElement>;
     showDeleteButton: boolean;
     showEditButton: boolean;
 

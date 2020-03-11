@@ -12,7 +12,7 @@ import {observer} from "mobx-react";
 import {ArticlePage} from "../Page/Article/View/ArticlePage";
 
 @observer
-class PageRouter extends React.Component<any, any> {
+class PageRouter extends React.Component<any> {
     readonly userService = UserService.instance;
 
     constructor(props: any) {
@@ -24,7 +24,7 @@ class PageRouter extends React.Component<any, any> {
         history.replace(destination);
     }
 
-    static pageRouteAfterPromise(promise: Promise<any>, history: any, destination: string){
+    static pageRouteAfterPromise(promise: Promise<any>, history: H.History, destination: string){
         promise.then(() => {
             history.replace(destination);
         }).catch((error) => {
