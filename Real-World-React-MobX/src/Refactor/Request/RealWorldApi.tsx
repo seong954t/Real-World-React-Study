@@ -70,12 +70,12 @@ const RealWorldApi = {
     },
     getProfile: (username: string): Promise<any> => {
         const url = RealWorldApi.domain + `profiles/${username}/`;
-        return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH : Header.DEFAULT))
+        return RealWorldApi.requestApi(url, Method.GET, (Auth.isSigned() ? Header.AUTH() : Header.DEFAULT))
     },
     followUser: (username: string, followed: boolean) => {
         const url = RealWorldApi.domain + `profiles/${username}/follow`;
 
-        return RealWorldApi.requestApi(url, (followed ? Method.DELETE : Method.POST), Header.AUTH)
+        return RealWorldApi.requestApi(url, (followed ? Method.DELETE : Method.POST), Header.AUTH())
     },
     getTags: (): Promise<any> => {
         const url = RealWorldApi.domain + "tags";
@@ -85,7 +85,7 @@ const RealWorldApi = {
         let header;
 
         if (Auth.isSigned()) {
-            header = Header.AUTH
+            header = Header.AUTH()
         } else {
             header = Header.DEFAULT;
         }
@@ -137,7 +137,7 @@ const RealWorldApi = {
             }
         };
 
-        return RealWorldApi.requestApi(url, Method.POST, Header.AUTH, responseBody)
+        return RealWorldApi.requestApi(url, Method.POST, Header.AUTH(), responseBody)
     },
     getComments: (slug: string): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/comments`;
@@ -147,12 +147,12 @@ const RealWorldApi = {
     deleteComment: (slug: string, id: number): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/comments/${id}/`;
 
-        return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH)
+        return RealWorldApi.requestApi(url, Method.DELETE, Header.AUTH())
     },
     favoriteArticle: (slug: string, favorited: boolean): Promise<any> => {
         const url = RealWorldApi.domain + `articles/${slug}/favorite`;
 
-        return RealWorldApi.requestApi(url, (favorited ? Method.DELETE : Method.POST), Header.AUTH)
+        return RealWorldApi.requestApi(url, (favorited ? Method.DELETE : Method.POST), Header.AUTH())
     },
     requestApi: (url: string, method: string, headers: {}, body?: {}): Promise<any> => {
         const init = body === undefined ? {
