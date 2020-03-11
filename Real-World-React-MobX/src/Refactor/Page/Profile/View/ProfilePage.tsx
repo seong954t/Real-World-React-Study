@@ -37,6 +37,14 @@ export class ProfilePage extends React.Component<Props> {
         }
     }
 
+    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+        const {name, tab} = this.props.match.params;
+        if (name !== this.profileService.profile.username) {
+            this.feedService.loadArticles(tab, '', name, 1);
+            this.profileService.loadProfile(name);
+        }
+    }
+
     pageButtonClickHandler = (e: any) => {
         const {name, tab} = this.props.match.params;
         this.feedService.loadArticles(tab, '', name, e.uid);
@@ -53,7 +61,7 @@ export class ProfilePage extends React.Component<Props> {
             return (
                 <Link className="follow-button" to={LINK.REFACTOR.SETTINGS}>
                     <WidgetColorButton color={"#687077"}>
-                        <i className="ion-gear-a"></i> Edit Profile Settings
+                        <i className="ion-gear-a"/> Edit Profile Settings
                     </WidgetColorButton>
                 </Link>
             )
@@ -69,14 +77,14 @@ export class ProfilePage extends React.Component<Props> {
                     <WidgetColorButton color={"#687077"}
                                        active={true}
                                        onClick={this.onClickFollowHandler}>
-                        <span><i className="ion-minus-round"></i> UnFollow {this.profileService.profile.username}</span>
+                        <span><i className="ion-minus-round"/> UnFollow {this.profileService.profile.username}</span>
                     </WidgetColorButton>
                 )
             } else {
                 return (
                     <WidgetColorButton color={"#687077"}
                                        onClick={this.onClickFollowHandler}>
-                        <span><i className="ion-plus-round"></i> Follow {this.profileService.profile.username}</span>
+                        <span><i className="ion-plus-round"/> Follow {this.profileService.profile.username}</span>
                     </WidgetColorButton>
                 )
             }
@@ -97,7 +105,7 @@ export class ProfilePage extends React.Component<Props> {
                     this.profileService.isProfileLoading ?
                         '' :
                         <GProfileBanner vm={new ProfileBannerVM(profile)}
-                                        button={this.profileBannerButton(this.profileService.isFollowLoading)}></GProfileBanner>
+                                        button={this.profileBannerButton(this.profileService.isFollowLoading)}/>
                 }
                 <div className={"profile-feed-container col-6"}>
                     <GFeedTabList vm={new ProfileFeedTabListVM(feedList, name, tab)}/>
