@@ -9,9 +9,9 @@ export class ArticleService {
     @observable isLoading: boolean = false;
 
     @action
-    loadArticle(slug: string) {
+    loadArticle(slug: string): Promise<any> {
         this.isLoading = true;
-        RealWorldApi.getArticle(slug)
+        return RealWorldApi.getArticle(slug)
             .then(action((result) => {
                 const {errors, article} = result;
                 if (article) {
