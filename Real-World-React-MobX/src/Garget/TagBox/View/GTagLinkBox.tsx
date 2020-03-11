@@ -29,7 +29,7 @@ export class GTagLinkBox extends React.PureComponent<Props>{
     render() {
         return (
             <div className={"tag-box"}>
-                <p>Popular Tags</p>
+                <p className={"tag-box-title"}>Popular Tags</p>
                 <div className={`tag-link-item-list`}>
                     {this.tagItems}
                 </div>
