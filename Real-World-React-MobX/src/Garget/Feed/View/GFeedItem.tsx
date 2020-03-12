@@ -19,7 +19,7 @@ export class GFeedItem extends React.Component<Props> {
     render() {
         const {author, createdAt, description, favorited, favoritesCount, tagList, title} = this.props.vm.article;
         const {image, username} = author;
-        console.log("this.props.vm.isFavoriteLoading : ", this.props.vm.isFavoriteLoading)
+
         return (
             <div className={"feed-item col-12"}>
                 <div className={"feed-header"}>
