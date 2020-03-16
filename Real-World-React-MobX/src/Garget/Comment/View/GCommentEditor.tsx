@@ -1,5 +1,4 @@
 import React, {MouseEventHandler, TextareaHTMLAttributes} from "react";
-// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 import "./GComment.less";

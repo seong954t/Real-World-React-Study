@@ -1,5 +1,4 @@
 import {GFeedTabItemVM} from "../../../Garget/Feed/ViewModel/GFeedTabItemVM";
-// @ts-ignore
 import {FeedTabType} from "../../../Garget/Feed/View/FeedTabType";
 import LINK from "../../../PageRouter/Link";
 

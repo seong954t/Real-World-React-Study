@@ -2,7 +2,6 @@ import {Link} from "react-router-dom";
 import React, {ReactNode} from "react";
 import LINK from "../../PageRouter/Link";
 import "./Main.less";
-// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../Widget/MiniInfo/WidgetMiniInfo";
 import {UserService} from "../../Service/UserService";
 import {observer} from "mobx-react";

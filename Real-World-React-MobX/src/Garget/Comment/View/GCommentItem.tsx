@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 import "./GComment.less";
 import {GCommentItemVM} from "../ViewModel/GCommentItemVM";
@@ -24,7 +23,7 @@ export class GCommentItem extends React.Component<Props> {
                                     subtitle={this.props.vm.comment.createdAt}
                                     subtitleFontSize={"12px"}
                                     subtitleColor={"#BBBBBB"}
-                                    linkToTitle={this.props.vm.linkToUser}
+                                    linktotitle={this.props.vm.linkToUser}
                                     type={WidgetMiniInfoType.INLINE}/>
                     {
                         this.props.vm.showTrashBox ?

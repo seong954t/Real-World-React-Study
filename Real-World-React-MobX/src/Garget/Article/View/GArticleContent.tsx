@@ -19,10 +19,10 @@ export class GArticleContent extends React.Component<Props> {
                 <div className="article-content-marked">
                     <div dangerouslySetInnerHTML={markedHTML}></div>
                 </div>
-                <WidgetTagList className={"article-content-tag-list"} tagList={tagList}
-                               tagBorder={"1px solid #DDDDDD"}
-                               tagBackgroundColor={"inherit"}
-                               tagColor={"#AAAAAA"}/>
+                <WidgetTagList className={"article-content-tag-list"} taglist={tagList}
+                               tagborder={"1px solid #DDDDDD"}
+                               tagbackgroundcolor={"inherit"}
+                               tagcolor={"#AAAAAA"}/>
                 <hr/>
             </div>
         );

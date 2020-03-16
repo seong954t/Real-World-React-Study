@@ -18,15 +18,15 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
     subtitleFontSize?: string,
     imageSize?: string,
     type: WidgetMiniInfoType,
-    linkToTitle?: string
+    linktotitle?: string
 }
 
 export class WidgetMiniInfo extends React.Component<Props> {
 
     appendLinkTo = (element: any) => {
-        if (this.props.linkToTitle) {
+        if (this.props.linktotitle) {
             return (
-                <Link to={this.props.linkToTitle}>
+                <Link to={this.props.linktotitle}>
                     {element}
                 </Link>
             )
