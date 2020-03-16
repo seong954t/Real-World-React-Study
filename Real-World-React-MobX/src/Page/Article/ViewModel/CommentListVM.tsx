@@ -3,15 +3,23 @@ import {GCommentItemVM} from "../../../Garget/Comment/ViewModel/GCommentItemVM";
 import CommentVo from "../../../Vo/CommentVo";
 import {CommentItemVM} from "./CommentItemVM";
 import {Comment} from "../../../Model/Comment";
+import {CommentService} from "../../../Service/CommentService";
+import {computed} from "mobx";
 
 export class CommentListVM extends GCommentListVM{
-    commentItemList: Array<GCommentItemVM>;
 
-    constructor(commentItems: Array<CommentVo>, slug: string) {
+    readonly commentService = CommentService.instance;
+    slug: string;
+
+    constructor(slug: string) {
         super();
-        this.commentItemList = new Array<GCommentItemVM>();
-        commentItems.map((comment) => {
-            this.commentItemList.push(new CommentItemVM(new Comment(comment), slug))
+        this.slug = slug;
+    }
+
+    @computed
+    get commentItemList(){
+        return this.commentService.comments.map((comment) => {
+            return new CommentItemVM(comment.id, this.slug);
         })
     }
 }

@@ -1,30 +1,33 @@
 import {GArticleBannerVM} from "../../../Garget/Banner/ViewModel/GArticleBannerVM";
-import ArticleVo from "../../../Vo/ArticleVo";
 import LINK from "../../../PageRouter/Link";
 import {UserService} from "../../../Service/UserService";
 import {ArticleService} from "../../../Service/ArticleService";
 import {MouseEventHandler} from "react";
+import {computed} from "mobx";
 
 export class ArticleBannerVM extends GArticleBannerVM{
 
     readonly userService = UserService.instance;
     readonly articleService = ArticleService.instance;
 
-    article: ArticleVo;
     linkToEdit: string;
     linkToUser: string;
     onClickDeleteButton: MouseEventHandler<HTMLButtonElement>;
     showDeleteButton: boolean;
     showEditButton: boolean;
 
-    constructor(article: ArticleVo) {
+    constructor() {
         super();
-        this.article = article;
-        this.linkToEdit = LINK.EDITOR(article.slug);
-        this.linkToUser = LINK.USER(article.author.username);
-        this.showDeleteButton = article.author.username === this.userService.user.username;
-        this.showEditButton = article.author.username === this.userService.user.username;
+        this.linkToEdit = LINK.EDITOR(this.article.slug);
+        this.linkToUser = LINK.USER(this.article.author.username);
+        this.showDeleteButton = this.article.author.username === this.userService.user.username;
+        this.showEditButton = this.article.author.username === this.userService.user.username;
         this.onClickDeleteButton = this.onClickDeleteButtonHandler;
+    }
+
+    @computed
+    get article(){
+        return this.articleService.article;
     }
 
     onClickDeleteButtonHandler = () => {

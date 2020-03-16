@@ -29,16 +29,18 @@ export class ArticlePage extends React.Component<Props, State> {
     readonly userService = UserService.instance;
     readonly commentService = CommentService.instance;
     readonly articleService = ArticleService.instance;
-
+    readonly articleBannerVM = new ArticleBannerVM();
+    readonly articleContentVM = new ArticleContentVM();
     state = {
         comment: ""
     };
 
     slug: string;
-
+    commentListVM: CommentListVM;
     constructor(props: Props) {
         super(props);
         this.slug = this.props.match.params.name;
+        this.commentListVM = new CommentListVM(this.slug);
         this.articleService.loadArticle(this.slug);
         this.commentService.loadComments(this.slug);
     };
@@ -59,17 +61,16 @@ export class ArticlePage extends React.Component<Props, State> {
     };
 
     render() {
-        const commentItemList = this.commentService.comments;
-
+        // const commentItemList = this.commentService.comments;
         return (
             <Main>
                 {
                     this.articleService.isLoading || !this.articleService.article.slug ?
                         '' :
                         <>
-                            <GArticleBanner vm={new ArticleBannerVM(this.articleService.article)}/>
+                            <GArticleBanner vm={this.articleBannerVM}/>
                             <div className={"container"}>
-                                <GArticleContent vm={new ArticleContentVM(this.articleService.article)}/>
+                                <GArticleContent vm={this.articleContentVM}/>
                                 <div className={"container col-9"}>
                                     <GCommentEditor value={this.state.comment}
                                                     placeholder={"Write a comment..."}
@@ -82,7 +83,7 @@ export class ArticlePage extends React.Component<Props, State> {
                                         this.commentService.isCommentsLoading ?
                                             <WidgetLoading className={"green my"}/> :
                                             <div className={"comment-item-list-wrapper"}>
-                                                <GCommentList vm={new CommentListVM(commentItemList, this.slug)}/>
+                                                <GCommentList vm={this.commentListVM}/>
                                             </div>
                                     }
                                 </div>
