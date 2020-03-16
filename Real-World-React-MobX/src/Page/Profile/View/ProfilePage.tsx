@@ -28,6 +28,7 @@ export class ProfilePage extends React.Component<Props> {
     readonly feedService = FeedService.instance;
     readonly profileService = ProfileService.instance;
     readonly userService = UserService.instance;
+    readonly feedListVM = new FeedListVM();
 
     constructor(props: Props) {
         super(props);
@@ -96,7 +97,6 @@ export class ProfilePage extends React.Component<Props> {
         const {name, tab} = this.props.match.params;
 
         const feedList = [FeedTabType.MYARTICLES, FeedTabType.FAVORITEDARITCLES];
-        const articles = this.feedService.articles;
         const profile = this.profileService.profile;
 
         return (
@@ -116,7 +116,7 @@ export class ProfilePage extends React.Component<Props> {
                         this.feedService.isArticlesLoading ?
                             <WidgetLoading className={"green my"}/> :
                             <>
-                                <GFeedList vm={new FeedListVM(articles)}></GFeedList>
+                                <GFeedList vm={this.feedListVM}></GFeedList>
                                 <WidgetPageButtonList from={1}
                                                       to={this.feedService.getPageListSize()}
                                                       color={"#5CB85C"}

@@ -32,7 +32,7 @@ export class WidgetMiniInfo extends React.Component<Props> {
             )
         }
         return element;
-    }
+    };
 
     render() {
         const {src, title, titleColor, subtitle, subtitleColor, imageSize, titleFontSize, subtitleFontSize, type, className, ...htmlAttrs} = this.props;
