@@ -26,6 +26,7 @@ interface Props extends RouteComponentProps {
 export class HomePage extends React.Component<Props> {
     readonly feedService = FeedService.instance;
     readonly tagService = TagService.instance;
+    readonly feedListVM = new FeedListVM();
 
     constructor(props: Props) {
         super(props);
@@ -65,7 +66,6 @@ export class HomePage extends React.Component<Props> {
         console.log("HomePage");
         const feedList = this.getFeedTabList(Auth.isSigned());
         const tagList = this.tagService.tagList;
-        const articles = this.feedService.articles;
 
         return (
             <Main>
@@ -77,7 +77,7 @@ export class HomePage extends React.Component<Props> {
                             this.feedService.isArticlesLoading ?
                                 <WidgetLoading className={"green my"}/> :
                                 <>
-                                    <GFeedList vm={new FeedListVM(articles)}></GFeedList>
+                                    <GFeedList vm={this.feedListVM}/>
                                     <WidgetPageButtonList from={1}
                                                           to={this.feedService.getPageListSize()}
                                                           color={"#5CB85C"}
@@ -85,7 +85,6 @@ export class HomePage extends React.Component<Props> {
                                     />
                                 </>
                         }
-
                     </div>
                     <div className={"tag-container col-3"}>
                         <GTagLinkBox tagList={tagList}/>

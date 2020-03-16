@@ -1,18 +1,16 @@
 import {GFeedListVM} from "../../../Garget/Feed/ViewModel/GFeedListVM";
-import {GFeedItemVM} from "../../../Garget/Feed/ViewModel/GFeedItemVM";
-import ArticleVo from "../../../Vo/ArticleVo";
 import {FeedItemVM} from "./FeedItemVM";
-import {Article} from "../../../Model/Article";
+import {FeedService} from "../../../Service/FeedService";
+import {computed} from "mobx";
 
 export class FeedListVM extends GFeedListVM {
 
-    feedItemList: Array<GFeedItemVM>;
+    readonly feedService = FeedService.instance;
 
-    constructor(feedList: ArticleVo[]) {
-        super();
-        this.feedItemList = new Array<GFeedItemVM>();
-        feedList.map((article) => {
-            this.feedItemList.push(new FeedItemVM(new Article(article)))
+    @computed
+    get feedItemList(){
+        return this.feedService.articles.map((article) => {
+            return new FeedItemVM(article.slug);
         })
     }
 }
