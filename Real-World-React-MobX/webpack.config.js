@@ -11,16 +11,23 @@ module.exports = {
     module   : {
         rules: [
             {
-                test   : /\.(tsx?)|(js)$/,
-                loader : "babel-loader",
+                // test   : /\.(tsx?)|(js)$/,
+                // loader : "babel-loader",
+                // exclude: /node_modules/,
+                // options: {
+                //     presets: ['@babel/preset-env', '@babel/preset-react', '@babel/typescript'],
+                //     plugins: [
+                //         ["@babel/plugin-proposal-decorators", {"legacy": true}],
+                //         '@babel/plugin-proposal-class-properties',
+                //         '@babel/plugin-transform-runtime'
+                //     ]
+                // }
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react', '@babel/typescript'],
-                    plugins: [
-                        ["@babel/plugin-proposal-decorators", {"legacy": true}],
-                        '@babel/plugin-proposal-class-properties',
-                        '@babel/plugin-transform-runtime'
-                    ]
+                    transpileOnly: true,
+                    experimentalWatchApi: true,
                 }
             },
             {
