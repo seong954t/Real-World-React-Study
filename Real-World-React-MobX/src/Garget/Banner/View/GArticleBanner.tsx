@@ -2,7 +2,6 @@ import React from "react";
 import {observer} from "mobx-react";
 import "./GArticleBanner.less"
 import {GArticleBannerVM} from "../ViewModel/GArticleBannerVM";
-// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 import {WidgetColorButton} from "../../../Widget/Button/WidgetColorButton";
 import {Link} from "react-router-dom";
@@ -30,7 +29,7 @@ export class GArticleBanner extends React.Component<Props> {
                                         subtitle={createdAt}
                                         subtitleFontSize={"12px"}
                                         subtitleColor={"#BBBBBB"}
-                                        linkToTitle={this.props.vm.linkToUser}
+                                        linktotitle={this.props.vm.linkToUser}
                                         type={WidgetMiniInfoType.DEFAULT}/>
                         {
                             this.props.vm.showEditButton ?

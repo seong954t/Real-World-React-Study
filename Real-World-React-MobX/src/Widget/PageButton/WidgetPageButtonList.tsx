@@ -31,7 +31,7 @@ export class WidgetPageButtonList extends React.Component<Props> {
         const {from, to, color} = this.props;
 
         return this.range(from, to).map((index) => {
-            return <WidgetPageButtonItem onClick={this.clickHandler} color={color || ''} uid={index}
+            return <WidgetPageButtonItem key={index} onClick={this.clickHandler} color={color || ''} uid={index}
                                          active={this.selected === index}>{index}</WidgetPageButtonItem>
         })
     };

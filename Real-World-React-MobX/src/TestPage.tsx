@@ -77,10 +77,10 @@ export class TestPage extends React.Component<any, any> {
                 <br></br>
 
                 <div>
-                    <WidgetTagList tagList={["tag1", "tag2", "tag3", "tag4"]}
-                                   tagBackgroundColor={"#818A91"}
-                                   tagColor={"#ffffff"}
-                                   tagBorder={"1px solid #818A91"}
+                    <WidgetTagList taglist={["tag1", "tag2", "tag3", "tag4"]}
+                                   tagbackgroundcolor={"#818A91"}
+                                   tagcolor={"#ffffff"}
+                                   tagborder={"1px solid #818A91"}
                     ></WidgetTagList>
                 </div>
                 <div>widget-tag-list</div>

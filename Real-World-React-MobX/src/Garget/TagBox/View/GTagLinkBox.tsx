@@ -4,7 +4,7 @@ import {computed} from "mobx";
 import {WidgetTagItem} from "../../../Widget/Tag/WidgetTagItem";
 
 interface Props {
-    tagList: Array<string>,
+    taglist: Array<string>,
 }
 
 export class GTagLinkBox extends React.PureComponent<Props>{
@@ -17,9 +17,9 @@ export class GTagLinkBox extends React.PureComponent<Props>{
 
     @computed
     get tagItems() {
-        return this.props.tagList.map((tagName) => {
+        return this.props.taglist.map((tagName) => {
             return (
-                <WidgetTagItem style={this.style} linkToTag={`/?tab=tag&tag=${tagName}`}>
+                <WidgetTagItem key={tagName} style={this.style} linktotag={`/?tab=tag&tag=${tagName}`}>
                     {tagName}
                 </WidgetTagItem>
             )

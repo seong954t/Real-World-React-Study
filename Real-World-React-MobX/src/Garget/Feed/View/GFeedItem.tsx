@@ -5,7 +5,6 @@ import "./GFeedItem.less";
 import {Link} from "react-router-dom";
 import {WidgetTagList} from "../../../Widget/Tag/WidgetTagList";
 import {observer} from "mobx-react";
-// @ts-ignore
 import {WidgetMiniInfo, WidgetMiniInfoType} from "../../../Widget/MiniInfo/WidgetMiniInfo";
 import {LoadingSize, WidgetLoading} from "../../../Widget/Loading/WidgetLoading";
 
@@ -28,7 +27,7 @@ export class GFeedItem extends React.Component<Props> {
                                     title={username}
                                     titleFontSize={"16px"}
                                     titleColor={"#5CB85C"}
-                                    linkToTitle={this.props.vm.linkToUser}
+                                    linktotitle={this.props.vm.linkToUser}
                                     subtitle={createdAt}
                                     subtitleFontSize={"12px"}
                                     subtitleColor={"#BBBBBB"}
@@ -55,10 +54,10 @@ export class GFeedItem extends React.Component<Props> {
                 </Link>
 
                 <div className={"feed-footer"}>
-                    <WidgetTagList className={"feed-tag-list"} tagList={tagList}
-                                   tagBackgroundColor={"#ffffff"}
-                                   tagColor={"#aaa"}
-                                   tagBorder={"1px solid #ddd"}/>
+                    <WidgetTagList className={"feed-tag-list"} taglist={tagList}
+                                   tagbackgroundcolor={"#ffffff"}
+                                   tagcolor={"#aaa"}
+                                   tagborder={"1px solid #ddd"}/>
                 </div>
             </div>
         );

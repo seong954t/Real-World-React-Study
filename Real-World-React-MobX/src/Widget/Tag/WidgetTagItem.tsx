@@ -3,15 +3,15 @@ import "./WidgetTagItem.less";
 import {Link} from "react-router-dom";
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
-    linkToTag?: string;
+    linktotag?: string;
 }
 
 export class WidgetTagItem extends React.Component<Props> {
 
     getTagElement = (element: any) => {
-        if (this.props.linkToTag) {
+        if (this.props.linktotag) {
             return (
-                <Link to={this.props.linkToTag}>
+                <Link to={this.props.linktotag}>
                     {element}
                 </Link>
             )

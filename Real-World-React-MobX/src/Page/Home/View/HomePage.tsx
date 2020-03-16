@@ -87,7 +87,7 @@ export class HomePage extends React.Component<Props> {
                         }
                     </div>
                     <div className={"tag-container col-3"}>
-                        <GTagLinkBox tagList={tagList}/>
+                        <GTagLinkBox taglist={tagList}/>
                     </div>
                 </div>
             </Main>

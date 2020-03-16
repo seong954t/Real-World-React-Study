@@ -10,7 +10,7 @@ export class GFeedTabList extends React.Component<Props> {
 
     feedTabItems = () => {
         return this.props.vm.feedTabItemList.map((feedTab) => {
-            return <GFeedTabItem vm={feedTab} active={feedTab.active}/>
+            return <GFeedTabItem key={feedTab.title} vm={feedTab} active={feedTab.active}/>
         })
     };
 

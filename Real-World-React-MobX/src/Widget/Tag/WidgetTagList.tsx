@@ -1,27 +1,26 @@
 import React, {HTMLAttributes} from "react";
 import {WidgetTagItem} from "./WidgetTagItem";
 import "./WidgetTagList.less"
-import {computed} from "mobx";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-    tagList: Array<string>,
-    tagBackgroundColor?: string,
-    tagColor?: string,
-    tagBorder?: string,
+    taglist: Array<string>,
+    tagbackgroundcolor?: string,
+    tagcolor?: string,
+    tagborder?: string,
 }
 
 export class WidgetTagList extends React.Component<Props> {
 
     style = {
-        backgroundColor: this.props.tagBackgroundColor || '',
-        color: this.props.tagColor || '',
-        border: this.props.tagBorder || ''
+        backgroundColor: this.props.tagbackgroundcolor || '',
+        color: this.props.tagcolor || '',
+        border: this.props.tagborder || ''
     };
 
     tagItems = () => {
-        return this.props.tagList.map((tagName) => {
+        return this.props.taglist.map((tagName) => {
             return (
-                <WidgetTagItem style={this.style}>
+                <WidgetTagItem key={tagName} style={this.style}>
                     {tagName}
                 </WidgetTagItem>
             )
